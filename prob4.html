@@ -1,0 +1,722 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Distribuciones de probabilidad continuas &#8212; Pruebas Sphinx</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet">
+  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
+        const thebe_selector = ".thebe,.cell"
+        const thebe_selector_input = "pre,.cell_input div.highlight"
+        const thebe_selector_output = ".output,.cell_output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Taller de manejo de Datos en Pandas" href="py7.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Pruebas Sphinx</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   Welcome to your Jupyter Book
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="py4.html">
+   <span style="color:#F72585">
+    Inspección, Instalación y Carga de Módulos y Paquetes
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="py7.html">
+   <span style="color:#F72585">
+    Taller de manejo de Datos en Pandas
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   <span style="color:#F72585">
+    Distribuciones de probabilidad continuas
+   </span>
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/prob4.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/LelielC/Libro"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/LelielC/Libro/issues/new?title=Issue%20on%20page%20%2Fprob4.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/LelielC/Libro/main?urlpath=tree/prob4.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <a class="colab-button" href="https://colab.research.google.com/github/LelielC/Libro/blob/main/prob4.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        <button type="button" class="btn btn-secondary topbarbtn"
+            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
+                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-introduccion-span">
+   <span style="color:#4361EE">
+    Introducción
+   </span>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-variables-aleatorias-continuas-span">
+   <span style="color:#4361EE">
+    Variables aleatorias continuas
+   </span>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-funcion-de-densidad-de-probabilidad-span">
+   <span style="color:#4361EE">
+    Función de densidad de probabilidad
+   </span>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-esperanza-matematica-y-varianza-span">
+   <span style="color:#4361EE">
+    Esperanza matemática y varianza
+   </span>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-ejercicio-span">
+     <span style="color:#4CC9F0">
+      Ejercicio
+     </span>
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#span-style-color-green-escriba-aqui-su-respuesta-discuta-con-sus-companeros-span">
+       <span style="color:green">
+        Escriba aquí su respuesta. Discuta con sus compañeros.
+       </span>
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-distribucion-normal-span">
+   <span style="color:#4361EE">
+    Distribución normal
+   </span>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-funcion-de-distribucion-acumulada-span">
+   <span style="color:#4361EE">
+    Función de distribución acumulada
+   </span>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-informacion-de-distribuciones-continuas-span">
+   <span style="color:#4361EE">
+    Información de distribuciones continuas
+   </span>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-entropia-diferencial-span">
+   <span style="color:#4361EE">
+    Entropía diferencial
+   </span>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-entropia-de-la-familia-normal-span">
+   <span style="color:#4361EE">
+    Entropía de la familia normal
+   </span>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-comentarios-span">
+   <span style="color:#4361EE">
+    Comentarios
+   </span>
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="span-style-color-f72585-distribuciones-de-probabilidad-continuas-span">
+<span id="prob4"></span><h1><span style="color:#F72585">Distribuciones de probabilidad continuas</span><a class="headerlink" href="#span-style-color-f72585-distribuciones-de-probabilidad-continuas-span" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="span-style-color-4361ee-introduccion-span">
+<h2><span style="color:#4361EE">Introducción</span><a class="headerlink" href="#span-style-color-4361ee-introduccion-span" title="Permalink to this headline">¶</a></h2>
+<p>En esta lección se introducen las distribuciones de probabilidad continuas. Se introducen los conceptos de información en distribuciones continuas y la entropía diferencial.</p>
+<p>Al empezar se introduce el concepto de variable aleatoria continua y la distribución normal. Si no recuerda el concepto de integral de una función en un intervalo, puede imaginar que una integral es aproximadamente un promedio de los valores de la función en un determinado intervalo.</p>
+<p>Por ejemplo si una función <span class="math notranslate nohighlight">\(h(x)\)</span> está definida en un intervalo digamos <span class="math notranslate nohighlight">\([a,b]\)</span>, entonces la integral de <span class="math notranslate nohighlight">\(h\)</span> en ese intervalo es aproximadamente una suma pesada:</p>
+<div class="math notranslate nohighlight">
+\[
+\int_{a}^{b} h(x)dx \approx p_1f(x_1) + p_2f(x_2) + \ldots + p_nf(x_n),
+\]</div>
+<p>para algunos pesos <span class="math notranslate nohighlight">\(p_1,\ldots,p_n\)</span> y algunos valores <span class="math notranslate nohighlight">\(x_1,\ldots,x_n\)</span>.</p>
+<p>Esto es todo lo necesitamos saber para seguir la lección. Calcular una integral puede ser muy complicado, pero en esta lección solamente requerimos tener presente la ecuación anterior.</p>
+</div>
+<div class="section" id="span-style-color-4361ee-variables-aleatorias-continuas-span">
+<span id="prob4-ej1"></span><h2><span style="color:#4361EE">Variables aleatorias continuas</span><a class="headerlink" href="#span-style-color-4361ee-variables-aleatorias-continuas-span" title="Permalink to this headline">¶</a></h2>
+<p>Supongamos que se mide con una herramienta de precisión el diámetro de la cabeza de un tornillo salido de un proceso de producción. Es conocido que cada tornillo producido puede tener pequeñas diferencias de tamaño. Esto se debe en general a la forma como cada tornillo es procesado. Las máquinas que los producen por lo general pierden precisión por el uso.</p>
+<p>Otro ejemplo menos preciso pero más cercano a nosotros es medir la estatura de las personas. En este caso los instrumentos son mucho menos precisos.</p>
+<p>Si se define <span class="math notranslate nohighlight">\(X\)</span> como la medida en cada caso, es claro que <span class="math notranslate nohighlight">\(X\)</span> es una variable  aleatoria, puesto que al realizar los experimentos (en este caso las mediciones), no se puede predecir con total precisión, cual será el valor medido en cada experimento.</p>
+<p>Por otro lado <span class="math notranslate nohighlight">\(X\)</span> tiene una característica diferente a las variables aleatorias discretas estudiadas con anterioridad. Sus posibles valores ahora no puede enumerarse. Dentro de un rango razonable es posible obtener como resultado cualquier número real dentro de ese rango. En este caso  se dice que la variable aleatoria es continua.</p>
+<p>Para las variables aleatorias continuas no existe función de probabilidad, debido a que ahora para cada valor posible no es posible asociar una probabilidad diferente de cero. En este caso se toman intervalos tan grandes o pequeños como sea posible y a estos intervalos se les asigna una medida de probabilidad.</p>
+</div>
+<div class="section" id="span-style-color-4361ee-funcion-de-densidad-de-probabilidad-span">
+<h2><span style="color:#4361EE">Función de densidad de probabilidad</span><a class="headerlink" href="#span-style-color-4361ee-funcion-de-densidad-de-probabilidad-span" title="Permalink to this headline">¶</a></h2>
+<p>La función de densidad de probabilidad, en adelante función de densidad, es el homólogo de la función de probabilidad. Se trata entonces de una función integrable no negativa, en donde el área bajo la curva es 1.</p>
+<p>El ejemplo más simple es la distribución uniforme en el intervalos <span class="math notranslate nohighlight">\([0,1]\)</span>. En este caso la función de densidad es <span class="math notranslate nohighlight">\(g(x)=1\)</span>. Note que en este caso se tiene que</p>
+<div class="math notranslate nohighlight">
+\[
+\int_0^1 g(x)dx = \int_0^1 1 dx= x|_{x=0}^{x=1} = 1-0 =1.
+\]</div>
+<p>Esta distribución se llama uniforme porque cada subintervalo de <span class="math notranslate nohighlight">\([0,1]\)</span> tiene exactamente la misma probabilidad. Por ejemplo los intervalos <span class="math notranslate nohighlight">\([0.1,0.3]\)</span> y <span class="math notranslate nohighlight">\([0.5,0.7]\)</span> tiene cada uno medida de probabilidad 0.2. En este caso, la medida de probabilidad coincide con la medida de longitud que usamos a diario para medir longitudes, como por ejemplo, el frente de una casa.</p>
+</div>
+<div class="section" id="span-style-color-4361ee-esperanza-matematica-y-varianza-span">
+<h2><span style="color:#4361EE">Esperanza matemática y varianza</span><a class="headerlink" href="#span-style-color-4361ee-esperanza-matematica-y-varianza-span" title="Permalink to this headline">¶</a></h2>
+<p>Las definiciones en este caso son generalizaciones a las estudiadas para el caso discreto, cambiado los promedios por integrales. Entonces se tiene que si <span class="math notranslate nohighlight">\(X\)</span> es una variable aleatoria continua con densidad dada por <span class="math notranslate nohighlight">\(g(x)\)</span>, se tiene que la esperanza matemática (o valor esperado) y la varianza son dadas por</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+\mathbb{E}[X] &amp;= \mu_X=\int xg(x)dx\\
+\text{Var}[X] &amp;= \int( x - \mu_X)^2g(x)dx\\
+\end{align}
+\end{split}\]</div>
+<p>Los límites de las integrales dependen del tipo de distribución. De acuerdo con lo mencionado en la introducción, en relación con el concepto de integral, podemos conservar las interpretaciones de la media y la varianza del caso discreto.</p>
+<p>La media es aproximadamente el valor promedio de la variable aleatoria que se obtiene si se realiza muchas veces el experimento aleatorio y se calcula la medida dada por la variable aleatoria.</p>
+<p>Por otro lado la varianza mide el grado de predictibilidad de la variable aleatoria. Entonces, aunque no son conceptos exáctamente equivalentes podemos mantener las interpretaciones. Lo mismo ocurre con los conceptos de la teoría de información.</p>
+<div class="section" id="span-style-color-4cc9f0-ejercicio-span">
+<h3><span style="color:#4CC9F0">Ejercicio</span><a class="headerlink" href="#span-style-color-4cc9f0-ejercicio-span" title="Permalink to this headline">¶</a></h3>
+<p>Verifique la afirmación anterior.</p>
+<p><em>Ayuda</em>: <span class="math notranslate nohighlight">\(\text{Prob}[0.5,0.7] =\int_{0.5}^{0.7} g(x)dx \)</span>.</p>
+<div class="section" id="span-style-color-green-escriba-aqui-su-respuesta-discuta-con-sus-companeros-span">
+<h4><span style="color:green">Escriba aquí su respuesta. Discuta con sus compañeros.</span><a class="headerlink" href="#span-style-color-green-escriba-aqui-su-respuesta-discuta-con-sus-companeros-span" title="Permalink to this headline">¶</a></h4>
+</div>
+</div>
+</div>
+<div class="section" id="span-style-color-4361ee-distribucion-normal-span">
+<span id="prob4-ej3"></span><h2><span style="color:#4361EE">Distribución normal</span><a class="headerlink" href="#span-style-color-4361ee-distribucion-normal-span" title="Permalink to this headline">¶</a></h2>
+<p>La distribución normal es la distribución más importante de toda la estadística. Esto no solamente se debe  a su aplicación en gran cantidad de problemas, sino porque es la distribución límite de muchas sucesiones de distribuciones que aparecen con frecuencia.  No entraremos en detalles técnicos. Solamente vamos a indicar la expresión de la función de densidad y veremos como calcular algunas probabilidades.</p>
+<p>La densidad de la distribución normal tiene la expresión</p>
+<div class="math notranslate nohighlight">
+\[
+g(x) = \sqrt{\tfrac{1}{2\pi\sigma^2}} e^{-\tfrac{(x-\mu)^2}{2\sigma^2}}
+\]</div>
+<p>La expresión es un poco intimidante, pero su uso con la ayuda de Python muy fácil. Vamos primero dar las expresiones para la media y la varianza dela distribución normal</p>
+<ol class="simple">
+<li><p>Los parámetros de la distribución  normal son <span class="math notranslate nohighlight">\(\mu\)</span> y <span class="math notranslate nohighlight">\(\sigma^2\)</span>.</p></li>
+<li><p>La función <span class="math notranslate nohighlight">\(g(x)\)</span> es simétrica alrededor de <span class="math notranslate nohighlight">\(\mu_X\)</span>.</p></li>
+</ol>
+<p>Además si <span class="math notranslate nohighlight">\(X\)</span> es una variable aleatoria con distribución normal, que escribiremos <span class="math notranslate nohighlight">\(X\sim \mathcal{N}(\mu,\sigma^2)\)</span>, entonces</p>
+<ol class="simple">
+<li><p><span class="math notranslate nohighlight">\(\mathbb{E}[X] = \mu\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\text{Var}[X] = \sigma^2\)</span></p></li>
+</ol>
+<p>El siguiente es un gráfico de la densidad de una distribución normal. Por favor revise el código Python cuidadosamente y haga cambios en los parámetros para ver el efecto en la densidad.</p>
+<div class="cell tag_thebe-init tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip install matplotlib numpy scipy
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: matplotlib in c:\users\user\appdata\local\programs\python\python39\lib\site-packages (3.4.3)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: numpy in c:\users\user\appdata\local\programs\python\python39\lib\site-packages (1.21.4)
+Requirement already satisfied: scipy in c:\users\user\appdata\local\programs\python\python39\lib\site-packages (1.7.2)
+Requirement already satisfied: pyparsing&gt;=2.2.1 in c:\users\user\appdata\local\programs\python\python39\lib\site-packages (from matplotlib) (2.4.7)
+Requirement already satisfied: cycler&gt;=0.10 in c:\users\user\appdata\local\programs\python\python39\lib\site-packages (from matplotlib) (0.11.0)
+Requirement already satisfied: kiwisolver&gt;=1.0.1 in c:\users\user\appdata\local\programs\python\python39\lib\site-packages (from matplotlib) (1.3.2)
+Requirement already satisfied: python-dateutil&gt;=2.7 in c:\users\user\appdata\local\programs\python\python39\lib\site-packages (from matplotlib) (2.8.2)
+Requirement already satisfied: pillow&gt;=6.2.0 in c:\users\user\appdata\local\programs\python\python39\lib\site-packages (from matplotlib) (8.4.0)
+Requirement already satisfied: six&gt;=1.5 in c:\users\user\appdata\local\programs\python\python39\lib\site-packages (from python-dateutil&gt;=2.7-&gt;matplotlib) (1.16.0)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">scipy.stats</span> <span class="k">as</span> <span class="nn">stats</span>
+<span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">from</span> <span class="nn">matplotlib.widgets</span> <span class="kn">import</span> <span class="n">Slider</span><span class="p">,</span> <span class="n">Button</span>
+
+<span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="n">mu</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">variance</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">sigma</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">variance</span><span class="p">)</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">mu</span> <span class="o">-</span> <span class="mi">3</span><span class="o">*</span><span class="n">sigma</span><span class="p">,</span> <span class="n">mu</span> <span class="o">+</span> <span class="mi">3</span><span class="o">*</span><span class="n">sigma</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="c1">#Fijar los limites de los ejes</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="n">mu</span> <span class="o">-</span> <span class="mi">3</span><span class="o">*</span><span class="n">sigma</span><span class="p">,</span> <span class="n">mu</span> <span class="o">+</span> <span class="mi">3</span><span class="o">*</span><span class="n">sigma</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">stats</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">mu</span><span class="p">,</span> <span class="n">sigma</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="o">~</span>\<span class="n">AppData</span>\<span class="n">Local</span>\<span class="n">Temp</span><span class="o">/</span><span class="n">ipykernel_8728</span><span class="o">/</span><span class="mf">3954509224.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="kn">import</span> <span class="nn">scipy.stats</span> <span class="k">as</span> <span class="nn">stats</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="kn">import</span> <span class="nn">math</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="kn">from</span> <span class="nn">matplotlib.widgets</span> <span class="kn">import</span> <span class="n">Slider</span><span class="p">,</span> <span class="n">Button</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;matplotlib&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Para modificar mu y sigma por medio de deslizadores abra este cuaderno en Colab o Binder</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip install ipympl
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> widget
+<span class="c1"># Crear la figura y el line que manipularemos</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">line</span><span class="p">,</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">stats</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">mu</span><span class="p">,</span> <span class="n">sigma</span><span class="p">),</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># Ajustar el grafico para dejar espacio para los deslizadores</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">bottom</span><span class="o">=</span><span class="mf">0.25</span><span class="p">)</span>
+
+<span class="c1"># Hacer un deslizador horizontal para el valor de mu.</span>
+<span class="n">axfreq</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">axes</span><span class="p">([</span><span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.65</span><span class="p">,</span> <span class="mf">0.03</span><span class="p">])</span>
+<span class="n">mu_slider</span> <span class="o">=</span> <span class="n">Slider</span><span class="p">(</span>
+    <span class="n">ax</span><span class="o">=</span><span class="n">axfreq</span><span class="p">,</span>
+    <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Mu&#39;</span><span class="p">,</span>
+    <span class="n">valmin</span><span class="o">=-</span><span class="mi">3</span><span class="p">,</span>
+    <span class="n">valmax</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+    <span class="n">valinit</span><span class="o">=</span><span class="n">mu</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># Hacer un deslizador vertical para el valor de sigma</span>
+<span class="n">axamp</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">axes</span><span class="p">([</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.0225</span><span class="p">,</span> <span class="mf">0.63</span><span class="p">])</span>
+<span class="n">sigma_slider</span> <span class="o">=</span> <span class="n">Slider</span><span class="p">(</span>
+    <span class="n">ax</span><span class="o">=</span><span class="n">axamp</span><span class="p">,</span>
+    <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Sigma&quot;</span><span class="p">,</span>
+    <span class="n">valmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">valmax</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+    <span class="n">valinit</span><span class="o">=</span><span class="n">sigma</span><span class="p">,</span>
+    <span class="n">orientation</span><span class="o">=</span><span class="s2">&quot;vertical&quot;</span>
+<span class="p">)</span>
+
+<span class="c1"># La funcion que se llama cada vez que el valor en los deslizadores cambia</span>
+<span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="n">val</span><span class="p">):</span>
+    <span class="n">line</span><span class="o">.</span><span class="n">set_ydata</span><span class="p">(</span><span class="n">stats</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">mu_slider</span><span class="o">.</span><span class="n">val</span><span class="p">,</span> <span class="n">sigma_slider</span><span class="o">.</span><span class="n">val</span><span class="p">))</span>
+    <span class="n">fig</span><span class="o">.</span><span class="n">canvas</span><span class="o">.</span><span class="n">draw_idle</span><span class="p">()</span>
+
+<span class="c1">#Registro de la funcion update para cada deslizador</span>
+<span class="n">mu_slider</span><span class="o">.</span><span class="n">on_changed</span><span class="p">(</span><span class="n">update</span><span class="p">)</span>
+<span class="n">sigma_slider</span><span class="o">.</span><span class="n">on_changed</span><span class="p">(</span><span class="n">update</span><span class="p">)</span>
+
+<span class="c1">#Creación Boton Reset</span>
+<span class="n">resetax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">axes</span><span class="p">([</span><span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.025</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.04</span><span class="p">])</span>
+<span class="n">button</span> <span class="o">=</span> <span class="n">Button</span><span class="p">(</span><span class="n">resetax</span><span class="p">,</span> <span class="s1">&#39;Reset&#39;</span><span class="p">,</span> <span class="n">hovercolor</span><span class="o">=</span><span class="s1">&#39;0.975&#39;</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">reset</span><span class="p">(</span><span class="n">event</span><span class="p">):</span>
+    <span class="n">mu_slider</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
+    <span class="n">sigma_slider</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
+<span class="n">button</span><span class="o">.</span><span class="n">on_clicked</span><span class="p">(</span><span class="n">reset</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "9c3258a4c5674fbda5a32220e8525bc8", "version_major": 2, "version_minor": 0}
+</script></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Prob[−∞,𝑎] .</span>
+<span class="kn">import</span> <span class="nn">scipy.stats</span> <span class="k">as</span> <span class="nn">stats</span>
+<span class="kn">import</span> <span class="nn">math</span>
+<span class="n">a</span> <span class="o">=</span> <span class="mi">8</span>
+<span class="n">mu</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">var</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">sigma</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">var</span><span class="p">)</span>
+<span class="n">prob_inf_a</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">mu</span><span class="p">,</span> <span class="n">sigma</span><span class="p">)</span>
+<span class="n">prob_inf_a</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.022750131948179195
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="span-style-color-4361ee-funcion-de-distribucion-acumulada-span">
+<h2><span style="color:#4361EE">Función de distribución acumulada</span><a class="headerlink" href="#span-style-color-4361ee-funcion-de-distribucion-acumulada-span" title="Permalink to this headline">¶</a></h2>
+<p>Dada una distribución con densidad <span class="math notranslate nohighlight">\(g(x)\)</span>, su función de distribución acumulada evaluada en <span class="math notranslate nohighlight">\(x\)</span> se define mediante la función <span class="math notranslate nohighlight">\(G\)</span> dada por</p>
+<div class="math notranslate nohighlight">
+\[
+G(x) = \int_{-\infty}^{x}g(x)dx
+\]</div>
+<p>Observe que en consecuencia si <span class="math notranslate nohighlight">\(G\)</span> es una función de distribución acumulada se tiene que para cualquier intervalo <span class="math notranslate nohighlight">\([a,b]\)</span></p>
+<div class="math notranslate nohighlight">
+\[
+\text{Prob}[a,b] = G(b) - G(a) = \int_{-\infty}^{b}g(x)dx - \int_{-\infty}^{a}g(x)dx = \text{Prob}[-\infty,b] - \text{Prob}[-\infty,a].
+\]</div>
+</div>
+<div class="section" id="span-style-color-4361ee-informacion-de-distribuciones-continuas-span">
+<span id="prob4-ej4"></span><h2><span style="color:#4361EE">Información de distribuciones continuas</span><a class="headerlink" href="#span-style-color-4361ee-informacion-de-distribuciones-continuas-span" title="Permalink to this headline">¶</a></h2>
+<p>La siguiente gráfica muestra las funciones de información (diferencial), definida por <span class="math notranslate nohighlight">\(-\log g(x)\)</span>. La información diferencial representa el <strong>grado de sorpresa</strong> de observar el valor en cada punto.</p>
+<p>Tanto la distribución de Student(0,1,df=10) como la doble exponencial(0,1) tienen valores sorpresa muy por debajo de lo normal(0,1) en los rangos (-6, 6). Esto significa que los valores atípicos tendrán menos efecto en el log-posterior de los modelos que usan estas distribuciones. Una línea de regresión necesitaría moverse menos para incorporar esas observaciones, ya que la distribución del error no las considerará inusuales.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">norm</span>
+<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">t</span>
+<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">laplace</span>
+<span class="c1">#</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Funciones de información&#39;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">6</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">300</span><span class="p">)</span>
+<span class="c1">#</span>
+<span class="n">y_laplace</span> <span class="o">=</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">laplace</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y_laplace</span><span class="p">,</span> <span class="s1">&#39;g-&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;laplace pdf&#39;</span><span class="p">)</span>
+<span class="c1">#</span>
+<span class="n">y_norm</span> <span class="o">=</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">norm</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y_norm</span><span class="p">,</span> <span class="s1">&#39;r-&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;norm pdf&#39;</span><span class="p">)</span>
+<span class="c1">#</span>
+<span class="n">y_student_t</span> <span class="o">=</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">df</span><span class="o">=</span><span class="mi">10</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y_student_t</span><span class="p">,</span> <span class="s1">&#39;b-&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;student-t pdf&#39;</span><span class="p">)</span>
+
+<span class="c1">#</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;$x$&#39;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;$I(x) = -\log \ f(x)$&#39;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/prob4_26_0.png" src="_images/prob4_26_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="span-style-color-4361ee-entropia-diferencial-span">
+<h2><span style="color:#4361EE">Entropía diferencial</span><a class="headerlink" href="#span-style-color-4361ee-entropia-diferencial-span" title="Permalink to this headline">¶</a></h2>
+<p>La entropía de Shannon está restringida a variables aleatorias que toman valores discretos. La fórmula correspondiente para una variable aleatoria continua con función de densidad de probabilidad <span class="math notranslate nohighlight">\( f(x) \)</span> con soporte (dominio) finito o infinito <span class="math notranslate nohighlight">\( \mathbb{X}\)</span> en la línea real se define por analogía, utilizando la forma anterior de la entropía como una esperanza:</p>
+<div class="math notranslate nohighlight">
+\[h[f]= E [-\ln(f(x))]=-\int_{\mathbb {X}}f(x)\ln(f(x))dx.\]</div>
+<p>Esta fórmula generalmente se conoce como entropía continua, o <strong>entropía diferencial</strong>.</p>
+<p>Aunque la analogía entre ambas funciones es sugestiva, debe establecerse la siguiente pregunta:</p>
+<p><code class="docutils literal notranslate"><span class="pre">¿Es</span> <span class="pre">la</span> <span class="pre">entropía</span> <span class="pre">diferencial</span> <span class="pre">una</span> <span class="pre">extensión</span> <span class="pre">válida</span> <span class="pre">de</span> <span class="pre">la</span> <span class="pre">entropía</span> <span class="pre">discreta</span> <span class="pre">de</span> <span class="pre">Shannon?</span></code></p>
+<p>La entropía diferencial carece de una serie de propiedades que la entropía discreta de Shannon tiene, <em>incluso puede ser negativa</em>.</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\( \leadsto \)</span> Se puede demostrar que la entropía diferencial no es un límite de la entropía de Shannon para <span class="math notranslate nohighlight">\( n \to \infty \)</span>.</p></li>
+</ul>
+<p>Por otro lado, los conceptos y definiciones de la entropía de Shanon se traducen con la misma interpretación al caso continuo. Las sumas ahora son integrales. Así tenemos  en el caso continuo que:</p>
+<ol class="simple">
+<li><p>Entropía conjunta: <span class="math notranslate nohighlight">\(H(X,Y) = -\int \int f(x,y)\ln f(x,y) dx dy\)</span>.</p></li>
+<li><p>Entropía condicional: <span class="math notranslate nohighlight">\(H(Y|X)= -\int\int  f(x,y)\ln p(y|x) dx dy\)</span>.</p></li>
+<li><p>Información mutua: <span class="math notranslate nohighlight">\(\mathfrak{M}(X,Y)  = \int \int f(x,y)[\ln f(x,y) - \ln f_X(x)f_Y(y)]dx dy\)</span>.</p></li>
+</ol>
+</div>
+<div class="section" id="span-style-color-4361ee-entropia-de-la-familia-normal-span">
+<h2><span style="color:#4361EE">Entropía de la familia normal</span><a class="headerlink" href="#span-style-color-4361ee-entropia-de-la-familia-normal-span" title="Permalink to this headline">¶</a></h2>
+<p>Se puede verificar que la entropía diferencial de la familia de distribuciones normales está dada por</p>
+<div class="math notranslate nohighlight">
+\[
+Entropia_{normal} = \tfrac{1}{2} \ln(2\pi e\sigma^2 )
+\]</div>
+<p>So observa entonces que tanto la varianza <span class="math notranslate nohighlight">\(\sigma^2\)</span> como la entropía <span class="math notranslate nohighlight">\(\tfrac{1}{2} \ln(2\pi e\sigma^2) \)</span> son funciones crecientes. A mayor valor de <span class="math notranslate nohighlight">\(\sigma\)</span> mayor entropía y viceversa. Así una variable aleatoria que tiene distribución normal es mas predecible entre menor es su varianza.</p>
+<p>La figura muestra la entropía y la varianza en función de <span class="math notranslate nohighlight">\(\sigma\)</span> para la familia normal.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">norm</span>
+<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">t</span>
+<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">laplace</span>
+<span class="c1">#</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Entropía y varianza en la familia normal como función de $\sigma$&#39;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+
+<span class="n">sigma</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.4</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">300</span><span class="p">)</span>
+<span class="c1">#</span>
+<span class="n">varianza</span> <span class="o">=</span> <span class="n">sigma</span><span class="o">**</span><span class="mi">2</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">sigma</span><span class="p">,</span> <span class="n">varianza</span><span class="p">,</span> <span class="s1">&#39;g-&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;varianza&#39;</span><span class="p">)</span>
+<span class="c1">#</span>
+<span class="n">entropia</span> <span class="o">=</span> <span class="mf">0.5</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">e</span><span class="o">*</span><span class="n">sigma</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">sigma</span><span class="p">,</span> <span class="n">entropia</span><span class="p">,</span> <span class="s1">&#39;r-&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;entropía&#39;</span><span class="p">)</span>
+<span class="c1">#</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;$\sigma$&#39;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;entropía =$\sqrt{\log (2\pi e \sigma^2) }$&#39;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/prob4_31_0.png" src="_images/prob4_31_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="span-style-color-4361ee-comentarios-span">
+<h2><span style="color:#4361EE">Comentarios</span><a class="headerlink" href="#span-style-color-4361ee-comentarios-span" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "LelielC/Libro",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="py7.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title"><span style="color:#F72585">Taller de manejo de Datos en Pandas</span></p>
+        </div>
+    </a>
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="container">
+      <p>
+        
+          By Celeste<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

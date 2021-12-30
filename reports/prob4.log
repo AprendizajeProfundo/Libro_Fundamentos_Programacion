@@ -1,0 +1,50 @@
+Traceback (most recent call last):
+  File "C:\Users\User\AppData\Local\Programs\Python\Python310\lib\site-packages\jupyter_cache\executors\utils.py", line 51, in single_nb_execution
+    executenb(
+  File "C:\Users\User\AppData\Local\Programs\Python\Python310\lib\site-packages\nbclient\client.py", line 1093, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+  File "C:\Users\User\AppData\Local\Programs\Python\Python310\lib\site-packages\nbclient\util.py", line 84, in wrapped
+    return just_run(coro(*args, **kwargs))
+  File "C:\Users\User\AppData\Local\Programs\Python\Python310\lib\site-packages\nbclient\util.py", line 62, in just_run
+    return loop.run_until_complete(coro)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python310\lib\asyncio\base_events.py", line 641, in run_until_complete
+    return future.result()
+  File "C:\Users\User\AppData\Local\Programs\Python\Python310\lib\site-packages\nbclient\client.py", line 559, in async_execute
+    await self.async_execute_cell(
+  File "C:\Users\User\AppData\Local\Programs\Python\Python310\lib\site-packages\nbclient\client.py", line 854, in async_execute_cell
+    self._check_raise_for_error(cell, exec_reply)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python310\lib\site-packages\nbclient\client.py", line 756, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+
+import matplotlib.pyplot as plt
+import numpy as np
+import scipy.stats as stats
+import math
+from matplotlib.widgets import Slider, Button
+
+%matplotlib inline
+mu = 0
+variance = 1
+sigma = math.sqrt(variance)
+t = np.linspace(mu - 3*sigma, mu + 3*sigma, 100)
+#Fijar los limites de los ejes
+plt.xlim(mu - 3*sigma, mu + 3*sigma)
+
+plt.plot(t, stats.norm.pdf(t, mu, sigma))
+
+------------------
+
+[1;31m---------------------------------------------------------------------------[0m
+[1;31mModuleNotFoundError[0m                       Traceback (most recent call last)
+[1;32m~\AppData\Local\Temp/ipykernel_8728/3954509224.py[0m in [0;36m<module>[1;34m[0m
+[1;32m----> 1[1;33m [1;32mimport[0m [0mmatplotlib[0m[1;33m.[0m[0mpyplot[0m [1;32mas[0m [0mplt[0m[1;33m[0m[1;33m[0m[0m
+[0m[0;32m      2[0m [1;32mimport[0m [0mnumpy[0m [1;32mas[0m [0mnp[0m[1;33m[0m[1;33m[0m[0m
+[0;32m      3[0m [1;32mimport[0m [0mscipy[0m[1;33m.[0m[0mstats[0m [1;32mas[0m [0mstats[0m[1;33m[0m[1;33m[0m[0m
+[0;32m      4[0m [1;32mimport[0m [0mmath[0m[1;33m[0m[1;33m[0m[0m
+[0;32m      5[0m [1;32mfrom[0m [0mmatplotlib[0m[1;33m.[0m[0mwidgets[0m [1;32mimport[0m [0mSlider[0m[1;33m,[0m [0mButton[0m[1;33m[0m[1;33m[0m[0m
+
+[1;31mModuleNotFoundError[0m: No module named 'matplotlib'
+ModuleNotFoundError: No module named 'matplotlib'
+
