@@ -28,6 +28,8 @@
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
     <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
@@ -40,8 +42,11 @@
     <script src="_static/togglebutton.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
+    <script src="_static/tabs.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
@@ -51,6 +56,7 @@
         const thebe_selector_output = ".output,.cell_output"
     </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Taller de manejo de Datos en Pandas" href="py7.html" />
@@ -422,148 +428,214 @@ programa o archivo por lotes ejecutable.
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Please wait a moment while I gather a list of all available modules...
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\User\AppData\Local\Programs\Python\Python310\lib\site-packages\IPython\kernel\__init__.py:12: ShimWarning: The `IPython.kernel` package has been deprecated since IPython 4.0.You should import from ipykernel or jupyter_client instead.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c:\users\user\appdata\local\programs\python\python39\lib\site-packages\IPython\kernel\__init__.py:12: ShimWarning: The `IPython.kernel` package has been deprecated since IPython 4.0.You should import from ipykernel or jupyter_client instead.
   warn(&quot;The `IPython.kernel` package has been deprecated since IPython 4.0.&quot;
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\User\AppData\Local\Programs\Python\Python310\lib\site-packages\jupyter_server_mathjax\app.py:40: FutureWarning: The alias `_()` will be deprecated. Use `_i18n()` instead.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c:\users\user\appdata\local\programs\python\python39\lib\pkgutil.py:93: UserWarning: 
+The dash_core_components package is deprecated. Please replace
+`import dash_core_components as dcc` with `from dash import dcc`
+  __import__(info.name)
+c:\users\user\appdata\local\programs\python\python39\lib\pkgutil.py:93: UserWarning: 
+The dash_html_components package is deprecated. Please replace
+`import dash_html_components as html` with `from dash import html`
+  __import__(info.name)
+c:\users\user\appdata\local\programs\python\python39\lib\pkgutil.py:93: UserWarning: 
+The dash_table package is deprecated. Please replace
+`import dash_table` with `from dash import dash_table`
+
+Also, if you&#39;re using any of the table format helpers (e.g. Group), replace 
+`from dash_table.Format import Group` with 
+`from dash.dash_table.Format import Group`
+  __import__(info.name)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c:\users\user\appdata\local\programs\python\python39\lib\site-packages\jupyter_server_mathjax\app.py:40: FutureWarning: The alias `_()` will be deprecated. Use `_i18n()` instead.
   help=_(&quot;&quot;&quot;The MathJax.js configuration file that is to be used.&quot;&quot;&quot;),
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\User\AppData\Local\Programs\Python\Python310\lib\pkgutil.py:107: VisibleDeprecationWarning:
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c:\users\user\appdata\local\programs\python\python39\lib\site-packages\pydub\utils.py:170: RuntimeWarning: Couldn&#39;t find ffmpeg or avconv - defaulting to ffmpeg, but may not work
+  warn(&quot;Couldn&#39;t find ffmpeg or avconv - defaulting to ffmpeg, but may not work&quot;, RuntimeWarning)
+</pre></div>
+</div>
+<div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">Manim Community <span style="color: #008000; text-decoration-color: #008000">v0.13.1</span>
+
+</pre>
+</div><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c:\users\user\appdata\local\programs\python\python39\lib\pkgutil.py:93: MatplotlibDeprecationWarning: 
+The matplotlib.compat module was deprecated in Matplotlib 3.3 and will be removed two minor releases later.
+  __import__(info.name)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c:\users\user\appdata\local\programs\python\python39\lib\site-packages\pyglet\image\codecs\wic.py:289: UserWarning:
+
+[WinError -2147417850] No se puede cambiar el modo de subproceso después de establecerlo
+
+c:\users\user\appdata\local\programs\python\python39\lib\site-packages\pyglet\media\codecs\wmf.py:838: UserWarning:
+
+[WinError -2147417850] No se puede cambiar el modo de subproceso después de establecerlo
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c:\users\user\appdata\local\programs\python\python39\lib\site-packages\setuptools\distutils_patch.py:25: UserWarning:
+
+Distutils was imported before Setuptools. This usage is discouraged and may exhibit undesirable behaviors or errors. Please use Setuptools&#39; objects directly or at least import Setuptools first.
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c:\users\user\appdata\local\programs\python\python39\lib\pkgutil.py:108: VisibleDeprecationWarning:
 
 zmq.eventloop.minitornado is deprecated in pyzmq 14.0 and will be removed.
     Install tornado itself to use zmq with the tornado IOLoop.
     
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>IPython             cgi                 mimetypes           sre_parse
-PIL                 cgitb               mistune             ssl
-__future__          charset_normalizer  mmap                sspi
-_abc                chunk               mmapfile            sspicon
-_aix_support        click               mmsystem            stat
-_ast                cmath               modulefinder        statistics
-_asyncio            cmd                 msilib              storemagic
-_bisect             code                msvcrt              string
-_blake2             codecs              multiprocessing     stringprep
-_bootsubprocess     codeop              myst_nb             struct
-_bz2                collections         myst_parser         subprocess
-_cffi_backend       colorama            nbclassic           sunau
-_codecs             colorsys            nbclient            sympyprinting
-_codecs_cn          commctrl            nbconvert           symtable
-_codecs_hk          compileall          nbdime              sys
-_codecs_iso2022     concurrent          nbformat            sysconfig
-_codecs_jp          configparser        nest_asyncio        tabnanny
-_codecs_kr          contextlib          netbios             tarfile
-_codecs_tw          contextvars         netrc               telnetlib
-_collections        copy                nntplib             tempfile
-_collections_abc    copyreg             notebook            tenacity
-_compat_pickle      crypt               nt                  terminado
-_compression        csv                 ntpath              test
-_contextvars        ctypes              ntsecuritycon       testpath
-_csv                curses              nturl2path          tests
-_ctypes             cycler              numbers             textwrap
-_ctypes_test        cythonmagic         numpy               this
-_datetime           dataclasses         odbc                threading
-_decimal            datetime            opcode              time
-_distutils_hack     dateutil            operator            timeit
-_elementtree        dbi                 optparse            timer
-_functools          dbm                 os                  tkinter
-_hashlib            dde                 packaging           token
-_heapq              debugpy             pandas              tokenize
-_imp                decimal             pandocfilters       toml
-_io                 decorator           parso               tornado
-_json               defusedxml          pathlib             trace
-_locale             difflib             pdb                 traceback
-_lsprof             dis                 perfmon             tracemalloc
-_lzma               distutils           pickle              traitlets
-_markupbase         doctest             pickleshare         tty
-_md5                docutils            pickletools         turtle
-_msi                email               pip                 turtledemo
-_multibytecodec     encodings           pipes               types
-_multiprocessing    ensurepip           pkg_resources       typing
-_opcode             entrypoints         pkgutil             uc_micro
-_operator           enum                platform            unicodedata
-_osx_support        errno               plistlib            unittest
-_overlapped         faulthandler        plotly              urllib
-_pickle             filecmp             plotlywidget        urllib3
-_plotly_future_     fileinput           poplib              uu
-_plotly_utils       fnmatch             posixpath           uuid
-_py_abc             fractions           pprint              venv
-_pydecimal          ftplib              profile             warnings
-_pyio               functools           prometheus_client   wave
-_pyrsistent_version gc                  prompt_toolkit      wcwidth
-_queue              genericpath         pstats              weakref
-_random             getopt              pty                 webbrowser
-_sha1               getpass             py_compile          webencodings
-_sha256             gettext             pybtex              websocket
-_sha3               ghp_import          pybtex_docutils     wheel
-_sha512             git                 pyclbr              widgetsnbextension
-_signal             gitdb               pycparser           win2kras
-_sitebuiltins       glob                pydata_sphinx_theme win32api
-_socket             graphlib            pydoc               win32clipboard
-_sqlite3            greenlet            pydoc_data          win32com
-_sre                gzip                pyexpat             win32con
-_ssl                hashlib             pygments            win32console
-_stat               heapq               pyparsing           win32cred
-_statistics         hmac                pyrsistent          win32crypt
-_string             html                pythoncom           win32cryptcon
-_strptime           http                pytz                win32event
-_struct             idlelib             pywin               win32evtlog
-_symtable           idna                pywin32_bootstrap   win32evtlogutil
-_testbuffer         imagesize           pywin32_testutil    win32file
-_testcapi           imaplib             pywintypes          win32gui
-_testconsole        imghdr              queue               win32gui_struct
-_testimportmultiple imp                 quopri              win32help
-_testinternalcapi   importlib           random              win32inet
-_testmultiphase     importlib_metadata  rasutil             win32inetcon
-_thread             inexactsearch       re                  win32job
-_threading_local    inspect             regcheck            win32lz
-_tkinter            io                  regutil             win32net
-_tracemalloc        ipaddress           reprlib             win32netcon
-_uuid               ipykernel           requests            win32pdh
-_warnings           ipykernel_launcher  rlcompleter         win32pdhquery
-_weakref            ipython_genutils    rmagic              win32pdhutil
-_weakrefset         ipywidgets          runpy               win32pipe
-_win32sysloader     isapi               sched               win32print
-_winapi             itertools           secrets             win32process
-_winxptheme         jedi                select              win32profile
-_xxsubinterpreters  jinja2              selectors           win32ras
-_yaml               json                send2trash          win32rcparser
-_zoneinfo           json5               servicemanager      win32security
-abc                 jsonschema          setuptools          win32service
-adodbapi            jupyter             shelve              win32serviceutil
-afxres              jupyter_book        shlex               win32timezone
-aifc                jupyter_cache       shutil              win32trace
-alabaster           jupyter_client      signal              win32traceutil
-antigravity         jupyter_core        silpa_common        win32transaction
-anyio               jupyter_server      site                win32ts
-argon2              jupyter_server_mathjax six                 win32ui
-argparse            jupyter_sphinx      smmap               win32uiole
-array               jupyterlab          smtpd               win32verstamp
-ast                 jupyterlab_plotly   smtplib             win32wnet
-asynchat            jupyterlab_pygments sndhdr              winerror
-asyncio             jupyterlab_server   sniffio             winioctlcon
-asyncore            jupyterlab_spellchecker snowballstemmer     winnt
-atexit              jupyterlab_widgets  socket              winperf
-attr                jupytext            socketserver        winpty
-audioop             keyword             soundex             winreg
-autoreload          kiwisolver          soupsieve           winsound
-babel               latexcodec          spellchecker        winxpgui
-backcall            lib2to3             sphinx              winxptheme
-base64              linecache           sphinx_book_theme   wsgiref
-bdb                 linkify_it          sphinx_comments     xdrlib
-binascii            locale              sphinx_copybutton   xml
-binhex              logging             sphinx_external_toc xmlrpc
-bisect              lzma                sphinx_jupyterbook_latex xxsubtype
-bleach              mailbox             sphinx_multitoc_numbering yaml
-bs4                 mailcap             sphinx_panels       zipapp
-builtins            markdown_it         sphinx_thebe        zipfile
-bz2                 markupsafe          sphinx_togglebutton zipimport
-cProfile            marshal             sqlalchemy          zipp
-calendar            math                sqlite3             zlib
-certifi             matplotlib_inline   sre_compile         zmq
-cffi                mdit_py_plugins     sre_constants       zoneinfo
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>IPython             cmd                 mimetypes           sphinx_multitoc_numbering
+PIL                 code                mistune             sphinx_panels
+__future__          codecs              mmap                sphinx_proof
+_abc                codeop              mmapfile            sphinx_thebe
+_aix_support        collections         mmsystem            sphinx_togglebutton
+_ast                colorama            moderngl            sqlalchemy
+_asyncio            colorsys            moderngl_window     sqlite3
+_bisect             colour              modulefinder        sre_compile
+_blake2             commctrl            mpu                 sre_constants
+_bootlocale         commonmark          msilib              sre_parse
+_bootsubprocess     compileall          msvcrt              srt
+_brotli             concurrent          multipledispatch    srt_tools
+_bz2                conf                multiprocessing     ssl
+_cffi_backend       configparser        myst_nb             sspi
+_codecs             contextlib          myst_parser         sspicon
+_codecs_cn          contextvars         nbclassic           stat
+_codecs_hk          cookiecutter        nbclient            statistics
+_codecs_iso2022     copy                nbconvert           storemagic
+_codecs_jp          copyreg             nbdime              string
+_codecs_kr          crypt               nbformat            stringprep
+_codecs_tw          csv                 nbgitpuller         struct
+_collections        ctypes              nest_asyncio        subprocess
+_collections_abc    curses              netbios             sunau
+_compat_pickle      cycler              netrc               symbol
+_compression        cythonmagic         networkx            sympyprinting
+_contextvars        dash                nntplib             symtable
+_csv                dash_core_components nodeenv             sys
+_ctypes             dash_html_components notebook            sysconfig
+_ctypes_test        dash_table          nt                  tabnanny
+_datetime           dataclasses         ntpath              tarfile
+_decimal            datetime            ntsecuritycon       telnetlib
+_elementtree        dateutil            nturl2path          tempfile
+_functools          dbi                 numbers             tenacity
+_hashlib            dbm                 numpy               terminado
+_heapq              dde                 odbc                test
+_imp                debugpy             opcode              testpath
+_io                 decimal             openpyxl            tests
+_json               decorator           operator            text_unidecode
+_locale             defusedxml          optparse            textwrap
+_lsprof             difflib             os                  this
+_lzma               dis                 packaging           threading
+_markupbase         distlib             pandas              time
+_md5                distutils           pandocfilters       timeit
+_msi                doctest             parser              timer
+_multibytecodec     docutils            parso               tkinter
+_multiprocessing    easy_install        pathlib             tlz
+_opcode             email               pathops             token
+_operator           encodings           pdb                 tokenize
+_osx_support        ensurepip           perfmon             toml
+_overlapped         entrypoints         pickle              toolz
+_peg_parser         enum                pickleshare         tornado
+_pickle             errno               pickletools         tqdm
+_plotly_future_     et_xmlfile          pip                 trace
+_plotly_utils       faulthandler        pipes               traceback
+_py_abc             ffmpeg              pkg_resources       tracemalloc
+_pydecimal          filecmp             pkgutil             traitlets
+_pyio               fileinput           platform            tty
+_pyrsistent_version filelock            platformdirs        turtle
+_queue              flask               plistlib            turtledemo
+_random             flask_compress      plotly              types
+_sha1               fnmatch             plotlywidget        typing
+_sha256             formatter           poplib              typing_extensions
+_sha3               fractions           posixpath           tzdata
+_sha512             frameserver_pb2     poyo                tzlocal
+_signal             frameserver_pb2_grpc pprint              uc_micro
+_sitebuiltins       ftplib              pre_commit          unicodedata
+_socket             functools           profile             unittest
+_sqlite3            gc                  prometheus_client   urllib
+_sre                genericpath         prompt_toolkit      urllib3
+_ssl                getopt              pstats              uu
+_stat               getpass             pty                 uuid
+_statistics         gettext             pvectorc            venv
+_string             git                 py_compile          virtualenv
+_strptime           gitdb               pybtex              warnings
+_struct             glcontext           pybtex_docutils     watchdog
+_symtable           glob                pyclbr              wave
+_testbuffer         graphlib            pycparser           wcwidth
+_testcapi           greenlet            pydata_sphinx_theme weakref
+_testconsole        gzip                pydoc               webbrowser
+_testimportmultiple hashlib             pydoc_data          webencodings
+_testinternalcapi   heapq               pydub               websocket
+_testmultiphase     hmac                pyexpat             werkzeug
+_thread             html                pyglet              wheel
+_threading_local    http                pygments            widgetsnbextension
+_tkinter            identify            pylab               win2kras
+_tracemalloc        idlelib             pyparsing           win32api
+_uuid               idna                pyrr                win32clipboard
+_warnings           imagesize           pyrsistent          win32com
+_weakref            imaplib             pythoncom           win32con
+_weakrefset         imghdr              pytz                win32console
+_win32sysloader     imp                 pytz_deprecation_shim win32cred
+_winapi             importlib           pywin               win32crypt
+_winxptheme         importlib_metadata  pywin32_bootstrap   win32cryptcon
+_xxsubinterpreters  inexactsearch       pywin32_testutil    win32event
+_yaml               inspect             pywintypes          win32evtlog
+_zoneinfo           io                  queue               win32evtlogutil
+abc                 ipaddress           quopri              win32file
+adodbapi            ipykernel           random              win32gui
+afxres              ipykernel_launcher  rasutil             win32gui_struct
+aifc                ipympl              re                  win32help
+alabaster           ipython_genutils    regcheck            win32inet
+altair              ipywidgets          regutil             win32inetcon
+animatplot          isapi               renderserver_pb2    win32job
+ansi2html           isosurfaces         renderserver_pb2_grpc win32lz
+antigravity         itertools           reprlib             win32net
+anyio               itsdangerous        requests            win32netcon
+argon2              jedi                retrying            win32pdh
+argparse            jinja2              rich                win32pdhquery
+array               jinja2_time         rlcompleter         win32pdhutil
+arrow               json                rmagic              win32pipe
+ast                 json5               runpy               win32print
+asynchat            jsonschema          sched               win32process
+asyncio             jupyter             scipy               win32profile
+asyncore            jupyter_book        screeninfo          win32ras
+atexit              jupyter_cache       seaborn             win32rcparser
+attr                jupyter_client      secrets             win32security
+audioop             jupyter_core        select              win32service
+autoreload          jupyter_dash        selectors           win32serviceutil
+babel               jupyter_server      send2trash          win32timezone
+backcall            jupyter_server_mathjax servicemanager      win32trace
+backports           jupyter_sphinx      setup               win32traceutil
+base64              jupyterlab          setuptools          win32transaction
+bdb                 jupyterlab_plotly   shelve              win32ts
+binaryornot         jupyterlab_pygments shlex               win32ui
+binascii            jupyterlab_server   shutil              win32uiole
+binhex              jupyterlab_spellchecker signal              win32verstamp
+bisect              jupyterlab_widgets  silpa_common        win32wnet
+bleach              jupytext            site                winerror
+bokeh               keyword             six                 winioctlcon
+brotli              kiwisolver          slugify             winnt
+bs4                 latexcodec          smmap               winperf
+builtins            lib2to3             smtpd               winpty
+bz2                 linecache           smtplib             winreg
+cProfile            linkify_it          sndhdr              winsound
+cairo               locale              sniffio             winxpgui
+calendar            logging             snowballstemmer     winxptheme
+certifi             lzma                socket              wsgiref
+cffi                mailbox             socketserver        xdrlib
+cfg_load            mailcap             soundex             xml
+cfgv                manim               soupsieve           xmlrpc
+cgi                 manimpango          spellchecker        xxsubtype
+cgitb               mapbox_earcut       sphinx              yaml
+chardet             markdown_it         sphinx_book_theme   zipapp
+charset_normalizer  markupsafe          sphinx_click        zipfile
+chunk               marshal             sphinx_comments     zipimport
+click               math                sphinx_copybutton   zipp
+click_default_group matplotlib          sphinx_external_toc zlib
+cloup               matplotlib_inline   sphinx_inline_tabs  zmq
+cmath               mdit_py_plugins     sphinx_jupyterbook_latex zoneinfo
 
 Enter any module name to get more help.  Or, type &quot;modules spam&quot; to search
 for modules whose name or summary contain the string &quot;spam&quot;.
@@ -601,7 +673,6 @@ for modules whose name or summary contain the string &quot;spam&quot;.
  &#39;SG_MAGICCONST&#39;,
  &#39;SystemRandom&#39;,
  &#39;TWOPI&#39;,
- &#39;_ONE&#39;,
  &#39;_Sequence&#39;,
  &#39;_Set&#39;,
  &#39;__all__&#39;,
@@ -621,9 +692,7 @@ for modules whose name or summary contain the string &quot;spam&quot;.
  &#39;_e&#39;,
  &#39;_exp&#39;,
  &#39;_floor&#39;,
- &#39;_index&#39;,
  &#39;_inst&#39;,
- &#39;_isfinite&#39;,
  &#39;_log&#39;,
  &#39;_os&#39;,
  &#39;_pi&#39;,
@@ -681,7 +750,7 @@ for modules whose name or summary contain the string &quot;spam&quot;.
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Número aleatorio en [0,1]:  0.9990530440180695
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Número aleatorio en [0,1]:  0.4026021203887912
 </pre></div>
 </div>
 </div>
@@ -701,7 +770,7 @@ for modules whose name or summary contain the string &quot;spam&quot;.
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Número entero aleatorio entre 3 y 6:  4
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Número entero aleatorio entre 3 y 6:  5
 </pre></div>
 </div>
 </div>
@@ -856,7 +925,7 @@ for modules whose name or summary contain the string &quot;spam&quot;.
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="o">~</span>\<span class="n">AppData</span>\<span class="n">Local</span>\<span class="n">Temp</span><span class="o">/</span><span class="n">ipykernel_6828</span><span class="o">/</span><span class="mf">929699079.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="o">~</span>\<span class="n">AppData</span>\<span class="n">Local</span>\<span class="n">Temp</span><span class="o">/</span><span class="n">ipykernel_16032</span><span class="o">/</span><span class="mf">929699079.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">math</span><span class="o">.</span><span class="n">pi</span>
 
 <span class="ne">NameError</span>: name &#39;math&#39; is not defined

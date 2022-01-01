@@ -28,6 +28,8 @@
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
     <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
@@ -40,6 +42,7 @@
     <script src="_static/togglebutton.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
+    <script src="_static/tabs.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
@@ -49,6 +52,7 @@
         const thebe_selector_output = ".output,.cell_output"
     </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Distribuciones de probabilidad continuas" href="prob4.html" />
@@ -406,24 +410,6 @@
 <div class="section" id="span-style-color-4361ee-que-es-span">
 <h2><span style="color:#4361EE">¿Qué es?</span><a class="headerlink" href="#span-style-color-4361ee-que-es-span" title="Permalink to this headline">¶</a></h2>
 <p>Pandas es una librería de python destinada al análisis y manipulación de datos. Para obtener más información de ella, pueden revisar este <a class="reference external" href="https://pandas.pydata.org/">link</a>.</p>
-<div class="cell tag_thebe-init tag_hide-input docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip install pandas openpyxl
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: pandas in c:\users\user\appdata\local\programs\python\python39\lib\site-packages (1.3.4)
-Requirement already satisfied: openpyxl in c:\users\user\appdata\local\programs\python\python39\lib\site-packages (3.0.9)
-Requirement already satisfied: numpy&gt;=1.17.3 in c:\users\user\appdata\local\programs\python\python39\lib\site-packages (from pandas) (1.21.4)
-Requirement already satisfied: pytz&gt;=2017.3 in c:\users\user\appdata\local\programs\python\python39\lib\site-packages (from pandas) (2021.3)
-Requirement already satisfied: python-dateutil&gt;=2.7.3 in c:\users\user\appdata\local\programs\python\python39\lib\site-packages (from pandas) (2.8.2)
-Requirement already satisfied: et-xmlfile in c:\users\user\appdata\local\programs\python\python39\lib\site-packages (from openpyxl) (1.1.0)
-Requirement already satisfied: six&gt;=1.5 in c:\users\user\appdata\local\programs\python\python39\lib\site-packages (from python-dateutil&gt;=2.7.3-&gt;pandas) (1.16.0)
-</pre></div>
-</div>
-</div>
-</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -444,54 +430,6 @@ Requirement already satisfied: six&gt;=1.5 in c:\users\user\appdata\local\progra
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#from google.colab import ##drive correr solo en colab</span>
 <span class="c1">#drive.mount(&#39;/content/gdrive&#39;)</span>
 <span class="n">counties</span><span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s2">&quot;https://github.com/Yesenia-AriasC/book_pruebas/blob/Venus/counties.xlsx?raw=true&quot;</span><span class="p">)</span><span class="c1">#cambiar dirección</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span>---------------------------------------------------------------------------
-ImportError                               Traceback (most recent call last)
-~\AppData\Local\Temp/ipykernel_16896/763586706.py in &lt;module&gt;
-      1 #from google.colab import ##drive correr solo en colab
-      2 #drive.mount(&#39;/content/gdrive&#39;)
-----&gt; 3 counties= pd.read_excel(&quot;https://github.com/Yesenia-AriasC/book_pruebas/blob/Venus/counties.xlsx?raw=true&quot;)#cambiar dirección
-      4 
-
-~\AppData\Local\Programs\Python\Python310\lib\site-packages\pandas\util\_decorators.py in wrapper(*args, **kwargs)
-    309                     stacklevel=stacklevel,
-    310                 )
---&gt; 311             return func(*args, **kwargs)
-    312 
-    313         return wrapper
-
-~\AppData\Local\Programs\Python\Python310\lib\site-packages\pandas\io\excel\_base.py in read_excel(io, sheet_name, header, names, index_col, usecols, squeeze, dtype, engine, converters, true_values, false_values, skiprows, nrows, na_values, keep_default_na, na_filter, verbose, parse_dates, date_parser, thousands, comment, skipfooter, convert_float, mangle_dupe_cols, storage_options)
-    362     if not isinstance(io, ExcelFile):
-    363         should_close = True
---&gt; 364         io = ExcelFile(io, storage_options=storage_options, engine=engine)
-    365     elif engine and engine != io.engine:
-    366         raise ValueError(
-
-~\AppData\Local\Programs\Python\Python310\lib\site-packages\pandas\io\excel\_base.py in __init__(self, path_or_buffer, engine, storage_options)
-   1231         self.storage_options = storage_options
-   1232 
--&gt; 1233         self._reader = self._engines[engine](self._io, storage_options=storage_options)
-   1234 
-   1235     def __fspath__(self):
-
-~\AppData\Local\Programs\Python\Python310\lib\site-packages\pandas\io\excel\_openpyxl.py in __init__(self, filepath_or_buffer, storage_options)
-    519             passed to fsspec for appropriate URLs (see ``_get_filepath_or_buffer``)
-    520         &quot;&quot;&quot;
---&gt; 521         import_optional_dependency(&quot;openpyxl&quot;)
-    522         super().__init__(filepath_or_buffer, storage_options=storage_options)
-    523 
-
-~\AppData\Local\Programs\Python\Python310\lib\site-packages\pandas\compat\_optional.py in import_optional_dependency(name, extra, errors, min_version)
-    116     except ImportError:
-    117         if errors == &quot;raise&quot;:
---&gt; 118             raise ImportError(msg) from None
-    119         else:
-    120             return None
-
-ImportError: Missing optional dependency &#39;openpyxl&#39;.  Use pip or conda to install openpyxl.
 </pre></div>
 </div>
 </div>
@@ -797,18 +735,18 @@ min       1.000000   1001.000000  1.700000e+01       0.031696
 max      78.000000  78030.000000  9.818605e+06  145504.789000
 
 
-          codestate    codecounty       county    population           area
-count   3234.000000   3234.000000         3234  3.232000e+03    3234.000000
-unique          NaN           NaN         2625           NaN            NaN
-top             NaN           NaN  Washington            NaN            NaN
-freq            NaN           NaN           14           NaN            NaN
-mean      31.441868  31544.737786          NaN  9.679656e+04    1093.361817
-std       16.411236  16425.545223          NaN  3.088044e+05    3564.706999
-min        1.000000   1001.000000          NaN  1.700000e+01       0.031696
-25%       19.000000  19039.500000          NaN  1.129700e+04     416.360000
-50%       30.000000  30038.000000          NaN  2.607550e+04     602.977500
-75%       46.000000  46128.500000          NaN  6.566050e+04     913.884500
-max       78.000000  78030.000000          NaN  9.818605e+06  145504.789000
+          codestate    codecounty    county    population           area
+count   3234.000000   3234.000000      3234  3.232000e+03    3234.000000
+unique          NaN           NaN      2625           NaN            NaN
+top             NaN           NaN  Lincoln            NaN            NaN
+freq            NaN           NaN        14           NaN            NaN
+mean      31.441868  31544.737786       NaN  9.679656e+04    1093.361817
+std       16.411236  16425.545223       NaN  3.088044e+05    3564.706999
+min        1.000000   1001.000000       NaN  1.700000e+01       0.031696
+25%       19.000000  19039.500000       NaN  1.129700e+04     416.360000
+50%       30.000000  30038.000000       NaN  2.607550e+04     602.977500
+75%       46.000000  46128.500000       NaN  6.566050e+04     913.884500
+max       78.000000  78030.000000       NaN  9.818605e+06  145504.789000
 </pre></div>
 </div>
 </div>
@@ -894,18 +832,18 @@ max       78.000000  78030.000000          NaN  9.818605e+06  145504.789000
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: seaborn in c:\users\user\anaconda3\lib\site-packages (0.11.1)
-Requirement already satisfied: matplotlib&gt;=2.2 in c:\users\user\anaconda3\lib\site-packages (from seaborn) (3.3.4)
-Requirement already satisfied: pandas&gt;=0.23 in c:\users\user\anaconda3\lib\site-packages (from seaborn) (1.2.4)
-Requirement already satisfied: numpy&gt;=1.15 in c:\users\user\anaconda3\lib\site-packages (from seaborn) (1.20.1)
-Requirement already satisfied: scipy&gt;=1.0 in c:\users\user\anaconda3\lib\site-packages (from seaborn) (1.6.2)
-Requirement already satisfied: pillow&gt;=6.2.0 in c:\users\user\anaconda3\lib\site-packages (from matplotlib&gt;=2.2-&gt;seaborn) (8.2.0)
-Requirement already satisfied: python-dateutil&gt;=2.1 in c:\users\user\anaconda3\lib\site-packages (from matplotlib&gt;=2.2-&gt;seaborn) (2.8.1)
-Requirement already satisfied: pyparsing!=2.0.4,!=2.1.2,!=2.1.6,&gt;=2.0.3 in c:\users\user\anaconda3\lib\site-packages (from matplotlib&gt;=2.2-&gt;seaborn) (2.4.7)
-Requirement already satisfied: cycler&gt;=0.10 in c:\users\user\anaconda3\lib\site-packages (from matplotlib&gt;=2.2-&gt;seaborn) (0.10.0)
-Requirement already satisfied: kiwisolver&gt;=1.0.1 in c:\users\user\anaconda3\lib\site-packages (from matplotlib&gt;=2.2-&gt;seaborn) (1.3.1)
-Requirement already satisfied: six in c:\users\user\anaconda3\lib\site-packages (from cycler&gt;=0.10-&gt;matplotlib&gt;=2.2-&gt;seaborn) (1.15.0)
-Requirement already satisfied: pytz&gt;=2017.3 in c:\users\user\anaconda3\lib\site-packages (from pandas&gt;=0.23-&gt;seaborn) (2021.1)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: seaborn in c:\users\user\appdata\local\programs\python\python39\lib\site-packages (0.11.2)
+Requirement already satisfied: pandas&gt;=0.23 in c:\users\user\appdata\local\programs\python\python39\lib\site-packages (from seaborn) (1.3.4)
+Requirement already satisfied: matplotlib&gt;=2.2 in c:\users\user\appdata\local\programs\python\python39\lib\site-packages (from seaborn) (3.4.3)
+Requirement already satisfied: numpy&gt;=1.15 in c:\users\user\appdata\local\programs\python\python39\lib\site-packages (from seaborn) (1.21.4)
+Requirement already satisfied: scipy&gt;=1.0 in c:\users\user\appdata\local\programs\python\python39\lib\site-packages (from seaborn) (1.7.2)
+Requirement already satisfied: pillow&gt;=6.2.0 in c:\users\user\appdata\local\programs\python\python39\lib\site-packages (from matplotlib&gt;=2.2-&gt;seaborn) (8.4.0)
+Requirement already satisfied: cycler&gt;=0.10 in c:\users\user\appdata\local\programs\python\python39\lib\site-packages (from matplotlib&gt;=2.2-&gt;seaborn) (0.11.0)
+Requirement already satisfied: kiwisolver&gt;=1.0.1 in c:\users\user\appdata\local\programs\python\python39\lib\site-packages (from matplotlib&gt;=2.2-&gt;seaborn) (1.3.2)
+Requirement already satisfied: python-dateutil&gt;=2.7 in c:\users\user\appdata\local\programs\python\python39\lib\site-packages (from matplotlib&gt;=2.2-&gt;seaborn) (2.8.2)
+Requirement already satisfied: pyparsing&gt;=2.2.1 in c:\users\user\appdata\local\programs\python\python39\lib\site-packages (from matplotlib&gt;=2.2-&gt;seaborn) (2.4.7)
+Requirement already satisfied: pytz&gt;=2017.3 in c:\users\user\appdata\local\programs\python\python39\lib\site-packages (from pandas&gt;=0.23-&gt;seaborn) (2021.3)
+Requirement already satisfied: six&gt;=1.5 in c:\users\user\appdata\local\programs\python\python39\lib\site-packages (from python-dateutil&gt;=2.7-&gt;matplotlib&gt;=2.2-&gt;seaborn) (1.16.0)
 </pre></div>
 </div>
 </div>
@@ -1427,7 +1365,7 @@ memory usage: 768.0+ bytes
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ipython-input-113-9eebc97d93cd&gt;:1: FutureWarning: The default value of regex will change from True to False in a future version.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\User\AppData\Local\Temp/ipykernel_9628/207899732.py:1: FutureWarning: The default value of regex will change from True to False in a future version.
   counties[&quot;county&quot;] = (counties[&quot;county&quot;]
 </pre></div>
 </div>
@@ -2214,6 +2152,10 @@ Name: codecounty, dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\User\AppData\Local\Temp/ipykernel_9628/1302805665.py:1: FutureWarning: Using the level keyword in DataFrame and Series aggregations is deprecated and will be removed in a future version. Use groupby instead. df.sum(level=1) should use df.groupby(level=1).sum().
+  counties_multi[&quot;population&quot;].sum(level=&#39;codestate&#39;).head(5)
+</pre></div>
+</div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>codestate
 1     4779736.0
 2      710231.0
@@ -2366,7 +2308,7 @@ Name: population, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ipython-input-129-190d77a4fe12&gt;:2: SettingWithCopyWarning: 
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\User\AppData\Local\Temp/ipykernel_9628/3665125724.py:2: SettingWithCopyWarning: 
 A value is trying to be set on a copy of a slice from a DataFrame.
 Try using .loc[row_indexer,col_indexer] = value instead
 
