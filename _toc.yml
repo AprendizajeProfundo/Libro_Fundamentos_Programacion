@@ -1,0 +1,25 @@
+# Table of contents
+# Learn more at https://jupyterbook.org/customize/toc.html
+
+format: jb-book
+root: tutorial
+parts:
+- caption: Primeros Pasos
+  chapters:
+    - file: Inicio/Cuadernos/Consideraciones
+- caption: Introducción
+  chapters:
+    - file: Introduccion/Cuadernos/Introduccion_Estadistica_Bayesiana
+    - file: Introduccion/Cuadernos/La_estrategia_Bayesiana
+    - file: Introduccion/Cuadernos/Computacion_Bayesian_Basica
+    - file: Introduccion/Cuadernos/Efecto_tamano_muestra 
+    - file: Introduccion/Cuadernos/EAP_Interpretacion
+    - file: Introduccion/Cuadernos/Intro_Prog_Prob
+    - file: Introduccion/Cuadernos/Ejemplo_1_eight_schools
+    - file: Introduccion/Cuadernos/Stan_Tutorial_1
+    - file: Introduccion/Cuadernos/Pyro_Tutorial_1
+    - file: Introduccion/Cuadernos/TF_Tutorial_1
+    - file: Introduccion/Cuadernos/Elementos_Estadistica_Bayesiana
+    - file: Introduccion/Cuadernos/Pruebas_Hipotesis   
+  
+  
