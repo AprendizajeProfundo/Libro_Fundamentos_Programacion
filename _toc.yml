@@ -9,17 +9,14 @@ parts:
     - file: Inicio/Cuadernos/Consideraciones
 - caption: Introducción
   chapters:
-    - file: Introduccion/Cuadernos/Introduccion_Estadistica_Bayesiana
-    - file: Introduccion/Cuadernos/La_estrategia_Bayesiana
-    - file: Introduccion/Cuadernos/Computacion_Bayesian_Basica
-    - file: Introduccion/Cuadernos/Efecto_tamano_muestra 
-    - file: Introduccion/Cuadernos/EAP_Interpretacion
-    - file: Introduccion/Cuadernos/Intro_Prog_Prob
-    - file: Introduccion/Cuadernos/Ejemplo_1_eight_schools
-    - file: Introduccion/Cuadernos/Stan_Tutorial_1
-    - file: Introduccion/Cuadernos/Pyro_Tutorial_1
-    - file: Introduccion/Cuadernos/TF_Tutorial_1
-    - file: Introduccion/Cuadernos/Elementos_Estadistica_Bayesiana
-    - file: Introduccion/Cuadernos/Pruebas_Hipotesis   
+    - file: Python/Cuadernos/py1
+    - file: Python/Cuadernos/py2
+    - file: Python/Cuadernos/py3
+    - file: Python/Cuadernos/py4
+    - file: Python/Cuadernos/py5
+    - file: Python/Cuadernos/Colecciones
+    - file: Python/Cuadernos/Taller_Numpy
+    - file: Python/Cuadernos/Taller_Pandas
+    - file: Python/Cuadernos/La_API_tf_data    
   
   
