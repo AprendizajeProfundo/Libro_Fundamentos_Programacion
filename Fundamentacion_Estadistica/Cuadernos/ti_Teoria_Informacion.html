@@ -1,0 +1,1422 @@
+
+<!DOCTYPE html>
+
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Teoría de la Información &#8212; Fundamentos de IA y AP</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script src="../../_static/tabs.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../../_static/translations.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Índice" href="../../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../../search.html" />
+    <link rel="next" title="Introducción a tensores" href="../../Fundamentacion_Matematica/Cuadernos/Intro_Tensores_I.html" />
+    <link rel="prev" title="Regresión Lineal en Python" href="Regresi%C3%B3n-Lineal-Pyton-Copy1.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="es">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../_static/logo-final-ap.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Fundamentos de IA y AP</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../tutorial.html">
+                    <span style="color:#F72585">Bienvenido(a)</span>
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Conociendo el libro
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Inicio/Cuadernos/Consideraciones.html">
+   <span style="color:#F72585">
+    Conociendo el Libro
+   </span>
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Fundamentos de Estadística
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Prob_Conceptos_Basicos.html">
+   <span style="color:#F72585">
+    Probabilidad
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Prob_Variables_Aleatorias.html">
+   <span style="color:#F72585">
+    Variables Aleatorias
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Prob_Var_Prob_conjunta.html">
+   <span style="color:#F72585">
+    Probabilidad Conjunta y Entropía Cruzada
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Prob_Distribuciones_continuas.html">
+   <span style="color:#F72585">
+    Distribuciones de probabilidad continuas
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Regresi%C3%B3n-Lineal-Pyton-Copy1.html">
+   <span style="color:#F72585">
+    Regresión Lineal en Python
+   </span>
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Teoría de la Información
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   <span style="color:#F72585">
+    Teoría de la Información
+   </span>
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Álgebra Lineal
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Fundamentacion_Matematica/Cuadernos/Intro_Tensores_I.html">
+   <span style="color:#F72585">
+    Introducción a tensores
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Fundamentacion_Matematica/Cuadernos/Intro_Tensores_II.html">
+   <span style="color:#F72585">
+    Tensores
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Fundamentacion_Matematica/Cuadernos/Tensor_Distribucion_Prob.html">
+   <span style="color:#F72585">
+    Tensores y distribuciones de probabilidad
+   </span>
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Modelación
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Fundamentacion_Matematica/Cuadernos/mod_Modelamiento.html">
+   <span style="color:#F72585">
+    Ejemplos de Modelos
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Fundamentacion_Matematica/Cuadernos/mod_Ejemplo_Modelamiento.html">
+   <span style="color:#F72585">
+    Ejemplos de Modelamiento
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Fundamentacion_Matematica/Cuadernos/cal_derivadas.html">
+   <span style="color:#F72585">
+    Introducción a la Derivación
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Fundamentacion_Matematica/Cuadernos/Optimization_1.html">
+   <span style="color:#F72585">
+    Optimización univariada usando JAX
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Fundamentacion_Matematica/Cuadernos/Optimization_2.html">
+   <span style="color:#F72585">
+    Optimización multivariada usando JAX
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Fundamentacion_Matematica/Cuadernos/am-sdg.html">
+   <span style="color:#F72585">
+    Optimización
+   </span>
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Aprendizaje de máquinas
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Machine_Learning/Cuadernos/am_intro_aprendizaje_maquinas.html">
+   <span style="color:#F72585">
+    Conceptos básicos de aprendizaje de máquinas
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Machine_Learning/Cuadernos/am_Regresion_logistica_JAX.html">
+   <span style="color:#F72585">
+    Modelo Lineal de Clasificación  con JAX
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Machine_Learning/Cuadernos/am_Regresion_Logistica_Tensorflow.html">
+   <span style="color:#F72585">
+    Modelo Logístico de Clasificación  con Tensorflow 2.X
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Machine_Learning/Cuadernos/am_regresion_Keras.html">
+   <span style="color:#F72585">
+    Regresion Basica con tf.keras: Predecir eficiencia de la gasolina
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Machine_Learning/Cuadernos/am-logistico-keras-cancer.html">
+   <span style="color:#F72585">
+    Modelo logístico de predicción en tf.keras
+   </span>
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Aprendizaje de máquinas no supervisado
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Machine_Learning/Cuadernos/BreveIntroduccion2R.html">
+   <span style="color:#F72585">
+    Breve introducción a R
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Machine_Learning/Cuadernos/AprendizajeNoSupervisado.html">
+   <span style="color:#F72585">
+    Aprendizaje no supervisado
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Machine_Learning/Cuadernos/ACP.html">
+   <span style="color:#F72585">
+    Análisis en componentes principales
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Machine_Learning/Cuadernos/ACS.html">
+   <span style="color:#F72585">
+    Análisis de correspondencias simples
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Machine_Learning/Cuadernos/ACM.html">
+   <span style="color:#F72585">
+    Análisis de correspondencias múltiples (ACM)
+   </span>
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Mapas auto-organizados (SOM)
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Machine_Learning/Cuadernos/som_Introduccion.html">
+   <span style="color:#F72585">
+    Mapas Auto-organizados (SOM)
+   </span>
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Redes Neuronales
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Redes_Neuronales/Cuadernos/RedesNeuronales_intro.html">
+   <span style="color:#F72585">
+    Introducción a Redes Neuronales
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Redes_Neuronales/Cuadernos/Activation_Functions.html">
+   <span style="color:#F72585">
+    Funciones de Activación
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Redes_Neuronales/Cuadernos/Hello_World_ML.html">
+   <span style="color:#F72585">
+    Introducción a Keras Sequential y API Funcional
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Redes_Neuronales/Cuadernos/Intro_Keras_Sequential.html">
+   <span style="color:#F72585">
+    Introducción a la API Sequential de Keras
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Redes_Neuronales/Cuadernos/Intro_Keras_Functional.html">
+   <span style="color:#F72585">
+    Introducción a la API funcional de Keras
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Redes_Neuronales/Cuadernos/am-softmax-keras-iris.html">
+   <span style="color:#F72585">
+    Clasificación, Softmax, Iris
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Redes_Neuronales/Cuadernos/am_regresion_Keras_gasolina.html">
+   <span style="color:#F72585">
+    Regresion Basica con tf.keras: Predecir eficiencia de la gasolina
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Redes_Neuronales/Cuadernos/am-subclassing-iris.html">
+   <span style="color:#F72585">
+    Subclassing-Modelo de Regresión multi-logística
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Redes_Neuronales/Cuadernos/NN_Animation2.html">
+   <span style="color:#F72585">
+    Visualización del Entrenamiento de una Red Neuronal
+   </span>
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/AprendizajeProfundo/Libro-Fundamentos/main?urlpath=tree/Fundamentacion_Estadistica/Cuadernos/ti_Teoria_Informacion.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://colab.research.google.com/github/AprendizajeProfundo/Libro-Fundamentos/blob/main/Fundamentacion_Estadistica/Cuadernos/ti_Teoria_Informacion.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Colab"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../../_static/images/logo_colab.png">
+  </span>
+<span class="headerbtn__text-container">Colab</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="initThebeSBT()"
+  class="headerbtn headerbtn-launch-thebe"
+  data-toggle="tooltip"
+data-placement="left"
+title="Launch Thebe"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="headerbtn__text-container">Live Code</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/AprendizajeProfundo/Libro-Fundamentos"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/AprendizajeProfundo/Libro-Fundamentos/issues/new?title=Issue%20on%20page%20%2FFundamentacion_Estadistica/Cuadernos/ti_Teoria_Informacion.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/AprendizajeProfundo/Libro-Fundamentos/edit/main/Fundamentacion_Estadistica/Cuadernos/ti_Teoria_Informacion.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Edit this page"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="headerbtn__text-container">suggest edit</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../../_sources/Fundamentacion_Estadistica/Cuadernos/ti_Teoria_Informacion.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-contenido-o-cantidad-de-informacion-span">
+   <span style="color:#4361EE">
+    Contenido o cantidad de Información
+   </span>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-ejemplo-para-dummies-span">
+     <span style="color:#4CC9F0">
+      Ejemplo para dummies
+     </span>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-enfoque-matematico-span">
+   <span style="color:#4361EE">
+    Enfoque matemático
+   </span>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-ejemplo-distribucion-de-bernoulli-span">
+     <span style="color:#4CC9F0">
+      Ejemplo Distribución de Bernoulli
+     </span>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-entropia-span">
+   <span style="color:#4361EE">
+    Entropía
+   </span>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-entropia-de-shannon-span">
+     <span style="color:#4CC9F0">
+      Entropía de Shannon
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-notas-span">
+     <span style="color:#4CC9F0">
+      Notas
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-racional-span">
+     <span style="color:#4CC9F0">
+      Racional
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-dos-desigualdades-de-la-teoria-de-la-informacion-span">
+     <span style="color:#4CC9F0">
+      Dos desigualdades de la Teoría de la Información
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-teorema-span">
+     <span style="color:#4CC9F0">
+      Teorema
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-ejemplo-entropia-de-las-distribuciones-de-la-familia-bernoulli-span">
+     <span style="color:#4CC9F0">
+      Ejemplo: Entropía de las distribuciones de la familia Bernoulli
+     </span>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-entropia-conjunta-span">
+   <span style="color:#4361EE">
+    Entropía Conjunta
+   </span>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-entropia-condicional-span">
+   <span style="color:#4361EE">
+    Entropía Condicional
+   </span>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-informacion-mutua-span">
+   <span style="color:#4361EE">
+    Información mutua
+   </span>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     <span style="color:#4CC9F0">
+      Notas
+     </span>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-la-divergencia-kullback-leibler-span">
+   <span style="color:#4361EE">
+    La divergencia Kullback-Leibler
+   </span>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-entropia-cruzada-span">
+   <span style="color:#4361EE">
+    Entropía cruzada
+   </span>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-entropia-cruzada-como-funcion-de-perdida-span">
+   <span style="color:#4361EE">
+    Entropía cruzada como función de pérdida
+   </span>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-maxima-verosimilitud-y-funcion-de-perdida-span">
+   <span style="color:#4361EE">
+    Máxima verosimilitud y función de pérdida
+   </span>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-un-ejemplo-simple-de-aplicacion-con-redes-neuronales-span">
+   <span style="color:#4361EE">
+    Un ejemplo simple de aplicación con redes neuronales
+   </span>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-referencias-span">
+   <span style="color:#4361EE">
+    Referencias
+   </span>
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1><span style="color:#F72585">Teoría de la Información</span></h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-contenido-o-cantidad-de-informacion-span">
+   <span style="color:#4361EE">
+    Contenido o cantidad de Información
+   </span>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-ejemplo-para-dummies-span">
+     <span style="color:#4CC9F0">
+      Ejemplo para dummies
+     </span>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-enfoque-matematico-span">
+   <span style="color:#4361EE">
+    Enfoque matemático
+   </span>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-ejemplo-distribucion-de-bernoulli-span">
+     <span style="color:#4CC9F0">
+      Ejemplo Distribución de Bernoulli
+     </span>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-entropia-span">
+   <span style="color:#4361EE">
+    Entropía
+   </span>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-entropia-de-shannon-span">
+     <span style="color:#4CC9F0">
+      Entropía de Shannon
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-notas-span">
+     <span style="color:#4CC9F0">
+      Notas
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-racional-span">
+     <span style="color:#4CC9F0">
+      Racional
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-dos-desigualdades-de-la-teoria-de-la-informacion-span">
+     <span style="color:#4CC9F0">
+      Dos desigualdades de la Teoría de la Información
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-teorema-span">
+     <span style="color:#4CC9F0">
+      Teorema
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-ejemplo-entropia-de-las-distribuciones-de-la-familia-bernoulli-span">
+     <span style="color:#4CC9F0">
+      Ejemplo: Entropía de las distribuciones de la familia Bernoulli
+     </span>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-entropia-conjunta-span">
+   <span style="color:#4361EE">
+    Entropía Conjunta
+   </span>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-entropia-condicional-span">
+   <span style="color:#4361EE">
+    Entropía Condicional
+   </span>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-informacion-mutua-span">
+   <span style="color:#4361EE">
+    Información mutua
+   </span>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     <span style="color:#4CC9F0">
+      Notas
+     </span>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-la-divergencia-kullback-leibler-span">
+   <span style="color:#4361EE">
+    La divergencia Kullback-Leibler
+   </span>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-entropia-cruzada-span">
+   <span style="color:#4361EE">
+    Entropía cruzada
+   </span>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-entropia-cruzada-como-funcion-de-perdida-span">
+   <span style="color:#4361EE">
+    Entropía cruzada como función de pérdida
+   </span>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-maxima-verosimilitud-y-funcion-de-perdida-span">
+   <span style="color:#4361EE">
+    Máxima verosimilitud y función de pérdida
+   </span>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-un-ejemplo-simple-de-aplicacion-con-redes-neuronales-span">
+   <span style="color:#4361EE">
+    Un ejemplo simple de aplicación con redes neuronales
+   </span>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-referencias-span">
+   <span style="color:#4361EE">
+    Referencias
+   </span>
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="span-style-color-f72585-teoria-de-la-informacion-span">
+<h1><span style="color:#F72585">Teoría de la Información</span><a class="headerlink" href="#span-style-color-f72585-teoria-de-la-informacion-span" title="Enlazar permanentemente con este título">#</a></h1>
+<p>Conceptos básicos</p>
+<figure>
+<img src="https://raw.githubusercontent.com/AprendizajeProfundo/Libro-Fundamentos/main/Fundamentacion_Estadistica/Imagenes/entropia.jpg" width="600" height="400" align="center" />  
+</figure>
+<p>Fuente: <a class="reference external" href="https://pixabay.com/es/illustrations/orden-caos-wuerfelmeer-geometr%c3%ada-3431153/">pixabay</a></p>
+<section id="span-style-color-4361ee-contenido-o-cantidad-de-informacion-span">
+<h2><span style="color:#4361EE">Contenido o cantidad de Información</span><a class="headerlink" href="#span-style-color-4361ee-contenido-o-cantidad-de-informacion-span" title="Enlazar permanentemente con este título">#</a></h2>
+<p>La idea básica de la teoría de la información es que el <strong>valor de la noticia</strong> de un mensaje comunicado depende del grado en que el <em>contenido del mensaje sea sorprendente</em>.</p>
+<p>Si un evento es muy probable, no es sorprendente (y generalmente poco interesante) cuando ese evento ocurre como se esperaba. Sin embargo, si es improbable que ocurra un evento, es mucho más informativo saber que el evento ocurrió o sucederá.</p>
+<p>En teoría de la información, <strong>el contenido de información, auto-información o la sorpresa</strong> de una variable o una señal aleatoria <em>es la cantidad de información obtenida cuando se muestrea la correspondiente distribución</em>.</p>
+<p>Formalmente, el contenido de información es una variable aleatoria definida para cualquier evento en la teoría de probabilidad, independientemente de si una variable aleatoria se está midiendo o no.</p>
+<p>El contenido de la información se expresa en una unidad de información, como se explica a continuación. El valor esperado de la auto-información es la <strong>entropía</strong> teórica de la información, la cantidad promedio de información que un observador esperaría obtener sobre un sistema al muestrear la variable aleatoria.</p>
+<section id="span-style-color-4cc9f0-ejemplo-para-dummies-span">
+<h3><span style="color:#4CC9F0">Ejemplo para dummies</span><a class="headerlink" href="#span-style-color-4cc9f0-ejemplo-para-dummies-span" title="Enlazar permanentemente con este título">#</a></h3>
+<p>Supongamos que se tiene una moneda sesgada, de tal manera que la probabilidad que caiga es 0.9. En símbolos de la probabilidad escribimos <span class="math notranslate nohighlight">\(P(x_c) = 0.9\)</span>. Se lanzamos la moneda y el resultado es cara <span class="math notranslate nohighlight">\(x=x_c\)</span>, es menos sorprendente en relación con que salga sello (cruz) <span class="math notranslate nohighlight">\(x=x_s\)</span>. Los resultados más improbables son más sorprendentes y decimos que entregan más información sobre el experimento realizado.</p>
+</section>
+</section>
+<section id="span-style-color-4361ee-enfoque-matematico-span">
+<h2><span style="color:#4361EE">Enfoque matemático</span><a class="headerlink" href="#span-style-color-4361ee-enfoque-matematico-span" title="Enlazar permanentemente con este título">#</a></h2>
+<p>Supongamos que <span class="math notranslate nohighlight">\( X \)</span> es una variable aleatoria discreta con valores <span class="math notranslate nohighlight">\( \Omega = \{x_1, x_2, \cdots \} \)</span> y probabilidades <span class="math notranslate nohighlight">\( \mathcal {P} = \{p_i = P (X = x_i), \quad i = 1, 2, \cdots \} \)</span>. Si <span class="math notranslate nohighlight">\( x \in \Omega \)</span>, el contenido de información (o información de Shannon) del conjunto (evento) <span class="math notranslate nohighlight">\( \{x\} \)</span> viene dado por:</p>
+<div class="math notranslate nohighlight">
+\[
+I(\{x\})=-\log_k{P(X=x)} = \log_k \left[ \frac{1}{P(X=x)}\right]
+\]</div>
+<p>Donde <span class="math notranslate nohighlight">\(k\)</span> es una base que depende principalmente de la cardinalidad de <span class="math notranslate nohighlight">\( \Omega \)</span>. Si <span class="math notranslate nohighlight">\(k=2\)</span>, la unidad de medida utilizada fue denominada bit. Si se utilizan logaritmos Neperianos, la unidad se denominan nat.</p>
+<p>En el ejemplo para dummies, si se tiene una moneda justa, entonces <span class="math notranslate nohighlight">\(I\{x_c\}= -\log_2 0.5 = 1\)</span> bit. Por otro lado, si la moneda es segada como en el ejemplo, entonces <span class="math notranslate nohighlight">\(P\{ x_c\} = -\log_2 0.9 =  0.15\)</span> bits, mientras que <span class="math notranslate nohighlight">\(P\{ x_s\} = -\log_2 0.1 = 3.32\)</span> bits</p>
+<section id="span-style-color-4cc9f0-ejemplo-distribucion-de-bernoulli-span">
+<h3><span style="color:#4CC9F0"> Ejemplo Distribución de Bernoulli</span><a class="headerlink" href="#span-style-color-4cc9f0-ejemplo-distribucion-de-bernoulli-span" title="Enlazar permanentemente con este título">#</a></h3>
+<p>Supongamos que <span class="math notranslate nohighlight">\( X \sim Bernoulli(p)\)</span>, por lo tanto: <span class="math notranslate nohighlight">\( x \in \{0,1 \} \)</span>. Podemos observar el comportamiento de la sorpresa al variar el parámetro de distribución de la siguiente manera:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">stats</span>
+
+<span class="n">fig</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Información de Shannon en la distribución de Bernoulli de acuerdo al parámetro $p$&#39;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+<span class="n">p</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">1e-3</span><span class="p">,</span><span class="mi">1</span><span class="o">-</span><span class="mf">1e-3</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">I_1</span><span class="o">=-</span><span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+<span class="n">I_0</span><span class="o">=-</span><span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">p</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="n">I_1</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$I(1)$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="n">I_0</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$I(0)$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;$p$&quot;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">14</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;$I(p) = -\log \ p$&quot;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">14</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/ti_Teoria_Informacion_11_0.png" src="../../_images/ti_Teoria_Informacion_11_0.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="span-style-color-4361ee-entropia-span">
+<h2><span style="color:#4361EE">Entropía</span><a class="headerlink" href="#span-style-color-4361ee-entropia-span" title="Enlazar permanentemente con este título">#</a></h2>
+<p>Aunque el contenido de información proporciona información interesante sobre eventos específicos <span class="math notranslate nohighlight">\( x \)</span>, en algunos casos nos gustaría conocer el contenido de información de una distribución de probabilidad. En este asunto, lo más razonable sería estimar la información esperada. Esta estimación se conoce como entropía.</p>
+<section id="span-style-color-4cc9f0-entropia-de-shannon-span">
+<h3><span style="color:#4CC9F0"> Entropía de Shannon</span><a class="headerlink" href="#span-style-color-4cc9f0-entropia-de-shannon-span" title="Enlazar permanentemente con este título">#</a></h3>
+<p>Supongamos que <span class="math notranslate nohighlight">\(X\)</span> es una variable aleatoria discreta. Le entropía (de Shannon) de la variable aleatoria <span class="math notranslate nohighlight">\(X\)</span>, o lo que es lo mismo, la entropía de la distribución asociada a <span class="math notranslate nohighlight">\(X\)</span> se define por:</p>
+<div class="math notranslate nohighlight">
+\[H(X)=\sum_{x\in \Omega} P(X=x)I(x)=-\sum_{x\in \Omega}P(X=x)\log{P(X=x)} = -\sum_{i} p_i\log p_i.\]</div>
+</section>
+<section id="span-style-color-4cc9f0-notas-span">
+<h3><span style="color:#4CC9F0">Notas</span><a class="headerlink" href="#span-style-color-4cc9f0-notas-span" title="Enlazar permanentemente con este título">#</a></h3>
+<ol class="simple">
+<li><p>En ocasiones, la entropía de Shannon para una variable aleatoria <span class="math notranslate nohighlight">\( X \)</span> con probabilidades <span class="math notranslate nohighlight">\( p_1, \ldots, p_M \)</span> se denota <span class="math notranslate nohighlight">\( H (p_1, \ldots, p_M) \)</span>. Por ejemplo, la entropía de una distribución de Bernoulli a veces se denota <span class="math notranslate nohighlight">\(H(p,q)= H(p,1-p)\)</span>.</p></li>
+<li><p>Algunos autores llaman a  <span class="math notranslate nohighlight">\(H(X)\)</span> como <em>incertidumbre</em>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(H(X)\)</span> Es una esperanza. La entropía es solo la <strong>sorpresa media</strong> de la variable aleatoria <span class="math notranslate nohighlight">\(H(X)\)</span>.</p></li>
+</ol>
+</section>
+<section id="span-style-color-4cc9f0-racional-span">
+<h3><span style="color:#4CC9F0"> Racional </span><a class="headerlink" href="#span-style-color-4cc9f0-racional-span" title="Enlazar permanentemente con este título">#</a></h3>
+<p>Para comprender el significado de <span class="math notranslate nohighlight">\( - \sum_i p_i \log p_i \)</span>, primero defina una función de información <span class="math notranslate nohighlight">\( I \)</span> en términos de un evento <span class="math notranslate nohighlight">\( i \)</span> con probabilidad <span class="math notranslate nohighlight">\( p_i \)</span>. La cantidad de información adquirida debido a la observación del evento <span class="math notranslate nohighlight">\( i \)</span> se deduce de la solución de Shannon de las propiedades fundamentales de la información:</p>
+<ol class="simple">
+<li><p><span class="math notranslate nohighlight">\(I(p)\)</span>  disminuye monotónicamente en <span class="math notranslate nohighlight">\( p \)</span>: un aumento en la probabilidad de un evento disminuye la información de un evento observado, y viceversa.</p></li>
+<li><p><span class="math notranslate nohighlight">\(I(p)\ge 0\)</span> : la información es una cantidad no negativa.</p></li>
+<li><p><span class="math notranslate nohighlight">\(I(1) = 0\)</span> : los eventos que siempre ocurren no comunican información.</p></li>
+<li><p><span class="math notranslate nohighlight">\(I(p_1 p_2) = I(p_1) + I(p_2)\)</span> : La información debida a eventos independientes es aditiva.</p></li>
+</ol>
+<p>La última es una propiedad crucial. Establece que la probabilidad conjunta de fuentes de información independientes comunica tanta información como los dos eventos individuales por separado.</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\leadsto\)</span> La entropía proporciona una medida sobre la información promedio de una distribución. Por ejemplo, en el caso de Bernoulli, la entropía máxima se logra cuando el parámetro es 0.5, es decir, cuando todos los eventos son igualmente probables.</p></li>
+</ul>
+<p>Hay una interpretación importante de la entropía que está relacionada con el número promedio de «contenedores» o shannons (relacionados con la base del logaritmo, en este caso 2) necesarios para representar la información de <span class="math notranslate nohighlight">\( X \)</span>. En el caso de Bernoulli, requerimos 1 bit para representar los datos.</p>
+</section>
+<section id="span-style-color-4cc9f0-dos-desigualdades-de-la-teoria-de-la-informacion-span">
+<h3><span style="color:#4CC9F0">Dos desigualdades de la Teoría de la Información</span><a class="headerlink" href="#span-style-color-4cc9f0-dos-desigualdades-de-la-teoria-de-la-informacion-span" title="Enlazar permanentemente con este título">#</a></h3>
+<p>Se puede comprobar que si <span class="math notranslate nohighlight">\(0\le p \le 1\)</span>, entonces  <span class="math notranslate nohighlight">\(-p\log p\ge 0\)</span>.</p>
+<p>-<span class="math notranslate nohighlight">\(\leadsto\)</span> Esto implica que la entropía de Shannon es siempre positiva.</p>
+<p>Adicionalmente, si  <span class="math notranslate nohighlight">\(p_1,\ldots,p_M\)</span> y  <span class="math notranslate nohighlight">\(q_1,\ldots,q_M\)</span> números positivos arbitrarios tales que <span class="math notranslate nohighlight">\(\sum_i p_1 =1\)</span>, y <span class="math notranslate nohighlight">\(\sum_i q_i=1\)</span>. Entonces,</p>
+<div class="math notranslate nohighlight">
+\[
+-\sum_{i=1}^M pi\log p_i \le -\sum_{i=1}^M pi\log q_i,
+\]</div>
+<p>la igualdad se tiene si y solo si <span class="math notranslate nohighlight">\(p_i=q_i\)</span> para todo  <span class="math notranslate nohighlight">\(i\)</span>*.</p>
+</section>
+<section id="span-style-color-4cc9f0-teorema-span">
+<h3><span style="color:#4CC9F0">Teorema</span><a class="headerlink" href="#span-style-color-4cc9f0-teorema-span" title="Enlazar permanentemente con este título">#</a></h3>
+<div class="math notranslate nohighlight">
+\[
+H(p_1,\ldots,p_M) \le log(M),
+\]</div>
+<p><em>la igualdad se tiene si y solo si  para todo <span class="math notranslate nohighlight">\(p_i\)</span>, se tiene que</em> <span class="math notranslate nohighlight">\(p_i = 1/M\)</span>.</p>
+<p>Este teorema nos ayuda a entender la entropía de la siguiente manera.</p>
+<ol class="simple">
+<li><p>Entre las distribuciones discretas con  <span class="math notranslate nohighlight">\( M \)</span> posibles resultados, la distribución uniforme <span class="math notranslate nohighlight">\( U \{x_1, \ldots, x_m \} \)</span> tiene la mayor entropía. Esto se debe a que los resultados de la variable tienen la misma información que contienen (sorpresa).</p></li>
+<li><p>En general, la entropía es mayor para variables aleatorias discretas con mayor número de valores posibles. En particular, la entropía de la distribución uniforme (<span class="math notranslate nohighlight">\( \log M \)</span>) es una función creciente de <span class="math notranslate nohighlight">\( M \)</span>.</p></li>
+</ol>
+</section>
+<section id="span-style-color-4cc9f0-ejemplo-entropia-de-las-distribuciones-de-la-familia-bernoulli-span">
+<h3><span style="color:#4CC9F0">Ejemplo: Entropía de las distribuciones de la familia Bernoulli</span><a class="headerlink" href="#span-style-color-4cc9f0-ejemplo-entropia-de-las-distribuciones-de-la-familia-bernoulli-span" title="Enlazar permanentemente con este título">#</a></h3>
+<p>Supongamos que <span class="math notranslate nohighlight">\(X\sim Bernoulli(p)\)</span>, por lo tanto: <span class="math notranslate nohighlight">\(x \in \{0,1\}\)</span>, Podemos observar el comportamiento de la entropía al variar el parámetro de distribución en la siguiente gráfica</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">stats</span>
+
+<span class="n">fig</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
+<span class="n">H_ber</span><span class="o">=</span><span class="k">lambda</span> <span class="n">X</span><span class="p">:</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">X</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="n">X</span><span class="p">),</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="c1">#Función para estimar la entropía de la distribución Bernoulli</span>
+<span class="n">p</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">1e-3</span><span class="p">,</span><span class="mi">1</span><span class="o">-</span><span class="mf">1e-3</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span> 
+<span class="n">probs_X</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span><span class="n">p</span><span class="p">,</span><span class="mi">1</span><span class="o">-</span><span class="n">p</span><span class="p">])</span><span class="o">.</span><span class="n">T</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="n">H_ber</span><span class="p">(</span><span class="n">probs_X</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;$p$&quot;</span><span class="p">,</span><span class="n">fontsize</span> <span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;$H(X)$&quot;</span><span class="p">,</span><span class="n">fontsize</span> <span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mf">1.05</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Entropía de las distribuciones de la familia Bernoulli&#39;</span><span class="p">,</span><span class="n">fontsize</span> <span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/ti_Teoria_Informacion_26_0.png" src="../../_images/ti_Teoria_Informacion_26_0.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="span-style-color-4361ee-entropia-conjunta-span">
+<h2><span style="color:#4361EE">Entropía Conjunta</span><a class="headerlink" href="#span-style-color-4361ee-entropia-conjunta-span" title="Enlazar permanentemente con este título">#</a></h2>
+<p>Sean <span class="math notranslate nohighlight">\(X\)</span> y <span class="math notranslate nohighlight">\(Y\)</span>   variables aleatorias discretas que tienen una función de probabilidad conjunta:</p>
+<div class="math notranslate nohighlight">
+\[
+p_{ij}=p(x_i,y_j) = p\{X=x_i,Y=y_j \}; i=1\ldots,M; j=1,\ldots,L.
+\]</div>
+<p>Es natural definir la entropía conjunta de <span class="math notranslate nohighlight">\( X \)</span> y <span class="math notranslate nohighlight">\( Y \)</span> como:</p>
+<div class="math notranslate nohighlight">
+\[
+H(X,Y) = - \sum_{i=1}^M \sum_{j=1}^L p(x_i,y_j) \log p(x_i,y_j).
+\]</div>
+<p>Se puede verificar que:</p>
+<div class="math notranslate nohighlight">
+\[
+H(X,Y) \le H(X) + H(Y),
+\]</div>
+<p><em>la igualdad se tiene si y solo si  <span class="math notranslate nohighlight">\(X\)</span> y <span class="math notranslate nohighlight">\(Y\)</span> son independientes</em>.</p>
+</section>
+<section id="span-style-color-4361ee-entropia-condicional-span">
+<h2><span style="color:#4361EE">Entropía Condicional</span><a class="headerlink" href="#span-style-color-4361ee-entropia-condicional-span" title="Enlazar permanentemente con este título">#</a></h2>
+<p>Supongamos que <span class="math notranslate nohighlight">\( X \)</span> y <span class="math notranslate nohighlight">\( Y \)</span> sean variables aleatorias discretas con distribución conjunta <span class="math notranslate nohighlight">\( p (x_i, y_j) \)</span>. Si se sabe que <span class="math notranslate nohighlight">\( X = x_i \)</span>, la distribución de <span class="math notranslate nohighlight">\( Y \)</span> se caracteriza por el conjunto de probabilidades condicionales <span class="math notranslate nohighlight">\( p (y_j | x_i) \)</span>. Por lo tanto definimos la entropía condicional de <span class="math notranslate nohighlight">\( Y \)</span> dado <span class="math notranslate nohighlight">\( X = x_i \)</span> como:</p>
+<div class="math notranslate nohighlight">
+\[
+H(Y|X=x_i) = -\sum_{j=1}^L p(y_j|x_i) \log p(y_j|x_i).
+\]</div>
+<p>La entropía condicional de <span class="math notranslate nohighlight">\( Y \)</span> dado <span class="math notranslate nohighlight">\( X \)</span> es el promedio ponderado promedio de <span class="math notranslate nohighlight">\( H (Y | X = x_i) \)</span>, es decir:</p>
+<div class="math notranslate nohighlight">
+\[
+H(Y|X) = - \sum_{i=1}^M \sum_{j=1}^L p(x_i,y_j) \log p(y_j|x_i).
+\]</div>
+<p>Se puede verificar que:</p>
+<div class="math notranslate nohighlight">
+\[
+H(X,Y) = H(X) + H(Y|X) = H(Y) + H(X|Y).
+\]</div>
+<p>y</p>
+<div class="math notranslate nohighlight">
+\[
+H(Y|X) \le H(Y,X),
+\]</div>
+<p><em>La igualdad se tiene si y solo si <span class="math notranslate nohighlight">\(X\)</span> y <span class="math notranslate nohighlight">\(Y\)</span> son independientes</em>.</p>
+</section>
+<section id="span-style-color-4361ee-informacion-mutua-span">
+<h2><span style="color:#4361EE">Información mutua</span><a class="headerlink" href="#span-style-color-4361ee-informacion-mutua-span" title="Enlazar permanentemente con este título">#</a></h2>
+<p>Suponga que <span class="math notranslate nohighlight">\( X \)</span> y <span class="math notranslate nohighlight">\( Y \)</span> son variables aleatorias discretas con funciones de masa de probabilidad dadas por <span class="math notranslate nohighlight">\( f_X \)</span> y <span class="math notranslate nohighlight">\( f_Y \)</span> respectivamente, y una función de masa de probabilidad conjunta <span class="math notranslate nohighlight">\( f \)</span>. Así, la información mutua de <span class="math notranslate nohighlight">\( X \)</span> y <span class="math notranslate nohighlight">\( Y \)</span>, denotada <span class="math notranslate nohighlight">\( \mathfrak {M} (X, y) \)</span> se define como:</p>
+<div class="math notranslate nohighlight">
+\[
+\mathfrak{M}(X,Y) = \mathbb{E}_f \ln \frac{f(X,Y)}{f_X(X)f_Y(Y)} = \sum_i \sum_j  f(x_i,y_j)[\ln f(x_i,y_j) - \ln f_X(x_i)f_Y(y_j)].
+\]</div>
+<section id="id1">
+<h3><span style="color:#4CC9F0">Notas</span><a class="headerlink" href="#id1" title="Enlazar permanentemente con este título">#</a></h3>
+<ol class="simple">
+<li><p>La dependencia mutua es una medida de dependencia entre las variables <span class="math notranslate nohighlight">\( X \)</span> y <span class="math notranslate nohighlight">\( Y \)</span>. Tenga en cuenta que si <span class="math notranslate nohighlight">\( X \)</span> y <span class="math notranslate nohighlight">\( Y \)</span> son independientes, su información mutua es cero.</p></li>
+<li><p>Si <span class="math notranslate nohighlight">\( X \)</span> y <span class="math notranslate nohighlight">\( Y \)</span> tienen exactamente la misma distribución, entonces <span class="math notranslate nohighlight">\(\mathfrak{M}(X,Y) = H(X)\)</span>.</p></li>
+</ol>
+</section>
+</section>
+<section id="span-style-color-4361ee-la-divergencia-kullback-leibler-span">
+<h2><span style="color:#4361EE">La divergencia Kullback-Leibler</span><a class="headerlink" href="#span-style-color-4361ee-la-divergencia-kullback-leibler-span" title="Enlazar permanentemente con este título">#</a></h2>
+<p>La divergencia de Kullback-Leibler (KL) es una pseudo-distancia que representa la diferencia entre dos distribuciones. Debido a su definición, también se conoce como entropía relativa, porque es el valor esperado de un contenido de información de la relación entre dos distribuciones. Se define la divergencia KL como:</p>
+<div class="math notranslate nohighlight">
+\[
+KL(P||Q)=\mathbb{E}_{P}\left(\log{\frac{P(X)}{Q(X)}}\right)
+\]</div>
+<ul class="simple">
+<li><p>Caso discreto:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+KL(P||Q)=\sum_{i}p(x_i)\log{\frac{p(x_i)}{q(x_i)}} = \sum_{i}p(x_i)[\log p(x_i)- \log q(x_i)].
+\]</div>
+<p><span class="math notranslate nohighlight">\(\Omega\)</span> es el soporte de las distribuciones.</p>
+<p>Observe que si  <span class="math notranslate nohighlight">\(P=Q\)</span> c.s., entonces <span class="math notranslate nohighlight">\(KL(P||Q)=0.\)</span></p>
+</section>
+<section id="span-style-color-4361ee-entropia-cruzada-span">
+<h2><span style="color:#4361EE">Entropía cruzada</span><a class="headerlink" href="#span-style-color-4361ee-entropia-cruzada-span" title="Enlazar permanentemente con este título">#</a></h2>
+<p>Suponga que  <span class="math notranslate nohighlight">\(f\)</span> y <span class="math notranslate nohighlight">\(g\)</span> son dos funciones de de probabilidad (o masa de probabilidad). La entropía cruzada entre <span class="math notranslate nohighlight">\(f\)</span> y <span class="math notranslate nohighlight">\(g\)</span> se define como:</p>
+<div class="math notranslate nohighlight">
+\[
+\mathfrak{D}(f,g) =  -\sum_{i} f(x_i) \ln g(x_i).
+\]</div>
+<p>Se puede comprobar que:</p>
+<div class="math notranslate nohighlight">
+\[
+ KL(f||g) = H(f) + \mathfrak{D}(f,g).
+\]</div>
+<p>Llamamos <span class="math notranslate nohighlight">\( f \)</span> como la distribución de referencia y <span class="math notranslate nohighlight">\( g \)</span> como la distribución aproximada.</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\leadsto\)</span> Tenga en cuenta que la divergencia KL y la entropía cruzada difieren en <span class="math notranslate nohighlight">\( H (f) \)</span>, la entropía de la distribución de referencia. Por otro lado, <span class="math notranslate nohighlight">\( H (f) \)</span> que es constante con respecto a <span class="math notranslate nohighlight">\( g \)</span>. Por esta razón, algunos autores llaman KL-divergencia como entropía cruzada.</p></li>
+</ul>
+</section>
+<section id="span-style-color-4361ee-entropia-cruzada-como-funcion-de-perdida-span">
+<h2><span style="color:#4361EE">Entropía cruzada como función de pérdida</span><a class="headerlink" href="#span-style-color-4361ee-entropia-cruzada-como-funcion-de-perdida-span" title="Enlazar permanentemente con este título">#</a></h2>
+<p>En el aprendizaje automático, es común utilizar la entropía cruzada como criterio para evaluar la convergencia de un proceso de aprendizaje (comúnmente un proceso de optimización).</p>
+<p>Supongamos que en un problema de clasificación tenemos <em>T</em> clases. Ahora suponga que cada uno de los objetos de entrenamiento <span class="math notranslate nohighlight">\( x_i \)</span> pertenece a una clase única, digamos <span class="math notranslate nohighlight">\( C_{it} \)</span>. Por lo tanto, una forma común de representar la clase del vector <span class="math notranslate nohighlight">\( x_i \)</span> es mediante el uso de un vector <em>T</em>, que tiene todos los elementos iguales a cero, excepto la posición <em>ti</em>, que tiene 1.</p>
+<p>En estadística, esta codificación se denomina <strong>codificación dummy</strong>. En el lenguaje de aprendizaje automático se llama <strong>hot one encoding</strong>.</p>
+<p>La cuestión clave es que esta codificación representa una distribución del vector de entrenamiento de entrada. Esta es la distribución de referencia para la entrada.</p>
+<p>Por otro lado, en cada época (iteración) del entrenamiento de la máquina, la salida es una distribución de propuesta <span class="math notranslate nohighlight">\( s_i \)</span> del vector de entrada. Esta es la distribución aproximada del vector de entrada. Por lo tanto, la entropía cruzada en este caso viene dada por:</p>
+<div class="math notranslate nohighlight">
+\[
+\mathfrak{D}_i = -\sum_{t=1}^{T} C_{it}\log s_{it}
+\]</div>
+<p>Si tenemos <span class="math notranslate nohighlight">\( N \)</span> vectores de entrenamiento, la codificación dummy completa es una matriz <span class="math notranslate nohighlight">\( N \)</span> <span class="math notranslate nohighlight">\( \times \)</span> <span class="math notranslate nohighlight">\( T \)</span>, digamos <span class="math notranslate nohighlight">\( L \)</span>, donde cada celda <span class="math notranslate nohighlight">\( it \)</span> se define como <span class="math notranslate nohighlight">\( l_ {it} = 1 \)</span> es la entrada de entrenamiento <span class="math notranslate nohighlight">\( x_ {i} \)</span> pertenece a la clase <span class="math notranslate nohighlight">\(t\)</span>, y <span class="math notranslate nohighlight">\( 0 \)</span> de lo contrario.</p>
+<p>La función de pérdida de entropía cruzada se debe minimizar en el proceso de entrenamiento es dada:</p>
+<div class="math notranslate nohighlight">
+\[
+L(X,L) = -\sum_{i=1}^N\sum_{t=1}^T l_{it} \log s_{it}.
+\]</div>
+<p><span class="math notranslate nohighlight">\(\leadsto\)</span> Por ejemplo en una red neuronal, <span class="math notranslate nohighlight">\(s_i =(s_{i1}, \ldots, s_{iT})\)</span> es la capa de salida, y es producida por la función <strong>softmax</strong>.</p>
+</section>
+<section id="span-style-color-4361ee-maxima-verosimilitud-y-funcion-de-perdida-span">
+<h2><span style="color:#4361EE">Máxima verosimilitud y función de pérdida</span><a class="headerlink" href="#span-style-color-4361ee-maxima-verosimilitud-y-funcion-de-perdida-span" title="Enlazar permanentemente con este título">#</a></h2>
+<p>Suponga que cada uno de los vectores de entrenamiento de entrada tiene una función de densidad de probabilidad dada por  <span class="math notranslate nohighlight">\( f (x_i, w), i = 1, \ldots, N \)</span>, donde <span class="math notranslate nohighlight">\( w \)</span> es el parámetro a aprender. También suponga que los <span class="math notranslate nohighlight">\( x_i \)</span> son independientes.</p>
+<p>En la estimación de máxima verosimilitud <span class="math notranslate nohighlight">\( l(w | x) = - \sum_i \log f(x_i; w) \)</span> es la función de pérdida que debe minimizarse.</p>
+<div class="math notranslate nohighlight">
+\[
+L(x|w) = -\frac{1}{N} \sum_i^N \log f(x_i|w).
+\]</div>
+<p>Por ejemplo la función de pérdida  <code class="docutils literal notranslate"><span class="pre">torch.nn.GaussianNLLLoss</span></code> en <code class="docutils literal notranslate"><span class="pre">Pytorch</span></code> es la función de pérdida basada en el supuesto que cada observación es de tipo Gaussiano. Técnicamente tal función de pérdida se define por:</p>
+<div class="math notranslate nohighlight">
+\[
+L(x|w) = \frac{1}{N} \left[\frac{1}{2} (\log(\max(\sigma^2, \epsilon))+  \frac{(net(x_i) -y_i)^2}{\max(\sigma^2, \epsilon)} + cte\right]
+\]</div>
+<p>En este caso, <span class="math notranslate nohighlight">\(net(x_i)\)</span> es la predicción de la red neuronal y <span class="math notranslate nohighlight">\(y_i\)</span> la variable target correspondiente. Adicionalmente <span class="math notranslate nohighlight">\(\epsilon&gt;0\)</span> se introduce para evitar problemas convergencia con valores muy pequeños de <span class="math notranslate nohighlight">\(\sigma^2\)</span>.</p>
+<p>El siguiente fragmento de código muestra cómo usar esta función de pérdida.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">from</span> <span class="nn">torch</span> <span class="kn">import</span> <span class="n">nn</span>
+
+<span class="n">loss</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">GaussianNLLLoss</span><span class="p">()</span>
+<span class="nb">input</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">requires_grad</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">target</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">var</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">requires_grad</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="c1">#heterocedasticidad</span>
+<span class="n">output</span> <span class="o">=</span> <span class="n">loss</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">var</span><span class="p">)</span>
+<span class="n">output</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="span-style-color-4361ee-un-ejemplo-simple-de-aplicacion-con-redes-neuronales-span">
+<h2><span style="color:#4361EE">Un ejemplo simple de aplicación con redes neuronales </span><a class="headerlink" href="#span-style-color-4361ee-un-ejemplo-simple-de-aplicacion-con-redes-neuronales-span" title="Enlazar permanentemente con este título">#</a></h2>
+<p>El siguiente código muestra la implementación de un red neuronal simple de dos capas que se usará para el entrenamiento de un clasificador dicotómico. Revise la función de pérdida definida. en este ejemplo simple, el número de datos de entrenamiento es muy pequeño y fijo, por lo que no es necesario el factor <span class="math notranslate nohighlight">\(1/N\)</span>. Observe que la función de pérdida es exactamente menos la log verosimilitud de un modelo de Bernoulli.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># define la activación de salida</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="k">def</span> <span class="nf">sigmoid</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="mf">1.0</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="p">))</span>
+
+<span class="c1"># define la red neuronal</span>
+<span class="k">def</span> <span class="nf">net</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+    <span class="n">w1</span><span class="p">,</span> <span class="n">b1</span><span class="p">,</span> <span class="n">w2</span><span class="p">,</span> <span class="n">b2</span> <span class="o">=</span> <span class="n">params</span>
+    <span class="n">hidden</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">tanh</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">w1</span><span class="p">,</span><span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="n">b1</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">sigmoid</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">w2</span><span class="p">,</span><span class="n">hidden</span><span class="p">)</span> <span class="o">+</span> <span class="n">b2</span><span class="p">))</span>
+
+<span class="c1"># función de pérdida de la entropía cruzada</span>
+<span class="k">def</span> <span class="nf">loss</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">):</span>
+    <span class="n">out</span> <span class="o">=</span> <span class="n">net</span><span class="p">(</span><span class="n">params</span><span class="p">,</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">cross_entropy</span> <span class="o">=</span>  <span class="o">-</span><span class="n">y</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">out</span><span class="p">)</span> <span class="o">-</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">y</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">out</span><span class="p">)</span> <span class="c1"># esto es -log verosimilitud</span>
+    <span class="k">return</span> <span class="n">cross_entropy</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="span-style-color-4361ee-referencias-span">
+<h2><span style="color:#4361EE">Referencias</span><a class="headerlink" href="#span-style-color-4361ee-referencias-span" title="Enlazar permanentemente con este título">#</a></h2>
+<ol class="simple">
+<li><p><a class="reference external" href="https://github.com/AprendizajeProfundo/Diplomado">Alvaro Montenegro y Daniel Montenegro, Inteligencia Artificial y Aprendizaje Profundo, 2021</a></p></li>
+<li><p><a class="reference external" href="https://github.com/AprendizajeProfundo/Diplomado-Avanzado">Alvaro Montenegro, Daniel Montenegro y Oleg Jarma, Inteligencia Artificial y Aprendizaje Profundo Avanzado, 2022</a></p></li>
+</ol>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "AprendizajeProfundo/Libro-Fundamentos",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./Fundamentacion_Estadistica\Cuadernos"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="Regresi%C3%B3n-Lineal-Pyton-Copy1.html" title="anterior página">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">anterior</p>
+            <p class="prev-next-title"><span style="color:#F72585">Regresión Lineal en Python</span></p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="../../Fundamentacion_Matematica/Cuadernos/Intro_Tensores_I.html" title="siguiente página">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">siguiente</p>
+        <p class="prev-next-title"><span style="color:#F72585">Introducción a tensores</span></p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Álvaro Mauricio Montenegro Díaz, Daniel Mauricio Montenegro Reyes<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

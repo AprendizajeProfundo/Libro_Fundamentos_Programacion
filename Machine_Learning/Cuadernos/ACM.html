@@ -1,0 +1,2609 @@
+
+<!DOCTYPE html>
+
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Análisis de correspondencias múltiples (ACM) &#8212; Fundamentos de IA y AP</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script src="../../_static/tabs.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../../_static/translations.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Índice" href="../../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../../search.html" />
+    <link rel="next" title="Mapas Auto-organizados (SOM)" href="som_Introduccion.html" />
+    <link rel="prev" title="Análisis de correspondencias simples" href="ACS.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="es">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../_static/logo-final-ap.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Fundamentos de IA y AP</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../tutorial.html">
+                    <span style="color:#F72585">Bienvenido(a)</span>
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Conociendo el libro
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Inicio/Cuadernos/Consideraciones.html">
+   <span style="color:#F72585">
+    Conociendo el Libro
+   </span>
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Fundamentos de Estadística
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Fundamentacion_Estadistica/Cuadernos/Prob_Conceptos_Basicos.html">
+   <span style="color:#F72585">
+    Probabilidad
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Fundamentacion_Estadistica/Cuadernos/Prob_Variables_Aleatorias.html">
+   <span style="color:#F72585">
+    Variables Aleatorias
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Fundamentacion_Estadistica/Cuadernos/Prob_Var_Prob_conjunta.html">
+   <span style="color:#F72585">
+    Probabilidad Conjunta y Entropía Cruzada
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Fundamentacion_Estadistica/Cuadernos/Prob_Distribuciones_continuas.html">
+   <span style="color:#F72585">
+    Distribuciones de probabilidad continuas
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Fundamentacion_Estadistica/Cuadernos/Regresi%C3%B3n-Lineal-Pyton-Copy1.html">
+   <span style="color:#F72585">
+    Regresión Lineal en Python
+   </span>
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Teoría de la Información
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Fundamentacion_Estadistica/Cuadernos/ti_Teoria_Informacion.html">
+   <span style="color:#F72585">
+    Teoría de la Información
+   </span>
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Álgebra Lineal
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Fundamentacion_Matematica/Cuadernos/Intro_Tensores_I.html">
+   <span style="color:#F72585">
+    Introducción a tensores
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Fundamentacion_Matematica/Cuadernos/Intro_Tensores_II.html">
+   <span style="color:#F72585">
+    Tensores
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Fundamentacion_Matematica/Cuadernos/Tensor_Distribucion_Prob.html">
+   <span style="color:#F72585">
+    Tensores y distribuciones de probabilidad
+   </span>
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Modelación
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Fundamentacion_Matematica/Cuadernos/mod_Modelamiento.html">
+   <span style="color:#F72585">
+    Ejemplos de Modelos
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Fundamentacion_Matematica/Cuadernos/mod_Ejemplo_Modelamiento.html">
+   <span style="color:#F72585">
+    Ejemplos de Modelamiento
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Fundamentacion_Matematica/Cuadernos/cal_derivadas.html">
+   <span style="color:#F72585">
+    Introducción a la Derivación
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Fundamentacion_Matematica/Cuadernos/Optimization_1.html">
+   <span style="color:#F72585">
+    Optimización univariada usando JAX
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Fundamentacion_Matematica/Cuadernos/Optimization_2.html">
+   <span style="color:#F72585">
+    Optimización multivariada usando JAX
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Fundamentacion_Matematica/Cuadernos/am-sdg.html">
+   <span style="color:#F72585">
+    Optimización
+   </span>
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Aprendizaje de máquinas
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="am_intro_aprendizaje_maquinas.html">
+   <span style="color:#F72585">
+    Conceptos básicos de aprendizaje de máquinas
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="am_Regresion_logistica_JAX.html">
+   <span style="color:#F72585">
+    Modelo Lineal de Clasificación  con JAX
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="am_Regresion_Logistica_Tensorflow.html">
+   <span style="color:#F72585">
+    Modelo Logístico de Clasificación  con Tensorflow 2.X
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="am_regresion_Keras.html">
+   <span style="color:#F72585">
+    Regresion Basica con tf.keras: Predecir eficiencia de la gasolina
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="am-logistico-keras-cancer.html">
+   <span style="color:#F72585">
+    Modelo logístico de predicción en tf.keras
+   </span>
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Aprendizaje de máquinas no supervisado
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="BreveIntroduccion2R.html">
+   <span style="color:#F72585">
+    Breve introducción a R
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="AprendizajeNoSupervisado.html">
+   <span style="color:#F72585">
+    Aprendizaje no supervisado
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ACP.html">
+   <span style="color:#F72585">
+    Análisis en componentes principales
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ACS.html">
+   <span style="color:#F72585">
+    Análisis de correspondencias simples
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   <span style="color:#F72585">
+    Análisis de correspondencias múltiples (ACM)
+   </span>
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Mapas auto-organizados (SOM)
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="som_Introduccion.html">
+   <span style="color:#F72585">
+    Mapas Auto-organizados (SOM)
+   </span>
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Redes Neuronales
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Redes_Neuronales/Cuadernos/RedesNeuronales_intro.html">
+   <span style="color:#F72585">
+    Introducción a Redes Neuronales
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Redes_Neuronales/Cuadernos/Activation_Functions.html">
+   <span style="color:#F72585">
+    Funciones de Activación
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Redes_Neuronales/Cuadernos/Hello_World_ML.html">
+   <span style="color:#F72585">
+    Introducción a Keras Sequential y API Funcional
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Redes_Neuronales/Cuadernos/Intro_Keras_Sequential.html">
+   <span style="color:#F72585">
+    Introducción a la API Sequential de Keras
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Redes_Neuronales/Cuadernos/Intro_Keras_Functional.html">
+   <span style="color:#F72585">
+    Introducción a la API funcional de Keras
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Redes_Neuronales/Cuadernos/am-softmax-keras-iris.html">
+   <span style="color:#F72585">
+    Clasificación, Softmax, Iris
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Redes_Neuronales/Cuadernos/am_regresion_Keras_gasolina.html">
+   <span style="color:#F72585">
+    Regresion Basica con tf.keras: Predecir eficiencia de la gasolina
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Redes_Neuronales/Cuadernos/am-subclassing-iris.html">
+   <span style="color:#F72585">
+    Subclassing-Modelo de Regresión multi-logística
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Redes_Neuronales/Cuadernos/NN_Animation2.html">
+   <span style="color:#F72585">
+    Visualización del Entrenamiento de una Red Neuronal
+   </span>
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/AprendizajeProfundo/Libro-Fundamentos/main?urlpath=tree/Machine_Learning/Cuadernos/ACM.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://colab.research.google.com/github/AprendizajeProfundo/Libro-Fundamentos/blob/main/Machine_Learning/Cuadernos/ACM.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Colab"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../../_static/images/logo_colab.png">
+  </span>
+<span class="headerbtn__text-container">Colab</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="initThebeSBT()"
+  class="headerbtn headerbtn-launch-thebe"
+  data-toggle="tooltip"
+data-placement="left"
+title="Launch Thebe"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="headerbtn__text-container">Live Code</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/AprendizajeProfundo/Libro-Fundamentos"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/AprendizajeProfundo/Libro-Fundamentos/issues/new?title=Issue%20on%20page%20%2FMachine_Learning/Cuadernos/ACM.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/AprendizajeProfundo/Libro-Fundamentos/edit/main/Machine_Learning/Cuadernos/ACM.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Edit this page"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="headerbtn__text-container">suggest edit</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../../_sources/Machine_Learning/Cuadernos/ACM.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-objetivos-del-acm-span">
+   <span style="color:#4361EE">
+    Objetivos del ACM
+   </span>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-ejemplo-descripcion-de-admitidos-segun-algunas-variables-sociodemograficas-notacion-y-transformaciones-de-datos-span">
+   <span style="color:#4361EE">
+    Ejemplo: descripción de admitidos según algunas variables sociodemográficas,  notación y transformaciones de datos
+   </span>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-notacion-span">
+     <span style="color:#4CC9F0">
+      Notación
+     </span>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-tabla-de-datos-del-ejemplo-admitidos-span">
+   <span style="color:#4361EE">
+    Tabla de datos del ejemplo Admitidos
+   </span>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-tabla-de-datos-y-span">
+     <span style="color:#4CC9F0">
+      Tabla de datos
+      <strong>
+       Y
+      </strong>
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-tabla-disyuntiva-completa-tdc-z-span">
+     <span style="color:#4CC9F0">
+      Tabla disyuntiva completa (TDC):
+      <strong>
+       Z
+      </strong>
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-tabla-de-burt-span">
+     <span style="color:#4CC9F0">
+      Tabla de Burt
+     </span>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-el-acm-como-un-acs-de-la-tdc-span">
+   <span style="color:#4361EE">
+    El ACM como un ACS de la TDC
+   </span>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-nube-de-individuos-span">
+     <span style="color:#4CC9F0">
+      Nube de Individuos
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-centro-de-gravedad-span">
+     <span style="color:#4CC9F0">
+      Centro de gravedad
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-distancia-entre-individuos-span">
+     <span style="color:#4CC9F0">
+      Distancia entre individuos
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-inercia-de-la-nube-de-perfiles-fila-span">
+     <span style="color:#4CC9F0">
+      Inercia de la nube de perfiles fila
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-eje-y-subespacios-vectoriales-span">
+     <span style="color:#4CC9F0">
+      Eje y subespacios vectoriales
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-valores-propios-del-acm-de-admitidos-span">
+     <span style="color:#4CC9F0">
+      Valores propios del ACM de admitidos
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-primer-plano-factorial-del-acm-de-admitidos-span">
+     <span style="color:#4CC9F0">
+      Primer plano factorial del ACM de admitidos
+     </span>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-nube-de-categorias-span">
+   <span style="color:#4361EE">
+    Nube de categorías
+   </span>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-coordenadas-columnas-de-la-tabla-mathbf-zd-1-p-span">
+     <span style="color:#4CC9F0">
+      Coordenadas: Columnas de la tabla
+      <span class="math notranslate nohighlight">
+       \(\mathbf{ZD}^{-1}_p\)
+      </span>
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-centro-de-gravedad-es-el-vector-de-n-valores-dfrac-1-n-span">
+     <span style="color:#4CC9F0">
+      Centro de gravedad: Es el vector de
+      <span class="math notranslate nohighlight">
+       \(n\)
+      </span>
+      valores
+      <span class="math notranslate nohighlight">
+       \(\dfrac{1}{n}\)
+      </span>
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#metrica-n-mathbf-i-n">
+     Métrica:
+     <span class="math notranslate nohighlight">
+      \(n \mathbf{I}_n\)
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#distancia-entre-dos-categorias">
+     Distancia entre dos categorías
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-interpretacion-de-la-distancia-entre-categorias-span">
+     <span style="color:#4CC9F0">
+      Interpretación de la distancia entre categorías
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-contribucion-de-categorias-y-variables-a-la-inercia-span">
+     <span style="color:#4CC9F0">
+      Contribución de categorías y variables a la inercia
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-contribuciones-a-la-inercia-span">
+     <span style="color:#4CC9F0">
+      Contribuciones a la inercia
+     </span>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-subespacio-de-proyeccion-de-las-categorias-span">
+   <span style="color:#4361EE">
+    Subespacio de proyección de las categorías
+   </span>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-primer-plano-factorial-span">
+     <span style="color:#4CC9F0">
+      Primer plano Factorial
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-coordenadas-y-ayudas-para-la-interpretacion-de-las-categorias-para-los-tres-primeros-ejes-span">
+     <span style="color:#4CC9F0">
+      Coordenadas y ayudas para la interpretación de las categorías para los tres primeros ejes
+     </span>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-el-acm-como-un-acp-x-m-n-de-la-tdc-span">
+   <span style="color:#4361EE">
+    El ACM como un ACP(X,M,N) de la TDC)
+   </span>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#m-distancia-al-cuadrado-entre-dos-individuos-i-y-l">
+     <strong>
+      M
+     </strong>
+     - distancia al cuadrado entre dos individuos
+     <span class="math notranslate nohighlight">
+      \(i\)
+     </span>
+     y
+     <span class="math notranslate nohighlight">
+      \(l\)
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#n-distancia-al-cuadrado-entre-dos-categorias">
+     <strong>
+      N
+     </strong>
+     - distancia al cuadrado entre dos categorías
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-relaciones-cuasibaricentricas-span">
+     <span style="color:#4CC9F0">
+      Relaciones cuasibaricéntricas
+     </span>
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#span-style-color-4cc9f0-coordenada-de-una-individuo-en-funcion-de-las-coordenadas-de-las-categorias-span">
+       <span style="color:#4CC9F0">
+        Coordenada de una individuo en función de las coordenadas de las categorías
+       </span>
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#span-style-color-4cc9f0-coordenada-de-una-categoria-en-funcion-de-las-coordenadas-de-los-individuos-span">
+       <span style="color:#4CC9F0">
+        Coordenada de una categoría en función de  las coordenadas de los individuos
+       </span>
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-representacion-simultanea-en-el-primer-plano-factorial-span">
+     <span style="color:#4CC9F0">
+      Representación simultánea en el primer plano factorial
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-plano-factorial-2-3-span">
+     <span style="color:#4CC9F0">
+      Plano factorial 2-3
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-razones-de-correlacion-sobre-un-eje-de-las-variables-cualitativas-span">
+     <span style="color:#4CC9F0">
+      Razones de correlación sobre un eje de las variables cualitativas
+     </span>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-elementos-suplementarios-span">
+   <span style="color:#4361EE">
+    Elementos suplementarios
+   </span>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-individuos-suplementarios-span">
+     <span style="color:#4CC9F0">
+      Individuos Suplementarios
+     </span>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-variables-cualitativas-suplementarias-span">
+   <span style="color:#4361EE">
+    Variables cualitativas suplementarias
+   </span>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-valores-test-para-categorias-suplementarias-span">
+     <span style="color:#4CC9F0">
+      Valores test para categorías suplementarias
+     </span>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-ejemplo-span">
+   <span style="color:#4361EE">
+    Ejemplo
+   </span>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-valor-test-para-quimica-sobre-el-primer-eje-span">
+     <span style="color:#4CC9F0">
+      Valor test para
+      <em>
+       Química
+      </em>
+      sobre el primer eje:
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-carreras-sobre-el-primer-plano-factorial-del-acm-de-admitidos-span">
+     <span style="color:#4CC9F0">
+      Carreras sobre el primer plano factorial del ACM de admitidos
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-proyeccion-de-las-carreras-sobre-el-primer-plano-factorial-span">
+     <span style="color:#4CC9F0">
+      Proyección de las carreras sobre el primer plano factorial
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-proyeccion-de-las-carreras-sobre-el-plano-factorial-2-3-span">
+     <span style="color:#4CC9F0">
+      Proyección de las carreras sobre el plano factorial 2-3
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-retorno-a-los-datos-span">
+     <span style="color:#4CC9F0">
+      Retorno a los datos
+     </span>
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1><span style="color:#F72585">Análisis de correspondencias múltiples (ACM)</span></h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-objetivos-del-acm-span">
+   <span style="color:#4361EE">
+    Objetivos del ACM
+   </span>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-ejemplo-descripcion-de-admitidos-segun-algunas-variables-sociodemograficas-notacion-y-transformaciones-de-datos-span">
+   <span style="color:#4361EE">
+    Ejemplo: descripción de admitidos según algunas variables sociodemográficas,  notación y transformaciones de datos
+   </span>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-notacion-span">
+     <span style="color:#4CC9F0">
+      Notación
+     </span>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-tabla-de-datos-del-ejemplo-admitidos-span">
+   <span style="color:#4361EE">
+    Tabla de datos del ejemplo Admitidos
+   </span>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-tabla-de-datos-y-span">
+     <span style="color:#4CC9F0">
+      Tabla de datos
+      <strong>
+       Y
+      </strong>
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-tabla-disyuntiva-completa-tdc-z-span">
+     <span style="color:#4CC9F0">
+      Tabla disyuntiva completa (TDC):
+      <strong>
+       Z
+      </strong>
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-tabla-de-burt-span">
+     <span style="color:#4CC9F0">
+      Tabla de Burt
+     </span>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-el-acm-como-un-acs-de-la-tdc-span">
+   <span style="color:#4361EE">
+    El ACM como un ACS de la TDC
+   </span>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-nube-de-individuos-span">
+     <span style="color:#4CC9F0">
+      Nube de Individuos
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-centro-de-gravedad-span">
+     <span style="color:#4CC9F0">
+      Centro de gravedad
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-distancia-entre-individuos-span">
+     <span style="color:#4CC9F0">
+      Distancia entre individuos
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-inercia-de-la-nube-de-perfiles-fila-span">
+     <span style="color:#4CC9F0">
+      Inercia de la nube de perfiles fila
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-eje-y-subespacios-vectoriales-span">
+     <span style="color:#4CC9F0">
+      Eje y subespacios vectoriales
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-valores-propios-del-acm-de-admitidos-span">
+     <span style="color:#4CC9F0">
+      Valores propios del ACM de admitidos
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-primer-plano-factorial-del-acm-de-admitidos-span">
+     <span style="color:#4CC9F0">
+      Primer plano factorial del ACM de admitidos
+     </span>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-nube-de-categorias-span">
+   <span style="color:#4361EE">
+    Nube de categorías
+   </span>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-coordenadas-columnas-de-la-tabla-mathbf-zd-1-p-span">
+     <span style="color:#4CC9F0">
+      Coordenadas: Columnas de la tabla
+      <span class="math notranslate nohighlight">
+       \(\mathbf{ZD}^{-1}_p\)
+      </span>
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-centro-de-gravedad-es-el-vector-de-n-valores-dfrac-1-n-span">
+     <span style="color:#4CC9F0">
+      Centro de gravedad: Es el vector de
+      <span class="math notranslate nohighlight">
+       \(n\)
+      </span>
+      valores
+      <span class="math notranslate nohighlight">
+       \(\dfrac{1}{n}\)
+      </span>
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#metrica-n-mathbf-i-n">
+     Métrica:
+     <span class="math notranslate nohighlight">
+      \(n \mathbf{I}_n\)
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#distancia-entre-dos-categorias">
+     Distancia entre dos categorías
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-interpretacion-de-la-distancia-entre-categorias-span">
+     <span style="color:#4CC9F0">
+      Interpretación de la distancia entre categorías
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-contribucion-de-categorias-y-variables-a-la-inercia-span">
+     <span style="color:#4CC9F0">
+      Contribución de categorías y variables a la inercia
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-contribuciones-a-la-inercia-span">
+     <span style="color:#4CC9F0">
+      Contribuciones a la inercia
+     </span>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-subespacio-de-proyeccion-de-las-categorias-span">
+   <span style="color:#4361EE">
+    Subespacio de proyección de las categorías
+   </span>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-primer-plano-factorial-span">
+     <span style="color:#4CC9F0">
+      Primer plano Factorial
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-coordenadas-y-ayudas-para-la-interpretacion-de-las-categorias-para-los-tres-primeros-ejes-span">
+     <span style="color:#4CC9F0">
+      Coordenadas y ayudas para la interpretación de las categorías para los tres primeros ejes
+     </span>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-el-acm-como-un-acp-x-m-n-de-la-tdc-span">
+   <span style="color:#4361EE">
+    El ACM como un ACP(X,M,N) de la TDC)
+   </span>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#m-distancia-al-cuadrado-entre-dos-individuos-i-y-l">
+     <strong>
+      M
+     </strong>
+     - distancia al cuadrado entre dos individuos
+     <span class="math notranslate nohighlight">
+      \(i\)
+     </span>
+     y
+     <span class="math notranslate nohighlight">
+      \(l\)
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#n-distancia-al-cuadrado-entre-dos-categorias">
+     <strong>
+      N
+     </strong>
+     - distancia al cuadrado entre dos categorías
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-relaciones-cuasibaricentricas-span">
+     <span style="color:#4CC9F0">
+      Relaciones cuasibaricéntricas
+     </span>
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#span-style-color-4cc9f0-coordenada-de-una-individuo-en-funcion-de-las-coordenadas-de-las-categorias-span">
+       <span style="color:#4CC9F0">
+        Coordenada de una individuo en función de las coordenadas de las categorías
+       </span>
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#span-style-color-4cc9f0-coordenada-de-una-categoria-en-funcion-de-las-coordenadas-de-los-individuos-span">
+       <span style="color:#4CC9F0">
+        Coordenada de una categoría en función de  las coordenadas de los individuos
+       </span>
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-representacion-simultanea-en-el-primer-plano-factorial-span">
+     <span style="color:#4CC9F0">
+      Representación simultánea en el primer plano factorial
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-plano-factorial-2-3-span">
+     <span style="color:#4CC9F0">
+      Plano factorial 2-3
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-razones-de-correlacion-sobre-un-eje-de-las-variables-cualitativas-span">
+     <span style="color:#4CC9F0">
+      Razones de correlación sobre un eje de las variables cualitativas
+     </span>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-elementos-suplementarios-span">
+   <span style="color:#4361EE">
+    Elementos suplementarios
+   </span>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-individuos-suplementarios-span">
+     <span style="color:#4CC9F0">
+      Individuos Suplementarios
+     </span>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-variables-cualitativas-suplementarias-span">
+   <span style="color:#4361EE">
+    Variables cualitativas suplementarias
+   </span>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-valores-test-para-categorias-suplementarias-span">
+     <span style="color:#4CC9F0">
+      Valores test para categorías suplementarias
+     </span>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-ejemplo-span">
+   <span style="color:#4361EE">
+    Ejemplo
+   </span>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-valor-test-para-quimica-sobre-el-primer-eje-span">
+     <span style="color:#4CC9F0">
+      Valor test para
+      <em>
+       Química
+      </em>
+      sobre el primer eje:
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-carreras-sobre-el-primer-plano-factorial-del-acm-de-admitidos-span">
+     <span style="color:#4CC9F0">
+      Carreras sobre el primer plano factorial del ACM de admitidos
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-proyeccion-de-las-carreras-sobre-el-primer-plano-factorial-span">
+     <span style="color:#4CC9F0">
+      Proyección de las carreras sobre el primer plano factorial
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-proyeccion-de-las-carreras-sobre-el-plano-factorial-2-3-span">
+     <span style="color:#4CC9F0">
+      Proyección de las carreras sobre el plano factorial 2-3
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-retorno-a-los-datos-span">
+     <span style="color:#4CC9F0">
+      Retorno a los datos
+     </span>
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="span-style-color-f72585-analisis-de-correspondencias-multiples-acm-span">
+<h1><span style="color:#F72585">Análisis de correspondencias múltiples (ACM)</span><a class="headerlink" href="#span-style-color-f72585-analisis-de-correspondencias-multiples-acm-span" title="Enlazar permanentemente con este título">#</a></h1>
+<div class="admonition">
+<p class="admonition-title">Nota</p>
+<p>Los trozos de código de esta página son de R. Por favor, ejecútelos en Colab o Binder</p>
+</div>
+<!--  -->
+<p><strong>Fuente:</strong> Pardo CE (2020)  <a class="reference external" href="http://ciencias.bogota.unal.edu.co/fileadmin/Facultad_de_Ciencias/Publicaciones/Imagenes/Portadas_Libros/Estadistica/Estadistica_descriptiva_multivariada/libroEstadisiticaDescriptivaMultivariadaDigital.pdf">Estadística descriptiva multivariada</a></p>
+<section id="span-style-color-4361ee-objetivos-del-acm-span">
+<h2><span style="color:#4361EE">Objetivos del ACM</span><a class="headerlink" href="#span-style-color-4361ee-objetivos-del-acm-span" title="Enlazar permanentemente con este título">#</a></h2>
+<ul class="simple">
+<li><p>Describir las asociaciones entre las categorías de las variables activa.</p></li>
+<li><p>Descubrir patrones de individuos, que pueden dar origen a grupos de ellos.</p></li>
+<li><p>Sintetizar en imágenes geométricas (planos factoriales) las asociaciones entre categorías y los posibles grupos de individuos.</p></li>
+<li><p>Explorar la explicación de la estructura inducida por las categorías activas, con variables que juegan el papel de ilustrativas.</p></li>
+</ul>
+<p>Adicionalmente:</p>
+<ul class="simple">
+<li><p>Cuantificar las variables cualitativas.</p></li>
+<li><p>Reducir de dimensión.</p></li>
+<li><p>Filtrar: conservar la información y eliminar el ruido.</p></li>
+</ul>
+<p>El ACM es una extensión del ACS con propiedades muy particulares.</p>
+<center>
+<img src="https://martinhinz.github.io/smada_I_2019/images/12_session/multi_space.png" alt="eigenvectores" width="400">
+<center>
+<p>Fuente: <a class="reference external" href="https://martinhinz.github.io/smada_I_2019/">Statistical methods for archaeological data analysis I: Basic methods</a></p>
+</section>
+<section id="span-style-color-4361ee-ejemplo-descripcion-de-admitidos-segun-algunas-variables-sociodemograficas-notacion-y-transformaciones-de-datos-span">
+<h2><span style="color:#4361EE">Ejemplo: descripción de admitidos según algunas variables sociodemográficas,  notación y transformaciones de datos</span><a class="headerlink" href="#span-style-color-4361ee-ejemplo-descripcion-de-admitidos-segun-algunas-variables-sociodemograficas-notacion-y-transformaciones-de-datos-span" title="Enlazar permanentemente con este título">#</a></h2>
+<ul class="simple">
+<li><p>Descripción de los 445 admitidos a la Facultad de Ciencias, para el semestre de 2013-I.</p></li>
+<li><p>Datos disponibles en <em>admi{FactoClass}</em></p></li>
+<li><p>Se utilizan como variables activas las sociodemográficas disponibles:</p>
+<ul>
+<li><p>Género: Femenino, Masculino</p></li>
+<li><p>Edad: 16 o menos, 17, 18, 19 o más</p></li>
+<li><p>Estrato: bajo, medio, alto</p></li>
+<li><p>Procedencia: Bogotá, Cundinamarca, Otro</p></li>
+</ul>
+</li>
+</ul>
+<section id="span-style-color-4cc9f0-notacion-span">
+<h3><span style="color:#4CC9F0">Notación</span><a class="headerlink" href="#span-style-color-4cc9f0-notacion-span" title="Enlazar permanentemente con este título">#</a></h3>
+<ul class="simple">
+<li><p>La tabla de datos se denomina <em>de código condensado</em> (denotada por <strong>Y</strong> y no tiene significado numérico).</p></li>
+<li><p>Las <span class="math notranslate nohighlight">\(n\)</span> filas representan a los individuos y</p></li>
+<li><p>las <span class="math notranslate nohighlight">\(s\)</span> columnas a las variables cualitativas.</p></li>
+<li><p>En el lenguaje de diseño de experimentos las columnas son factores</p></li>
+<li><p>Las categorías son los niveles de los factores.</p></li>
+<li><p>En R estas variables son de tipo factor.</p></li>
+</ul>
+</section>
+</section>
+<section id="span-style-color-4361ee-tabla-de-datos-del-ejemplo-admitidos-span">
+<h2><span style="color:#4361EE">Tabla de datos del ejemplo Admitidos</span><a class="headerlink" href="#span-style-color-4361ee-tabla-de-datos-del-ejemplo-admitidos-span" title="Enlazar permanentemente con este título">#</a></h2>
+<section id="span-style-color-4cc9f0-tabla-de-datos-y-span">
+<h3><span style="color:#4CC9F0">Tabla de datos <strong>Y</strong></span><a class="headerlink" href="#span-style-color-4cc9f0-tabla-de-datos-y-span" title="Enlazar permanentemente con este título">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">data</span><span class="p">(</span><span class="n">admi</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="s">&quot;Names&quot;</span><span class="p">)</span>
+<span class="nf">names</span><span class="p">(</span><span class="n">admi</span><span class="p">)</span>
+
+<span class="n">Y</span><span class="o">&lt;-</span><span class="n">admi</span><span class="p">[,</span><span class="m">8</span><span class="o">:</span><span class="m">11</span><span class="p">]</span> <span class="c1">#tomamos las columnas genero, estrato, origen y edad</span>
+<span class="nf">paste</span><span class="p">(</span><span class="s">&quot;Dimensión de Y:&quot;</span><span class="p">,</span><span class="nf">dim</span><span class="p">(</span><span class="n">Y</span><span class="p">)[</span><span class="m">1</span><span class="p">],</span><span class="s">&quot;x&quot;</span><span class="p">,</span><span class="nf">dim</span><span class="p">(</span><span class="n">Y</span><span class="p">)[</span><span class="m">2</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Warning message in data(admi):
+&quot;data set &#39;admi&#39; not found&quot;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;Names&quot;
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="n">Error</span> <span class="ow">in</span> <span class="nb">eval</span><span class="p">(</span><span class="n">expr</span><span class="p">,</span> <span class="n">envir</span><span class="p">,</span> <span class="n">enclos</span><span class="p">):</span> <span class="nb">object</span> <span class="s1">&#39;admi&#39;</span> <span class="ow">not</span> <span class="n">found</span>
+<span class="ne">Traceback</span>:
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># estracto de la tabla: múltiplo de 25</span>
+<span class="n">sel</span><span class="o">&lt;-</span><span class="nf">seq</span><span class="p">(</span><span class="m">25</span><span class="p">,</span><span class="m">425</span><span class="p">,</span><span class="m">25</span><span class="p">)</span>
+<span class="n">sel</span>
+<span class="n">Y</span><span class="p">[</span><span class="n">sel</span><span class="p">,]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style>
+.list-inline {list-style: none; margin:0; padding: 0}
+.list-inline>li {display: inline-block}
+.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+</style>
+<ol class=list-inline><li>25</li><li>50</li><li>75</li><li>100</li><li>125</li><li>150</li><li>175</li><li>200</li><li>225</li><li>250</li><li>275</li><li>300</li><li>325</li><li>350</li><li>375</li><li>400</li><li>425</li></ol>
+</div><div class="output text_html"><table class="dataframe">
+<caption>A data.frame: 17 × 4</caption>
+<thead>
+	<tr><th></th><th scope=col>gene</th><th scope=col>estr</th><th scope=col>orig</th><th scope=col>edad</th></tr>
+	<tr><th></th><th scope=col>&lt;fct&gt;</th><th scope=col>&lt;fct&gt;</th><th scope=col>&lt;fct&gt;</th><th scope=col>&lt;fct&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><th scope=row>25</th><td>F</td><td>medio</td><td>Otro</td><td>a17 </td></tr>
+	<tr><th scope=row>50</th><td>M</td><td>bajo </td><td>Bogo</td><td>a18 </td></tr>
+	<tr><th scope=row>75</th><td>M</td><td>bajo </td><td>Bogo</td><td>a17 </td></tr>
+	<tr><th scope=row>100</th><td>M</td><td>medio</td><td>Bogo</td><td>a18 </td></tr>
+	<tr><th scope=row>125</th><td>F</td><td>medio</td><td>Otro</td><td>a17 </td></tr>
+	<tr><th scope=row>150</th><td>F</td><td>bajo </td><td>Bogo</td><td>a16m</td></tr>
+	<tr><th scope=row>175</th><td>M</td><td>alto </td><td>Bogo</td><td>a19M</td></tr>
+	<tr><th scope=row>200</th><td>F</td><td>bajo </td><td>Otro</td><td>a17 </td></tr>
+	<tr><th scope=row>225</th><td>M</td><td>alto </td><td>Otro</td><td>a16m</td></tr>
+	<tr><th scope=row>250</th><td>M</td><td>alto </td><td>Bogo</td><td>a17 </td></tr>
+	<tr><th scope=row>275</th><td>M</td><td>bajo </td><td>Bogo</td><td>a17 </td></tr>
+	<tr><th scope=row>300</th><td>M</td><td>bajo </td><td>Otro</td><td>a19M</td></tr>
+	<tr><th scope=row>325</th><td>M</td><td>alto </td><td>Bogo</td><td>a17 </td></tr>
+	<tr><th scope=row>350</th><td>M</td><td>medio</td><td>Bogo</td><td>a19M</td></tr>
+	<tr><th scope=row>375</th><td>M</td><td>medio</td><td>Bogo</td><td>a19M</td></tr>
+	<tr><th scope=row>400</th><td>F</td><td>bajo </td><td>Bogo</td><td>a18 </td></tr>
+	<tr><th scope=row>425</th><td>M</td><td>alto </td><td>Bogo</td><td>a16m</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+</section>
+<section id="span-style-color-4cc9f0-tabla-disyuntiva-completa-tdc-z-span">
+<h3><span style="color:#4CC9F0">Tabla disyuntiva completa (TDC): <strong>Z</strong> </span><a class="headerlink" href="#span-style-color-4cc9f0-tabla-disyuntiva-completa-tdc-z-span" title="Enlazar permanentemente con este título">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">Z</span><span class="o">&lt;-</span><span class="nf">acm.disjonctif</span><span class="p">(</span><span class="n">Y</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="s">&quot;Dimensión de Z:&quot;</span><span class="p">)</span>
+<span class="nf">dim</span><span class="p">(</span><span class="n">Z</span><span class="p">)</span>
+<span class="nf">names</span><span class="p">(</span><span class="n">Z</span><span class="p">)</span><span class="o">&lt;-</span><span class="nf">substr</span><span class="p">(</span><span class="nf">names</span><span class="p">(</span><span class="n">Z</span><span class="p">),</span><span class="m">6</span><span class="p">,</span><span class="m">8</span><span class="p">)</span>
+
+<span class="n">Z</span><span class="p">[</span><span class="n">sel</span><span class="p">,]</span> <span class="c1">#sel&lt;-seq(25,425,25)</span>
+<span class="n">Y</span><span class="p">[</span><span class="n">sel</span><span class="p">[</span><span class="m">1</span><span class="o">:</span><span class="m">4</span><span class="p">],]</span>
+<span class="n">Z</span><span class="p">[</span><span class="n">sel</span><span class="p">[</span><span class="m">1</span><span class="o">:</span><span class="m">4</span><span class="p">],]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;Dimensión de Z:&quot;
+</pre></div>
+</div>
+<div class="output text_html"><style>
+.list-inline {list-style: none; margin:0; padding: 0}
+.list-inline>li {display: inline-block}
+.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+</style>
+<ol class=list-inline><li>445</li><li>12</li></ol>
+</div><div class="output text_html"><table class="dataframe">
+<caption>A data.frame: 17 × 12</caption>
+<thead>
+	<tr><th></th><th scope=col>F</th><th scope=col>M</th><th scope=col>baj</th><th scope=col>med</th><th scope=col>alt</th><th scope=col>Bog</th><th scope=col>Cun</th><th scope=col>Otr</th><th scope=col>a16</th><th scope=col>a17</th><th scope=col>a18</th><th scope=col>a19</th></tr>
+	<tr><th></th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><th scope=row>25</th><td>1</td><td>0</td><td>0</td><td>1</td><td>0</td><td>0</td><td>0</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0</td></tr>
+	<tr><th scope=row>50</th><td>0</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td><td>1</td><td>0</td></tr>
+	<tr><th scope=row>75</th><td>0</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1</td><td>0</td><td>0</td><td>0</td><td>1</td><td>0</td><td>0</td></tr>
+	<tr><th scope=row>100</th><td>0</td><td>1</td><td>0</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td><td>1</td><td>0</td></tr>
+	<tr><th scope=row>125</th><td>1</td><td>0</td><td>0</td><td>1</td><td>0</td><td>0</td><td>0</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0</td></tr>
+	<tr><th scope=row>150</th><td>1</td><td>0</td><td>1</td><td>0</td><td>0</td><td>1</td><td>0</td><td>0</td><td>1</td><td>0</td><td>0</td><td>0</td></tr>
+	<tr><th scope=row>175</th><td>0</td><td>1</td><td>0</td><td>0</td><td>1</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>1</td></tr>
+	<tr><th scope=row>200</th><td>1</td><td>0</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0</td></tr>
+	<tr><th scope=row>225</th><td>0</td><td>1</td><td>0</td><td>0</td><td>1</td><td>0</td><td>0</td><td>1</td><td>1</td><td>0</td><td>0</td><td>0</td></tr>
+	<tr><th scope=row>250</th><td>0</td><td>1</td><td>0</td><td>0</td><td>1</td><td>1</td><td>0</td><td>0</td><td>0</td><td>1</td><td>0</td><td>0</td></tr>
+	<tr><th scope=row>275</th><td>0</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1</td><td>0</td><td>0</td><td>0</td><td>1</td><td>0</td><td>0</td></tr>
+	<tr><th scope=row>300</th><td>0</td><td>1</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td><td>1</td><td>0</td><td>0</td><td>0</td><td>1</td></tr>
+	<tr><th scope=row>325</th><td>0</td><td>1</td><td>0</td><td>0</td><td>1</td><td>1</td><td>0</td><td>0</td><td>0</td><td>1</td><td>0</td><td>0</td></tr>
+	<tr><th scope=row>350</th><td>0</td><td>1</td><td>0</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>1</td></tr>
+	<tr><th scope=row>375</th><td>0</td><td>1</td><td>0</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>1</td></tr>
+	<tr><th scope=row>400</th><td>1</td><td>0</td><td>1</td><td>0</td><td>0</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td><td>1</td><td>0</td></tr>
+	<tr><th scope=row>425</th><td>0</td><td>1</td><td>0</td><td>0</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1</td><td>0</td><td>0</td><td>0</td></tr>
+</tbody>
+</table>
+</div><div class="output text_html"><table class="dataframe">
+<caption>A data.frame: 4 × 4</caption>
+<thead>
+	<tr><th></th><th scope=col>gene</th><th scope=col>estr</th><th scope=col>orig</th><th scope=col>edad</th></tr>
+	<tr><th></th><th scope=col>&lt;fct&gt;</th><th scope=col>&lt;fct&gt;</th><th scope=col>&lt;fct&gt;</th><th scope=col>&lt;fct&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><th scope=row>25</th><td>F</td><td>medio</td><td>Otro</td><td>a17</td></tr>
+	<tr><th scope=row>50</th><td>M</td><td>bajo </td><td>Bogo</td><td>a18</td></tr>
+	<tr><th scope=row>75</th><td>M</td><td>bajo </td><td>Bogo</td><td>a17</td></tr>
+	<tr><th scope=row>100</th><td>M</td><td>medio</td><td>Bogo</td><td>a18</td></tr>
+</tbody>
+</table>
+</div><div class="output text_html"><table class="dataframe">
+<caption>A data.frame: 4 × 12</caption>
+<thead>
+	<tr><th></th><th scope=col>F</th><th scope=col>M</th><th scope=col>baj</th><th scope=col>med</th><th scope=col>alt</th><th scope=col>Bog</th><th scope=col>Cun</th><th scope=col>Otr</th><th scope=col>a16</th><th scope=col>a17</th><th scope=col>a18</th><th scope=col>a19</th></tr>
+	<tr><th></th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><th scope=row>25</th><td>1</td><td>0</td><td>0</td><td>1</td><td>0</td><td>0</td><td>0</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0</td></tr>
+	<tr><th scope=row>50</th><td>0</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td><td>1</td><td>0</td></tr>
+	<tr><th scope=row>75</th><td>0</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1</td><td>0</td><td>0</td><td>0</td><td>1</td><td>0</td><td>0</td></tr>
+	<tr><th scope=row>100</th><td>0</td><td>1</td><td>0</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td><td>1</td><td>0</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<ul class="simple">
+<li><p>La TDC <strong>Z</strong> es una yuxtaposición de <em>s</em> tablas, donde <em>s</em> es el número de variables:
+$<span class="math notranslate nohighlight">\(\mathbf{Z}=[\mathbf{Z}_1 \ \mathbf{Z}_2 \ \cdots \mathbf{Z}_q \ \cdots \ \mathbf{Z}_s]\)</span>$</p></li>
+<li><p>Una variable cualitativa <span class="math notranslate nohighlight">\(q\)</span>  <span class="math notranslate nohighlight">\(\rightarrow\)</span> Genera partición  de los <span class="math notranslate nohighlight">\(n\)</span> individuos en <span class="math notranslate nohighlight">\(p_q\)</span> grupos,  <span class="math notranslate nohighlight">\(p_q\)</span> = número de categorías de la variable <span class="math notranslate nohighlight">\(q\)</span>.</p></li>
+<li><p>En cada fila de <span class="math notranslate nohighlight">\(\mathbf{Z}_q\)</span> siempre hay un 1 y sólo un 1.</p></li>
+<li><p>La suma en cada fila de <span class="math notranslate nohighlight">\(\mathbf{Z}_q\)</span>  es de 1.</p></li>
+<li><p>Como hay <span class="math notranslate nohighlight">\(s\)</span> submatrices <span class="math notranslate nohighlight">\(\mathbf{Z}_q\)</span>, la suma de cada fila de <span class="math notranslate nohighlight">\(\mathbf{Z}\)</span> es <span class="math notranslate nohighlight">\(s\)</span>, es decir que su marginal fila es un vector de <span class="math notranslate nohighlight">\(n\)</span> veces <span class="math notranslate nohighlight">\(s\)</span></p></li>
+<li><p>El total de <strong>Z</strong> es <span class="math notranslate nohighlight">\(ns\)</span>.</p></li>
+<li><p>En el ejemplo <span class="math notranslate nohighlight">\(s=4\)</span>,  <span class="math notranslate nohighlight">\(n=445\)</span> y el total de la tabla <span class="math notranslate nohighlight">\(4*445=1780\)</span>.</p></li>
+<li><p>La suma de cada columna de <strong>Z</strong> es el número de individuos que asumen la categoría <span class="math notranslate nohighlight">\(j\)</span> que se denota <span class="math notranslate nohighlight">\(n_j\)</span>.</p></li>
+<li><p>La <span class="math notranslate nohighlight">\(\sum\limits_{j \in Z_q} n_j = n\)</span>. <span class="math notranslate nohighlight">\(Z_q\)</span> es el conjunto de categorías de la variable <span class="math notranslate nohighlight">\(q\)</span>.</p></li>
+</ul>
+</section>
+<section id="span-style-color-4cc9f0-tabla-de-burt-span">
+<h3><span style="color:#4CC9F0">Tabla de Burt</span><a class="headerlink" href="#span-style-color-4cc9f0-tabla-de-burt-span" title="Enlazar permanentemente con este título">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">Z</span><span class="o">&lt;-</span><span class="nf">as.matrix</span><span class="p">(</span><span class="n">Z</span><span class="p">)</span>
+<span class="n">B</span><span class="o">&lt;-</span><span class="nf">t</span><span class="p">(</span><span class="n">Z</span><span class="p">)</span><span class="o">%*%</span><span class="n">Z</span>
+<span class="n">B</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A matrix: 12 × 12 of type dbl</caption>
+<thead>
+	<tr><th></th><th scope=col>F</th><th scope=col>M</th><th scope=col>baj</th><th scope=col>med</th><th scope=col>alt</th><th scope=col>Bog</th><th scope=col>Cun</th><th scope=col>Otr</th><th scope=col>a16</th><th scope=col>a17</th><th scope=col>a18</th><th scope=col>a19</th></tr>
+</thead>
+<tbody>
+	<tr><th scope=row>F</th><td>128</td><td>  0</td><td> 46</td><td> 59</td><td>23</td><td> 89</td><td> 9</td><td>30</td><td> 46</td><td> 45</td><td>18</td><td> 19</td></tr>
+	<tr><th scope=row>M</th><td>  0</td><td>317</td><td>133</td><td>126</td><td>58</td><td>222</td><td>29</td><td>66</td><td> 72</td><td>126</td><td>38</td><td> 81</td></tr>
+	<tr><th scope=row>baj</th><td> 46</td><td>133</td><td>179</td><td>  0</td><td> 0</td><td> 95</td><td>22</td><td>62</td><td> 44</td><td> 58</td><td>22</td><td> 55</td></tr>
+	<tr><th scope=row>med</th><td> 59</td><td>126</td><td>  0</td><td>185</td><td> 0</td><td>151</td><td>11</td><td>23</td><td> 47</td><td> 74</td><td>26</td><td> 38</td></tr>
+	<tr><th scope=row>alt</th><td> 23</td><td> 58</td><td>  0</td><td>  0</td><td>81</td><td> 65</td><td> 5</td><td>11</td><td> 27</td><td> 39</td><td> 8</td><td>  7</td></tr>
+	<tr><th scope=row>Bog</th><td> 89</td><td>222</td><td> 95</td><td>151</td><td>65</td><td>311</td><td> 0</td><td> 0</td><td> 70</td><td>116</td><td>47</td><td> 78</td></tr>
+	<tr><th scope=row>Cun</th><td>  9</td><td> 29</td><td> 22</td><td> 11</td><td> 5</td><td>  0</td><td>38</td><td> 0</td><td>  9</td><td> 19</td><td> 2</td><td>  8</td></tr>
+	<tr><th scope=row>Otr</th><td> 30</td><td> 66</td><td> 62</td><td> 23</td><td>11</td><td>  0</td><td> 0</td><td>96</td><td> 39</td><td> 36</td><td> 7</td><td> 14</td></tr>
+	<tr><th scope=row>a16</th><td> 46</td><td> 72</td><td> 44</td><td> 47</td><td>27</td><td> 70</td><td> 9</td><td>39</td><td>118</td><td>  0</td><td> 0</td><td>  0</td></tr>
+	<tr><th scope=row>a17</th><td> 45</td><td>126</td><td> 58</td><td> 74</td><td>39</td><td>116</td><td>19</td><td>36</td><td>  0</td><td>171</td><td> 0</td><td>  0</td></tr>
+	<tr><th scope=row>a18</th><td> 18</td><td> 38</td><td> 22</td><td> 26</td><td> 8</td><td> 47</td><td> 2</td><td> 7</td><td>  0</td><td>  0</td><td>56</td><td>  0</td></tr>
+	<tr><th scope=row>a19</th><td> 19</td><td> 81</td><td> 55</td><td> 38</td><td> 7</td><td> 78</td><td> 8</td><td>14</td><td>  0</td><td>  0</td><td> 0</td><td>100</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<div class="math notranslate nohighlight">
+\[ \mathbf{B}=\mathbf{Z'}\mathbf{Z}\]</div>
+<ul class="simple">
+<li><p><strong>B</strong> es de orden <span class="math notranslate nohighlight">\(p\times p\)</span></p></li>
+<li><p>Se denota la yuxtaposición de tablas de contingencia cruzando todas las variables por parejas, como:
+$<span class="math notranslate nohighlight">\(\mathbf{Z'}_q\mathbf{Z}_{q'}\)</span>$</p></li>
+<li><p>Bloque diagonal con matrices diagonales
+$<span class="math notranslate nohighlight">\(\mathbf{Z'}_q\mathbf{Z}_{q} = diag(n_j), \ \ \ j \in J_q\)</span>$</p></li>
+<li><p>La matriz diagonal con los elementos diagonales de  <span class="math notranslate nohighlight">\(\mathbf{B}\)</span> = suma de las columnas de <strong>Z</strong>:
+$<span class="math notranslate nohighlight">\(\mathbf{D}_p = diag(n_j)\)</span>$</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Matriz diagonal con elementos de la tabla de BURT (B)</span>
+<span class="n">Dp</span><span class="o">&lt;-</span><span class="nf">diag</span><span class="p">(</span><span class="nf">diag</span><span class="p">(</span><span class="n">B</span><span class="p">))</span>
+<span class="n">Dp</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A matrix: 12 × 12 of type dbl</caption>
+<tbody>
+	<tr><td>128</td><td>  0</td><td>  0</td><td>  0</td><td> 0</td><td>  0</td><td> 0</td><td> 0</td><td>  0</td><td>  0</td><td> 0</td><td>  0</td></tr>
+	<tr><td>  0</td><td>317</td><td>  0</td><td>  0</td><td> 0</td><td>  0</td><td> 0</td><td> 0</td><td>  0</td><td>  0</td><td> 0</td><td>  0</td></tr>
+	<tr><td>  0</td><td>  0</td><td>179</td><td>  0</td><td> 0</td><td>  0</td><td> 0</td><td> 0</td><td>  0</td><td>  0</td><td> 0</td><td>  0</td></tr>
+	<tr><td>  0</td><td>  0</td><td>  0</td><td>185</td><td> 0</td><td>  0</td><td> 0</td><td> 0</td><td>  0</td><td>  0</td><td> 0</td><td>  0</td></tr>
+	<tr><td>  0</td><td>  0</td><td>  0</td><td>  0</td><td>81</td><td>  0</td><td> 0</td><td> 0</td><td>  0</td><td>  0</td><td> 0</td><td>  0</td></tr>
+	<tr><td>  0</td><td>  0</td><td>  0</td><td>  0</td><td> 0</td><td>311</td><td> 0</td><td> 0</td><td>  0</td><td>  0</td><td> 0</td><td>  0</td></tr>
+	<tr><td>  0</td><td>  0</td><td>  0</td><td>  0</td><td> 0</td><td>  0</td><td>38</td><td> 0</td><td>  0</td><td>  0</td><td> 0</td><td>  0</td></tr>
+	<tr><td>  0</td><td>  0</td><td>  0</td><td>  0</td><td> 0</td><td>  0</td><td> 0</td><td>96</td><td>  0</td><td>  0</td><td> 0</td><td>  0</td></tr>
+	<tr><td>  0</td><td>  0</td><td>  0</td><td>  0</td><td> 0</td><td>  0</td><td> 0</td><td> 0</td><td>118</td><td>  0</td><td> 0</td><td>  0</td></tr>
+	<tr><td>  0</td><td>  0</td><td>  0</td><td>  0</td><td> 0</td><td>  0</td><td> 0</td><td> 0</td><td>  0</td><td>171</td><td> 0</td><td>  0</td></tr>
+	<tr><td>  0</td><td>  0</td><td>  0</td><td>  0</td><td> 0</td><td>  0</td><td> 0</td><td> 0</td><td>  0</td><td>  0</td><td>56</td><td>  0</td></tr>
+	<tr><td>  0</td><td>  0</td><td>  0</td><td>  0</td><td> 0</td><td>  0</td><td> 0</td><td> 0</td><td>  0</td><td>  0</td><td> 0</td><td>100</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+</section>
+</section>
+<section id="span-style-color-4361ee-el-acm-como-un-acs-de-la-tdc-span">
+<h2><span style="color:#4361EE">El ACM como un ACS de la TDC</span><a class="headerlink" href="#span-style-color-4361ee-el-acm-como-un-acs-de-la-tdc-span" title="Enlazar permanentemente con este título">#</a></h2>
+<p>De ahora en adelante  el término análisis de correspondencias simples (ACS) es sinónimo de  análisis de correspondencias correspondencias (AC), entonces el ACM es el AC de la tabla disyuntiva completa (TDC) <strong>Z</strong> y escribimos <span class="math notranslate nohighlight">\(AC(\mathbf{Z})\)</span></p>
+<ul class="simple">
+<li><p>Tabla de frecuencias relativas: $<span class="math notranslate nohighlight">\(\mathbf{F}=\dfrac{1}{ns}\mathbf{Z}\)</span>$</p></li>
+<li><p>Marginales fila:  <span class="math notranslate nohighlight">\(f_{i\cdot}=\dfrac{1}{n};  \forall i\)</span></p></li>
+<li><p>Marginales columna:  <span class="math notranslate nohighlight">\(f_{\cdot j}=\dfrac{n_j}{ns}; \forall j\)</span></p></li>
+<li><p>En el ejemplo: <span class="math notranslate nohighlight">\(f_{i\cdot}=\dfrac{1}{445}=0.22\%;  \forall i=1,\cdots,445\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(f_{\cdot j}~=~\dfrac{n_j}{445*4}~=\dfrac{n_j}{1780}; \forall j = 1,\cdots,12\)</span>,</p></li>
+<li><p>Por ejemplo  <span class="math notranslate nohighlight">\(f_{\cdot 1}~=~\dfrac{128}{1780}=7.19\%\)</span>.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">n</span><span class="o">&lt;-</span><span class="nf">nrow</span><span class="p">(</span><span class="n">Y</span><span class="p">)</span> <span class="c1">#numero de filas</span>
+<span class="n">s</span><span class="o">&lt;-</span><span class="nf">ncol</span><span class="p">(</span><span class="n">Y</span><span class="p">)</span> <span class="c1">#numero de columnas</span>
+<span class="bp">F</span><span class="o">&lt;-</span><span class="m">1</span><span class="o">/</span><span class="n">n</span><span class="o">*</span><span class="n">s</span><span class="o">*</span><span class="n">Z</span>
+<span class="nf">round</span><span class="p">(</span><span class="nf">head</span><span class="p">(</span><span class="bp">F</span><span class="p">[</span><span class="n">sel</span><span class="p">,]),</span><span class="m">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A matrix: 6 × 12 of type dbl</caption>
+<thead>
+	<tr><th></th><th scope=col>F</th><th scope=col>M</th><th scope=col>baj</th><th scope=col>med</th><th scope=col>alt</th><th scope=col>Bog</th><th scope=col>Cun</th><th scope=col>Otr</th><th scope=col>a16</th><th scope=col>a17</th><th scope=col>a18</th><th scope=col>a19</th></tr>
+</thead>
+<tbody>
+	<tr><th scope=row>25</th><td>0.009</td><td>0.000</td><td>0.000</td><td>0.009</td><td>0</td><td>0.000</td><td>0</td><td>0.009</td><td>0.000</td><td>0.009</td><td>0.000</td><td>0</td></tr>
+	<tr><th scope=row>50</th><td>0.000</td><td>0.009</td><td>0.009</td><td>0.000</td><td>0</td><td>0.009</td><td>0</td><td>0.000</td><td>0.000</td><td>0.000</td><td>0.009</td><td>0</td></tr>
+	<tr><th scope=row>75</th><td>0.000</td><td>0.009</td><td>0.009</td><td>0.000</td><td>0</td><td>0.009</td><td>0</td><td>0.000</td><td>0.000</td><td>0.009</td><td>0.000</td><td>0</td></tr>
+	<tr><th scope=row>100</th><td>0.000</td><td>0.009</td><td>0.000</td><td>0.009</td><td>0</td><td>0.009</td><td>0</td><td>0.000</td><td>0.000</td><td>0.000</td><td>0.009</td><td>0</td></tr>
+	<tr><th scope=row>125</th><td>0.009</td><td>0.000</td><td>0.000</td><td>0.009</td><td>0</td><td>0.000</td><td>0</td><td>0.009</td><td>0.000</td><td>0.009</td><td>0.000</td><td>0</td></tr>
+	<tr><th scope=row>150</th><td>0.009</td><td>0.000</td><td>0.009</td><td>0.000</td><td>0</td><td>0.009</td><td>0</td><td>0.000</td><td>0.009</td><td>0.000</td><td>0.000</td><td>0</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<section id="span-style-color-4cc9f0-nube-de-individuos-span">
+<h3><span style="color:#4CC9F0">Nube de Individuos</span><a class="headerlink" href="#span-style-color-4cc9f0-nube-de-individuos-span" title="Enlazar permanentemente con este título">#</a></h3>
+<p>Los <span class="math notranslate nohighlight">\(n\)</span> individuos conforman la nube <span class="math notranslate nohighlight">\(N_n\)</span> en <span class="math notranslate nohighlight">\(\mathbb{R}^p\)</span></p>
+<ul class="simple">
+<li><p>Coordenadas: filas de la tabla <span class="math notranslate nohighlight">\(\dfrac{1}{s}\mathbf{Z}\)</span>:
+barras de altura <span class="math notranslate nohighlight">\(1/s\)</span> cuando el individuo asume la categoría <span class="math notranslate nohighlight">\(j\)</span> y 0 cuando no la asume.</p></li>
+<li><p>Peso: <span class="math notranslate nohighlight">\(\dfrac{1}{n}\)</span></p></li>
+<li><p>Métrica:  <span class="math notranslate nohighlight">\(\mathbf{M}=ns \mathbf{D}_p^{-1}, \ \ \ \mathbf{D}_p = diag(n_j) \)</span></p></li>
+<li><p>En el ejemplo: un perfil fila es <span class="math notranslate nohighlight">\({\dfrac{1}{4} z_{ij}; j=1,\cdots,12}\)</span>,</p></li>
+<li><p>con peso 0.22%.</p></li>
+<li><p>Extracto de algunos perfiles</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">head</span><span class="p">(</span><span class="m">1</span><span class="o">/</span><span class="m">4</span><span class="o">*</span><span class="n">Z</span><span class="p">[</span><span class="n">sel</span><span class="p">,],</span><span class="m">4</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A matrix: 4 × 12 of type dbl</caption>
+<thead>
+	<tr><th></th><th scope=col>F</th><th scope=col>M</th><th scope=col>baj</th><th scope=col>med</th><th scope=col>alt</th><th scope=col>Bog</th><th scope=col>Cun</th><th scope=col>Otr</th><th scope=col>a16</th><th scope=col>a17</th><th scope=col>a18</th><th scope=col>a19</th></tr>
+</thead>
+<tbody>
+	<tr><th scope=row>25</th><td>0.25</td><td>0.00</td><td>0.00</td><td>0.25</td><td>0</td><td>0.00</td><td>0</td><td>0.25</td><td>0</td><td>0.25</td><td>0.00</td><td>0</td></tr>
+	<tr><th scope=row>50</th><td>0.00</td><td>0.25</td><td>0.25</td><td>0.00</td><td>0</td><td>0.25</td><td>0</td><td>0.00</td><td>0</td><td>0.00</td><td>0.25</td><td>0</td></tr>
+	<tr><th scope=row>75</th><td>0.00</td><td>0.25</td><td>0.25</td><td>0.00</td><td>0</td><td>0.25</td><td>0</td><td>0.00</td><td>0</td><td>0.25</td><td>0.00</td><td>0</td></tr>
+	<tr><th scope=row>100</th><td>0.00</td><td>0.25</td><td>0.00</td><td>0.25</td><td>0</td><td>0.25</td><td>0</td><td>0.00</td><td>0</td><td>0.00</td><td>0.25</td><td>0</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<ul class="simple">
+<li><p>La métrica en este espacio de los individuos tiene término general <span class="math notranslate nohighlight">\(m_j = \dfrac{1780}{n_j}\)</span>.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Diagonal de la matriz de métrica</span>
+<span class="nf">print</span><span class="p">(</span><span class="s">&quot;Names:&quot;</span><span class="p">)</span>
+<span class="nf">colnames</span><span class="p">(</span><span class="n">Z</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="s">&quot;Diagonal de la matriz de métrica:&quot;</span><span class="p">)</span>
+<span class="nf">round</span><span class="p">(</span><span class="n">n</span><span class="o">*</span><span class="n">s</span><span class="o">*</span><span class="m">1</span><span class="o">/</span><span class="nf">diag</span><span class="p">(</span><span class="n">Dp</span><span class="p">),</span><span class="m">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;Names:&quot;
+</pre></div>
+</div>
+<div class="output text_html"><style>
+.list-inline {list-style: none; margin:0; padding: 0}
+.list-inline>li {display: inline-block}
+.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+</style>
+<ol class=list-inline><li>'F'</li><li>'M'</li><li>'baj'</li><li>'med'</li><li>'alt'</li><li>'Bog'</li><li>'Cun'</li><li>'Otr'</li><li>'a16'</li><li>'a17'</li><li>'a18'</li><li>'a19'</li></ol>
+</div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;Diagonal de la matriz de métrica:&quot;
+</pre></div>
+</div>
+<div class="output text_html"><style>
+.list-inline {list-style: none; margin:0; padding: 0}
+.list-inline>li {display: inline-block}
+.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+</style>
+<ol class=list-inline><li>13.9</li><li>5.6</li><li>9.9</li><li>9.6</li><li>22</li><li>5.7</li><li>46.8</li><li>18.5</li><li>15.1</li><li>10.4</li><li>31.8</li><li>17.8</li></ol>
+</div></div>
+</div>
+</section>
+<section id="span-style-color-4cc9f0-centro-de-gravedad-span">
+<h3><span style="color:#4CC9F0">Centro de gravedad</span><a class="headerlink" href="#span-style-color-4cc9f0-centro-de-gravedad-span" title="Enlazar permanentemente con este título">#</a></h3>
+<ul class="simple">
+<li><p>La coordenada <span class="math notranslate nohighlight">\(j\)</span> del centro de gravedad <span class="math notranslate nohighlight">\(g_p\)</span> es <span class="math notranslate nohighlight">\(\dfrac{1}{n}\sum\limits_{i=1} ^n \dfrac{1}{s} z_{ij}=\dfrac{n_j}{ns} \)</span>, que es la marginal columna de <span class="math notranslate nohighlight">\(\mathbf{F}=\dfrac{1}{ns}\mathbf{Z}\)</span>.</p></li>
+<li><p>Para obtener el  centro de gravedad, expresado en porcentaje, se puede de la siguiente manera:</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">round</span><span class="p">(</span><span class="nf">colSums</span><span class="p">(</span><span class="m">1</span><span class="o">/</span><span class="n">n</span><span class="o">/</span><span class="n">s</span><span class="o">*</span><span class="n">Z</span><span class="p">)</span><span class="o">*</span><span class="m">100</span><span class="p">,</span><span class="m">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style>
+.dl-inline {width: auto; margin:0; padding: 0}
+.dl-inline>dt, .dl-inline>dd {float: none; width: auto; display: inline-block}
+.dl-inline>dt::after {content: ":\0020"; padding-right: .5ex}
+.dl-inline>dt:not(:first-of-type) {padding-left: .5ex}
+</style><dl class=dl-inline><dt>F</dt><dd>7.2</dd><dt>M</dt><dd>17.8</dd><dt>baj</dt><dd>10.1</dd><dt>med</dt><dd>10.4</dd><dt>alt</dt><dd>4.6</dd><dt>Bog</dt><dd>17.5</dd><dt>Cun</dt><dd>2.1</dd><dt>Otr</dt><dd>5.4</dd><dt>a16</dt><dd>6.6</dd><dt>a17</dt><dd>9.6</dd><dt>a18</dt><dd>3.1</dd><dt>a19</dt><dd>5.6</dd></dl>
+</div></div>
+</div>
+</section>
+<section id="span-style-color-4cc9f0-distancia-entre-individuos-span">
+<h3><span style="color:#4CC9F0">Distancia entre individuos</span><a class="headerlink" href="#span-style-color-4cc9f0-distancia-entre-individuos-span" title="Enlazar permanentemente con este título">#</a></h3>
+<div class="math notranslate nohighlight">
+\[
+d^2(i,l)=ns\sum_{j=1}^p \frac{1}{n_j} \left(\dfrac{1}{s}\left[ z_{ij}-z_{lj} \right] \right)^2=
+\frac{n}{s} \sum_{j=1}^p \frac{1}{n_j} \left(z_{ij}-z_{lj} \right)^2 
+\]</div>
+<ul class="simple">
+<li><p>Si dos individuos se parecen = asumen más o menos las mismas categorías.</p></li>
+<li><p>La distancia se amplifica más cuando uno solo de los dos individuos asume una categoría de baja frecuencia.</p></li>
+<li><p>Por ejemplo la distancia al cuadrado entre los  individuos 50 y 100  es <span class="math notranslate nohighlight">\(d^2(i50,i100)= \dfrac{445}{4}\left(\dfrac{1}{179}+\dfrac{1}{185}\right)=1.22\)</span> y la diferencia entre ellos en estrato bajo y medio:</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">Y</span><span class="p">[</span><span class="nf">c</span><span class="p">(</span><span class="m">50</span><span class="p">,</span><span class="m">100</span><span class="p">),]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A data.frame: 2 × 4</caption>
+<thead>
+	<tr><th></th><th scope=col>gene</th><th scope=col>estr</th><th scope=col>orig</th><th scope=col>edad</th></tr>
+	<tr><th></th><th scope=col>&lt;fct&gt;</th><th scope=col>&lt;fct&gt;</th><th scope=col>&lt;fct&gt;</th><th scope=col>&lt;fct&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><th scope=row>50</th><td>M</td><td>bajo </td><td>Bogo</td><td>a18</td></tr>
+	<tr><th scope=row>100</th><td>M</td><td>medio</td><td>Bogo</td><td>a18</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+</section>
+<section id="span-style-color-4cc9f0-inercia-de-la-nube-de-perfiles-fila-span">
+<h3><span style="color:#4CC9F0">Inercia de la nube de perfiles fila</span><a class="headerlink" href="#span-style-color-4cc9f0-inercia-de-la-nube-de-perfiles-fila-span" title="Enlazar permanentemente con este título">#</a></h3>
+<div class="math notranslate nohighlight">
+\[
+\dfrac{1}{n} \sum\limits_{i=1}^n d^2(i,\mathbf{g}_p) = 
+\dfrac{1}{n} \sum\limits_{i=1}^n \sum\limits_{j=1}^p \dfrac{ns}{n_j}(\dfrac{z_{ij}}{s}-\dfrac{n_j}{ns})^2= 
+\dfrac{1}{s} \sum\limits_{j=1}^p \dfrac{1}{n_j} \sum\limits_{i=1}^n (z_{ij}^2 -2 z_{ij} \dfrac{n_j}{n} + \dfrac{n_j^2}{n^2}) =
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+\dfrac{1}{s} (p -  2 s  + s) = \dfrac{p}{s} - 1
+\]</div>
+<ul class="simple">
+<li><p>La inercia de la nube de puntos depende del cociente entre el número de categorías y el número de variables, no de los valores internos de la tabla, por lo tanto no tiene significado estadístico.</p></li>
+<li><p>En el ejemplo es <span class="math notranslate nohighlight">\(12/4 -1 = 2\)</span>.</p></li>
+</ul>
+</section>
+<section id="span-style-color-4cc9f0-eje-y-subespacios-vectoriales-span">
+<h3><span style="color:#4CC9F0">Eje y subespacios vectoriales</span><a class="headerlink" href="#span-style-color-4cc9f0-eje-y-subespacios-vectoriales-span" title="Enlazar permanentemente con este título">#</a></h3>
+<div class="math notranslate nohighlight">
+\[ 
+AC(Z) = ACP\left(\dfrac{1}{s}\mathbf{Z},ns\mathbf{D}_p^{-1},\dfrac{1}{n}\mathbf{I}_n\right)
+\]</div>
+<ul class="simple">
+<li><p>La matriz de inercia es:
+$<span class="math notranslate nohighlight">\(
+\dfrac{1}{s}\mathbf{Z'}\dfrac{1}{n}\mathbf{I}_n\dfrac{1}{s}\mathbf{Z}ns\mathbf{D}_p^{-1}=
+\dfrac{1}{s}\mathbf{Z'Z}\mathbf{D}_p^{-1}=
+\dfrac{1}{s}\mathbf{B}\mathbf{D}_p^{-1}
+\)</span>$</p></li>
+<li><p>El rango de esta matriz es igual al rango de <strong>Z</strong>, que es <span class="math notranslate nohighlight">\(p-s\)</span>, porque por cada variable hay una columna que es linealmente dependiente,</p></li>
+<li><p>Una columna se puede obtener como la diferencia entre el vector de <span class="math notranslate nohighlight">\(n\)</span> unos y la suma de las demás columnas asociadas a la variable.</p></li>
+<li><p>La nube de puntos está soportada en un subespacio de dimensión <span class="math notranslate nohighlight">\(p-s\)</span>, que es el número de valores propios mayores que cero.</p></li>
+<li><p>En el ejemplo hay <span class="math notranslate nohighlight">\(12-4=8\)</span> valores propios mayores que cero,</p></li>
+</ul>
+</section>
+<section id="span-style-color-4cc9f0-valores-propios-del-acm-de-admitidos-span">
+<h3><span style="color:#4CC9F0">Valores propios del ACM de admitidos</span><a class="headerlink" href="#span-style-color-4cc9f0-valores-propios-del-acm-de-admitidos-span" title="Enlazar permanentemente con este título">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">acm</span><span class="o">&lt;-</span><span class="nf">dudi.acm</span><span class="p">(</span><span class="n">Y</span><span class="p">,</span><span class="n">scannf</span><span class="o">=</span><span class="kc">FALSE</span><span class="p">,</span><span class="n">nf</span><span class="o">=</span><span class="m">3</span><span class="p">)</span>
+<span class="nf">inertia</span><span class="p">(</span><span class="n">acm</span><span class="p">)</span>
+<span class="nf">barplot</span><span class="p">(</span><span class="n">acm</span><span class="o">$</span><span class="n">eig</span><span class="p">,</span><span class="n">main</span><span class="o">=</span><span class="s">&quot;Barplot eigen-values&quot;</span><span class="p">)</span>
+<span class="nf">abline</span><span class="p">(</span><span class="n">h</span><span class="o">=</span><span class="nf">sum</span><span class="p">(</span><span class="n">acm</span><span class="o">$</span><span class="n">eig</span><span class="p">)</span><span class="o">/</span><span class="m">8</span><span class="p">,</span><span class="n">col</span><span class="o">=</span><span class="s">&quot;darkgreen&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Inertia information:
+Call: inertia.dudi(x = acm)
+
+Decomposition of total inertia:
+    inertia     cum  cum(%)
+Ax1  0.3366  0.3366   16.83
+Ax2  0.3128  0.6493   32.47
+Ax3  0.2827  0.9320   46.60
+Ax4  0.2471  1.1791   58.96
+Ax5  0.2408  1.4199   71.00
+Ax6  0.2293  1.6493   82.46
+Ax7  0.2075  1.8568   92.84
+Ax8  0.1432  2.0000  100.00
+</pre></div>
+</div>
+<img alt="../../_images/ACM_40_1.png" src="../../_images/ACM_40_1.png" />
+</div>
+</div>
+</section>
+<section id="span-style-color-4cc9f0-primer-plano-factorial-del-acm-de-admitidos-span">
+<h3><span style="color:#4CC9F0">Primer plano factorial del ACM de admitidos</span><a class="headerlink" href="#span-style-color-4cc9f0-primer-plano-factorial-del-acm-de-admitidos-span" title="Enlazar permanentemente con este título">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">plot</span><span class="p">(</span><span class="n">acm</span><span class="p">,</span><span class="n">Tcol</span><span class="o">=</span><span class="kc">FALSE</span><span class="p">,</span><span class="n">gg</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">,</span><span class="n">roweti</span><span class="o">=</span><span class="n">sel</span><span class="p">,</span><span class="n">main</span><span class="o">=</span><span class="s">&quot;Factores 1-2 del ACM&quot;</span><span class="p">)</span>
+<span class="nf">plot</span><span class="p">(</span><span class="n">acm</span><span class="p">,</span><span class="n">Tcol</span><span class="o">=</span><span class="kc">FALSE</span><span class="p">,</span><span class="n">ucal</span><span class="o">=</span><span class="m">1.0</span><span class="p">,</span><span class="n">asp</span><span class="o">=</span><span class="m">1</span><span class="p">,</span><span class="n">main</span><span class="o">=</span><span class="s">&quot;Factores 1-2 del ACM&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/ACM_42_0.png" src="../../_images/ACM_42_0.png" />
+<img alt="../../_images/ACM_42_1.png" src="../../_images/ACM_42_1.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="span-style-color-4361ee-nube-de-categorias-span">
+<h2><span style="color:#4361EE">Nube de categorías</span><a class="headerlink" href="#span-style-color-4361ee-nube-de-categorias-span" title="Enlazar permanentemente con este título">#</a></h2>
+<section id="span-style-color-4cc9f0-coordenadas-columnas-de-la-tabla-mathbf-zd-1-p-span">
+<h3><span style="color:#4CC9F0">Coordenadas: Columnas de la tabla <span class="math notranslate nohighlight">\(\mathbf{ZD}^{-1}_p\)</span></span><a class="headerlink" href="#span-style-color-4cc9f0-coordenadas-columnas-de-la-tabla-mathbf-zd-1-p-span" title="Enlazar permanentemente con este título">#</a></h3>
+<ul class="simple">
+<li><p>Cada perfil columna <span class="math notranslate nohighlight">\(j\)</span> tiene solo dos alturas: cero o <span class="math notranslate nohighlight">\(1/n_j\)</span>.</p></li>
+<li><p>Las alturas son en general, diferentes en cada perfil.</p></li>
+<li><p>El peso de cada categoría es <span class="math notranslate nohighlight">\(\dfrac{n_j}{ns}\)</span></p></li>
+</ul>
+</section>
+<section id="span-style-color-4cc9f0-centro-de-gravedad-es-el-vector-de-n-valores-dfrac-1-n-span">
+<h3><span style="color:#4CC9F0">Centro de gravedad: Es el vector de <span class="math notranslate nohighlight">\(n\)</span> valores <span class="math notranslate nohighlight">\(\dfrac{1}{n}\)</span></span><a class="headerlink" href="#span-style-color-4cc9f0-centro-de-gravedad-es-el-vector-de-n-valores-dfrac-1-n-span" title="Enlazar permanentemente con este título">#</a></h3>
+<ul class="simple">
+<li><p>Coordenada <span class="math notranslate nohighlight">\(i\)</span> del centro de gravedad:
+$<span class="math notranslate nohighlight">\( \mathbf{g}(i)  = \sum_{j=1}^p \frac{n_j}{ns} \frac{z_{ij}}{n_j} =
+   \sum_{j=1}^p \frac{1}{ns} z_{ij} = \frac{1}{ns} s = \frac{1}{n}
+   \)</span>$</p></li>
+</ul>
+</section>
+<section id="metrica-n-mathbf-i-n">
+<h3>Métrica: <span class="math notranslate nohighlight">\(n \mathbf{I}_n\)</span><a class="headerlink" href="#metrica-n-mathbf-i-n" title="Enlazar permanentemente con este título">#</a></h3>
+</section>
+<section id="distancia-entre-dos-categorias">
+<h3>Distancia entre dos categorías<a class="headerlink" href="#distancia-entre-dos-categorias" title="Enlazar permanentemente con este título">#</a></h3>
+<div class="math notranslate nohighlight">
+\[
+d^2(j,k) = \sum_{i=1}^n n \left(\frac{z_{ij}}{n_j} - \frac{z_{ik}}{n_k}\right)^2
+\]</div>
+</section>
+<section id="span-style-color-4cc9f0-interpretacion-de-la-distancia-entre-categorias-span">
+<h3><span style="color:#4CC9F0">Interpretación de la distancia entre categorías</span><a class="headerlink" href="#span-style-color-4cc9f0-interpretacion-de-la-distancia-entre-categorias-span" title="Enlazar permanentemente con este título">#</a></h3>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>                   Categoría k  
+           
+                 |   1  |  0   | suma
+                 --------------------  
+  Categoria   1  |   a  |  b   | n_j
+
+     j        0  |   c  |  d   | c+d
+                 -------------------- 
+          suma   |  n_k | b+d  |  n
+</pre></div>
+</div>
+<div class="math notranslate nohighlight">
+\[
+d^2(j,k) = n \left(  \frac{n_k + n_j - 2a}{n_j n_k} \right) = 
+n \left( \frac{a+c+a+b - 2a}{n_j n_k} \right) = \frac{n}{n_j n_k} (b+c)
+\]</div>
+<ul class="simple">
+<li><p>En la distancia de dos categorías, sólo se suman los individuos que asumen una y solo una de las dos categorías.</p></li>
+<li><p>Las categorías de baja frecuencia se alejan más de las demás.</p></li>
+</ul>
+</section>
+<section id="span-style-color-4cc9f0-contribucion-de-categorias-y-variables-a-la-inercia-span">
+<h3><span style="color:#4CC9F0">Contribución de categorías y variables a la inercia </span><a class="headerlink" href="#span-style-color-4cc9f0-contribucion-de-categorias-y-variables-a-la-inercia-span" title="Enlazar permanentemente con este título">#</a></h3>
+<ul class="simple">
+<li><p>Distancia entre la categoría <span class="math notranslate nohighlight">\(j\)</span> y el centro de gravedad <span class="math notranslate nohighlight">\(\mathbf{g}_n=\dfrac{1}{n}\mathbf{1}_n\)</span>:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+d^2(j,\mathbf{g}_n) = n \sum_{i=1}^{n} \left( \frac{z_{ij}}{n_j} - \frac{1}{n} \right)^2 =
+n \sum_{i=1}^n \left(\frac{z_{ij}^2}{n_j^2}-2 \frac{z_{ij}}{n_j} \frac{1}{n} + \frac{1}{n^2}\right)=
+  \frac{n}{n_j} - 1
+\]</div>
+<ul class="simple">
+<li><p>Las categorías de menos frecuencia son las más alejadas del origen</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+I(N_p) =\sum_{q=1}^s \sum_{j \in J_q} \frac{n_j}{ns} d^2(j,\mathbf{g}_n) = 
+\sum_{q=1}^s \sum_{j \in J_q}  \frac{n_j}{ns} \left(\frac{n}{n_j}-1\right) =
+\sum_{q=1}^s \sum_{j \in J_q}  \frac{1}{s} \left(1-\frac{n_j}{n}\right) 
+\]</div>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(J_q\)</span> es el conjunto de categorías que pertenecen la variable <span class="math notranslate nohighlight">\(q\)</span>.</p></li>
+</ul>
+</section>
+<section id="span-style-color-4cc9f0-contribuciones-a-la-inercia-span">
+<h3><span style="color:#4CC9F0">Contribuciones a la inercia</span><a class="headerlink" href="#span-style-color-4cc9f0-contribuciones-a-la-inercia-span" title="Enlazar permanentemente con este título">#</a></h3>
+<ul class="simple">
+<li><p>De una categoría <span class="math notranslate nohighlight">\(j\)</span>: <span class="math notranslate nohighlight">\( \dfrac{1}{s}\left(1-\dfrac{n_j}{n}\right) \)</span>, contribuyen más las categorías de baja frecuencia.</p></li>
+<li><p>De una variable <span class="math notranslate nohighlight">\(q\)</span>: <span class="math notranslate nohighlight">\(\sum\limits_{j \in J_q}  \dfrac{1}{s} \left(1-\dfrac{n_j}{n}\right) = 
+\dfrac{1}{s}\left(p_q-\dfrac{n}{n}\right) = \dfrac{1}{s}\left(p_q-1\right)\)</span>,  contribuyen más las variables con más categorías</p></li>
+<li><p>Inercia total: <span class="math notranslate nohighlight">\(\sum\limits_{q=1}^s  \dfrac{1}{s}\left(p_q-1\right) = \dfrac{1}{s}(p-s) =\dfrac{p}{s}-1\)</span>. No tiene significado estadístico,  no depende de los valores de la tabla sino de la relación entre número de categorías y número de variables.</p></li>
+</ul>
+</section>
+</section>
+<section id="span-style-color-4361ee-subespacio-de-proyeccion-de-las-categorias-span">
+<h2><span style="color:#4361EE">Subespacio de proyección de las categorías</span><a class="headerlink" href="#span-style-color-4361ee-subespacio-de-proyeccion-de-las-categorias-span" title="Enlazar permanentemente con este título">#</a></h2>
+<section id="span-style-color-4cc9f0-primer-plano-factorial-span">
+<h3><span style="color:#4CC9F0">Primer plano Factorial</span><a class="headerlink" href="#span-style-color-4cc9f0-primer-plano-factorial-span" title="Enlazar permanentemente con este título">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">plot</span><span class="p">(</span><span class="n">acm</span><span class="p">,</span><span class="n">Trow</span><span class="o">=</span><span class="kc">FALSE</span><span class="p">,</span><span class="n">gg</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">,</span><span class="n">main</span><span class="o">=</span><span class="s">&quot;Factores 1-2&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="n">Error</span> <span class="ow">in</span> <span class="n">plot</span><span class="p">(</span><span class="n">acm</span><span class="p">,</span> <span class="n">Trow</span> <span class="o">=</span> <span class="n">FALSE</span><span class="p">,</span> <span class="n">gg</span> <span class="o">=</span> <span class="n">TRUE</span><span class="p">,</span> <span class="n">main</span> <span class="o">=</span> <span class="s2">&quot;Factores 1-2&quot;</span><span class="p">):</span> <span class="nb">object</span> <span class="s1">&#39;acm&#39;</span> <span class="ow">not</span> <span class="n">found</span>
+<span class="ne">Traceback</span>:
+
+<span class="mi">1</span><span class="o">.</span> <span class="n">plot</span><span class="p">(</span><span class="n">acm</span><span class="p">,</span> <span class="n">Trow</span> <span class="o">=</span> <span class="n">FALSE</span><span class="p">,</span> <span class="n">gg</span> <span class="o">=</span> <span class="n">TRUE</span><span class="p">,</span> <span class="n">main</span> <span class="o">=</span> <span class="s2">&quot;Factores 1-2&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="span-style-color-4cc9f0-coordenadas-y-ayudas-para-la-interpretacion-de-las-categorias-para-los-tres-primeros-ejes-span">
+<h3><span style="color:#4CC9F0">Coordenadas y ayudas para la interpretación de las categorías para los tres primeros ejes</span><a class="headerlink" href="#span-style-color-4cc9f0-coordenadas-y-ayudas-para-la-interpretacion-de-las-categorias-para-los-tres-primeros-ejes-span" title="Enlazar permanentemente con este título">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">ayuacm</span><span class="o">&lt;-</span><span class="nf">inertia</span><span class="p">(</span><span class="n">acm</span><span class="p">,,</span><span class="bp">T</span><span class="p">)</span>
+<span class="nf">names</span><span class="p">(</span><span class="n">ayuacm</span><span class="p">)</span>
+<span class="nf">round</span><span class="p">(</span><span class="nf">cbind</span><span class="p">(</span><span class="n">acm</span><span class="o">$</span><span class="n">co</span><span class="p">,</span><span class="n">ayuacm</span><span class="o">$</span><span class="n">col.abs</span><span class="p">,</span><span class="n">ayuacm</span><span class="o">$</span><span class="n">col.rel</span><span class="p">,</span><span class="n">ayuacm</span><span class="o">$</span><span class="n">col.contrib</span><span class="p">),</span><span class="m">2</span><span class="p">)</span>
+<span class="nf">round</span><span class="p">(</span><span class="nf">sum</span><span class="p">(</span><span class="n">acm</span><span class="o">$</span><span class="n">eig</span><span class="p">)</span><span class="o">/</span><span class="m">12</span><span class="o">*</span><span class="m">100</span><span class="p">,</span><span class="m">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="n">Error</span> <span class="ow">in</span> <span class="n">inertia</span><span class="p">(</span><span class="n">acm</span><span class="p">,</span> <span class="p">,</span> <span class="n">T</span><span class="p">):</span> <span class="nb">object</span> <span class="s1">&#39;acm&#39;</span> <span class="ow">not</span> <span class="n">found</span>
+<span class="ne">Traceback</span>:
+
+<span class="mi">1</span><span class="o">.</span> <span class="n">inertia</span><span class="p">(</span><span class="n">acm</span><span class="p">,</span> <span class="p">,</span> <span class="n">T</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="span-style-color-4361ee-el-acm-como-un-acp-x-m-n-de-la-tdc-span">
+<h2><span style="color:#4361EE">El ACM como un ACP(X,M,N) de la TDC)</span><a class="headerlink" href="#span-style-color-4361ee-el-acm-como-un-acp-x-m-n-de-la-tdc-span" title="Enlazar permanentemente con este título">#</a></h2>
+<div class="math notranslate nohighlight">
+\[
+ ACP(\mathbf{X,M,N})
+ \]</div>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\mathbf{X}= n \mathbf{I}_n\dfrac{1}{ns}\mathbf{Z} ns \mathbf{D}=n\mathbf{ZD}_p^{-1}\)</span>,</p>
+<ul>
+<li><p>término general: <span class="math notranslate nohighlight">\(x_{ij}=\dfrac{n}{n_j} z_{ij}\)</span>.</p></li>
+</ul>
+</li>
+<li><p><span class="math notranslate nohighlight">\(\mathbf{M}=\dfrac{1}{ns}\mathbf{D}_p\)</span>,</p>
+<ul>
+<li><p>término general: <span class="math notranslate nohighlight">\(m_j = \dfrac{n_j}{ns}\)</span>.</p></li>
+</ul>
+</li>
+<li><p><span class="math notranslate nohighlight">\(\mathbf{N}=\dfrac{1}{n}\mathbf{I}_n\)</span>,</p>
+<ul>
+<li><p>término general: <span class="math notranslate nohighlight">\(d_i=\dfrac{1}{n}\)</span>.</p></li>
+</ul>
+</li>
+</ul>
+<section id="m-distancia-al-cuadrado-entre-dos-individuos-i-y-l">
+<h3><strong>M</strong> - distancia al cuadrado entre dos individuos <span class="math notranslate nohighlight">\(i\)</span> y <span class="math notranslate nohighlight">\(l\)</span><a class="headerlink" href="#m-distancia-al-cuadrado-entre-dos-individuos-i-y-l" title="Enlazar permanentemente con este título">#</a></h3>
+<div class="math notranslate nohighlight">
+\[
+d^2(i,l) =  \sum_{j=1}^p \dfrac{n_j}{ns} \left(\dfrac{n}{n_j} z_{ij}-\dfrac{n}{n_j} z_{lj} \right)^2 
+            =  \dfrac{n}{s} \sum_{j=1}^p \dfrac{1}{n_j} (z_{ij} - z_{lj})^2
+\]</div>
+</section>
+<section id="n-distancia-al-cuadrado-entre-dos-categorias">
+<h3><strong>N</strong> - distancia al cuadrado entre dos categorías<a class="headerlink" href="#n-distancia-al-cuadrado-entre-dos-categorias" title="Enlazar permanentemente con este título">#</a></h3>
+<p><span class="math notranslate nohighlight">\(j\)</span> y <span class="math notranslate nohighlight">\(k\)</span> de <strong>X</strong>
+$<span class="math notranslate nohighlight">\(
+d^2(j,k)= \sum_{i=1}^n \frac{1}{n}\left(\dfrac{n}{n_j} z_{ij}-\dfrac{n}{n_k} z_{ik} \right)^2
+            = n \sum_{i=1}^n \left(\dfrac{z_{ij}}{n_j} -\dfrac{z_{ik}}{n_k}  \right)^2
+\)</span>$</p>
+</section>
+<section id="span-style-color-4cc9f0-relaciones-cuasibaricentricas-span">
+<h3><span style="color:#4CC9F0">Relaciones cuasibaricéntricas</span><a class="headerlink" href="#span-style-color-4cc9f0-relaciones-cuasibaricentricas-span" title="Enlazar permanentemente con este título">#</a></h3>
+<section id="span-style-color-4cc9f0-coordenada-de-una-individuo-en-funcion-de-las-coordenadas-de-las-categorias-span">
+<h4><span style="color:#4CC9F0">Coordenada de una individuo en función de las coordenadas de las categorías</span><a class="headerlink" href="#span-style-color-4cc9f0-coordenada-de-una-individuo-en-funcion-de-las-coordenadas-de-las-categorias-span" title="Enlazar permanentemente con este título">#</a></h4>
+<div class="math notranslate nohighlight">
+\[
+ F_s(i) = \frac{1}{\sqrt{\lambda_s}} \frac{1}{s} \sum_{j=1}^p z_{ij}  G_s(j) 
+           = \frac{1}{\sqrt{\lambda_s}} \frac{1}{s} \sum_{j \in J_i}  G_s(j)
+\]</div>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(J_i\)</span> es el conjunto de categorías que son asumidas por el individuo <span class="math notranslate nohighlight">\(i\)</span>.</p></li>
+<li><p>La coordenada sobre un eje <span class="math notranslate nohighlight">\(s\)</span> del individuo <span class="math notranslate nohighlight">\(i\)</span> se sitúa en el promedio aritmético de las coordenadas de las categorías que asume, dilatadas por el inverso de la raíz cuadrada del valor propio.</p></li>
+<li><p>Ejemplo: el primer individuo de la tabla asume las categorías:</p>
+<ul>
+<li><p>Ge.F (0.1) es la coordenada sobre el primer eje, Ed.17 (0.2), Es.medio (0.7) y - Or.Otro (-1.3).</p></li>
+<li><p>Promedio aritmético: (0.1+0.2+0.7-1.3)/4 = -0.08.</p></li>
+<li><p>La dilatación es <span class="math notranslate nohighlight">\(1/\sqrt{0.337}=1.72\)</span>.</p></li>
+<li><p>La coordenada es 1.72*(~-0.08) = -0.14.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="span-style-color-4cc9f0-coordenada-de-una-categoria-en-funcion-de-las-coordenadas-de-los-individuos-span">
+<h4><span style="color:#4CC9F0">Coordenada de una categoría en función de  las coordenadas de los individuos </span><a class="headerlink" href="#span-style-color-4cc9f0-coordenada-de-una-categoria-en-funcion-de-las-coordenadas-de-los-individuos-span" title="Enlazar permanentemente con este título">#</a></h4>
+<div class="math notranslate nohighlight">
+\[  
+G_s(j) = \frac{1}{\sqrt{\lambda_s}} \frac{1}{n_j} \sum_{i=1}^n  z_{ij}   F_s(i)
+\]</div>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(I_j\)</span> es el conjunto de individuos que asumen la categoría  <span class="math notranslate nohighlight">\(j\)</span>,</p>
+<ul>
+<li><p>La categoría <span class="math notranslate nohighlight">\(j\)</span> se sitúa en el promedio aritmético de las coordenadas de los individuos que la asumen, dilatada por el inverso de la raíz cuadrada del valor propio.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="span-style-color-4cc9f0-representacion-simultanea-en-el-primer-plano-factorial-span">
+<h3><span style="color:#4CC9F0">Representación simultánea en el primer plano factorial</span><a class="headerlink" href="#span-style-color-4cc9f0-representacion-simultanea-en-el-primer-plano-factorial-span" title="Enlazar permanentemente con este título">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">plot</span><span class="p">(</span><span class="n">acm</span><span class="p">,</span><span class="n">roweti</span><span class="o">=</span><span class="s">&quot;&quot;</span><span class="p">,</span><span class="n">main</span><span class="o">=</span><span class="s">&quot;Representación simultanea 1er plano&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A data.frame: 3 × 3</caption>
+<thead>
+	<tr><th></th><th scope=col>CS1</th><th scope=col>CS2</th><th scope=col>CS3</th></tr>
+	<tr><th></th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><th scope=row>Color</th><td>0.579</td><td>-0.571</td><td> 0.581</td></tr>
+	<tr><th scope=row>DA</th><td>0.673</td><td>-0.067</td><td>-0.737</td></tr>
+	<tr><th scope=row>EA</th><td>0.460</td><td> 0.818</td><td> 0.346</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+</section>
+<section id="span-style-color-4cc9f0-plano-factorial-2-3-span">
+<h3><span style="color:#4CC9F0">Plano factorial 2-3</span><a class="headerlink" href="#span-style-color-4cc9f0-plano-factorial-2-3-span" title="Enlazar permanentemente con este título">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">plot</span><span class="p">(</span><span class="n">acm</span><span class="p">,</span><span class="m">2</span><span class="p">,</span><span class="m">3</span><span class="p">,</span><span class="n">roweti</span><span class="o">=</span><span class="s">&quot;&quot;</span><span class="p">,</span><span class="n">main</span><span class="o">=</span><span class="s">&quot;Representación simultanea factores 2-3&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A data.frame: 3 × 3</caption>
+<thead>
+	<tr><th></th><th scope=col>CS1</th><th scope=col>CS2</th><th scope=col>CS3</th></tr>
+	<tr><th></th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><th scope=row>Color</th><td>0.579</td><td>-0.571</td><td> 0.581</td></tr>
+	<tr><th scope=row>DA</th><td>0.673</td><td>-0.067</td><td>-0.737</td></tr>
+	<tr><th scope=row>EA</th><td>0.460</td><td> 0.818</td><td> 0.346</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+</section>
+<section id="span-style-color-4cc9f0-razones-de-correlacion-sobre-un-eje-de-las-variables-cualitativas-span">
+<h3><span style="color:#4CC9F0">Razones de correlación sobre un eje de las variables cualitativas</span><a class="headerlink" href="#span-style-color-4cc9f0-razones-de-correlacion-sobre-un-eje-de-las-variables-cualitativas-span" title="Enlazar permanentemente con este título">#</a></h3>
+<ul class="simple">
+<li><p>Una variable cualitativa induce una partición de los <span class="math notranslate nohighlight">\(n\)</span> individuos y  la inercia (varianza) de los individuos sobre el eje  se puede descomponer en <span class="math notranslate nohighlight">\(varianza \ inter + varianza \ intra\)</span>.</p></li>
+</ul>
+<center>
+<img src="data:image/png;base64,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" alt="Varianza inter e intra" width="400" height="400">
+<center><ul class="simple">
+<li><p>La razón de correlación se define como el cociente entre varianza inter y varianza total.</p></li>
+<li><p>La varianza total  de <span class="math notranslate nohighlight">\(F_s\)</span> es <span class="math notranslate nohighlight">\(\lambda_s\)</span>,</p></li>
+<li><p>La varianza inter con respecto a una variable <span class="math notranslate nohighlight">\(q\)</span> es:
+$<span class="math notranslate nohighlight">\(
+\sum_{j \in J_q} \frac{n_j}{n} (\overline{F}_{sj})^2
+\)</span><span class="math notranslate nohighlight">\(
+puesto que las coordenadas sobre \)</span>s<span class="math notranslate nohighlight">\( están centradas.
+donde \)</span>\overline{F}<em>{sj} = \sum\limits</em>{i \in I_{j \in J_q}} \frac{1}{n_j} F_{s}(i)<span class="math notranslate nohighlight">\(, es decir, el promedio aritmético de las coordenadas sobre el eje \)</span>s<span class="math notranslate nohighlight">\( de los individuos que asumen la categoría \)</span>j<span class="math notranslate nohighlight">\( de la variable \)</span>q$.</p></li>
+<li><p>Por las relaciones de transición <span class="math notranslate nohighlight">\(\overline{F}_{sj} = \sqrt{\lambda_s} G_s(j)\)</span>, entonces:
+$<span class="math notranslate nohighlight">\(
+Varianza \ entre (q) = \lambda_s  \ \sum_{i \in J_q}  \frac{n_j}{n} G_s^2(j)
+\)</span><span class="math notranslate nohighlight">\(
+y la razón de correlación es:
+\)</span><span class="math notranslate nohighlight">\(
+\eta^2_s(q) = \sum_{j \in J_q} \frac{n_j}{n} G_s^2(j) 
+\)</span>$</p></li>
+<li><p>Se puede expresar como función de la contribución absoluta de las categorías como:
+$<span class="math notranslate nohighlight">\(
+\eta^2_s(q) =  \lambda_s  s  \sum_{j \in q_j} Ca_s(j) 
+\)</span><span class="math notranslate nohighlight">\(
+donde \)</span>J_q<span class="math notranslate nohighlight">\( es el conjunto de categorías de la variable \)</span>q<span class="math notranslate nohighlight">\( y \)</span>Ca_s(j)<span class="math notranslate nohighlight">\( es la contribución absoluta de la categoría \)</span>j<span class="math notranslate nohighlight">\( sobre el eje \)</span>s$.</p></li>
+<li><p>Estos valores se encuentran en el objeto de salida de la función <em>dudi.acm{ade4}</em>, en la tabla <em>cr</em>.</p></li>
+<li><p>Con estas razones de correlación se pueden obtener los planos factoriales para las variables cualitativas.</p></li>
+<li><p>Por ejemplo para la variable <span class="math notranslate nohighlight">\(Origen\)</span>, la suma de las contribuciones de las tres categorías sobre el primer eje es <span class="math notranslate nohighlight">\(13.45+4.87+27.18=45.5\%\)</span>, el primer valor propio es <span class="math notranslate nohighlight">\(0.3366\)</span> y el número de variables <span class="math notranslate nohighlight">\(4\)</span>,</p></li>
+<li><p>La razón de correlación es <span class="math notranslate nohighlight">\(\eta^2_1(Origen)=4*0.3366*0.455=0.613\)</span>, valor que se puede leer en la figura siguiente.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">plotfp</span><span class="p">(</span><span class="n">acm</span><span class="o">$</span><span class="n">cr</span><span class="p">,</span><span class="n">main</span><span class="o">=</span><span class="s">&quot;Factores 1-2, radios de correlación&quot;</span><span class="p">)</span> <span class="c1"># función de FactoClass</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A data.frame: 3 × 3</caption>
+<thead>
+	<tr><th></th><th scope=col>CS1</th><th scope=col>CS2</th><th scope=col>CS3</th></tr>
+	<tr><th></th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><th scope=row>Color</th><td>0.579</td><td>-0.571</td><td> 0.581</td></tr>
+	<tr><th scope=row>DA</th><td>0.673</td><td>-0.067</td><td>-0.737</td></tr>
+	<tr><th scope=row>EA</th><td>0.460</td><td> 0.818</td><td> 0.346</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">plotfp</span><span class="p">(</span><span class="n">acm</span><span class="o">$</span><span class="n">cr</span><span class="p">,</span><span class="m">2</span><span class="p">,</span><span class="m">3</span><span class="p">,</span><span class="n">main</span><span class="o">=</span><span class="s">&quot;Factores 2-3, radios de correlación&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A data.frame: 3 × 3</caption>
+<thead>
+	<tr><th></th><th scope=col>CS1</th><th scope=col>CS2</th><th scope=col>CS3</th></tr>
+	<tr><th></th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><th scope=row>Color</th><td>0.579</td><td>-0.571</td><td> 0.581</td></tr>
+	<tr><th scope=row>DA</th><td>0.673</td><td>-0.067</td><td>-0.737</td></tr>
+	<tr><th scope=row>EA</th><td>0.460</td><td> 0.818</td><td> 0.346</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+</section>
+</section>
+<section id="span-style-color-4361ee-elementos-suplementarios-span">
+<h2><span style="color:#4361EE">Elementos suplementarios</span><a class="headerlink" href="#span-style-color-4361ee-elementos-suplementarios-span" title="Enlazar permanentemente con este título">#</a></h2>
+<section id="span-style-color-4cc9f0-individuos-suplementarios-span">
+<h3><span style="color:#4CC9F0">Individuos Suplementarios</span><a class="headerlink" href="#span-style-color-4cc9f0-individuos-suplementarios-span" title="Enlazar permanentemente con este título">#</a></h3>
+<ul class="simple">
+<li><p>Los individuos ilustrativos se pueden proyectar utilizando la fórmula cuasibaricéntrica.</p></li>
+<li><p>La coordenada de un individuo suplementario es el promedio de las coordenadas de las categorías que asume, dilatado por el inverso de la raíz cuadrada del valor propio.</p></li>
+</ul>
+</section>
+</section>
+<section id="span-style-color-4361ee-variables-cualitativas-suplementarias-span">
+<h2><span style="color:#4361EE">Variables cualitativas suplementarias</span><a class="headerlink" href="#span-style-color-4361ee-variables-cualitativas-suplementarias-span" title="Enlazar permanentemente con este título">#</a></h2>
+<ul class="simple">
+<li><p>Las categorías  de una variable ilustrativa se proyectan mediante la fórmula cuasibaricéntrica</p></li>
+<li><p>Como el promedio de las coordenadas de los individuos que la asumen, dilatado por el inverso de la raíz cuadrada del valor propio.</p></li>
+<li><p>Se pueden calcular sus cosenos cuadrados sobre los ejes.</p></li>
+<li><p>Valores test.</p></li>
+</ul>
+<section id="span-style-color-4cc9f0-valores-test-para-categorias-suplementarias-span">
+<h3><span style="color:#4CC9F0">Valores test para categorías suplementarias</span><a class="headerlink" href="#span-style-color-4cc9f0-valores-test-para-categorias-suplementarias-span" title="Enlazar permanentemente con este título">#</a></h3>
+<ul class="simple">
+<li><p>Una categoría <span class="math notranslate nohighlight">\(j\)</span> es asumida por los <span class="math notranslate nohighlight">\(n_j\)</span> individuos del conjunto <span class="math notranslate nohighlight">\(I_j\)</span>,</p></li>
+<li><p>Su coordenada, sobre un eje <span class="math notranslate nohighlight">\(s\)</span> es el promedio aritmético de las coordenadas de esos individuos  sobre el eje, multiplicada por el inverso de la raíz cuadrada del valor propio <span class="math notranslate nohighlight">\(\lambda_s\)</span>.</p></li>
+<li><p>Si se supone que los <span class="math notranslate nohighlight">\(n_j\)</span> individuos se extraen al azar de los <span class="math notranslate nohighlight">\(n\)</span> individuos:</p>
+<ul>
+<li><p>La media de las coordenadas es 0 y su varianza es <span class="math notranslate nohighlight">\(\left( \dfrac{n-n_j}{n-1} \right) \dfrac{\lambda_s}{n_j}\)</span>.</p></li>
+<li><p>La varianza de la categoría <span class="math notranslate nohighlight">\(j\)</span> se obtiene multiplicando la varianza anterior por  <span class="math notranslate nohighlight">\(\dfrac{1}{\lambda_s}\)</span>:<br />
+$<span class="math notranslate nohighlight">\(\dfrac{1}{\lambda_s} \left( \dfrac{n-n_j}{n-1} \right) \dfrac{\lambda_s}{n_j} =  \dfrac{n-n_j}{n(n-1)} \)</span>$</p></li>
+<li><p>El valor calculado de la estadística <span class="math notranslate nohighlight">\(T\)</span> para la verdadera coordenada es:
+$<span class="math notranslate nohighlight">\(
+t_s(j) = \sqrt{\dfrac{n_j(n-1)}{n-n_j}} G_s(j)
+\)</span>$</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="span-style-color-4361ee-ejemplo-span">
+<h2><span style="color:#4361EE">Ejemplo</span><a class="headerlink" href="#span-style-color-4361ee-ejemplo-span" title="Enlazar permanentemente con este título">#</a></h2>
+<section id="span-style-color-4cc9f0-valor-test-para-quimica-sobre-el-primer-eje-span">
+<h3><span style="color:#4CC9F0">Valor test para <em>Química</em> sobre el primer eje:</span><a class="headerlink" href="#span-style-color-4cc9f0-valor-test-para-quimica-sobre-el-primer-eje-span" title="Enlazar permanentemente con este título">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Número de admitidos por carreras:</span>
+<span class="nf">summary</span><span class="p">(</span><span class="n">admi</span><span class="o">$</span><span class="n">carr</span><span class="p">)</span>
+<span class="c1"># Valor test:</span>
+<span class="n">vtQui</span> <span class="o">=</span> <span class="nf">sqrt</span><span class="p">(</span><span class="m">63</span><span class="o">*</span><span class="p">(</span><span class="m">445-1</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="m">445-63</span><span class="p">))</span><span class="o">*</span><span class="p">(</span><span class="m">-0.259</span><span class="p">)</span>
+<span class="nf">round</span><span class="p">(</span><span class="n">vtQui</span><span class="p">,</span><span class="m">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A data.frame: 3 × 3</caption>
+<thead>
+	<tr><th></th><th scope=col>CS1</th><th scope=col>CS2</th><th scope=col>CS3</th></tr>
+	<tr><th></th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><th scope=row>Color</th><td>0.579</td><td>-0.571</td><td> 0.581</td></tr>
+	<tr><th scope=row>DA</th><td>0.673</td><td>-0.067</td><td>-0.737</td></tr>
+	<tr><th scope=row>EA</th><td>0.460</td><td> 0.818</td><td> 0.346</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<ul class="simple">
+<li><p>La diferencia con el valor de la salida se debe al número de cifras significativas.</p></li>
+<li><p>Este valor, menor que -2, indica que es válido leer la posición negativa  de Química sobre el primer eje, lo que significa que está asociada con estrato bajo y origen fuera de Bogotá.</p></li>
+</ul>
+</section>
+<section id="span-style-color-4cc9f0-carreras-sobre-el-primer-plano-factorial-del-acm-de-admitidos-span">
+<h3><span style="color:#4CC9F0">Carreras sobre el primer plano factorial del ACM de admitidos</span><a class="headerlink" href="#span-style-color-4cc9f0-carreras-sobre-el-primer-plano-factorial-del-acm-de-admitidos-span" title="Enlazar permanentemente con este título">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">supCarr</span><span class="o">&lt;-</span><span class="nf">supqual</span><span class="p">(</span><span class="n">acm</span><span class="p">,</span><span class="n">admi</span><span class="o">$</span><span class="n">carr</span><span class="p">)</span>
+<span class="nf">names</span><span class="p">(</span><span class="n">supCarr</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A data.frame: 3 × 3</caption>
+<thead>
+	<tr><th></th><th scope=col>CS1</th><th scope=col>CS2</th><th scope=col>CS3</th></tr>
+	<tr><th></th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><th scope=row>Color</th><td>0.579</td><td>-0.571</td><td> 0.581</td></tr>
+	<tr><th scope=row>DA</th><td>0.673</td><td>-0.067</td><td>-0.737</td></tr>
+	<tr><th scope=row>EA</th><td>0.460</td><td> 0.818</td><td> 0.346</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">attach</span><span class="p">(</span><span class="n">supCarr</span><span class="p">)</span>
+<span class="s">&quot;Coordenadas y ayudas para la interpretación&quot;</span>
+<span class="nf">cbind</span><span class="p">(</span><span class="n">ncat</span><span class="p">,</span><span class="nf">round</span><span class="p">(</span><span class="nf">cbind</span><span class="p">(</span><span class="n">dis2</span><span class="p">,</span><span class="n">coor</span><span class="p">,</span><span class="n">tv</span><span class="p">,</span><span class="n">cos2</span><span class="p">),</span><span class="m">3</span><span class="p">))</span>
+<span class="s">&quot;Razones de correlación&quot;</span>
+<span class="nf">round</span><span class="p">(</span><span class="n">scr</span><span class="o">*</span><span class="m">100</span><span class="p">,</span><span class="m">2</span><span class="p">)</span>
+<span class="nf">detach</span><span class="p">(</span><span class="n">supCarr</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A data.frame: 3 × 3</caption>
+<thead>
+	<tr><th></th><th scope=col>CS1</th><th scope=col>CS2</th><th scope=col>CS3</th></tr>
+	<tr><th></th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><th scope=row>Color</th><td>0.579</td><td>-0.571</td><td> 0.581</td></tr>
+	<tr><th scope=row>DA</th><td>0.673</td><td>-0.067</td><td>-0.737</td></tr>
+	<tr><th scope=row>EA</th><td>0.460</td><td> 0.818</td><td> 0.346</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<ul class="simple">
+<li><p>Sólo es legítimo interpretar como diferente de cero las coordenadas de:</p></li>
+<li><p>Química (-) sobre el primer eje, Matemáticas (+) sobre el segundo eje; y Geología (-) opuesto a Farmacia (+) sobre el tercer eje.</p></li>
+<li><p>Química  tiene, en comparación al promedio, mayor proporción de admitidos de  estrato bajo y origen fuera de Bogotá,</p></li>
+<li><p>Matemáticas  de 19 o más años,</p></li>
+<li><p>Geología de 17 años y de estrato alto,</p></li>
+<li><p>Farmacia de 18 años y género femenino.</p></li>
+</ul>
+</section>
+<section id="span-style-color-4cc9f0-proyeccion-de-las-carreras-sobre-el-primer-plano-factorial-span">
+<h3><span style="color:#4CC9F0">Proyección de las carreras sobre el primer plano factorial</span><a class="headerlink" href="#span-style-color-4cc9f0-proyeccion-de-las-carreras-sobre-el-primer-plano-factorial-span" title="Enlazar permanentemente con este título">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">plot</span><span class="p">(</span><span class="n">acm</span><span class="p">,</span><span class="n">Trow</span> <span class="o">=</span><span class="kc">FALSE</span><span class="p">,</span><span class="n">infaxes</span><span class="o">=</span><span class="s">&quot;no&quot;</span><span class="p">,</span><span class="n">main</span><span class="o">=</span><span class="s">&quot;Plano 1-2&quot;</span><span class="p">,</span>
+<span class="n">ylim</span> <span class="o">=</span><span class="nf">c</span><span class="p">(</span> <span class="m">-1.5</span> <span class="p">,</span><span class="m">1.3</span><span class="p">)</span> <span class="p">,</span> <span class="n">col.col</span><span class="o">=</span><span class="s">&quot; black &quot;</span><span class="p">)</span>
+<span class="nf">points</span><span class="p">(</span> <span class="n">supCarr</span><span class="o">$</span><span class="n">coor</span> <span class="p">,</span><span class="n">col</span> <span class="o">=</span><span class="s">&quot;darkgreen&quot;</span><span class="p">)</span>
+<span class="nf">text</span><span class="p">(</span><span class="n">supCarr</span><span class="o">$</span><span class="n">coor</span> <span class="p">,</span> <span class="n">labels</span> <span class="o">=</span> <span class="nf">attributes </span><span class="p">(</span><span class="n">admi</span><span class="p">[,</span><span class="m">1</span><span class="p">])</span><span class="o">$</span><span class="n">levels</span> <span class="p">,</span>
+<span class="n">col</span> <span class="o">=</span><span class="s">&quot;darkgreen&quot;</span><span class="p">,</span><span class="n">pos</span> <span class="o">=</span><span class="m">1</span><span class="p">,</span> <span class="n">cex</span> <span class="o">=</span><span class="m">0.8</span> <span class="p">,</span> <span class="n">font</span> <span class="o">=</span><span class="m">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A data.frame: 3 × 3</caption>
+<thead>
+	<tr><th></th><th scope=col>CS1</th><th scope=col>CS2</th><th scope=col>CS3</th></tr>
+	<tr><th></th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><th scope=row>Color</th><td>0.579</td><td>-0.571</td><td> 0.581</td></tr>
+	<tr><th scope=row>DA</th><td>0.673</td><td>-0.067</td><td>-0.737</td></tr>
+	<tr><th scope=row>EA</th><td>0.460</td><td> 0.818</td><td> 0.346</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+</section>
+<section id="span-style-color-4cc9f0-proyeccion-de-las-carreras-sobre-el-plano-factorial-2-3-span">
+<h3><span style="color:#4CC9F0">Proyección de las carreras sobre el plano factorial 2-3</span><a class="headerlink" href="#span-style-color-4cc9f0-proyeccion-de-las-carreras-sobre-el-plano-factorial-2-3-span" title="Enlazar permanentemente con este título">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">plot</span><span class="p">(</span><span class="n">acm</span><span class="p">,</span><span class="m">2</span><span class="p">,</span><span class="m">3</span><span class="p">,</span><span class="n">Trow</span> <span class="o">=</span><span class="kc">FALSE</span><span class="p">,</span><span class="n">infaxes</span><span class="o">=</span><span class="s">&quot;no&quot;</span><span class="p">,</span><span class="n">main</span><span class="o">=</span><span class="s">&quot;Plano 2-3&quot;</span><span class="p">,</span>
+<span class="n">ylim</span> <span class="o">=</span><span class="nf">c</span><span class="p">(</span> <span class="m">-1.5</span> <span class="p">,</span><span class="m">1.3</span><span class="p">)</span> <span class="p">,</span> <span class="n">col.col</span><span class="o">=</span><span class="s">&quot; black &quot;</span><span class="p">)</span>
+<span class="nf">points</span><span class="p">(</span><span class="n">supCarr</span><span class="o">$</span><span class="n">coor</span><span class="p">[,</span><span class="nf">c</span><span class="p">(</span><span class="m">2</span><span class="p">,</span><span class="m">3</span><span class="p">)]</span> <span class="p">,</span><span class="n">col</span> <span class="o">=</span><span class="s">&quot;darkgreen&quot;</span><span class="p">)</span>
+<span class="nf">text</span><span class="p">(</span><span class="n">supCarr</span><span class="o">$</span><span class="n">coor</span><span class="p">[,</span><span class="nf">c</span><span class="p">(</span><span class="m">2</span><span class="p">,</span><span class="m">3</span><span class="p">)]</span> <span class="p">,</span> <span class="n">labels</span> <span class="o">=</span> <span class="nf">attributes </span><span class="p">(</span><span class="n">admi</span><span class="p">[,</span><span class="m">1</span><span class="p">])</span><span class="o">$</span><span class="n">levels</span> <span class="p">,</span>
+<span class="n">col</span> <span class="o">=</span><span class="s">&quot;darkgreen&quot;</span><span class="p">,</span><span class="n">pos</span> <span class="o">=</span><span class="m">1</span><span class="p">,</span> <span class="n">cex</span> <span class="o">=</span><span class="m">0.8</span> <span class="p">,</span> <span class="n">font</span> <span class="o">=</span><span class="m">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A data.frame: 3 × 3</caption>
+<thead>
+	<tr><th></th><th scope=col>CS1</th><th scope=col>CS2</th><th scope=col>CS3</th></tr>
+	<tr><th></th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><th scope=row>Color</th><td>0.579</td><td>-0.571</td><td> 0.581</td></tr>
+	<tr><th scope=row>DA</th><td>0.673</td><td>-0.067</td><td>-0.737</td></tr>
+	<tr><th scope=row>EA</th><td>0.460</td><td> 0.818</td><td> 0.346</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+</section>
+<section id="span-style-color-4cc9f0-retorno-a-los-datos-span">
+<h3><span style="color:#4CC9F0">Retorno a los datos</span><a class="headerlink" href="#span-style-color-4cc9f0-retorno-a-los-datos-span" title="Enlazar permanentemente con este título">#</a></h3>
+<p>Perfiles fila de las carreras según las variables activas, para corroborar lo que se ve en los planos factoriales</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">par</span><span class="p">(</span><span class="n">mfrow</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">2</span><span class="p">,</span><span class="m">2</span><span class="p">))</span>
+<span class="nf">for </span><span class="p">(</span><span class="n">varac</span> <span class="n">in</span> <span class="m">8</span><span class="o">:</span><span class="m">11</span><span class="p">){</span>
+    <span class="n">K</span><span class="o">&lt;-</span><span class="nf">unclass</span><span class="p">(</span><span class="nf">table</span><span class="p">(</span><span class="n">admi</span><span class="o">$</span><span class="n">carr</span><span class="p">,</span><span class="n">admi</span><span class="p">[,</span><span class="n">varac</span><span class="p">]))</span>
+    <span class="nf">plotct</span><span class="p">(</span><span class="n">K</span><span class="p">,</span><span class="s">&quot;row&quot;</span><span class="p">,</span><span class="n">col</span><span class="o">=</span><span class="m">2</span><span class="o">:</span><span class="m">5</span><span class="p">,</span><span class="n">main</span><span class="o">=</span><span class="nf">colnames</span><span class="p">(</span><span class="n">admi</span><span class="p">)[</span><span class="n">varac</span><span class="p">])</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A data.frame: 3 × 3</caption>
+<thead>
+	<tr><th></th><th scope=col>CS1</th><th scope=col>CS2</th><th scope=col>CS3</th></tr>
+	<tr><th></th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><th scope=row>Color</th><td>0.579</td><td>-0.571</td><td> 0.581</td></tr>
+	<tr><th scope=row>DA</th><td>0.673</td><td>-0.067</td><td>-0.737</td></tr>
+	<tr><th scope=row>EA</th><td>0.460</td><td> 0.818</td><td> 0.346</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<ul class="simple">
+<li><p>Química  tiene, en comparación al promedio, mayor proporción de admitidos de  estrato bajo y origen fuera de Bogotá,</p></li>
+<li><p>Matemáticas tiene mayor proporción de admitidos de 19 o más años,</p></li>
+<li><p>Geología tiene mayor proporción de admitidos de 17 años y de estrato alto,</p></li>
+<li><p>Farmacia tiene mayor proporción de admitidos de 18 años y género femenino.</p></li>
+</ul>
+<p>Para más detalles del ACM y un ejemplo de aplicación ver el capítulo 6 del libro <a class="reference external" href="https://www.google.com/url?sa=t&amp;rct=j&amp;q=&amp;esrc=s&amp;source=web&amp;cd=&amp;cad=rja&amp;uact=8&amp;ved=2ahUKEwi6qZDBjtDzAhVeRTABHYZPBWEQFnoECAYQAQ&amp;url=http%3A%2F%2Fciencias.bogota.unal.edu.co%2Ffileadmin%2FFacultad_de_Ciencias%2FPublicaciones%2FImagenes%2FPortadas_Libros%2FEstadistica%2FEstadistica_descriptiva_multivariada%2FlibroEstadisiticaDescriptivaMultivariadaDigital.pdf&amp;usg=AOvVaw2Q7b-e89FbWXFda5h4sCuf">EDM.</a></p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "AprendizajeProfundo/Libro-Fundamentos",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "r"
+        },
+        kernelOptions: {
+            kernelName: "ir",
+            path: "./Machine_Learning\Cuadernos"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'ir'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="ACS.html" title="anterior página">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">anterior</p>
+            <p class="prev-next-title"><span style="color:#F72585">Análisis de correspondencias simples</span></p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="som_Introduccion.html" title="siguiente página">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">siguiente</p>
+        <p class="prev-next-title"><span style="color:#F72585">Mapas Auto-organizados (SOM)</span></p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Álvaro Mauricio Montenegro Díaz, Daniel Mauricio Montenegro Reyes<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

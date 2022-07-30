@@ -1,0 +1,1406 @@
+
+<!DOCTYPE html>
+
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Probabilidad Conjunta y Entropía Cruzada &#8212; Fundamentos de IA y AP</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script src="../../_static/tabs.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../../_static/translations.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Índice" href="../../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../../search.html" />
+    <link rel="next" title="Distribuciones de probabilidad continuas" href="Prob_Distribuciones_continuas.html" />
+    <link rel="prev" title="Variables Aleatorias" href="Prob_Variables_Aleatorias.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="es">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../_static/logo-final-ap.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Fundamentos de IA y AP</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../tutorial.html">
+                    <span style="color:#F72585">Bienvenido(a)</span>
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Conociendo el libro
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Inicio/Cuadernos/Consideraciones.html">
+   <span style="color:#F72585">
+    Conociendo el Libro
+   </span>
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Fundamentos de Estadística
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Prob_Conceptos_Basicos.html">
+   <span style="color:#F72585">
+    Probabilidad
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Prob_Variables_Aleatorias.html">
+   <span style="color:#F72585">
+    Variables Aleatorias
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   <span style="color:#F72585">
+    Probabilidad Conjunta y Entropía Cruzada
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Prob_Distribuciones_continuas.html">
+   <span style="color:#F72585">
+    Distribuciones de probabilidad continuas
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Regresi%C3%B3n-Lineal-Pyton-Copy1.html">
+   <span style="color:#F72585">
+    Regresión Lineal en Python
+   </span>
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Teoría de la Información
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="ti_Teoria_Informacion.html">
+   <span style="color:#F72585">
+    Teoría de la Información
+   </span>
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Álgebra Lineal
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Fundamentacion_Matematica/Cuadernos/Intro_Tensores_I.html">
+   <span style="color:#F72585">
+    Introducción a tensores
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Fundamentacion_Matematica/Cuadernos/Intro_Tensores_II.html">
+   <span style="color:#F72585">
+    Tensores
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Fundamentacion_Matematica/Cuadernos/Tensor_Distribucion_Prob.html">
+   <span style="color:#F72585">
+    Tensores y distribuciones de probabilidad
+   </span>
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Modelación
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Fundamentacion_Matematica/Cuadernos/mod_Modelamiento.html">
+   <span style="color:#F72585">
+    Ejemplos de Modelos
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Fundamentacion_Matematica/Cuadernos/mod_Ejemplo_Modelamiento.html">
+   <span style="color:#F72585">
+    Ejemplos de Modelamiento
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Fundamentacion_Matematica/Cuadernos/cal_derivadas.html">
+   <span style="color:#F72585">
+    Introducción a la Derivación
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Fundamentacion_Matematica/Cuadernos/Optimization_1.html">
+   <span style="color:#F72585">
+    Optimización univariada usando JAX
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Fundamentacion_Matematica/Cuadernos/Optimization_2.html">
+   <span style="color:#F72585">
+    Optimización multivariada usando JAX
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Fundamentacion_Matematica/Cuadernos/am-sdg.html">
+   <span style="color:#F72585">
+    Optimización
+   </span>
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Aprendizaje de máquinas
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Machine_Learning/Cuadernos/am_intro_aprendizaje_maquinas.html">
+   <span style="color:#F72585">
+    Conceptos básicos de aprendizaje de máquinas
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Machine_Learning/Cuadernos/am_Regresion_logistica_JAX.html">
+   <span style="color:#F72585">
+    Modelo Lineal de Clasificación  con JAX
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Machine_Learning/Cuadernos/am_Regresion_Logistica_Tensorflow.html">
+   <span style="color:#F72585">
+    Modelo Logístico de Clasificación  con Tensorflow 2.X
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Machine_Learning/Cuadernos/am_regresion_Keras.html">
+   <span style="color:#F72585">
+    Regresion Basica con tf.keras: Predecir eficiencia de la gasolina
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Machine_Learning/Cuadernos/am-logistico-keras-cancer.html">
+   <span style="color:#F72585">
+    Modelo logístico de predicción en tf.keras
+   </span>
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Aprendizaje de máquinas no supervisado
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Machine_Learning/Cuadernos/BreveIntroduccion2R.html">
+   <span style="color:#F72585">
+    Breve introducción a R
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Machine_Learning/Cuadernos/AprendizajeNoSupervisado.html">
+   <span style="color:#F72585">
+    Aprendizaje no supervisado
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Machine_Learning/Cuadernos/ACP.html">
+   <span style="color:#F72585">
+    Análisis en componentes principales
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Machine_Learning/Cuadernos/ACS.html">
+   <span style="color:#F72585">
+    Análisis de correspondencias simples
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Machine_Learning/Cuadernos/ACM.html">
+   <span style="color:#F72585">
+    Análisis de correspondencias múltiples (ACM)
+   </span>
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Mapas auto-organizados (SOM)
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Machine_Learning/Cuadernos/som_Introduccion.html">
+   <span style="color:#F72585">
+    Mapas Auto-organizados (SOM)
+   </span>
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Redes Neuronales
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Redes_Neuronales/Cuadernos/RedesNeuronales_intro.html">
+   <span style="color:#F72585">
+    Introducción a Redes Neuronales
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Redes_Neuronales/Cuadernos/Activation_Functions.html">
+   <span style="color:#F72585">
+    Funciones de Activación
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Redes_Neuronales/Cuadernos/Hello_World_ML.html">
+   <span style="color:#F72585">
+    Introducción a Keras Sequential y API Funcional
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Redes_Neuronales/Cuadernos/Intro_Keras_Sequential.html">
+   <span style="color:#F72585">
+    Introducción a la API Sequential de Keras
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Redes_Neuronales/Cuadernos/Intro_Keras_Functional.html">
+   <span style="color:#F72585">
+    Introducción a la API funcional de Keras
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Redes_Neuronales/Cuadernos/am-softmax-keras-iris.html">
+   <span style="color:#F72585">
+    Clasificación, Softmax, Iris
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Redes_Neuronales/Cuadernos/am_regresion_Keras_gasolina.html">
+   <span style="color:#F72585">
+    Regresion Basica con tf.keras: Predecir eficiencia de la gasolina
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Redes_Neuronales/Cuadernos/am-subclassing-iris.html">
+   <span style="color:#F72585">
+    Subclassing-Modelo de Regresión multi-logística
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Redes_Neuronales/Cuadernos/NN_Animation2.html">
+   <span style="color:#F72585">
+    Visualización del Entrenamiento de una Red Neuronal
+   </span>
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/AprendizajeProfundo/Libro-Fundamentos/main?urlpath=tree/Fundamentacion_Estadistica/Cuadernos/Prob_Var_Prob_conjunta.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://colab.research.google.com/github/AprendizajeProfundo/Libro-Fundamentos/blob/main/Fundamentacion_Estadistica/Cuadernos/Prob_Var_Prob_conjunta.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Colab"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../../_static/images/logo_colab.png">
+  </span>
+<span class="headerbtn__text-container">Colab</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="initThebeSBT()"
+  class="headerbtn headerbtn-launch-thebe"
+  data-toggle="tooltip"
+data-placement="left"
+title="Launch Thebe"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="headerbtn__text-container">Live Code</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/AprendizajeProfundo/Libro-Fundamentos"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/AprendizajeProfundo/Libro-Fundamentos/issues/new?title=Issue%20on%20page%20%2FFundamentacion_Estadistica/Cuadernos/Prob_Var_Prob_conjunta.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/AprendizajeProfundo/Libro-Fundamentos/edit/main/Fundamentacion_Estadistica/Cuadernos/Prob_Var_Prob_conjunta.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Edit this page"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="headerbtn__text-container">suggest edit</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../../_sources/Fundamentacion_Estadistica/Cuadernos/Prob_Var_Prob_conjunta.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-introduccion-span">
+   <span style="color:#4361EE">
+    Introducción
+   </span>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-el-ejemplo-de-la-moneda-cargada-span">
+   <span style="color:#4361EE">
+    El ejemplo de la moneda cargada
+   </span>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-ejercicio-span">
+     <span style="color:#4CC9F0">
+      Ejercicio
+     </span>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-funcion-de-probabilidad-conjunta-span">
+   <span style="color:#4361EE">
+    Función de probabilidad conjunta
+   </span>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-distribucion-marginal-span">
+   <span style="color:#4361EE">
+    Distribución marginal
+   </span>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-correlacion-span">
+   <span style="color:#4361EE">
+    Correlación
+   </span>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     <span style="color:#4CC9F0">
+      Ejercicio
+     </span>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-informacion-mutua-span">
+   <span style="color:#4361EE">
+    Información mutua
+   </span>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-entropia-cruzada-span">
+   <span style="color:#4361EE">
+    Entropía cruzada
+   </span>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     <span style="color:#4CC9F0">
+      Ejercicio
+     </span>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-entropia-cruzada-en-aprendizaje-de-maquinas-span">
+   <span style="color:#4361EE">
+    Entropía cruzada en aprendizaje de máquinas
+   </span>
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1><span style="color:#F72585">Probabilidad Conjunta y Entropía Cruzada</span></h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-introduccion-span">
+   <span style="color:#4361EE">
+    Introducción
+   </span>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-el-ejemplo-de-la-moneda-cargada-span">
+   <span style="color:#4361EE">
+    El ejemplo de la moneda cargada
+   </span>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-ejercicio-span">
+     <span style="color:#4CC9F0">
+      Ejercicio
+     </span>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-funcion-de-probabilidad-conjunta-span">
+   <span style="color:#4361EE">
+    Función de probabilidad conjunta
+   </span>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-distribucion-marginal-span">
+   <span style="color:#4361EE">
+    Distribución marginal
+   </span>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-correlacion-span">
+   <span style="color:#4361EE">
+    Correlación
+   </span>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     <span style="color:#4CC9F0">
+      Ejercicio
+     </span>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-informacion-mutua-span">
+   <span style="color:#4361EE">
+    Información mutua
+   </span>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-entropia-cruzada-span">
+   <span style="color:#4361EE">
+    Entropía cruzada
+   </span>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     <span style="color:#4CC9F0">
+      Ejercicio
+     </span>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-entropia-cruzada-en-aprendizaje-de-maquinas-span">
+   <span style="color:#4361EE">
+    Entropía cruzada en aprendizaje de máquinas
+   </span>
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="span-style-color-f72585-probabilidad-conjunta-y-entropia-cruzada-span">
+<h1><span style="color:#F72585">Probabilidad Conjunta y Entropía Cruzada</span><a class="headerlink" href="#span-style-color-f72585-probabilidad-conjunta-y-entropia-cruzada-span" title="Enlazar permanentemente con este título">#</a></h1>
+<section id="span-style-color-4361ee-introduccion-span">
+<h2><span style="color:#4361EE">Introducción</span><a class="headerlink" href="#span-style-color-4361ee-introduccion-span" title="Enlazar permanentemente con este título">#</a></h2>
+<p>En esta lección se introduce el concepto de función de probabilidad conjunta. Además se introducen los conceptos de correlación, información mutua y entropía cruzada.</p>
+</section>
+<section id="span-style-color-4361ee-el-ejemplo-de-la-moneda-cargada-span">
+<h2><span style="color:#4361EE">El ejemplo de la moneda cargada</span><a class="headerlink" href="#span-style-color-4361ee-el-ejemplo-de-la-moneda-cargada-span" title="Enlazar permanentemente con este título">#</a></h2>
+<p>Usaremos el ejemplo de la Variable Bernoulli de la lección de <a class="reference internal" href="Prob_Variables_Aleatorias.html#variables-aleatorias"><span class="std std-ref">Variables Aleatorias</span></a>. En realidad el ejemplo puede reescribirse usando como experimento el lanzamiento de una moneda cargada. Suponemos dos posibles resultados cara <span class="math notranslate nohighlight">\((g=1)\)</span> y sello <span class="math notranslate nohighlight">\((g=0)\)</span>. Suponemos además que <span class="math notranslate nohighlight">\(\text{Prob}[g=1]= 0.6\)</span> y por tanto <span class="math notranslate nohighlight">\(\text{Prob}[g=0]= 0.4\)</span>. El experimento consiste en lanzar tres veces la moneda cargada y anotar el resultado: cara (1) o sello (0).</p>
+<p>Ahora definimos dos variables aleatorias. La primera  que llamaremos <span class="math notranslate nohighlight">\(X\)</span>, corresponde a contar el número de caras que salen. De acuerdo con los resultados de la lección de <a class="reference internal" href="Prob_Variables_Aleatorias.html#variables-aleatorias"><span class="std std-ref">Variables Aleatorias</span></a>, la función de probabilidad de <span class="math notranslate nohighlight">\(X\)</span>, denotada <span class="math notranslate nohighlight">\(p_X\)</span> es dada por extensión de  la siguiente forma:</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Valor</p></th>
+<th class="head"><p>Experimentos</p></th>
+<th class="head"><p>probabilidad cada experimento</p></th>
+<th class="head"><p>probabilidad para este valor de <span class="math notranslate nohighlight">\(X\)</span></p></th>
+<th class="head"><p>total</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0</p></td>
+<td><p>000</p></td>
+<td><p><span class="math notranslate nohighlight">\(0.4\times 0.4 \times 0.4\)</span></p></td>
+<td><p>0.064</p></td>
+<td><p>0.064</p></td>
+</tr>
+<tr class="row-odd"><td><p>1</p></td>
+<td><p>100</p></td>
+<td><p><span class="math notranslate nohighlight">\(0.6\times 0.4 \times 0.4\)</span></p></td>
+<td><p>0.096</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>010</p></td>
+<td><p><span class="math notranslate nohighlight">\(0.4 \times 0.6\times 0.4\)</span></p></td>
+<td><p>0.096</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p>1</p></td>
+<td><p>001</p></td>
+<td><p><span class="math notranslate nohighlight">\(0.4 \times 0.4\times 0.6\)</span></p></td>
+<td><p>0.096</p></td>
+<td><p>0.288</p></td>
+</tr>
+<tr class="row-even"><td><p>2</p></td>
+<td><p>110</p></td>
+<td><p><span class="math notranslate nohighlight">\(0.6\times 0.6 \times 0.4\)</span></p></td>
+<td><p>0.144</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>011</p></td>
+<td><p><span class="math notranslate nohighlight">\(0.4 \times 0.6\times 0.6\)</span></p></td>
+<td><p>0.144</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p>2</p></td>
+<td><p>101</p></td>
+<td><p><span class="math notranslate nohighlight">\(0.6 \times 0.4 \times 0.6\)</span></p></td>
+<td><p>0.144</p></td>
+<td><p>0.432</p></td>
+</tr>
+<tr class="row-odd"><td><p>3</p></td>
+<td><p>111</p></td>
+<td><p><span class="math notranslate nohighlight">\(0.6 \times 0.6\times 0.6\)</span></p></td>
+<td><p>0.216</p></td>
+<td><p>0.216</p></td>
+</tr>
+</tbody>
+</table>
+<p>Recuerde que obtuvimos que <span class="math notranslate nohighlight">\(\mathbb{E}[X]=1.8\)</span>.  Además se tiene que <span class="math notranslate nohighlight">\(\text{Var}[X]=0.72\)</span> y <span class="math notranslate nohighlight">\(\sigma_X = 0.849\)</span></p>
+<section id="span-style-color-4cc9f0-ejercicio-span">
+<h3><span style="color:#4CC9F0">Ejercicio</span><a class="headerlink" href="#span-style-color-4cc9f0-ejercicio-span" title="Enlazar permanentemente con este título">#</a></h3>
+<p>Por favor verifique que si <span class="math notranslate nohighlight">\(X\sim \text{Binom}(N,\pi)\)</span>, entonces:</p>
+<ol class="simple">
+<li><p><span class="math notranslate nohighlight">\(\mathbb{E}[X]=N\pi\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\text{Var}[X]=N\pi(1-\pi)\)</span>.</p></li>
+</ol>
+<p>La segunda variable que llamaremos <span class="math notranslate nohighlight">\(Y\)</span> se define
+como sigue:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+Y = \begin{cases}  0, &amp;\text{ si no sale ninguna cara}, \\
+1, &amp;\text{ si salen una o dos caras},\\
+-1, &amp;\text{ si salen tres caras}.
+\end{cases}
+\end{split}\]</div>
+<p>La función de probabilidad de <span class="math notranslate nohighlight">\(Y\)</span> , denotada  <span class="math notranslate nohighlight">\(p_Y\)</span>  es dada por extensión de la siguiente forma:</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Valor</p></th>
+<th class="head"><p>Experimentos</p></th>
+<th class="head"><p>probabilidad cada experimento</p></th>
+<th class="head"><p>probabilidad para este valor de <span class="math notranslate nohighlight">\(Y\)</span></p></th>
+<th class="head"><p>total</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0</p></td>
+<td><p>000</p></td>
+<td><p><span class="math notranslate nohighlight">\(0.4\times 0.4 \times 0.4\)</span></p></td>
+<td><p>0.064</p></td>
+<td><p>0.064</p></td>
+</tr>
+<tr class="row-odd"><td><p>1</p></td>
+<td><p>100</p></td>
+<td><p><span class="math notranslate nohighlight">\(0.6\times 0.4 \times 0.4\)</span></p></td>
+<td><p>0.096</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>010</p></td>
+<td><p><span class="math notranslate nohighlight">\(0.4 \times 0.6\times 0.4\)</span></p></td>
+<td><p>0.096</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p>1</p></td>
+<td><p>001</p></td>
+<td><p><span class="math notranslate nohighlight">\(0.4 \times 0.4\times 0.6\)</span></p></td>
+<td><p>0.096</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>110</p></td>
+<td><p><span class="math notranslate nohighlight">\(0.6\times 0.6 \times 0.4\)</span></p></td>
+<td><p>0.144</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p>1</p></td>
+<td><p>011</p></td>
+<td><p><span class="math notranslate nohighlight">\(0.4 \times 0.6\times 0.6\)</span></p></td>
+<td><p>0.144</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>101</p></td>
+<td><p><span class="math notranslate nohighlight">\(0.6 \times 0.4 \times 0.6\)</span></p></td>
+<td><p>0.144</p></td>
+<td><p>0.720</p></td>
+</tr>
+<tr class="row-odd"><td><p>-1</p></td>
+<td><p>111</p></td>
+<td><p><span class="math notranslate nohighlight">\(0.6 \times 0.6\times 0.6\)</span></p></td>
+<td><p>0.216</p></td>
+<td><p>0.216</p></td>
+</tr>
+</tbody>
+</table>
+<p>Recuerde que :</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+\mathbb{E}[Y] &amp;= 0\times 0.064 +  1\times 0.72 +(-1)\times 0.216 = 0.504\\
+\text{Var}[Y] &amp;=  (0-0.504)^2\times 0.064 + (1-0.504)^2\times 0.720 + (-1-0.504)^2\times 0.216 = 0.682\\
+\sigma_Y &amp;= 0.826
+\end{align*}
+\end{split}\]</div>
+</section>
+</section>
+<section id="span-style-color-4361ee-funcion-de-probabilidad-conjunta-span">
+<h2><span style="color:#4361EE">Función de probabilidad conjunta</span><a class="headerlink" href="#span-style-color-4361ee-funcion-de-probabilidad-conjunta-span" title="Enlazar permanentemente con este título">#</a></h2>
+<p>Abordemos el problema de determinar como está relacionadas (asociadas) estas dos variables. Para empezar observe la siguiente tabla que muestra como coocurren los valores de las dos variables aleatorias:</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>X/Y</p></th>
+<th class="head"><p>0</p></th>
+<th class="head"><p>1</p></th>
+<th class="head"><p>-1</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0</p></td>
+<td><p>000</p></td>
+<td><p>———</p></td>
+<td><p>—</p></td>
+</tr>
+<tr class="row-odd"><td><p>1</p></td>
+<td><p>—</p></td>
+<td><p>100 010 001</p></td>
+<td><p>—</p></td>
+</tr>
+<tr class="row-even"><td><p>2</p></td>
+<td><p>—</p></td>
+<td><p>101 110 011</p></td>
+<td><p>—</p></td>
+</tr>
+<tr class="row-odd"><td><p>3</p></td>
+<td><p>—</p></td>
+<td><p>———</p></td>
+<td><p>111</p></td>
+</tr>
+</tbody>
+</table>
+<p>La celdas vacias indican parejas de valores <span class="math notranslate nohighlight">\((x,y)\)</span> que no pueden ocurrir. La función de probabilidad conjunta de la variables <span class="math notranslate nohighlight">\(X\)</span> y <span class="math notranslate nohighlight">\(Y\)</span> se define como la función de dos variables dada por:</p>
+<div class="math notranslate nohighlight">
+\[
+p_{XY}(x,y) = \text{Prob}(X=x, Y=y).
+\]</div>
+<p>En nuestro ejemplo, la función de probabilidad conjunta es definida por extensión de la siguiente forma</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>X/Y</p></th>
+<th class="head"><p>0</p></th>
+<th class="head"><p>1</p></th>
+<th class="head"><p>-1</p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(P_X\)</span></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0</p></td>
+<td><p>0.064</p></td>
+<td><p>0.000</p></td>
+<td><p>0.000</p></td>
+<td><p>0.064</p></td>
+</tr>
+<tr class="row-odd"><td><p>1</p></td>
+<td><p>0.000</p></td>
+<td><p>0.288</p></td>
+<td><p>0.000</p></td>
+<td><p>0.288</p></td>
+</tr>
+<tr class="row-even"><td><p>2</p></td>
+<td><p>0.000</p></td>
+<td><p>0.432</p></td>
+<td><p>0.000</p></td>
+<td><p>0.432</p></td>
+</tr>
+<tr class="row-odd"><td><p>3</p></td>
+<td><p>0.000</p></td>
+<td><p>0.000</p></td>
+<td><p>0.216</p></td>
+<td><p>0.216</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(P_Y\)</span></p></td>
+<td><p>0.064</p></td>
+<td><p>0.720</p></td>
+<td><p>0.216</p></td>
+<td><p>1.000</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="span-style-color-4361ee-distribucion-marginal-span">
+<h2><span style="color:#4361EE">Distribución marginal</span><a class="headerlink" href="#span-style-color-4361ee-distribucion-marginal-span" title="Enlazar permanentemente con este título">#</a></h2>
+<p>Observe que en la última fila de la tabla se recupera la función de probabilidad de <span class="math notranslate nohighlight">\(Y\)</span>. De la misma forma, en la última columna  se recupera la función de probabilidad de <span class="math notranslate nohighlight">\(X\)</span>. En este contexto de funciones de probabilidad conjunta, las funciones <span class="math notranslate nohighlight">\(P_X\)</span> y <span class="math notranslate nohighlight">\(P_Y\)</span> se llaman funciones de probabilidad marginales. En este caso, cada valor corresponde a la suma de la fila o columna correspondiente. La celda inferior derecha muestra la suma total de probabilidades, que claro debe ser 1.0.</p>
+</section>
+<section id="span-style-color-4361ee-correlacion-span">
+<h2><span style="color:#4361EE">Correlación</span><a class="headerlink" href="#span-style-color-4361ee-correlacion-span" title="Enlazar permanentemente con este título">#</a></h2>
+<p>El concepto de correlación está completamente asociado a la funcion de distribución conjunta de dos variables aleatorias. Esencialmente, la correlación mide como covarían las dos variables aleatorias. Supongamos que <span class="math notranslate nohighlight">\(X\)</span> y <span class="math notranslate nohighlight">\(Y\)</span> son variables aleatorias definidas sobre el mismo espacio muestral como en el ejemplo anterior.</p>
+<p>Además supongamos que la media y la desviación estándar de cada variable se denotan como <span class="math notranslate nohighlight">\(\mu_X\)</span>, <span class="math notranslate nohighlight">\(\sigma_X\)</span> y <span class="math notranslate nohighlight">\(\mu_Y\)</span> y <span class="math notranslate nohighlight">\(\sigma_Y\)</span> respectivamente. Entonces se tiene que la correlación entre las dos variables aleatorias es dada por:</p>
+<div class="math notranslate nohighlight">
+\[
+Cor(X,Y) = \mathbb{E}\left[\frac{(X-\mu_X)}{\sigma_X}\frac{(Y-\mu_Y)}{\sigma_Y} \right]= \frac{\mathbb{E}(XY) - \mathbb{E}(X)\mathbb{E}(Y)}{\sigma_X \sigma_Y}.
+\]</div>
+<section id="id1">
+<h3><span style="color:#4CC9F0">Ejercicio</span><a class="headerlink" href="#id1" title="Enlazar permanentemente con este título">#</a></h3>
+<p>Vamos a calcular la correlación de las variables del ejemplo anterior. Usaremos la segunda ecuación. La igualdad puede ser verificada sin mucha dificutad.</p>
+<p>La única cantidad que no tenemos aún es <span class="math notranslate nohighlight">\(\mathbb{E}(XY)\)</span>, la cual puede calcularse como sigue:</p>
+<div class="math notranslate nohighlight">
+\[
+\mathbb{E}(XY) = \sum_i \sum_j x_iy_j P_{XY}(x_i,y_j)
+\]</div>
+<p>En nuestro ejemplo tenemos que:</p>
+<div class="math notranslate nohighlight">
+\[
+\mathbb{E}(XY) =  1 \times 1 \times P_{XY}(1,1) + 2 \times 1 \times P_{XY}(2,1) + 3\times (-1)\times P_{XY}(3,-1) = 0.504
+\]</div>
+<p>En consecuencia se tiene que:</p>
+<div class="math notranslate nohighlight">
+\[
+Cor(X,Y) = \frac{0.504 - 1.8\times 0.504}{0.849\times 0.826} = -0.575
+\]</div>
+</section>
+</section>
+<section id="span-style-color-4361ee-informacion-mutua-span">
+<h2><span style="color:#4361EE">Información mutua</span><a class="headerlink" href="#span-style-color-4361ee-informacion-mutua-span" title="Enlazar permanentemente con este título">#</a></h2>
+<p>Este concepto es el análogo a la correlación, pero en este caso desde la
+teoría de la información de Shannon.</p>
+<p>Para dos distribuciones (variables aleatorias <span class="math notranslate nohighlight">\(X\)</span> y <span class="math notranslate nohighlight">\(Y\)</span>) discretas conjuntamente distribuidas,
+la información conjunta se define por:</p>
+<div class="math notranslate nohighlight">
+\[
+\mathfrak{m}(X,Y)=\sum_{y\in Y}\sum_{x\in X}P_{XY}(x,y) \log \left(\frac {P_{XY}(x,y)}{P_X(x)P_{Y}(y)}\right) = \mathbb{E}_{XY}[\log P_{XY} - \log P_X\log P_Y]
+\]</div>
+<p>Observe que si las variables aleatorias son independientes, entonces <span class="math notranslate nohighlight">\(\mathfrak{m}(X,Y)=0\)</span>, porque <span class="math notranslate nohighlight">\(\log P_{XY} = \log P_X\log P_Y\)</span>.</p>
+<p>Por otro lado, Si <span class="math notranslate nohighlight">\(X=Y\)</span>, se tiene que <span class="math notranslate nohighlight">\(\mathfrak{m}(X,X) =  H(X)\)</span>, es decir, la entropía de <span class="math notranslate nohighlight">\(X\)</span>.</p>
+<p>La información mutua se puede calcular siempre, teniendo en cuenta el convenio <span class="math notranslate nohighlight">\(0 \log 0 = 0\)</span>.</p>
+<p>Recordemos la tabla de probabilidad conjunta del ejemplo:</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>X/Y</p></th>
+<th class="head"><p>0</p></th>
+<th class="head"><p>1</p></th>
+<th class="head"><p>-1</p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(P_X\)</span></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0</p></td>
+<td><p>0.064</p></td>
+<td><p>0.000</p></td>
+<td><p>0.000</p></td>
+<td><p>0.064</p></td>
+</tr>
+<tr class="row-odd"><td><p>1</p></td>
+<td><p>0.000</p></td>
+<td><p>0.288</p></td>
+<td><p>0.000</p></td>
+<td><p>0.288</p></td>
+</tr>
+<tr class="row-even"><td><p>2</p></td>
+<td><p>0.000</p></td>
+<td><p>0.432</p></td>
+<td><p>0.000</p></td>
+<td><p>0.432</p></td>
+</tr>
+<tr class="row-odd"><td><p>3</p></td>
+<td><p>0.000</p></td>
+<td><p>0.000</p></td>
+<td><p>0.216</p></td>
+<td><p>0.216</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(P_Y\)</span></p></td>
+<td><p>0.064</p></td>
+<td><p>0.720</p></td>
+<td><p>0.216</p></td>
+<td><p>1.000</p></td>
+</tr>
+</tbody>
+</table>
+<p>Entonces en  este caso tenemos que:</p>
+<div class="math notranslate nohighlight">
+\[\mathfrak{m}(X,Y) = 0.064 \log\tfrac{0.064}{0.064\times 0.064} +0.288 \log \tfrac{ 0.288}{0.288\times 0.72} +0.432\log\tfrac{0.432}{0.432\times 0.72} + 0.216 \log \tfrac{0.216}{0.216*0.216} = 0.5032.
+\]</div>
+<p>La información mutua siempre es positiva e indica la cantidad de información que las dos variables cargan conjuntamente, la una de la otra.</p>
+<p>La siguiente línea ilustra el cálculo usando Numpy.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="p">(</span><span class="mf">0.064</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mf">0.064</span><span class="o">/</span><span class="p">(</span><span class="mf">0.064</span><span class="o">*</span><span class="mf">.064</span><span class="p">))</span> <span class="o">+</span><span class="p">(</span><span class="mf">0.288</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mf">0.288</span><span class="o">/</span><span class="p">(</span><span class="mf">0.288</span><span class="o">*</span><span class="mf">0.724</span><span class="p">))</span> \
+<span class="o">+</span><span class="p">(</span><span class="mf">0.432</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mf">0.432</span><span class="o">/</span><span class="p">(</span><span class="mf">0.432</span><span class="o">*</span><span class="mf">0.72</span><span class="p">)</span> <span class="o">+</span> <span class="mf">0.216</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mf">0.216</span><span class="o">/</span><span class="p">(</span><span class="mf">0.216</span><span class="o">*</span><span class="mf">0.216</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.5032013743418469
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="span-style-color-4361ee-entropia-cruzada-span">
+<h2><span style="color:#4361EE">Entropía cruzada</span><a class="headerlink" href="#span-style-color-4361ee-entropia-cruzada-span" title="Enlazar permanentemente con este título">#</a></h2>
+<p>En teoría de la información, la entropía cruzada entre dos distribuciones de probabilidad  <span class="math notranslate nohighlight">\(P\)</span> y <span class="math notranslate nohighlight">\(Q\)</span> sobre el mismo espacio muestral mide el número promedio de bits (o nats) necesarios para identificar una distribución con la otra.</p>
+<p>En la práctica, si se considera la distribución <span class="math notranslate nohighlight">\(P\)</span> como la distribución verdadera y a <span class="math notranslate nohighlight">\(Q\)</span> como una distribución aproximante, entonces la entropía cruzada se define mediante:</p>
+<div class="math notranslate nohighlight">
+\[
+H(P,Q) = - E_P[ \log Q]  = - (p_1\log q_1 + p_2\log q_2+ \cdots + p_n\log q_n)
+\]</div>
+<p><strong>Interpretación</strong></p>
+<p>Para la interpretación, esta es una medida de que tanto difiere <span class="math notranslate nohighlight">\(Q\)</span> de <span class="math notranslate nohighlight">\(P\)</span>, medido en bits o nats. Entonces entre menor es este valor, mejor es la aproximación.</p>
+<section id="id2">
+<h3><span style="color:#4CC9F0">Ejercicio</span><a class="headerlink" href="#id2" title="Enlazar permanentemente con este título">#</a></h3>
+<p>Para ilustrar el concepto, calculemos la entropía cruzada entre las distribuciones binomiales <span class="math notranslate nohighlight">\( P=Bin(3, 0.3)\)</span>, <span class="math notranslate nohighlight">\(Q_1=Bin(3, 0.4)\)</span> y <span class="math notranslate nohighlight">\(Q_2=Bin(3,0.7)\)</span>.</p>
+<p>Vamos considerar a la distribución <span class="math notranslate nohighlight">\(P\)</span> como la verdadera y a <span class="math notranslate nohighlight">\(Q_1\)</span> y <span class="math notranslate nohighlight">\(Q_2\)</span> como aproximantes. Usted debe sospechar que <span class="math notranslate nohighlight">\(Q_1\)</span> es mejor aproximante que <span class="math notranslate nohighlight">\(Q_2\)</span>.</p>
+<p>Veámos.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">binom</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="n">N</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">q1</span><span class="p">,</span> <span class="n">q2</span>  <span class="o">=</span> <span class="mi">3</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.7</span>
+
+<span class="n">P</span> <span class="o">=</span> <span class="p">[</span><span class="n">binom</span><span class="o">.</span><span class="n">pmf</span><span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="n">N</span><span class="p">,</span><span class="n">p</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">)]</span>
+<span class="n">Q1</span> <span class="o">=</span> <span class="p">[</span><span class="n">binom</span><span class="o">.</span><span class="n">pmf</span><span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="n">N</span><span class="p">,</span><span class="n">q1</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">)]</span>
+<span class="n">Q2</span> <span class="o">=</span> <span class="p">[</span><span class="n">binom</span><span class="o">.</span><span class="n">pmf</span><span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="n">N</span><span class="p">,</span><span class="n">q2</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">)]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">P</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">Q1</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">Q2</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0.343 0.441 0.189 0.027]
+[0.216 0.432 0.288 0.064]
+[0.027 0.189 0.441 0.343]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">H_P_Q1</span> <span class="o">=</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">P</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">Q1</span><span class="p">))</span>
+<span class="n">H_P_Q2</span> <span class="o">=</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">P</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">Q2</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;H(P,Q1)= &#39;</span><span class="p">,</span> <span class="n">H_P_Q1</span> <span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;H(P,Q2)= &#39;</span><span class="p">,</span> <span class="n">H_P_Q2</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>H(P,Q1)=  1.2052697267344104
+H(P,Q2)=  2.157224596768415
+</pre></div>
+</div>
+</div>
+</div>
+<p>Finalmente un gráfico de las tres distribuciones.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">axes</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span>
+<span class="n">label</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;0&#39;</span><span class="p">,</span><span class="s1">&#39;1&#39;</span><span class="p">,</span><span class="s1">&#39;2&#39;</span><span class="p">,</span><span class="s1">&#39;3&#39;</span><span class="p">]</span>
+
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="n">P</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;orange&#39;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span><span class="n">width</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Distribución P&quot;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="n">Q1</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span><span class="n">width</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Distribución Q1&quot;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="n">Q2</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span><span class="n">width</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Distribución Q2&quot;</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/Prob_Var_Prob_conjunta_34_0.png" src="../../_images/Prob_Var_Prob_conjunta_34_0.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="span-style-color-4361ee-entropia-cruzada-en-aprendizaje-de-maquinas-span">
+<h2><span style="color:#4361EE">Entropía cruzada en aprendizaje de máquinas</span><a class="headerlink" href="#span-style-color-4361ee-entropia-cruzada-en-aprendizaje-de-maquinas-span" title="Enlazar permanentemente con este título">#</a></h2>
+<p>Recordemos que una red neuronal de clasificación transforma un tensor de entrada en  una distribución. Tal distribución indica las probabilidades de que el tensor de entrada pertenezca a cada una de las clases.</p>
+<p>En el entrenamiento se busca encontrar los pesos sinápticos que minimizan conjuntamente la entropía cruzada entre la distribución de salida de los tensores calculada por la red neuronal y la distribución verdadera asociada a cada tensor.</p>
+<p>Por ejemplo, supongamos que se tienen tres clases y que para un determinado tensor la clase asociada es la 1 (las posibles clases son 0,1,2).</p>
+<p>Entonces, la distribución verdadera en este caso es <span class="math notranslate nohighlight">\(P=(0,1,0)\)</span>. Por otro lado, supongamos que la distribución que calcula la red neuronal para este tensor es <span class="math notranslate nohighlight">\(Q= (0.2, 0.7, 0.1)\)</span>. Entonces, la entropía cruzada para este tensor es dada por:</p>
+<div class="math notranslate nohighlight">
+\[
+H(P,Q) = - 1 \log 0.7 = 0.357
+\]</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "AprendizajeProfundo/Libro-Fundamentos",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./Fundamentacion_Estadistica\Cuadernos"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="Prob_Variables_Aleatorias.html" title="anterior página">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">anterior</p>
+            <p class="prev-next-title"><span style="color:#F72585">Variables Aleatorias</span></p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="Prob_Distribuciones_continuas.html" title="siguiente página">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">siguiente</p>
+        <p class="prev-next-title"><span style="color:#F72585">Distribuciones de probabilidad continuas</span></p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Álvaro Mauricio Montenegro Díaz, Daniel Mauricio Montenegro Reyes<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

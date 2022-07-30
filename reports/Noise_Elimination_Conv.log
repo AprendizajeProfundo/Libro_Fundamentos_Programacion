@@ -1,0 +1,47 @@
+Traceback (most recent call last):
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\jupyter_cache\executors\utils.py", line 51, in single_nb_execution
+    executenb(
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\nbclient\client.py", line 1204, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\nbclient\util.py", line 84, in wrapped
+    return just_run(coro(*args, **kwargs))
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\nbclient\util.py", line 62, in just_run
+    return loop.run_until_complete(coro)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\asyncio\base_events.py", line 642, in run_until_complete
+    return future.result()
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\nbclient\client.py", line 663, in async_execute
+    await self.async_execute_cell(
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\nbclient\client.py", line 965, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\nbclient\client.py", line 862, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+#importar open cv                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  ii!conda install -c conda-forge opencv
+import cv2
+#importar pandas para manejo de dataframes
+import pandas as pd
+# import tarfile para manejo de archivos comprimidos
+import tarfile
+# Barra de progreso
+from tqdm.notebook import tqdm
+# Manejo de archivos del computador
+import os
+# Manejo de gráficos
+import matplotlib.pyplot as plt
+# Manejo de Arreglos
+import numpy as np
+------------------
+
+[1;31m---------------------------------------------------------------------------[0m
+[1;31mModuleNotFoundError[0m                       Traceback (most recent call last)
+Input [1;32mIn [1][0m, in [0;36m<cell line: 8>[1;34m()[0m
+[0;32m      6[0m [38;5;28;01mimport[39;00m [38;5;21;01mtarfile[39;00m
+[0;32m      7[0m [38;5;66;03m# Barra de progreso[39;00m
+[1;32m----> 8[0m [38;5;28;01mfrom[39;00m [38;5;21;01mtqdm[39;00m[38;5;21;01m.[39;00m[38;5;21;01mnotebook[39;00m [38;5;28;01mimport[39;00m tqdm
+[0;32m      9[0m [38;5;66;03m# Manejo de archivos del computador[39;00m
+[0;32m     10[0m [38;5;28;01mimport[39;00m [38;5;21;01mos[39;00m
+
+[1;31mModuleNotFoundError[0m: No module named 'tqdm'
+ModuleNotFoundError: No module named 'tqdm'
+

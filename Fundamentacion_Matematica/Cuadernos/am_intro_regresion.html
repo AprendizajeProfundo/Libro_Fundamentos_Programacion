@@ -1,0 +1,1576 @@
+
+<!DOCTYPE html>
+
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Conceptos básicos de regresión &#8212; Fundamentos de IA y AP</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script src="../../_static/tabs.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../../_static/translations.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Índice" href="../../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../../search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="es">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../_static/logo-final-ap.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Fundamentos de IA y AP</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../tutorial.html">
+                    <span style="color:#F72585">Bienvenido(a)</span>
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Conociendo el libro
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Inicio/Cuadernos/Consideraciones.html">
+   <span style="color:#F72585">
+    Conociendo el Libro
+   </span>
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Fundamentos de Estadística
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Fundamentacion_Estadistica/Cuadernos/Prob_Conceptos_Basicos.html">
+   <span style="color:#F72585">
+    Probabilidad
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Fundamentacion_Estadistica/Cuadernos/Prob_Variables_Aleatorias.html">
+   <span style="color:#F72585">
+    Variables Aleatorias
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Fundamentacion_Estadistica/Cuadernos/Prob_Var_Prob_conjunta.html">
+   <span style="color:#F72585">
+    Probabilidad Conjunta y Entropía Cruzada
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Fundamentacion_Estadistica/Cuadernos/Prob_Distribuciones_continuas.html">
+   <span style="color:#F72585">
+    Distribuciones de probabilidad continuas
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Fundamentacion_Estadistica/Cuadernos/Regresi%C3%B3n-Lineal-Pyton-Copy1.html">
+   <span style="color:#F72585">
+    Regresión Lineal en Python
+   </span>
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Teoría de la Información
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Fundamentacion_Estadistica/Cuadernos/ti_Teoria_Informacion.html">
+   <span style="color:#F72585">
+    Teoría de la Información
+   </span>
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Álgebra Lineal
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Intro_Tensores_I.html">
+   <span style="color:#F72585">
+    Introducción a tensores
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Intro_Tensores_II.html">
+   <span style="color:#F72585">
+    Tensores
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Tensor_Distribucion_Prob.html">
+   <span style="color:#F72585">
+    Tensores y distribuciones de probabilidad
+   </span>
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Modelación
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="mod_Modelamiento.html">
+   <span style="color:#F72585">
+    Ejemplos de Modelos
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="mod_Ejemplo_Modelamiento.html">
+   <span style="color:#F72585">
+    Ejemplos de Modelamiento
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cal_derivadas.html">
+   <span style="color:#F72585">
+    Introducción a la Derivación
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Optimization_1.html">
+   <span style="color:#F72585">
+    Optimización univariada usando JAX
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Optimization_2.html">
+   <span style="color:#F72585">
+    Optimización multivariada usando JAX
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="am-sdg.html">
+   <span style="color:#F72585">
+    Optimización
+   </span>
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Aprendizaje de máquinas
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Machine_Learning/Cuadernos/am_intro_aprendizaje_maquinas.html">
+   <span style="color:#F72585">
+    Conceptos básicos de aprendizaje de máquinas
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Machine_Learning/Cuadernos/am_Regresion_logistica_JAX.html">
+   <span style="color:#F72585">
+    Modelo Lineal de Clasificación  con JAX
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Machine_Learning/Cuadernos/am_Regresion_Logistica_Tensorflow.html">
+   <span style="color:#F72585">
+    Modelo Logístico de Clasificación  con Tensorflow 2.X
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Machine_Learning/Cuadernos/am_regresion_Keras.html">
+   <span style="color:#F72585">
+    Regresion Basica con tf.keras: Predecir eficiencia de la gasolina
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Machine_Learning/Cuadernos/am-logistico-keras-cancer.html">
+   <span style="color:#F72585">
+    Modelo logístico de predicción en tf.keras
+   </span>
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Aprendizaje de máquinas no supervisado
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Machine_Learning/Cuadernos/BreveIntroduccion2R.html">
+   <span style="color:#F72585">
+    Breve introducción a R
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Machine_Learning/Cuadernos/AprendizajeNoSupervisado.html">
+   <span style="color:#F72585">
+    Aprendizaje no supervisado
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Machine_Learning/Cuadernos/ACP.html">
+   <span style="color:#F72585">
+    Análisis en componentes principales
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Machine_Learning/Cuadernos/ACS.html">
+   <span style="color:#F72585">
+    Análisis de correspondencias simples
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Machine_Learning/Cuadernos/ACM.html">
+   <span style="color:#F72585">
+    Análisis de correspondencias múltiples (ACM)
+   </span>
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Mapas auto-organizados (SOM)
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Machine_Learning/Cuadernos/som_Introduccion.html">
+   <span style="color:#F72585">
+    Mapas Auto-organizados (SOM)
+   </span>
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Redes Neuronales
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Redes_Neuronales/Cuadernos/RedesNeuronales_intro.html">
+   <span style="color:#F72585">
+    Introducción a Redes Neuronales
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Redes_Neuronales/Cuadernos/Activation_Functions.html">
+   <span style="color:#F72585">
+    Funciones de Activación
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Redes_Neuronales/Cuadernos/Hello_World_ML.html">
+   <span style="color:#F72585">
+    Introducción a Keras Sequential y API Funcional
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Redes_Neuronales/Cuadernos/Intro_Keras_Sequential.html">
+   <span style="color:#F72585">
+    Introducción a la API Sequential de Keras
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Redes_Neuronales/Cuadernos/Intro_Keras_Functional.html">
+   <span style="color:#F72585">
+    Introducción a la API funcional de Keras
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Redes_Neuronales/Cuadernos/am-softmax-keras-iris.html">
+   <span style="color:#F72585">
+    Clasificación, Softmax, Iris
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Redes_Neuronales/Cuadernos/am_regresion_Keras_gasolina.html">
+   <span style="color:#F72585">
+    Regresion Basica con tf.keras: Predecir eficiencia de la gasolina
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Redes_Neuronales/Cuadernos/am-subclassing-iris.html">
+   <span style="color:#F72585">
+    Subclassing-Modelo de Regresión multi-logística
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Redes_Neuronales/Cuadernos/NN_Animation2.html">
+   <span style="color:#F72585">
+    Visualización del Entrenamiento de una Red Neuronal
+   </span>
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/AprendizajeProfundo/Libro-Fundamentos/main?urlpath=tree/Fundamentacion_Matematica/Cuadernos/am_intro_regresion.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://colab.research.google.com/github/AprendizajeProfundo/Libro-Fundamentos/blob/main/Fundamentacion_Matematica/Cuadernos/am_intro_regresion.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Colab"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../../_static/images/logo_colab.png">
+  </span>
+<span class="headerbtn__text-container">Colab</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="initThebeSBT()"
+  class="headerbtn headerbtn-launch-thebe"
+  data-toggle="tooltip"
+data-placement="left"
+title="Launch Thebe"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="headerbtn__text-container">Live Code</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/AprendizajeProfundo/Libro-Fundamentos"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/AprendizajeProfundo/Libro-Fundamentos/issues/new?title=Issue%20on%20page%20%2FFundamentacion_Matematica/Cuadernos/am_intro_regresion.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/AprendizajeProfundo/Libro-Fundamentos/edit/main/Fundamentacion_Matematica/Cuadernos/am_intro_regresion.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Edit this page"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="headerbtn__text-container">suggest edit</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../../_sources/Fundamentacion_Matematica/Cuadernos/am_intro_regresion.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-introduccion-span">
+   <span style="color:#4361EE">
+    Introducción
+   </span>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-ejemplo-1-modelo-lineal-span">
+   <span style="color:#4361EE">
+    Ejemplo 1: Modelo lineal
+   </span>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-ejemplo-2-modelo-cuadratico-span">
+   <span style="color:#4361EE">
+    Ejemplo 2: Modelo cuadrático
+   </span>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-ejemplo-3-modelo-polinomial-general-span">
+   <span style="color:#4361EE">
+    Ejemplo 3: Modelo polinomial general
+   </span>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-funcion-de-perdida-span">
+   <span style="color:#4361EE">
+    Función de pérdida
+   </span>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-perdida-en-entrenamiento-vs-perdida-en-validacion-span">
+   <span style="color:#4361EE">
+    Pérdida en entrenamiento vs pérdida en validación
+   </span>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-sobreajuste-y-otros-problemas-span">
+   <span style="color:#4361EE">
+    Sobreajuste y otros problemas
+   </span>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-parametros-de-regresion-de-acuerdo-con-el-grado-del-polinomio-span">
+     <span style="color:#4CC9F0">
+      Parámetros de regresión de acuerdo con el grado del polinomio
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-ejercicio-span">
+     <span style="color:#4CC9F0">
+      Ejercicio
+     </span>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-regularizacion-span">
+   <span style="color:#4361EE">
+    Regularización
+   </span>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-regularizacion-l2-span">
+     <span style="color:#4CC9F0">
+      Regularización L2
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     <span style="color:#4CC9F0">
+      Ejercicio
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-regularizacion-l1-span">
+     <span style="color:#4CC9F0">
+      Regularización L1
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-regularizacion-l1-l2-span">
+     <span style="color:#4CC9F0">
+      Regularización L1-L2
+     </span>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-perspectiva-probabilistica-span">
+   <span style="color:#4361EE">
+    Perspectiva probabilística
+   </span>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-distribucion-conjunta-span">
+   <span style="color:#4361EE">
+    Distribución conjunta
+   </span>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-ejemplo-con-la-distribucion-normal-span">
+     <span style="color:#4CC9F0">
+      Ejemplo con la distribución normal
+     </span>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-verosimilitud-span">
+   <span style="color:#4361EE">
+    Verosimilitud
+   </span>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-funcion-de-perdida-asociada-a-la-log-verosimilitud-span">
+   <span style="color:#4361EE">
+    Función de pérdida asociada a la log-verosimilitud
+   </span>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-notas-span">
+     <span style="color:#4CC9F0">
+      Notas
+     </span>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-densidad-condicional-span">
+   <span style="color:#4361EE">
+    Densidad condicional
+   </span>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-regresion-y-maxima-verosimilitud-span">
+   <span style="color:#4361EE">
+    Regresión y máxima verosimilitud
+   </span>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-distribucion-predictiva-span">
+   <span style="color:#4361EE">
+    Distribución predictiva
+   </span>
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1><span style="color:#F72585">Conceptos básicos de regresión</span></h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-introduccion-span">
+   <span style="color:#4361EE">
+    Introducción
+   </span>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-ejemplo-1-modelo-lineal-span">
+   <span style="color:#4361EE">
+    Ejemplo 1: Modelo lineal
+   </span>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-ejemplo-2-modelo-cuadratico-span">
+   <span style="color:#4361EE">
+    Ejemplo 2: Modelo cuadrático
+   </span>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-ejemplo-3-modelo-polinomial-general-span">
+   <span style="color:#4361EE">
+    Ejemplo 3: Modelo polinomial general
+   </span>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-funcion-de-perdida-span">
+   <span style="color:#4361EE">
+    Función de pérdida
+   </span>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-perdida-en-entrenamiento-vs-perdida-en-validacion-span">
+   <span style="color:#4361EE">
+    Pérdida en entrenamiento vs pérdida en validación
+   </span>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-sobreajuste-y-otros-problemas-span">
+   <span style="color:#4361EE">
+    Sobreajuste y otros problemas
+   </span>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-parametros-de-regresion-de-acuerdo-con-el-grado-del-polinomio-span">
+     <span style="color:#4CC9F0">
+      Parámetros de regresión de acuerdo con el grado del polinomio
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-ejercicio-span">
+     <span style="color:#4CC9F0">
+      Ejercicio
+     </span>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-regularizacion-span">
+   <span style="color:#4361EE">
+    Regularización
+   </span>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-regularizacion-l2-span">
+     <span style="color:#4CC9F0">
+      Regularización L2
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     <span style="color:#4CC9F0">
+      Ejercicio
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-regularizacion-l1-span">
+     <span style="color:#4CC9F0">
+      Regularización L1
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-regularizacion-l1-l2-span">
+     <span style="color:#4CC9F0">
+      Regularización L1-L2
+     </span>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-perspectiva-probabilistica-span">
+   <span style="color:#4361EE">
+    Perspectiva probabilística
+   </span>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-distribucion-conjunta-span">
+   <span style="color:#4361EE">
+    Distribución conjunta
+   </span>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-ejemplo-con-la-distribucion-normal-span">
+     <span style="color:#4CC9F0">
+      Ejemplo con la distribución normal
+     </span>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-verosimilitud-span">
+   <span style="color:#4361EE">
+    Verosimilitud
+   </span>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-funcion-de-perdida-asociada-a-la-log-verosimilitud-span">
+   <span style="color:#4361EE">
+    Función de pérdida asociada a la log-verosimilitud
+   </span>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-notas-span">
+     <span style="color:#4CC9F0">
+      Notas
+     </span>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-densidad-condicional-span">
+   <span style="color:#4361EE">
+    Densidad condicional
+   </span>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-regresion-y-maxima-verosimilitud-span">
+   <span style="color:#4361EE">
+    Regresión y máxima verosimilitud
+   </span>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-distribucion-predictiva-span">
+   <span style="color:#4361EE">
+    Distribución predictiva
+   </span>
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="span-style-color-f72585-conceptos-basicos-de-regresion-span">
+<h1><span style="color:#F72585">Conceptos básicos de regresión</span><a class="headerlink" href="#span-style-color-f72585-conceptos-basicos-de-regresion-span" title="Enlazar permanentemente con este título">#</a></h1>
+<section id="span-style-color-4361ee-introduccion-span">
+<h2><span style="color:#4361EE">Introducción</span><a class="headerlink" href="#span-style-color-4361ee-introduccion-span" title="Enlazar permanentemente con este título">#</a></h2>
+<p>En esta lección se introduce una de las máquinas de aprendizaje más conocidas. La máquina de regresión.</p>
+<p>En el caso más simple de un problema de regresión, lo que se busca es establecer una relación entre dos variables aleatorias.</p>
+</section>
+<section id="span-style-color-4361ee-ejemplo-1-modelo-lineal-span">
+<h2><span style="color:#4361EE">Ejemplo 1: Modelo lineal</span><a class="headerlink" href="#span-style-color-4361ee-ejemplo-1-modelo-lineal-span" title="Enlazar permanentemente con este título">#</a></h2>
+<p>La gráfica presenta un conjunto de datos de entrenamiento de <span class="math notranslate nohighlight">\( N = 11 \)</span> puntos, que se muestran como círculos cafés, cada uno con una observación de la variable de entrada <span class="math notranslate nohighlight">\( x \)</span> junto con la variable objetivo correspondiente <span class="math notranslate nohighlight">\( y \)</span>.</p>
+<p>Nuestro objetivo en este caso es entrenar una máquina de aprendizaje de tipo lineal, es decir, de la forma <span class="math notranslate nohighlight">\(y = ax+b\)</span>.</p>
+<p>La curva azul muestra la función <span class="math notranslate nohighlight">\(y= 0.8431 x + 6.339\)</span>, la cual corresponde al modelo lineal entrenado para este conjunto de datos. El entrenamiento fue desarrollado usando la función <em>polyfit()</em> de numpy.</p>
+<p>El área sombreada corresponde a lo que los estadísticos llaman bandas de confianza. No entraremos en detalles, pero se espera que la mayor parte de los datos de entranamiento y validación queden dentro de tales bandas. Esta es una medida de la calidad de la máquina de aprendizaje. El gráfico muestra que las cosas no salieron muy bien. Esto es porque al parecer el comportamineto de los datos que no es lineal.</p>
+<p>Los datos de entrenamiento aparecen de color café y los datos de validación en color verde.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">x_train</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">10</span><span class="p">])</span>
+<span class="n">x_val</span> <span class="o">=</span>  <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span><span class="mi">7</span><span class="p">])</span>
+
+<span class="n">y_train</span> <span class="o">=</span>  <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">3.9</span><span class="p">,</span> <span class="mf">4.4</span><span class="p">,</span> <span class="mf">10.8</span><span class="p">,</span>  <span class="mf">11.2</span><span class="p">,</span> <span class="mf">13.1</span><span class="p">,</span> <span class="mf">14.1</span><span class="p">,</span>  <span class="mf">9.9</span><span class="p">,</span>  <span class="mf">15.1</span><span class="p">,</span> <span class="mf">12.5</span><span class="p">])</span>
+<span class="n">y_val</span> <span class="o">=</span>  <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">10.3</span><span class="p">,</span> <span class="mf">13.9</span><span class="p">])</span>
+
+<span class="c1"># Ajustar una curva lineal y estimar sus y-valores y su error.</span>
+<span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">polyfit</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">deg</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">y_est</span> <span class="o">=</span> <span class="n">a</span> <span class="o">*</span> <span class="n">x_train</span> <span class="o">+</span> <span class="n">b</span>
+<span class="n">y_err</span> <span class="o">=</span> <span class="n">x_train</span><span class="o">.</span><span class="n">std</span><span class="p">()</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">x_train</span><span class="p">)</span> <span class="o">+</span>
+                          <span class="p">(</span><span class="n">x_train</span> <span class="o">-</span> <span class="n">x_train</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span><span class="o">**</span><span class="mi">2</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">((</span><span class="n">x_train</span> <span class="o">-</span> <span class="n">x_train</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_est</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_est</span> <span class="o">-</span> <span class="n">y_err</span><span class="p">,</span> <span class="n">y_est</span> <span class="o">+</span> <span class="n">y_err</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;tab:brown&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_val</span><span class="p">,</span> <span class="n">y_val</span><span class="p">,</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;tab:green&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/am_intro_regresion_5_0.png" src="../../_images/am_intro_regresion_5_0.png" />
+</div>
+</div>
+</section>
+<section id="span-style-color-4361ee-ejemplo-2-modelo-cuadratico-span">
+<h2><span style="color:#4361EE">Ejemplo 2: Modelo cuadrático</span><a class="headerlink" href="#span-style-color-4361ee-ejemplo-2-modelo-cuadratico-span" title="Enlazar permanentemente con este título">#</a></h2>
+<p>En este  segundo intento vamos a entrenar un modelo  de tipo cuadrático de la forma <span class="math notranslate nohighlight">\(y = ax^2 + bx +c\)</span>.  Usaremos al misma herramienta para entrenar el modelo. La gráfica presenta el resultado.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">x_train</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">10</span><span class="p">])</span>
+<span class="n">x_val</span> <span class="o">=</span>  <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span><span class="mi">7</span><span class="p">])</span>
+
+<span class="n">y_train</span> <span class="o">=</span>  <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">3.9</span><span class="p">,</span> <span class="mf">4.4</span><span class="p">,</span> <span class="mf">10.8</span><span class="p">,</span>  <span class="mf">11.2</span><span class="p">,</span> <span class="mf">13.1</span><span class="p">,</span> <span class="mf">14.1</span><span class="p">,</span>  <span class="mf">9.9</span><span class="p">,</span>  <span class="mf">15.1</span><span class="p">,</span> <span class="mf">12.5</span><span class="p">])</span>
+<span class="n">y_val</span> <span class="o">=</span>  <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">10.3</span><span class="p">,</span> <span class="mf">13.9</span><span class="p">])</span>
+
+
+<span class="c1"># Ajustar una curva lineal y estimar sus y-valores y su error.</span>
+<span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">polyfit</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">deg</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">y_est</span> <span class="o">=</span> <span class="n">a</span> <span class="o">*</span> <span class="n">x_train</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">b</span> <span class="o">*</span><span class="n">x_train</span> <span class="o">+</span> <span class="n">c</span>
+<span class="n">y_err</span> <span class="o">=</span> <span class="n">x_train</span><span class="o">.</span><span class="n">std</span><span class="p">()</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">x_train</span><span class="p">)</span> <span class="o">+</span>
+                          <span class="p">(</span><span class="n">x_train</span> <span class="o">-</span> <span class="n">x_train</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span><span class="o">**</span><span class="mi">2</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">((</span><span class="n">x_train</span> <span class="o">-</span> <span class="n">x_train</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_est</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_est</span> <span class="o">-</span> <span class="n">y_err</span><span class="p">,</span> <span class="n">y_est</span> <span class="o">+</span> <span class="n">y_err</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;tab:brown&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_val</span><span class="p">,</span> <span class="n">y_val</span><span class="p">,</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;tab:green&#39;</span><span class="p">)</span>
+<span class="c1">#plt.savefig(&#39;predictive.png&#39;)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/am_intro_regresion_8_0.png" src="../../_images/am_intro_regresion_8_0.png" />
+</div>
+</div>
+<p>El modelo obtenido es <span class="math notranslate nohighlight">\(y = f(x) = -0.185x^2 + 2.701x + 3.8\)</span>.</p>
+<p>De acuerdo con la bandas de confianza este es un mejor modelo. En general existen herramientas para juzgar que tan buena es nuestra máquina de aprendizaje.</p>
+<p>Los valores predichos por el modelo son los que caen sobre la curva. Observe como en este caso los datos de validación quedan bastante bien predichos.</p>
+</section>
+<section id="span-style-color-4361ee-ejemplo-3-modelo-polinomial-general-span">
+<h2><span style="color:#4361EE">Ejemplo 3: Modelo polinomial general</span><a class="headerlink" href="#span-style-color-4361ee-ejemplo-3-modelo-polinomial-general-span" title="Enlazar permanentemente con este título">#</a></h2>
+<p>Por el momento, procederemos de manera bastante informal y consideraremos un
+enfoque simple basado en el ajuste de curvas. En particular, ajustaremos los datos utilizando una
+función polinomial de la forma:</p>
+<div class="math notranslate nohighlight">
+\[y = f(x,\boldsymbol{w}) = w_0 + w_1x + w_2x^2+ . . . + w_M x^M = \sum_{j=0}^M w_jx^j\]</div>
+</section>
+<section id="span-style-color-4361ee-funcion-de-perdida-span">
+<h2><span style="color:#4361EE">Función de pérdida</span><a class="headerlink" href="#span-style-color-4361ee-funcion-de-perdida-span" title="Enlazar permanentemente con este título">#</a></h2>
+<p>Los valores de los coeficientes se determinarán ajustando el polinomio a los datos de entrenamiento. Esto se puede hacer minimizando una función de pérdida que mide el desajuste entre la función <span class="math notranslate nohighlight">\(f(x,\boldsymbol{w})\)</span>, para cualquier valor de  <span class="math notranslate nohighlight">\(\boldsymbol{w}\)</span>, y el conjunto de datos de entrenamiento.</p>
+<p>Una opción simple de función de pérdida, que se usa ampliamente, viene dada por el promedio de <strong>los cuadrados de los errores</strong> entre las predicciones  <span class="math notranslate nohighlight">\(f(x_n,\boldsymbol{w})\)</span>, que denotaremos por <span class="math notranslate nohighlight">\(\tilde{y}_n\)</span>,  y los correspondientes valores objetivo <span class="math notranslate nohighlight">\(y_n\)</span>, de tal manera que se minimice:</p>
+<div class="math notranslate nohighlight">
+\[ECM(w) = \frac{1}{N} \sum_{n=1}^{N} [{f(x_n,\boldsymbol{w}) − y_n}]^2 = \frac{1}{N} \sum_{n=1}^{N} [{\tilde{y}_n − y_n}]^2\]</div>
+</section>
+<section id="span-style-color-4361ee-perdida-en-entrenamiento-vs-perdida-en-validacion-span">
+<h2><span style="color:#4361EE">Pérdida en entrenamiento vs pérdida en validación</span><a class="headerlink" href="#span-style-color-4361ee-perdida-en-entrenamiento-vs-perdida-en-validacion-span" title="Enlazar permanentemente con este título">#</a></h2>
+<p>Los datos de validación se notarán respectivamente como <span class="math notranslate nohighlight">\(x_n^*\)</span> y <span class="math notranslate nohighlight">\(y_n^*\)</span>. Los datos de entrenamiento no tienen ningún símbolo adicional.</p>
+<p>Así, el ECM, es el modelo cuadrático para los datos de entrenamiento, luego de entrenada la máquina, es dado por:</p>
+<div class="math notranslate nohighlight">
+\[
+ECM(w) = \frac{1}{9} \sum_{n=1}^{9} [{f(x_n,\boldsymbol{w}) − y_n}]^2 = \frac{1}{9} \sum_{n=1}^{9} [{\tilde{y}_n − y_n}]^2 \approx 3.05227
+\]</div>
+<p>Para los datos de validación se obtiene:</p>
+<div class="math notranslate nohighlight">
+\[
+ECM(w) = \frac{1}{2} \sum_{n=1}^{2} [{f(x_n^*,\boldsymbol{w}) − y_n^*}]^2 = \frac{1}{2} \sum_{n=1}^{2} [{\tilde{y}_n^* − y_n^*}]^2 \approx 0.04602
+\]</div>
+<p>Este resultado, no es realmente tan placentero. Genera dudas, debido a que se espera que el ECM de validación y el de entrenamiento sean similares. Aquí se puede sospechar que los datos de validación no fueron obtenidos adecuadamente.</p>
+<p>El siguiente código Python enseña como hacer los cálculos de esta sección.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># EMC datos de entrenamiento</span>
+<span class="n">y_est_train</span> <span class="o">=</span> <span class="n">a</span> <span class="o">*</span> <span class="n">x_train</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">b</span> <span class="o">*</span><span class="n">x_train</span> <span class="o">+</span> <span class="n">c</span>
+<span class="nb">print</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">((</span><span class="n">y_train</span><span class="o">-</span> <span class="n">y_est_train</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
+
+<span class="c1"># EMC datos de validación</span>
+<span class="n">y_est_val</span> <span class="o">=</span> <span class="n">a</span> <span class="o">*</span> <span class="n">x_val</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">b</span> <span class="o">*</span><span class="n">x_val</span> <span class="o">+</span> <span class="n">c</span>
+<span class="nb">print</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">((</span><span class="n">y_val</span><span class="o">-</span> <span class="n">y_est_val</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3.0522786407492286
+0.04602282952397197
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="span-style-color-4361ee-sobreajuste-y-otros-problemas-span">
+<h2><span style="color:#4361EE">Sobreajuste y otros problemas</span><a class="headerlink" href="#span-style-color-4361ee-sobreajuste-y-otros-problemas-span" title="Enlazar permanentemente con este título">#</a></h2>
+<p>La siguiente tabla  muestra los coeficientes (parámetros) de los  polinomios entrenados con varios órdenes <span class="math notranslate nohighlight">\( M \)</span>.</p>
+<section id="span-style-color-4cc9f0-parametros-de-regresion-de-acuerdo-con-el-grado-del-polinomio-span">
+<h3><span style="color:#4CC9F0">Parámetros de regresión de acuerdo con el grado del polinomio</span><a class="headerlink" href="#span-style-color-4cc9f0-parametros-de-regresion-de-acuerdo-con-el-grado-del-polinomio-span" title="Enlazar permanentemente con este título">#</a></h3>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p><span class="math notranslate nohighlight">\(w\)</span></p></th>
+<th class="head"><p>M =1</p></th>
+<th class="head"><p>M=2</p></th>
+<th class="head"><p>M=3</p></th>
+<th class="head"><p>M = 8</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(w_0\)</span></p></td>
+<td><p>0.8431</p></td>
+<td><p>-0.1858</p></td>
+<td><p>0.0252</p></td>
+<td><p>-0.00002</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(w_1\)</span></p></td>
+<td><p>6.339</p></td>
+<td><p>2.7011</p></td>
+<td><p>-0.5646</p></td>
+<td><p>-0.001</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(w_2\)</span></p></td>
+<td><p>—</p></td>
+<td><p>3.8</p></td>
+<td><p>4.1183</p></td>
+<td><p>0.0505</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(w_3\)</span></p></td>
+<td><p>—</p></td>
+<td><p>—</p></td>
+<td><p>3.0281</p></td>
+<td><p>-0.7568</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(w_4\)</span></p></td>
+<td><p>—</p></td>
+<td><p>—</p></td>
+<td><p>—</p></td>
+<td><p>5.389</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(w_5\)</span></p></td>
+<td><p>—</p></td>
+<td><p>—</p></td>
+<td><p>—</p></td>
+<td><p>-19.6</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(w_6\)</span></p></td>
+<td><p>—</p></td>
+<td><p>—</p></td>
+<td><p>—</p></td>
+<td><p>33.88</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(w_7\)</span></p></td>
+<td><p>—</p></td>
+<td><p>—</p></td>
+<td><p>—</p></td>
+<td><p>-18.46</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(w_8\)</span></p></td>
+<td><p>—</p></td>
+<td><p>—</p></td>
+<td><p>—</p></td>
+<td><p>3.9</p></td>
+</tr>
+</tbody>
+</table>
+<p>La siguiente gráfica muestra el polinomio entrenado de grado <span class="math notranslate nohighlight">\(M=8\)</span>. Observe que el polinomio pasa por todos los puntos de entrenamiento, por lo que el <span class="math notranslate nohighlight">\(ECM=0\)</span>. Sin embargo, es claro que por fuera del rango de los datos de entrenamiento, este polinomio no generaliza bien. También puede observarse que en este caso el ECM para los datos de validación es mayor que para los datos de entrenamiento.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+
+<span class="n">x_train</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">10</span><span class="p">])</span>
+<span class="n">x_val</span> <span class="o">=</span>  <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span><span class="mi">7</span><span class="p">])</span>
+
+<span class="n">y_train</span> <span class="o">=</span>  <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">3.9</span><span class="p">,</span> <span class="mf">4.4</span><span class="p">,</span> <span class="mf">10.8</span><span class="p">,</span>  <span class="mf">11.2</span><span class="p">,</span> <span class="mf">13.1</span><span class="p">,</span> <span class="mf">14.1</span><span class="p">,</span>  <span class="mf">9.9</span><span class="p">,</span>  <span class="mf">15.1</span><span class="p">,</span> <span class="mf">12.5</span><span class="p">])</span>
+<span class="n">y_val</span> <span class="o">=</span>  <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">10.3</span><span class="p">,</span> <span class="mf">13.9</span><span class="p">])</span>
+
+
+<span class="c1"># Ajustar una curva lineal y estimar sus y-valores y su error.</span>
+<span class="n">w</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">polyfit</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">deg</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+<span class="c1">#y_est = w[0]*x **5 + w[1] *x **4 + w[2] *x **3  + w[3] *x **2 + w[4] *x + w[5] </span>
+<span class="n">xx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">10.5</span><span class="p">,</span><span class="mi">300</span><span class="p">)</span>
+<span class="n">yy</span> <span class="o">=</span> <span class="n">w</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">xx</span> <span class="o">**</span><span class="mi">8</span> <span class="o">+</span> <span class="n">w</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span><span class="n">xx</span> <span class="o">**</span><span class="mi">7</span> <span class="o">+</span> <span class="n">w</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">*</span><span class="n">xx</span> <span class="o">**</span><span class="mi">6</span>  <span class="o">+</span> <span class="n">w</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">*</span><span class="n">xx</span> <span class="o">**</span><span class="mi">5</span> <span class="o">+</span> <span class="n">w</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">*</span><span class="n">xx</span><span class="o">**</span><span class="mi">4</span> <span class="o">+</span> <span class="n">w</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="o">*</span><span class="n">xx</span><span class="o">**</span><span class="mi">3</span> <span class="o">+</span> <span class="n">w</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span> <span class="o">*</span><span class="n">xx</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span>   <span class="n">w</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span> <span class="o">*</span><span class="n">xx</span> <span class="o">+</span>  <span class="n">w</span><span class="p">[</span><span class="mi">8</span><span class="p">]</span> 
+        
+ 
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span> <span class="n">yy</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;tab:brown&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_val</span><span class="p">,</span> <span class="n">y_val</span><span class="p">,</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;tab:blue&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/am_intro_regresion_22_0.png" src="../../_images/am_intro_regresion_22_0.png" />
+</div>
+</div>
+<p>Por otro lado, el modelo cuadrático construido previamente  tiene <span class="math notranslate nohighlight">\(ECM=3.05227\)</span>, pero este parece generalizar mejor.</p>
+<p>Esto significa que cuando se tiene más de una máquina de aprendizaje candidata para nuestro datos, no es un criterio suficiente el del error cuadrático medio. Ambas deben generalizar bien.</p>
+<p>De momento puede decidirse por una máquina que tenga un <em>ECM razonable</em> para nuestros datos siempre que generalice bien.</p>
+<p>Esta revisión permite establecer que el modelo polinomial ajusta sin error los datos de entrenamiento, pero no generaliza bien. En general esto se notará porque el ECM en los datos de validación resulta mas grande que en los datos de entrenamiento.</p>
+<p>Este fenómeno se conoce como <strong>sobreajuste</strong>. Entonces una máquina de aprendizaje está sobre ajustada, cuando predice muy bien una parte de los datos de entrenamiento (pudiendose ser a todo el conjunto de entrenamiento), pero generaliza mal, lo cual puede medirse con datos de validación.</p>
+</section>
+<section id="span-style-color-4cc9f0-ejercicio-span">
+<h3><span style="color:#4CC9F0">Ejercicio</span><a class="headerlink" href="#span-style-color-4cc9f0-ejercicio-span" title="Enlazar permanentemente con este título">#</a></h3>
+<ol class="simple">
+<li><p>Discuta por qué para el ejemplo de las los números de cédulas (entrada) y los número de tarjeta de crédito (salida), siempre es posible construir una máquina de regresión con ECM = 0, pero que nunca puede generalizar bien. Recuerde la clase de modelamiento matemático.</p></li>
+</ol>
+</section>
+</section>
+<section id="span-style-color-4361ee-regularizacion-span">
+<h2><span style="color:#4361EE">Regularización</span><a class="headerlink" href="#span-style-color-4361ee-regularizacion-span" title="Enlazar permanentemente con este título">#</a></h2>
+<p>La tabla de la sección anterior muestra que en el caso del polinomio de grado <span class="math notranslate nohighlight">\(M=8\)</span>, los coeficientes del polinomio (los pesos que debe aprender la máquina de aprendizaje) son grandes en algunos casos y que la norma (la longitud del vector <span class="math notranslate nohighlight">\(\mathbf{w}\)</span> es grande. Por ejemplo, para ese  último caso (<span class="math notranslate nohighlight">\(M=8\)</span>), la norma del vector <span class="math notranslate nohighlight">\(\mathbf{w}\)</span> es:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;norma del vector w=&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">w</span><span class="o">*</span><span class="n">w</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>norma del vector w= 43.79217575237785
+</pre></div>
+</div>
+</div>
+</div>
+<p>Esta situación no es única de este conjunto de datos. En realidad es en buena parte la causante del problema de sobreajuste.</p>
+<p>Es posible resolver este problema recurriendo a técnicas de penalización en el proceso de optimización, conocidads como <strong>técnicas de regularización</strong>.</p>
+<p>El asunto aquí es bastante sencillo. La idea central es introducir términos adicionales en la función de pérdida que será optimizada.</p>
+<p>Las técnicas de regularización por lo general se basan en restricciones impuestas sobre el vector de pesos <span class="math notranslate nohighlight">\(\mathbf{w}\)</span> que evitan que este crezca demasiado. Esas restricciones se introducen usando distintos tipos de norma. Y en ocasiones se incluye más de una. Revisamos aquí las técnicas <span class="math notranslate nohighlight">\(L1\)</span> y <span class="math notranslate nohighlight">\(L2\)</span>.</p>
+<section id="span-style-color-4cc9f0-regularizacion-l2-span">
+<h3><span style="color:#4CC9F0">Regularización L2</span><a class="headerlink" href="#span-style-color-4cc9f0-regularizacion-l2-span" title="Enlazar permanentemente con este título">#</a></h3>
+<p>En este caso la restricción se basa en la norma Euclidiana usual. Si  <span class="math notranslate nohighlight">\(\mathbf{w}\)</span> es un vector geométrico de <span class="math notranslate nohighlight">\(\mathbb{R}^N\)</span>, entonces la norma del vector (su tamaño) es definido como:</p>
+<div class="math notranslate nohighlight">
+\[
+||\mathbf{w}||^2 = \sum_{i=1}^N w_i^2
+\]</div>
+<p>La técnica de regularización <span class="math notranslate nohighlight">\(L2\)</span> consiste en agregar a la función de pérdida la norma cuadrática multiplicada por una constante que debe ser previamente definida. En símbolos se tiene que:</p>
+<div class="math notranslate nohighlight">
+\[
+\mathcal{Loss}(\boldsymbol{w})  = \frac{1}{2} \sum_{n=1}^{N}[f(x_n,\boldsymbol{w}) − y_n]^2 +  \frac{\lambda}{2} ||\boldsymbol{w} ||^2
+\]</div>
+<p>Se puede verificar que la introducción de la regularización <span class="math notranslate nohighlight">\(L2\)</span>, reduce el problema de sobreajuste de la máquina de aprendizaje.</p>
+<p>Dado que la función de pérdida debe ser minimizada, en función de <span class="math notranslate nohighlight">\(\boldsymbol{w}\)</span>, el ingreso de la norma en la pérdida no  permite tener valores grandes de la norma del vector.</p>
+</section>
+<section id="id1">
+<h3><span style="color:#4CC9F0">Ejercicio</span><a class="headerlink" href="#id1" title="Enlazar permanentemente con este título">#</a></h3>
+<p>Use JAX o Autograd, defina la función de pérdida e introduzca la regularización L2. Use los datos de esta lección. ¿Cuáles valores de <span class="math notranslate nohighlight">\(\lambda\)</span> parecen funcionar mejor?</p>
+</section>
+<section id="span-style-color-4cc9f0-regularizacion-l1-span">
+<h3><span style="color:#4CC9F0">Regularización L1</span><a class="headerlink" href="#span-style-color-4cc9f0-regularizacion-l1-span" title="Enlazar permanentemente con este título">#</a></h3>
+<p>En este caso la restricción se basa en la norma <span class="math notranslate nohighlight">\(\mathcal{l}_1\)</span>. Si  <span class="math notranslate nohighlight">\(\mathbf{w}\)</span> es un vector geométrico de <span class="math notranslate nohighlight">\(\mathbb{R}^N\)</span>, entonces la norma <span class="math notranslate nohighlight">\(\mathcal{l}_1\)</span> es definida como:</p>
+<div class="math notranslate nohighlight">
+\[
+||\mathbf{w}||_1 = \sum_{i=1}^N|w_i|
+\]</div>
+<p>La técnica de regularización <span class="math notranslate nohighlight">\(L1\)</span> consiste en agregar a la función de pérdida la norma <span class="math notranslate nohighlight">\(\mathcal{l}_1\)</span> multiplicada por una constante que debe ser concida de antemano. En símbolos se tiene que:</p>
+<div class="math notranslate nohighlight">
+\[
+\mathcal{Loss}(\boldsymbol{w})  = \frac{1}{2} \sum_{n=1}^{N}[f(x_n,\boldsymbol{w}) − y_n]^2 + \lambda \sum_{i=1}^N|w_i|
+\]</div>
+<p>En este caso se controla el tamaño de cada componente de <span class="math notranslate nohighlight">\(\boldsymbol{w}\)</span>.</p>
+</section>
+<section id="span-style-color-4cc9f0-regularizacion-l1-l2-span">
+<h3><span style="color:#4CC9F0">Regularización L1-L2</span><a class="headerlink" href="#span-style-color-4cc9f0-regularizacion-l1-l2-span" title="Enlazar permanentemente con este título">#</a></h3>
+<p>Es posible incluir las dos restriciones en la función de pérdida.  En este caso la función de pérdida queda expresada en la forma:</p>
+<div class="math notranslate nohighlight">
+\[
+\mathcal{Loss}(\boldsymbol{w})  = \frac{1}{2} \sum_{n=1}^{N}[f(x_n,\boldsymbol{w}) − y_n]^2 + \lambda_1 \sum_{i=1}^N|w_i| + \frac{\lambda_2}{2} \sum_{i=1}^Nw_i^2.
+\]</div>
+</section>
+</section>
+<section id="span-style-color-4361ee-perspectiva-probabilistica-span">
+<h2><span style="color:#4361EE">Perspectiva probabilística</span><a class="headerlink" href="#span-style-color-4361ee-perspectiva-probabilistica-span" title="Enlazar permanentemente con este título">#</a></h2>
+<p>Vamos a abordar el problema del aprendizaje de máquina desde la perspectiva estadística. Para hacerlo necesitamos introducir los conceptos de distribución conjunta y verosimilitud.</p>
+</section>
+<section id="span-style-color-4361ee-distribucion-conjunta-span">
+<h2><span style="color:#4361EE">Distribución conjunta</span><a class="headerlink" href="#span-style-color-4361ee-distribucion-conjunta-span" title="Enlazar permanentemente con este título">#</a></h2>
+<p>Supongamos que <span class="math notranslate nohighlight">\(X\)</span> y  <span class="math notranslate nohighlight">\(Y\)</span> son variables aleatorias con función de densidad conjunta dada por <span class="math notranslate nohighlight">\(f_{XY}(x,y)\)</span>. El concepto de función de probabilidad conjunta estudiada antes se generaliza para el caso de variables aleatorias continuas.</p>
+<p>De momento nos interesa el caso en que <span class="math notranslate nohighlight">\(X\)</span> y  <span class="math notranslate nohighlight">\(Y\)</span> son variables aleatorias independientes.</p>
+<p>Decimos que las variables aleatorias <span class="math notranslate nohighlight">\(X\)</span> y  <span class="math notranslate nohighlight">\(Y\)</span>  son independientes si su función de densidad conjunta puede escribirse como:</p>
+<div class="math notranslate nohighlight">
+\[
+f_{XY}(x,y)= f_X(x)f_Y(y),
+\]</div>
+<p>en donde <span class="math notranslate nohighlight">\(f_X(x)\)</span> y <span class="math notranslate nohighlight">\(f_Y(y)\)</span> son las respetivas funciones de densidad de <span class="math notranslate nohighlight">\(X\)</span> y  <span class="math notranslate nohighlight">\(Y\)</span> y  se dicen que estas son las densidades marginales como antes.</p>
+<p>De nuevo esta es una definición bastante técnica y lo que  nos interesa de momento es justamente el caso en que las variables aleatorias son independientes.</p>
+<p>Si se tienen <span class="math notranslate nohighlight">\(N\)</span> variables independientes <span class="math notranslate nohighlight">\(X_1,\cdots,X_N\)</span>, cada una con función de densidad <span class="math notranslate nohighlight">\(f_n(x_n)\)</span>, entonces la función de densidad conjunta de <span class="math notranslate nohighlight">\(X_1,\cdots,X_N\)</span> es dada por:</p>
+<div class="math notranslate nohighlight">
+\[
+f(x_1,\cdots,x_N) = \prod_{n=1}^N f_n(x_n) = f_1(x_1)\cdot f_2(x_2)\cdots f_N(x_N).
+\]</div>
+<section id="span-style-color-4cc9f0-ejemplo-con-la-distribucion-normal-span">
+<h3><span style="color:#4CC9F0">Ejemplo con la distribución normal</span><a class="headerlink" href="#span-style-color-4cc9f0-ejemplo-con-la-distribucion-normal-span" title="Enlazar permanentemente con este título">#</a></h3>
+<p>Supongamos que se tienen <span class="math notranslate nohighlight">\(N\)</span> variables aleatorias normales independientes, cada una con función de densidad dada por <span class="math notranslate nohighlight">\(\phi(x;\mu_n,\sigma_n ^2)\)</span>, en donde <span class="math notranslate nohighlight">\(\phi(x;\mu_n,\sigma_n ^2)\)</span> representa la función de densidad de una distribución normal <span class="math notranslate nohighlight">\(\mathcal{N}(\mu_n,\sigma_n ^2)\)</span>. Entonces la función de densidad conjunta es dada por:</p>
+<div class="math notranslate nohighlight">
+\[ 
+f(x_1,\cdots,x_N|\mu_n,\sigma_n^2, n=1,\cdots,N) = \prod_{n=1}^N \phi(x_n;\mu_n,\sigma_n ^2) = \prod_{n=1}^N \tfrac{1}{\sqrt{2\pi\sigma_n^2}} e^{-\tfrac{(x_n-\mu_n)^2}{2\sigma_n^2}}
+\]</div>
+<p>Si  las variables son una muestra de una única distribución <span class="math notranslate nohighlight">\(\mathcal{N}(\mu,\sigma ^2)\)</span>, la conjunta se escribe como:</p>
+<div class="math notranslate nohighlight">
+\[ 
+f(x_1,\cdots,x_N|\mu,\sigma^2) = \prod_{n=1}^N \tfrac{1}{\sqrt{2\pi\sigma^2}} e^{-\tfrac{(x_n-\mu)^2}{2\sigma^2}}
+\]</div>
+</section>
+</section>
+<section id="span-style-color-4361ee-verosimilitud-span">
+<h2><span style="color:#4361EE">Verosimilitud</span><a class="headerlink" href="#span-style-color-4361ee-verosimilitud-span" title="Enlazar permanentemente con este título">#</a></h2>
+<p>El problema recurrente en estadística es que por lo general se tiene la realización de una muestra estadística de alguna distribución que se desconoce.</p>
+<p>Por facilidad, vamos a trabajar con la distribución Normal, pero su generalización a otras distribuciones es inmediata.</p>
+<p>Supongamos entonces que la muestra proviene teóricamente de una única distribución <span class="math notranslate nohighlight">\(\mathcal{N}(\mu,\sigma^2)\)</span>. La distribución conjunta de la muestra de arriba. Pero ahora los parámetros <span class="math notranslate nohighlight">\((\mu,\sigma^2)\)</span> se desconocen. Por otro lado al tener la realización de la muestra, las variables toman los valores específicos <span class="math notranslate nohighlight">\(x_n\)</span> (justamente los de la realización de la muestra).</p>
+<p>Esto nos lleva a definir una nueva función llamada la <em>verosimilitud</em> dada por:</p>
+<div class="math notranslate nohighlight">
+\[ 
+l(\mu,\sigma^2|x_1,\cdots,x_N) = \prod_{n=1}^N \tfrac{1}{\sqrt{2\pi\sigma^2}} e^{-\tfrac{(x_n-\mu)^2}{2\sigma^2}}
+\]</div>
+<p>Observe que hemos intercambiado los roles. Ahora las variables son <span class="math notranslate nohighlight">\((\mu,\sigma^2)\)</span>, mientras que <span class="math notranslate nohighlight">\(x_1,\cdots,x_N\)</span> son ahora valores conocidos. La función <span class="math notranslate nohighlight">\(l(\mu,\sigma^2|x_1,\cdots,x_N)\)</span> ya no es una función de densidad.</p>
+<p>El problema estadístico se reduce ahora a encontrar valores para <span class="math notranslate nohighlight">\((\mu,\sigma^2)\)</span> que maximizan a la función <span class="math notranslate nohighlight">\(l(\mu,\sigma^2|x_1,\cdots,x_N)\)</span>.</p>
+<p>Para entender porque tiene sentido maximizar esta función vamos a utilizar el concepto de información.</p>
+</section>
+<section id="span-style-color-4361ee-funcion-de-perdida-asociada-a-la-log-verosimilitud-span">
+<h2><span style="color:#4361EE">Función de pérdida asociada a la log-verosimilitud</span><a class="headerlink" href="#span-style-color-4361ee-funcion-de-perdida-asociada-a-la-log-verosimilitud-span" title="Enlazar permanentemente con este título">#</a></h2>
+<p>Para los valores <span class="math notranslate nohighlight">\(x_1,\cdots,x_N\)</span>, una función de pérdida es dada por:</p>
+<div class="math notranslate nohighlight">
+\[
+\mathcal{Loss}(\mu, \sigma^2) =  - \tfrac{1}{N} \sum_{n=1}^N\log l(x_n;\mu,\sigma^2)
+\]</div>
+<p>Observe que en este caso la función de pérdida está asociada a la información que transportan los valores observados. Entonces con esta función de pérdida se buscan los parámetros <span class="math notranslate nohighlight">\((\mu, \sigma^2)\)</span> que minimiza la información transportada por los datos y por tanto permite que sean más predecibles por la máquina de aprendizaje.</p>
+<p>Se toma el promedio, para poder comparar la función de pérdida usando los datos de entrenamiento con los datos de validación.</p>
+<p>En este caso, se tiene que esta función de pérdida y la log-verosimiltud están relacionadas de esta forma:</p>
+<div class="math notranslate nohighlight">
+\[
+\mathcal{Loss}(\mu, \sigma^2) =  - \tfrac{1}{N} l(\mu,\sigma^2|x_1,\cdots,x_N).
+\]</div>
+<p>Por lo tanto, un máximo de <span class="math notranslate nohighlight">\(l(\mu,\sigma^2|x_1,\cdots,x_N)\)</span> es un mínimo de <span class="math notranslate nohighlight">\(\mathcal{Loss}(\mu, \sigma^2)\)</span> y viceversa.</p>
+<section id="span-style-color-4cc9f0-notas-span">
+<h3><span style="color:#4CC9F0">Notas</span><a class="headerlink" href="#span-style-color-4cc9f0-notas-span" title="Enlazar permanentemente con este título">#</a></h3>
+<ol class="simple">
+<li><p>Observe además que hemos encontrado una nueva función de pérdida diferente al ECM. Sin embargo, si la distribución asociada en el problema es la Normal, se llega a la misma función de pérdida. Por eso es bastante usual la utilización del ECM como función de pérdida en los problemas de regresión en el área del aprendizaje de máquinas.</p></li>
+<li><p>Puede verificarse que la optimización de <span class="math notranslate nohighlight">\(\mu\)</span> y <span class="math notranslate nohighlight">\(\sigma\)</span> puede hacerse de forma independiente en el caso Normal. Generalmente, el parámetro <span class="math notranslate nohighlight">\(\sigma^2\)</span> no se incluye en los modelos de aprendizaje profundo. Principalmente porque el ECM no depende de ninguna distribución particular.</p></li>
+</ol>
+</section>
+</section>
+<section id="span-style-color-4361ee-densidad-condicional-span">
+<h2><span style="color:#4361EE">Densidad condicional</span><a class="headerlink" href="#span-style-color-4361ee-densidad-condicional-span" title="Enlazar permanentemente con este título">#</a></h2>
+<p>Supongamos dos variables aleatorias <span class="math notranslate nohighlight">\(X\)</span> y <span class="math notranslate nohighlight">\(Y\)</span> con densidad conjunta dada por <span class="math notranslate nohighlight">\(f_{XY}(x,y)\)</span>. Ya sabemos que si las dos variables son independientes, entonces <span class="math notranslate nohighlight">\(f_{XY}(x,y)=f_X(x)f_Y(y)\)</span>.</p>
+<p>Por otro lado, en los problemas de regresión se espera justamente que las variables que se busca poner en relación no sean independientes. Entonces la forma de construcción de la máquina de aprendizaje es plantear la densidad de <span class="math notranslate nohighlight">\(Y\)</span> condicionada a los valores observados de <span class="math notranslate nohighlight">\(X\)</span>.</p>
+<p>La densidad condicional de  <span class="math notranslate nohighlight">\(Y\)</span> condicionada a valores de <span class="math notranslate nohighlight">\(X\)</span> se escribe <span class="math notranslate nohighlight">\(f(y|x)\)</span>. En la teoría de probabilidad se comprueba que:</p>
+<div class="math notranslate nohighlight">
+\[
+f_{XY}(x,y) = f_X(x)f(y|x).
+\]</div>
+<p>Esta ecuación se usa constantemente para definir <span class="math notranslate nohighlight">\(f(y|x)\)</span> como:</p>
+<div class="math notranslate nohighlight">
+\[
+f(y|x) = \frac{f_{XY}(x,y)}{f_X(x)}.
+\]</div>
+<p>Observe que si las variables son independentes, entonces <span class="math notranslate nohighlight">\(f(y|x) = f_Y(y)\)</span>.</p>
+</section>
+<section id="span-style-color-4361ee-regresion-y-maxima-verosimilitud-span">
+<h2><span style="color:#4361EE">Regresión y máxima verosimilitud</span><a class="headerlink" href="#span-style-color-4361ee-regresion-y-maxima-verosimilitud-span" title="Enlazar permanentemente con este título">#</a></h2>
+<p>El objetivo en el problema de ajuste de curvas es poder <strong>hacer predicciones</strong> para la
+variable objetivo <span class="math notranslate nohighlight">\( t\)</span> dado algún nuevo valor de la variable de entrada <span class="math notranslate nohighlight">\( x \)</span> sobre la base de un conjunto de datos de entrenamiento que comprenden <span class="math notranslate nohighlight">\( N \)</span> valores de entrada <span class="math notranslate nohighlight">\( \mathbf{x} = (x_1, \cdots, x_N) ^ T \)</span> y sus correspondientes valores objetivo <span class="math notranslate nohighlight">\( \mathbf{t} = (t_1, \cdots, t_N) ^ T \)</span>.</p>
+<p>Podemos expresar la incertidumbre sobre el valor de la variable objetivo utilizando una distribución de probabilidad. Para este propósito, asumiremos que, dado el valor de <span class="math notranslate nohighlight">\( x \)</span>, el valor correspondiente de <span class="math notranslate nohighlight">\( t \)</span> tiene una distribución Gaussiana (Normal) con una media igual al valor <span class="math notranslate nohighlight">\( y (x, \boldsymbol{w}) \)</span> de la curva polinomial. Así tenemos:</p>
+<div class="math notranslate nohighlight">
+\[ 
+p(t|x,\boldsymbol{w}, \beta) = \mathcal{N} (t|y(x,\boldsymbol{w}), \beta^{-1}),
+\]</div>
+<p>en donde  <span class="math notranslate nohighlight">\(\beta\)</span> es el parámetro de precisión (inverso del parámetro de escala). La gráfica ilustra la situación.</p>
+<figure>
+<center>
+<img src="https://raw.githubusercontent.com/AprendizajeProfundo/Libro-Fundamentos/main/Fundamentacion_Matematica/Imagenes/regression_curve.png" width="400" height="300" align="center"/>
+</center>
+<figcaption>
+<p style="text-align:center">Ejemplo de una curva de regresión: y(x) = E[ t | x ] </p>
+</figcaption>
+</figure><p>Ahora usamos los datos de entrenamiento <span class="math notranslate nohighlight">\(\{\boldsymbol {x, t} \}\)</span> para determinar los valores desconocidos de los parámetros <span class="math notranslate nohighlight">\( \boldsymbol{w} \)</span> y <span class="math notranslate nohighlight">\(\beta \)</span> utilizando la máxima verosimilitud (el valor que maximiza la verosimilitud).</p>
+<p>Si se supone que las parejas  <span class="math notranslate nohighlight">\((x_n,t_n)\)</span> se observan  independientemente, entonces la función de verosimilitud viene dada por:</p>
+<div class="math notranslate nohighlight">
+\[
+p(t|\boldsymbol{x, t}, \beta) = \prod_{n=1}^{N} \mathcal{N}(t_n|y(x_n,\boldsymbol{w}), \beta^{-1})
+\]</div>
+<p>El logaritmo de la verosimilitud es dado por:</p>
+<div class="math notranslate nohighlight">
+\[ \ln p(t|\boldsymbol{x, t}, \beta) = -\frac{\beta}{2}\sum_{n=1}^{N}[y(x_n,\boldsymbol{w})-t_n]^2 + \frac{N}{2} \ln \beta   - \frac{N}{2} \ln (2 \pi)\]</div>
+<p>Supongamos que <span class="math notranslate nohighlight">\(\boldsymbol{\phi}(x)\)</span> define un vector con elementos <span class="math notranslate nohighlight">\(\boldsymbol{\phi}_i(x) = x_i\)</span>, para <span class="math notranslate nohighlight">\(i=1,\cdots,M\)</span>.</p>
+<p>Sea <span class="math notranslate nohighlight">\(\boldsymbol{\phi}(X)\)</span> la matriz cuyas filas están dadas por <span class="math notranslate nohighlight">\((1,\boldsymbol{\phi}(x_n)^T)\)</span>, para <span class="math notranslate nohighlight">\(n=1,\cdots,N\)</span>.  Las estimaciones de máxima verosimilutud (EMV) estan dadas por:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+\boldsymbol{w}_{ml} &amp;= [\boldsymbol{\phi}(X)^T\boldsymbol{\phi}(X)]^{-1}\boldsymbol{\phi}(X)^T\boldsymbol{t},\\
+\beta^{-1}_{ml} &amp;=\frac{1}{N} \sum_{n=1}^{N}[y(x_n,\boldsymbol{w}_{ml})-t_n]^2.
+\end{align*}
+\end{split}\]</div>
+<p>Además se verifica que:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+E(\boldsymbol{w}_{ml}) &amp;= \boldsymbol{w}\\
+E(\beta^{-1}_{ml}) &amp;= \left(\tfrac{N-1}{N}\right)\beta^{-1}.
+\end{align*}
+\end{split}\]</div>
+</section>
+<section id="span-style-color-4361ee-distribucion-predictiva-span">
+<h2><span style="color:#4361EE">Distribución predictiva</span><a class="headerlink" href="#span-style-color-4361ee-distribucion-predictiva-span" title="Enlazar permanentemente con este título">#</a></h2>
+<p>Después de obtener las estimaciones de máxima verosimilitud (EMV), tenemos una distribución predictiva que corresponde a la distribución de probabilidad condicional <span class="math notranslate nohighlight">\(p(t|x,\widehat{\boldsymbol{w}},\widehat{\beta}^{-1})\)</span> dado, la cual se obtiene tomando como parámetros la EMV de parámetros de probabilidad para obtener en este caso:</p>
+<div class="math notranslate nohighlight">
+\[ 
+p(t|\widehat{\boldsymbol{w}},\widehat{\beta}) = \mathcal{N}(t|y(x,\widehat{\boldsymbol{w}}),\widehat{\beta}^{-1})
+\]</div>
+<p>La siguiente gráfica ilustra la distribución predictiva en nuestro ejemplo inicial.</p>
+<figure>
+<center>
+<img src="https://raw.githubusercontent.com/AprendizajeProfundo/Libro-Fundamentos/main/Fundamentacion_Matematica/Imagenes/predictive_2.png" width="400" height="300" align="center"/>
+</center>
+<figcaption>
+<p style="text-align:center">Distribución predictiva: $p(t|\widehat{\boldsymbol{w}},\widehat{\beta}) = \mathcal{N}(t|y(x,\widehat{\boldsymbol{w}}),\widehat{\beta}^{-1})$</p>
+</figcaption>
+</figure></section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "AprendizajeProfundo/Libro-Fundamentos",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./Fundamentacion_Matematica\Cuadernos"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Álvaro Mauricio Montenegro Díaz, Daniel Mauricio Montenegro Reyes<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

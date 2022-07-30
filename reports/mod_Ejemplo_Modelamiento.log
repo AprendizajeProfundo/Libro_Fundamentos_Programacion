@@ -1,0 +1,79 @@
+Traceback (most recent call last):
+  File "c:\users\user\appdata\local\programs\python\python39\lib\site-packages\jupyter_cache\executors\utils.py", line 51, in single_nb_execution
+    executenb(
+  File "c:\users\user\appdata\local\programs\python\python39\lib\site-packages\nbclient\client.py", line 1093, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+  File "c:\users\user\appdata\local\programs\python\python39\lib\site-packages\nbclient\util.py", line 84, in wrapped
+    return just_run(coro(*args, **kwargs))
+  File "c:\users\user\appdata\local\programs\python\python39\lib\site-packages\nbclient\util.py", line 62, in just_run
+    return loop.run_until_complete(coro)
+  File "c:\users\user\appdata\local\programs\python\python39\lib\asyncio\base_events.py", line 642, in run_until_complete
+    return future.result()
+  File "c:\users\user\appdata\local\programs\python\python39\lib\site-packages\nbclient\client.py", line 559, in async_execute
+    await self.async_execute_cell(
+  File "c:\users\user\appdata\local\programs\python\python39\lib\site-packages\nbclient\client.py", line 854, in async_execute_cell
+    self._check_raise_for_error(cell, exec_reply)
+  File "c:\users\user\appdata\local\programs\python\python39\lib\site-packages\nbclient\client.py", line 756, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+from scipy.optimize import curve_fit
+
+# GENERAR EL MODELO
+def modelito(x,parametros):
+    return # Adivina adivinador
+
+# usando la función curve_fit para hacer el ajuste
+pars,_ = curve_fit(modelito(x,y), x, y)
+
+# observar pesos
+print(pars)
+------------------
+
+[1;31m---------------------------------------------------------------------------[0m
+[1;31mTypeError[0m                                 Traceback (most recent call last)
+[1;32m~\AppData\Local\Temp/ipykernel_15024/1491018160.py[0m in [0;36m<module>[1;34m[0m
+[0;32m      6[0m [1;33m[0m[0m
+[0;32m      7[0m [1;31m# usando la función curve_fit para hacer el ajuste[0m[1;33m[0m[1;33m[0m[0m
+[1;32m----> 8[1;33m [0mpars[0m[1;33m,[0m[0m_[0m [1;33m=[0m [0mcurve_fit[0m[1;33m([0m[0mmodelito[0m[1;33m([0m[0mx[0m[1;33m,[0m[0my[0m[1;33m)[0m[1;33m,[0m [0mx[0m[1;33m,[0m [0my[0m[1;33m)[0m[1;33m[0m[1;33m[0m[0m
+[0m[0;32m      9[0m [1;33m[0m[0m
+[0;32m     10[0m [1;31m# observar pesos[0m[1;33m[0m[1;33m[0m[0m
+
+[1;32mc:\users\user\appdata\local\programs\python\python39\lib\site-packages\scipy\optimize\minpack.py[0m in [0;36mcurve_fit[1;34m(f, xdata, ydata, p0, sigma, absolute_sigma, check_finite, bounds, method, jac, **kwargs)[0m
+[0;32m    705[0m     [1;32mif[0m [0mp0[0m [1;32mis[0m [1;32mNone[0m[1;33m:[0m[1;33m[0m[1;33m[0m[0m
+[0;32m    706[0m         [1;31m# determine number of parameters by inspecting the function[0m[1;33m[0m[1;33m[0m[0m
+[1;32m--> 707[1;33m         [0msig[0m [1;33m=[0m [0m_getfullargspec[0m[1;33m([0m[0mf[0m[1;33m)[0m[1;33m[0m[1;33m[0m[0m
+[0m[0;32m    708[0m         [0margs[0m [1;33m=[0m [0msig[0m[1;33m.[0m[0margs[0m[1;33m[0m[1;33m[0m[0m
+[0;32m    709[0m         [1;32mif[0m [0mlen[0m[1;33m([0m[0margs[0m[1;33m)[0m [1;33m<[0m [1;36m2[0m[1;33m:[0m[1;33m[0m[1;33m[0m[0m
+
+[1;32mc:\users\user\appdata\local\programs\python\python39\lib\site-packages\scipy\_lib\_util.py[0m in [0;36mgetfullargspec_no_self[1;34m(func)[0m
+[0;32m    368[0m [1;33m[0m[0m
+[0;32m    369[0m     """
+[1;32m--> 370[1;33m     [0msig[0m [1;33m=[0m [0minspect[0m[1;33m.[0m[0msignature[0m[1;33m([0m[0mfunc[0m[1;33m)[0m[1;33m[0m[1;33m[0m[0m
+[0m[0;32m    371[0m     args = [
+[0;32m    372[0m         [0mp[0m[1;33m.[0m[0mname[0m [1;32mfor[0m [0mp[0m [1;32min[0m [0msig[0m[1;33m.[0m[0mparameters[0m[1;33m.[0m[0mvalues[0m[1;33m([0m[1;33m)[0m[1;33m[0m[1;33m[0m[0m
+
+[1;32mc:\users\user\appdata\local\programs\python\python39\lib\inspect.py[0m in [0;36msignature[1;34m(obj, follow_wrapped)[0m
+[0;32m   3111[0m [1;32mdef[0m [0msignature[0m[1;33m([0m[0mobj[0m[1;33m,[0m [1;33m*[0m[1;33m,[0m [0mfollow_wrapped[0m[1;33m=[0m[1;32mTrue[0m[1;33m)[0m[1;33m:[0m[1;33m[0m[1;33m[0m[0m
+[0;32m   3112[0m     [1;34m"""Get a signature object for the passed callable."""[0m[1;33m[0m[1;33m[0m[0m
+[1;32m-> 3113[1;33m     [1;32mreturn[0m [0mSignature[0m[1;33m.[0m[0mfrom_callable[0m[1;33m([0m[0mobj[0m[1;33m,[0m [0mfollow_wrapped[0m[1;33m=[0m[0mfollow_wrapped[0m[1;33m)[0m[1;33m[0m[1;33m[0m[0m
+[0m[0;32m   3114[0m [1;33m[0m[0m
+[0;32m   3115[0m [1;33m[0m[0m
+
+[1;32mc:\users\user\appdata\local\programs\python\python39\lib\inspect.py[0m in [0;36mfrom_callable[1;34m(cls, obj, follow_wrapped)[0m
+[0;32m   2860[0m     [1;32mdef[0m [0mfrom_callable[0m[1;33m([0m[0mcls[0m[1;33m,[0m [0mobj[0m[1;33m,[0m [1;33m*[0m[1;33m,[0m [0mfollow_wrapped[0m[1;33m=[0m[1;32mTrue[0m[1;33m)[0m[1;33m:[0m[1;33m[0m[1;33m[0m[0m
+[0;32m   2861[0m         [1;34m"""Constructs Signature for the given callable object."""[0m[1;33m[0m[1;33m[0m[0m
+[1;32m-> 2862[1;33m         return _signature_from_callable(obj, sigcls=cls,
+[0m[0;32m   2863[0m                                         follow_wrapper_chains=follow_wrapped)
+[0;32m   2864[0m [1;33m[0m[0m
+
+[1;32mc:\users\user\appdata\local\programs\python\python39\lib\inspect.py[0m in [0;36m_signature_from_callable[1;34m(obj, follow_wrapper_chains, skip_bound_arg, sigcls)[0m
+[0;32m   2259[0m [1;33m[0m[0m
+[0;32m   2260[0m     [1;32mif[0m [1;32mnot[0m [0mcallable[0m[1;33m([0m[0mobj[0m[1;33m)[0m[1;33m:[0m[1;33m[0m[1;33m[0m[0m
+[1;32m-> 2261[1;33m         [1;32mraise[0m [0mTypeError[0m[1;33m([0m[1;34m'{!r} is not a callable object'[0m[1;33m.[0m[0mformat[0m[1;33m([0m[0mobj[0m[1;33m)[0m[1;33m)[0m[1;33m[0m[1;33m[0m[0m
+[0m[0;32m   2262[0m [1;33m[0m[0m
+[0;32m   2263[0m     [1;32mif[0m [0misinstance[0m[1;33m([0m[0mobj[0m[1;33m,[0m [0mtypes[0m[1;33m.[0m[0mMethodType[0m[1;33m)[0m[1;33m:[0m[1;33m[0m[1;33m[0m[0m
+
+[1;31mTypeError[0m: None is not a callable object
+TypeError: None is not a callable object
+

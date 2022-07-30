@@ -1,0 +1,2052 @@
+
+<!DOCTYPE html>
+
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Red Neuronal desde Cero &#8212; Fundamentos de IA y AP</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script src="../../_static/tabs.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../../_static/translations.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Índice" href="../../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../../search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="es">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../_static/logo-final-ap.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Fundamentos de IA y AP</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../tutorial.html">
+                    <span style="color:#F72585">Bienvenido(a)</span>
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Conociendo el libro
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Inicio/Cuadernos/Consideraciones.html">
+   <span style="color:#F72585">
+    Conociendo el Libro
+   </span>
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Fundamentos de Estadística
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Fundamentacion_Estadistica/Cuadernos/Prob_Conceptos_Basicos.html">
+   <span style="color:#F72585">
+    Probabilidad
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Fundamentacion_Estadistica/Cuadernos/Prob_Variables_Aleatorias.html">
+   <span style="color:#F72585">
+    Variables Aleatorias
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Fundamentacion_Estadistica/Cuadernos/Prob_Var_Prob_conjunta.html">
+   <span style="color:#F72585">
+    Probabilidad Conjunta y Entropía Cruzada
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Fundamentacion_Estadistica/Cuadernos/Prob_Distribuciones_continuas.html">
+   <span style="color:#F72585">
+    Distribuciones de probabilidad continuas
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Fundamentacion_Estadistica/Cuadernos/Regresi%C3%B3n-Lineal-Pyton-Copy1.html">
+   <span style="color:#F72585">
+    Regresión Lineal en Python
+   </span>
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Teoría de la Información
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Fundamentacion_Estadistica/Cuadernos/ti_Teoria_Informacion.html">
+   <span style="color:#F72585">
+    Teoría de la Información
+   </span>
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Álgebra Lineal
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Fundamentacion_Matematica/Cuadernos/Intro_Tensores_I.html">
+   <span style="color:#F72585">
+    Introducción a tensores
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Fundamentacion_Matematica/Cuadernos/Intro_Tensores_II.html">
+   <span style="color:#F72585">
+    Tensores
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Fundamentacion_Matematica/Cuadernos/Tensor_Distribucion_Prob.html">
+   <span style="color:#F72585">
+    Tensores y distribuciones de probabilidad
+   </span>
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Modelación
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Fundamentacion_Matematica/Cuadernos/mod_Modelamiento.html">
+   <span style="color:#F72585">
+    Ejemplos de Modelos
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Fundamentacion_Matematica/Cuadernos/mod_Ejemplo_Modelamiento.html">
+   <span style="color:#F72585">
+    Ejemplos de Modelamiento
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Fundamentacion_Matematica/Cuadernos/cal_derivadas.html">
+   <span style="color:#F72585">
+    Introducción a la Derivación
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Fundamentacion_Matematica/Cuadernos/Optimization_1.html">
+   <span style="color:#F72585">
+    Optimización univariada usando JAX
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Fundamentacion_Matematica/Cuadernos/Optimization_2.html">
+   <span style="color:#F72585">
+    Optimización multivariada usando JAX
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Fundamentacion_Matematica/Cuadernos/am-sdg.html">
+   <span style="color:#F72585">
+    Optimización
+   </span>
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Aprendizaje de máquinas
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Machine_Learning/Cuadernos/am_intro_aprendizaje_maquinas.html">
+   <span style="color:#F72585">
+    Conceptos básicos de aprendizaje de máquinas
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Machine_Learning/Cuadernos/am_Regresion_logistica_JAX.html">
+   <span style="color:#F72585">
+    Modelo Lineal de Clasificación  con JAX
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Machine_Learning/Cuadernos/am_Regresion_Logistica_Tensorflow.html">
+   <span style="color:#F72585">
+    Modelo Logístico de Clasificación  con Tensorflow 2.X
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Machine_Learning/Cuadernos/am_regresion_Keras.html">
+   <span style="color:#F72585">
+    Regresion Basica con tf.keras: Predecir eficiencia de la gasolina
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Machine_Learning/Cuadernos/am-logistico-keras-cancer.html">
+   <span style="color:#F72585">
+    Modelo logístico de predicción en tf.keras
+   </span>
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Aprendizaje de máquinas no supervisado
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Machine_Learning/Cuadernos/BreveIntroduccion2R.html">
+   <span style="color:#F72585">
+    Breve introducción a R
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Machine_Learning/Cuadernos/AprendizajeNoSupervisado.html">
+   <span style="color:#F72585">
+    Aprendizaje no supervisado
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Machine_Learning/Cuadernos/ACP.html">
+   <span style="color:#F72585">
+    Análisis en componentes principales
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Machine_Learning/Cuadernos/ACS.html">
+   <span style="color:#F72585">
+    Análisis de correspondencias simples
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Machine_Learning/Cuadernos/ACM.html">
+   <span style="color:#F72585">
+    Análisis de correspondencias múltiples (ACM)
+   </span>
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Mapas auto-organizados (SOM)
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Machine_Learning/Cuadernos/som_Introduccion.html">
+   <span style="color:#F72585">
+    Mapas Auto-organizados (SOM)
+   </span>
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Redes Neuronales
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="RedesNeuronales_intro.html">
+   <span style="color:#F72585">
+    Introducción a Redes Neuronales
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Activation_Functions.html">
+   <span style="color:#F72585">
+    Funciones de Activación
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Hello_World_ML.html">
+   <span style="color:#F72585">
+    Introducción a Keras Sequential y API Funcional
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Intro_Keras_Sequential.html">
+   <span style="color:#F72585">
+    Introducción a la API Sequential de Keras
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Intro_Keras_Functional.html">
+   <span style="color:#F72585">
+    Introducción a la API funcional de Keras
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="am-softmax-keras-iris.html">
+   <span style="color:#F72585">
+    Clasificación, Softmax, Iris
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="am_regresion_Keras_gasolina.html">
+   <span style="color:#F72585">
+    Regresion Basica con tf.keras: Predecir eficiencia de la gasolina
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="am-subclassing-iris.html">
+   <span style="color:#F72585">
+    Subclassing-Modelo de Regresión multi-logística
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="NN_Animation2.html">
+   <span style="color:#F72585">
+    Visualización del Entrenamiento de una Red Neuronal
+   </span>
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/AprendizajeProfundo/Libro-Fundamentos/main?urlpath=tree/Redes_Neuronales/Cuadernos/am_Red_De_Cero.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://colab.research.google.com/github/AprendizajeProfundo/Libro-Fundamentos/blob/main/Redes_Neuronales/Cuadernos/am_Red_De_Cero.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Colab"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../../_static/images/logo_colab.png">
+  </span>
+<span class="headerbtn__text-container">Colab</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="initThebeSBT()"
+  class="headerbtn headerbtn-launch-thebe"
+  data-toggle="tooltip"
+data-placement="left"
+title="Launch Thebe"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="headerbtn__text-container">Live Code</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/AprendizajeProfundo/Libro-Fundamentos"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/AprendizajeProfundo/Libro-Fundamentos/issues/new?title=Issue%20on%20page%20%2FRedes_Neuronales/Cuadernos/am_Red_De_Cero.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/AprendizajeProfundo/Libro-Fundamentos/edit/main/Redes_Neuronales/Cuadernos/am_Red_De_Cero.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Edit this page"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="headerbtn__text-container">suggest edit</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../../_sources/Redes_Neuronales/Cuadernos/am_Red_De_Cero.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-introduccion-span">
+   <span style="color:#4361EE">
+    Introducción
+   </span>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-descargando-datos-de-ejemplo-span">
+   <span style="color:#4361EE">
+    Descargando datos de ejemplo
+   </span>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-opcional-request-span">
+     <span style="color:#4CC9F0">
+      Opcional request
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-opcional-leyendo-datos-con-pickle-span">
+     <span style="color:#4CC9F0">
+      Opcional Leyendo Datos con Pickle
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-lectura-de-datos-desde-keras-span">
+     <span style="color:#4CC9F0">
+      Lectura de datos desde Keras
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-librerias-requeridas-span">
+     <span style="color:#4CC9F0">
+      Librerías requeridas
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-aplana-los-datos-span">
+     <span style="color:#4CC9F0">
+      Aplana los datos
+     </span>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-visualizando-los-datos-span">
+   <span style="color:#4361EE">
+    Visualizando los Datos
+   </span>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-transformar-datos-a-forma-tensorial-span">
+   <span style="color:#4361EE">
+    Transformar Datos a Forma Tensorial
+   </span>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-objetivo-de-la-red-neuronal-span">
+   <span style="color:#4361EE">
+    Objetivo de la Red Neuronal
+   </span>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-modelo-logistico-multinomial-span">
+     <span style="color:#4CC9F0">
+      Modelo Logístico Multinomial
+     </span>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-red-neuronal-artificial-desde-cero-span">
+   <span style="color:#4361EE">
+    Red Neuronal Artificial desde cero!
+   </span>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-racional-span">
+     <span style="color:#4CC9F0">
+      Racional
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-diferenciacion-automatica-span">
+     <span style="color:#4CC9F0">
+      Diferenciación Automática
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-funcion-de-activacion-softmax-span">
+     <span style="color:#4CC9F0">
+      Función de Activación Softmax
+     </span>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-paso-hacia-adelante-forward-pass-span">
+   <span style="color:#4361EE">
+    Paso Hacia Adelante (Forward Pass)
+   </span>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-funcion-de-perdida-span">
+     <span style="color:#4CC9F0">
+      Función de pérdida
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-el-modelo-span">
+     <span style="color:#4CC9F0">
+      El Modelo
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     <span style="color:#4CC9F0">
+      Función de pérdida
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-prediccion-span">
+     <span style="color:#4CC9F0">
+      Predicción
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#precision">
+     Precisión
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-entrenamiento-de-la-red-span">
+     <span style="color:#4CC9F0">
+      Entrenamiento de la Red
+     </span>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-recuperando-estimaciones-weights-bias-span">
+   <span style="color:#4361EE">
+    Recuperando estimaciones (Weights &amp; Bias)
+   </span>
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1><span style="color:#F72585">Red Neuronal desde Cero</span></h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-introduccion-span">
+   <span style="color:#4361EE">
+    Introducción
+   </span>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-descargando-datos-de-ejemplo-span">
+   <span style="color:#4361EE">
+    Descargando datos de ejemplo
+   </span>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-opcional-request-span">
+     <span style="color:#4CC9F0">
+      Opcional request
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-opcional-leyendo-datos-con-pickle-span">
+     <span style="color:#4CC9F0">
+      Opcional Leyendo Datos con Pickle
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-lectura-de-datos-desde-keras-span">
+     <span style="color:#4CC9F0">
+      Lectura de datos desde Keras
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-librerias-requeridas-span">
+     <span style="color:#4CC9F0">
+      Librerías requeridas
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-aplana-los-datos-span">
+     <span style="color:#4CC9F0">
+      Aplana los datos
+     </span>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-visualizando-los-datos-span">
+   <span style="color:#4361EE">
+    Visualizando los Datos
+   </span>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-transformar-datos-a-forma-tensorial-span">
+   <span style="color:#4361EE">
+    Transformar Datos a Forma Tensorial
+   </span>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-objetivo-de-la-red-neuronal-span">
+   <span style="color:#4361EE">
+    Objetivo de la Red Neuronal
+   </span>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-modelo-logistico-multinomial-span">
+     <span style="color:#4CC9F0">
+      Modelo Logístico Multinomial
+     </span>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-red-neuronal-artificial-desde-cero-span">
+   <span style="color:#4361EE">
+    Red Neuronal Artificial desde cero!
+   </span>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-racional-span">
+     <span style="color:#4CC9F0">
+      Racional
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-diferenciacion-automatica-span">
+     <span style="color:#4CC9F0">
+      Diferenciación Automática
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-funcion-de-activacion-softmax-span">
+     <span style="color:#4CC9F0">
+      Función de Activación Softmax
+     </span>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-paso-hacia-adelante-forward-pass-span">
+   <span style="color:#4361EE">
+    Paso Hacia Adelante (Forward Pass)
+   </span>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-funcion-de-perdida-span">
+     <span style="color:#4CC9F0">
+      Función de pérdida
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-el-modelo-span">
+     <span style="color:#4CC9F0">
+      El Modelo
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     <span style="color:#4CC9F0">
+      Función de pérdida
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-prediccion-span">
+     <span style="color:#4CC9F0">
+      Predicción
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#precision">
+     Precisión
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-entrenamiento-de-la-red-span">
+     <span style="color:#4CC9F0">
+      Entrenamiento de la Red
+     </span>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-recuperando-estimaciones-weights-bias-span">
+   <span style="color:#4361EE">
+    Recuperando estimaciones (Weights &amp; Bias)
+   </span>
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="span-style-color-f72585-red-neuronal-desde-cero-span">
+<h1><span style="color:#F72585">Red Neuronal desde Cero</span><a class="headerlink" href="#span-style-color-f72585-red-neuronal-desde-cero-span" title="Enlazar permanentemente con este título">#</a></h1>
+<section id="span-style-color-4361ee-introduccion-span">
+<h2><span style="color:#4361EE">Introducción</span><a class="headerlink" href="#span-style-color-4361ee-introduccion-span" title="Enlazar permanentemente con este título">#</a></h2>
+<p>Para esta lección y en el resto del diplomado se requiere tener instalado Tensorflow. Por favor cree un nuevo ambiente con Conda e instale una versión fresca de Tensorflow.</p>
+<p>Desde la versión 2.0 Tensorflow incluye por defecto la API Keras para crear las redes neuronales de manera bastante simple y natural.</p>
+<p>Siga las siguientes instrucciones en la terminal o haga las instalación desde la interface gráfica de Anaconda. En el ejemplo llamaremos tf al  nuevo ambiente. Conda instala lo necesario, incluido la versión de Python mas reciente que maneja Tensorflow.</p>
+<p>Si bien la API de tensorflow Keras es bastante útil para resumir una cantidad considerable de líneas de código cuando se construye una red neuronal y se logra flexibilidad en la forma de diseño de la red, es muy importante primero entender cómo construir una red desde cero, en caso que sea necesario volver a cambiar detalles que no son claros o modificables desde la API.</p>
+<p>Además de esto, ganamos entendimiento profundo sobre cómo es que realmente funciona una red por dentro.</p>
+<p>Ese es el propósito de éste cuaderno.</p>
+<p>Construiremos una red neuronal desde cero usando nada más que tensorflow, para luego refactorizar el código hasta llegar a la abstracción visible cuando usamos Keras en una próxima lección.</p>
+</section>
+<section id="span-style-color-4361ee-descargando-datos-de-ejemplo-span">
+<h2><span style="color:#4361EE">Descargando datos de ejemplo </span><a class="headerlink" href="#span-style-color-4361ee-descargando-datos-de-ejemplo-span" title="Enlazar permanentemente con este título">#</a></h2>
+<p>En ésta ocasión haremos un ejercicio de clasificación.</p>
+<p>Para este fin, usaremos el conjunto de datos de juguete más utilizado para probar modelos de redes neuronales, llamado <strong>MNIST</strong>.</p>
+<p><strong>MNIST = Modified National Institute of Standards and Technology database</strong></p>
+<p>Esta es una base de datos de dígitos entre cero y nueve digitalizados en escala de grises.</p>
+<p>Esto significa que cada punto de la imagen digitalizada es representada  mediante un byte. Es decir, es posible representar 256 tonos de grises, con valores enteros entre 0 (negro) hasta 255 (blanco).</p>
+<p>Además, la base de datos contiene una etiqueta (label) para cada  imagen.</p>
+<section id="span-style-color-4cc9f0-opcional-request-span">
+<h3><span style="color:#4CC9F0">Opcional request</span><a class="headerlink" href="#span-style-color-4cc9f0-opcional-request-span" title="Enlazar permanentemente con este título">#</a></h3>
+<p>Usar request para bajar los datos desde la fuente.</p>
+<p>Use el siguiente código si desea familiarizarse con request.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Importar librería necesaria para crear archivos localmente</span>
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+<span class="c1"># Importar libreria necesaria para descargar archivos de la web</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+
+<span class="c1"># Generar Camino Para archivo</span>
+<span class="n">carpeta_datos</span><span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;../Datos&quot;</span><span class="p">)</span>
+
+<span class="c1"># Especificar el nombre del dataset</span>
+<span class="n">camino</span> <span class="o">=</span> <span class="n">carpeta_datos</span> <span class="o">/</span> <span class="s2">&quot;MNIST&quot;</span>
+
+<span class="c1"># Crear directorio en el lugar indicado</span>
+<span class="n">camino</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Posición actual en el equipo</span>
+<span class="n">donde_estoy</span><span class="o">=!</span>pwd
+<span class="c1">#Note que la variable se guarda como una lista, no como un string</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Actualmente estoy en:</span><span class="se">\n\n</span><span class="s2">&quot;</span><span class="p">,</span><span class="n">donde_estoy</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Colocar la URL donde se encuentran los datos</span>
+<span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;http://deeplearning.net/data/mnist/&quot;</span>
+<span class="c1"># Separar el nombre del archivo (Note que ha sido comprimido)</span>
+<span class="n">nombre_archivo</span> <span class="o">=</span> <span class="s2">&quot;mnist.pkl.gz&quot;</span>
+
+<span class="c1"># Comprobar si existe el archivo a descargar</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">camino</span> <span class="o">/</span> <span class="n">nombre_archivo</span><span class="p">)</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+    
+        <span class="c1">#Mensaje para el usuario</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Bajando Archivo Desde la URL &quot;</span><span class="o">+</span><span class="n">url</span><span class="o">+</span><span class="n">nombre_archivo</span><span class="o">+</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+        
+        <span class="c1"># Haciendo un request a la url correspondiente y obtener contenido</span>
+        <span class="n">contenido</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span> <span class="o">+</span> <span class="n">nombre_archivo</span><span class="p">)</span><span class="o">.</span><span class="n">content</span>
+        
+        <span class="c1"># Escribir el contenido binario del request</span>
+        <span class="p">(</span><span class="n">camino</span> <span class="o">/</span> <span class="n">nombre_archivo</span><span class="p">)</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;wb&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">contenido</span><span class="p">)</span>
+
+        <span class="c1"># Exito, mostrar camino donde se encuentra el archivo descargado</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Bajado con éxito en:</span><span class="se">\n\n</span><span class="s2">&quot;</span><span class="o">+</span><span class="n">donde_estoy</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="s2">&quot;/&quot;</span><span class="o">+</span><span class="n">camino</span><span class="o">.</span><span class="n">as_posix</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Actualmente estoy en:
+
+ /c/Users/User/OneDrive/Documentos/Libro-Fundamentos-main/Redes_Neuronales/Cuadernos 
+
+
+Bajando Archivo Desde la URL http://deeplearning.net/data/mnist/mnist.pkl.gz
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TimeoutError</span><span class="g g-Whitespace">                              </span>Traceback (most recent call last)
+<span class="nn">File ~\AppData\Local\Programs\Python\Python39\lib\site-packages\urllib3\connection.py:174,</span> in <span class="ni">HTTPConnection._new_conn</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">173</span> <span class="k">try</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">174</span>     <span class="n">conn</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">create_connection</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">175</span>         <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_dns_host</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">port</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">timeout</span><span class="p">,</span> <span class="o">**</span><span class="n">extra_kw</span>
+<span class="g g-Whitespace">    </span><span class="mi">176</span>     <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">178</span> <span class="k">except</span> <span class="n">SocketTimeout</span><span class="p">:</span>
+
+<span class="nn">File ~\AppData\Local\Programs\Python\Python39\lib\site-packages\urllib3\util\connection.py:95,</span> in <span class="ni">create_connection</span><span class="nt">(address, timeout, source_address, socket_options)</span>
+<span class="g g-Whitespace">     </span><span class="mi">94</span> <span class="k">if</span> <span class="n">err</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+<span class="ne">---&gt; </span><span class="mi">95</span>     <span class="k">raise</span> <span class="n">err</span>
+<span class="g g-Whitespace">     </span><span class="mi">97</span> <span class="k">raise</span> <span class="n">socket</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;getaddrinfo returns an empty list&quot;</span><span class="p">)</span>
+
+<span class="nn">File ~\AppData\Local\Programs\Python\Python39\lib\site-packages\urllib3\util\connection.py:85,</span> in <span class="ni">create_connection</span><span class="nt">(address, timeout, source_address, socket_options)</span>
+<span class="g g-Whitespace">     </span><span class="mi">84</span>     <span class="n">sock</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="n">source_address</span><span class="p">)</span>
+<span class="ne">---&gt; </span><span class="mi">85</span> <span class="n">sock</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">sa</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">86</span> <span class="k">return</span> <span class="n">sock</span>
+
+<span class="ne">TimeoutError</span>: [WinError 10060] Se produjo un error durante el intento de conexión ya que la parte conectada no respondió adecuadamente tras un periodo de tiempo, o bien se produjo un error en la conexión establecida ya que el host conectado no ha podido responder
+
+<span class="n">During</span> <span class="n">handling</span> <span class="n">of</span> <span class="n">the</span> <span class="n">above</span> <span class="n">exception</span><span class="p">,</span> <span class="n">another</span> <span class="n">exception</span> <span class="n">occurred</span><span class="p">:</span>
+
+<span class="ne">NewConnectionError</span><span class="g g-Whitespace">                        </span>Traceback (most recent call last)
+<span class="nn">File ~\AppData\Local\Programs\Python\Python39\lib\site-packages\urllib3\connectionpool.py:703,</span> in <span class="ni">HTTPConnectionPool.urlopen</span><span class="nt">(self, method, url, body, headers, retries, redirect, assert_same_host, timeout, pool_timeout, release_conn, chunked, body_pos, **response_kw)</span>
+<span class="g g-Whitespace">    </span><span class="mi">702</span> <span class="c1"># Make the request on the httplib connection object.</span>
+<span class="ne">--&gt; </span><span class="mi">703</span> <span class="n">httplib_response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_request</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">704</span>     <span class="n">conn</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">705</span>     <span class="n">method</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">706</span>     <span class="n">url</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">707</span>     <span class="n">timeout</span><span class="o">=</span><span class="n">timeout_obj</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">708</span>     <span class="n">body</span><span class="o">=</span><span class="n">body</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">709</span>     <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">710</span>     <span class="n">chunked</span><span class="o">=</span><span class="n">chunked</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">711</span> <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">713</span> <span class="c1"># If we&#39;re going to release the connection in ``finally:``, then</span>
+<span class="g g-Whitespace">    </span><span class="mi">714</span> <span class="c1"># the response doesn&#39;t need to know about the connection. Otherwise</span>
+<span class="g g-Whitespace">    </span><span class="mi">715</span> <span class="c1"># it will also try to release it and we&#39;ll have a double-release</span>
+<span class="g g-Whitespace">    </span><span class="mi">716</span> <span class="c1"># mess.</span>
+
+<span class="nn">File ~\AppData\Local\Programs\Python\Python39\lib\site-packages\urllib3\connectionpool.py:398,</span> in <span class="ni">HTTPConnectionPool._make_request</span><span class="nt">(self, conn, method, url, timeout, chunked, **httplib_request_kw)</span>
+<span class="g g-Whitespace">    </span><span class="mi">397</span>     <span class="k">else</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">398</span>         <span class="n">conn</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="n">method</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="o">**</span><span class="n">httplib_request_kw</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">400</span> <span class="c1"># We are swallowing BrokenPipeError (errno.EPIPE) since the server is</span>
+<span class="g g-Whitespace">    </span><span class="mi">401</span> <span class="c1"># legitimately able to close the connection after sending a valid response.</span>
+<span class="g g-Whitespace">    </span><span class="mi">402</span> <span class="c1"># With this behaviour, the received response is still readable.</span>
+
+<span class="nn">File ~\AppData\Local\Programs\Python\Python39\lib\site-packages\urllib3\connection.py:239,</span> in <span class="ni">HTTPConnection.request</span><span class="nt">(self, method, url, body, headers)</span>
+<span class="g g-Whitespace">    </span><span class="mi">238</span>     <span class="n">headers</span><span class="p">[</span><span class="s2">&quot;User-Agent&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">_get_default_user_agent</span><span class="p">()</span>
+<span class="ne">--&gt; </span><span class="mi">239</span> <span class="nb">super</span><span class="p">(</span><span class="n">HTTPConnection</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="n">method</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">body</span><span class="o">=</span><span class="n">body</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
+
+<span class="nn">File ~\AppData\Local\Programs\Python\Python39\lib\http\client.py:1285,</span> in <span class="ni">HTTPConnection.request</span><span class="nt">(self, method, url, body, headers, encode_chunked)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1284</span> <span class="sd">&quot;&quot;&quot;Send a complete request to the server.&quot;&quot;&quot;</span>
+<span class="ne">-&gt; </span><span class="mi">1285</span> <span class="bp">self</span><span class="o">.</span><span class="n">_send_request</span><span class="p">(</span><span class="n">method</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">body</span><span class="p">,</span> <span class="n">headers</span><span class="p">,</span> <span class="n">encode_chunked</span><span class="p">)</span>
+
+<span class="nn">File ~\AppData\Local\Programs\Python\Python39\lib\http\client.py:1331,</span> in <span class="ni">HTTPConnection._send_request</span><span class="nt">(self, method, url, body, headers, encode_chunked)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1330</span>     <span class="n">body</span> <span class="o">=</span> <span class="n">_encode</span><span class="p">(</span><span class="n">body</span><span class="p">,</span> <span class="s1">&#39;body&#39;</span><span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">1331</span> <span class="bp">self</span><span class="o">.</span><span class="n">endheaders</span><span class="p">(</span><span class="n">body</span><span class="p">,</span> <span class="n">encode_chunked</span><span class="o">=</span><span class="n">encode_chunked</span><span class="p">)</span>
+
+<span class="nn">File ~\AppData\Local\Programs\Python\Python39\lib\http\client.py:1280,</span> in <span class="ni">HTTPConnection.endheaders</span><span class="nt">(self, message_body, encode_chunked)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1279</span>     <span class="k">raise</span> <span class="n">CannotSendHeader</span><span class="p">()</span>
+<span class="ne">-&gt; </span><span class="mi">1280</span> <span class="bp">self</span><span class="o">.</span><span class="n">_send_output</span><span class="p">(</span><span class="n">message_body</span><span class="p">,</span> <span class="n">encode_chunked</span><span class="o">=</span><span class="n">encode_chunked</span><span class="p">)</span>
+
+<span class="nn">File ~\AppData\Local\Programs\Python\Python39\lib\http\client.py:1040,</span> in <span class="ni">HTTPConnection._send_output</span><span class="nt">(self, message_body, encode_chunked)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1039</span> <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">_buffer</span><span class="p">[:]</span>
+<span class="ne">-&gt; </span><span class="mi">1040</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1042</span> <span class="k">if</span> <span class="n">message_body</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1043</span> 
+<span class="g g-Whitespace">   </span><span class="mi">1044</span>     <span class="c1"># create a consistent interface to message_body</span>
+
+<span class="nn">File ~\AppData\Local\Programs\Python\Python39\lib\http\client.py:980,</span> in <span class="ni">HTTPConnection.send</span><span class="nt">(self, data)</span>
+<span class="g g-Whitespace">    </span><span class="mi">979</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">auto_open</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">980</span>     <span class="bp">self</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">981</span> <span class="k">else</span><span class="p">:</span>
+
+<span class="nn">File ~\AppData\Local\Programs\Python\Python39\lib\site-packages\urllib3\connection.py:205,</span> in <span class="ni">HTTPConnection.connect</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">204</span> <span class="k">def</span> <span class="nf">connect</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="ne">--&gt; </span><span class="mi">205</span>     <span class="n">conn</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_new_conn</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">206</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_prepare_conn</span><span class="p">(</span><span class="n">conn</span><span class="p">)</span>
+
+<span class="nn">File ~\AppData\Local\Programs\Python\Python39\lib\site-packages\urllib3\connection.py:186,</span> in <span class="ni">HTTPConnection._new_conn</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">185</span> <span class="k">except</span> <span class="n">SocketError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">186</span>     <span class="k">raise</span> <span class="n">NewConnectionError</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">187</span>         <span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;Failed to establish a new connection: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">e</span>
+<span class="g g-Whitespace">    </span><span class="mi">188</span>     <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">190</span> <span class="k">return</span> <span class="n">conn</span>
+
+<span class="ne">NewConnectionError</span>: &lt;urllib3.connection.HTTPConnection object at 0x000001E82E958EB0&gt;: Failed to establish a new connection: [WinError 10060] Se produjo un error durante el intento de conexión ya que la parte conectada no respondió adecuadamente tras un periodo de tiempo, o bien se produjo un error en la conexión establecida ya que el host conectado no ha podido responder
+
+<span class="n">During</span> <span class="n">handling</span> <span class="n">of</span> <span class="n">the</span> <span class="n">above</span> <span class="n">exception</span><span class="p">,</span> <span class="n">another</span> <span class="n">exception</span> <span class="n">occurred</span><span class="p">:</span>
+
+<span class="ne">MaxRetryError</span><span class="g g-Whitespace">                             </span>Traceback (most recent call last)
+<span class="nn">File ~\AppData\Local\Programs\Python\Python39\lib\site-packages\requests\adapters.py:489,</span> in <span class="ni">HTTPAdapter.send</span><span class="nt">(self, request, stream, timeout, verify, cert, proxies)</span>
+<span class="g g-Whitespace">    </span><span class="mi">488</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">chunked</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">489</span>     <span class="n">resp</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">490</span>         <span class="n">method</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">method</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">491</span>         <span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">492</span>         <span class="n">body</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">body</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">493</span>         <span class="n">headers</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">headers</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">494</span>         <span class="n">redirect</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">495</span>         <span class="n">assert_same_host</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">496</span>         <span class="n">preload_content</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">497</span>         <span class="n">decode_content</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">498</span>         <span class="n">retries</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">max_retries</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">499</span>         <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">500</span>     <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">502</span> <span class="c1"># Send the request.</span>
+<span class="g g-Whitespace">    </span><span class="mi">503</span> <span class="k">else</span><span class="p">:</span>
+
+<span class="nn">File ~\AppData\Local\Programs\Python\Python39\lib\site-packages\urllib3\connectionpool.py:787,</span> in <span class="ni">HTTPConnectionPool.urlopen</span><span class="nt">(self, method, url, body, headers, retries, redirect, assert_same_host, timeout, pool_timeout, release_conn, chunked, body_pos, **response_kw)</span>
+<span class="g g-Whitespace">    </span><span class="mi">785</span>     <span class="n">e</span> <span class="o">=</span> <span class="n">ProtocolError</span><span class="p">(</span><span class="s2">&quot;Connection aborted.&quot;</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">787</span> <span class="n">retries</span> <span class="o">=</span> <span class="n">retries</span><span class="o">.</span><span class="n">increment</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">788</span>     <span class="n">method</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">error</span><span class="o">=</span><span class="n">e</span><span class="p">,</span> <span class="n">_pool</span><span class="o">=</span><span class="bp">self</span><span class="p">,</span> <span class="n">_stacktrace</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">exc_info</span><span class="p">()[</span><span class="mi">2</span><span class="p">]</span>
+<span class="g g-Whitespace">    </span><span class="mi">789</span> <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">790</span> <span class="n">retries</span><span class="o">.</span><span class="n">sleep</span><span class="p">()</span>
+
+<span class="nn">File ~\AppData\Local\Programs\Python\Python39\lib\site-packages\urllib3\util\retry.py:592,</span> in <span class="ni">Retry.increment</span><span class="nt">(self, method, url, response, error, _pool, _stacktrace)</span>
+<span class="g g-Whitespace">    </span><span class="mi">591</span> <span class="k">if</span> <span class="n">new_retry</span><span class="o">.</span><span class="n">is_exhausted</span><span class="p">():</span>
+<span class="ne">--&gt; </span><span class="mi">592</span>     <span class="k">raise</span> <span class="n">MaxRetryError</span><span class="p">(</span><span class="n">_pool</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">error</span> <span class="ow">or</span> <span class="n">ResponseError</span><span class="p">(</span><span class="n">cause</span><span class="p">))</span>
+<span class="g g-Whitespace">    </span><span class="mi">594</span> <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Incremented Retry for (url=&#39;</span><span class="si">%s</span><span class="s2">&#39;): </span><span class="si">%r</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">new_retry</span><span class="p">)</span>
+
+<span class="ne">MaxRetryError</span>: HTTPConnectionPool(host=&#39;deeplearning.net&#39;, port=80): Max retries exceeded with url: /data/mnist/mnist.pkl.gz (Caused by NewConnectionError(&#39;&lt;urllib3.connection.HTTPConnection object at 0x000001E82E958EB0&gt;: Failed to establish a new connection: [WinError 10060] Se produjo un error durante el intento de conexión ya que la parte conectada no respondió adecuadamente tras un periodo de tiempo, o bien se produjo un error en la conexión establecida ya que el host conectado no ha podido responder&#39;))
+
+<span class="n">During</span> <span class="n">handling</span> <span class="n">of</span> <span class="n">the</span> <span class="n">above</span> <span class="n">exception</span><span class="p">,</span> <span class="n">another</span> <span class="n">exception</span> <span class="n">occurred</span><span class="p">:</span>
+
+<span class="ne">ConnectionError</span><span class="g g-Whitespace">                           </span>Traceback (most recent call last)
+<span class="nn">Input In [1],</span> in <span class="ni">&lt;cell line: 26&gt;</span><span class="nt">()</span>
+<span class="g g-Whitespace">     </span><span class="mi">29</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Bajando Archivo Desde la URL &quot;</span><span class="o">+</span><span class="n">url</span><span class="o">+</span><span class="n">nombre_archivo</span><span class="o">+</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">31</span> <span class="c1"># Haciendo un request a la url correspondiente y obtener contenido</span>
+<span class="ne">---&gt; </span><span class="mi">32</span> <span class="n">contenido</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span> <span class="o">+</span> <span class="n">nombre_archivo</span><span class="p">)</span><span class="o">.</span><span class="n">content</span>
+<span class="g g-Whitespace">     </span><span class="mi">34</span> <span class="c1"># Escribir el contenido binario del request</span>
+<span class="g g-Whitespace">     </span><span class="mi">35</span> <span class="p">(</span><span class="n">camino</span> <span class="o">/</span> <span class="n">nombre_archivo</span><span class="p">)</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;wb&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">contenido</span><span class="p">)</span>
+
+<span class="nn">File ~\AppData\Local\Programs\Python\Python39\lib\site-packages\requests\api.py:73,</span> in <span class="ni">get</span><span class="nt">(url, params, **kwargs)</span>
+<span class="g g-Whitespace">     </span><span class="mi">62</span> <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="g g-Whitespace">     </span><span class="mi">63</span>     <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Sends a GET request.</span>
+<span class="g g-Whitespace">     </span><span class="mi">64</span><span class="sd"> </span>
+<span class="g g-Whitespace">     </span><span class="mi">65</span><span class="sd">     :param url: URL for the new :class:`Request` object.</span>
+<span class="sd">   (...)</span>
+<span class="g g-Whitespace">     </span><span class="mi">70</span><span class="sd">     :rtype: requests.Response</span>
+<span class="g g-Whitespace">     </span><span class="mi">71</span><span class="sd">     &quot;&quot;&quot;</span>
+<span class="ne">---&gt; </span><span class="mi">73</span>     <span class="k">return</span> <span class="n">request</span><span class="p">(</span><span class="s2">&quot;get&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+<span class="nn">File ~\AppData\Local\Programs\Python\Python39\lib\site-packages\requests\api.py:59,</span> in <span class="ni">request</span><span class="nt">(method, url, **kwargs)</span>
+<span class="g g-Whitespace">     </span><span class="mi">55</span> <span class="c1"># By using the &#39;with&#39; statement we are sure the session is closed, thus we</span>
+<span class="g g-Whitespace">     </span><span class="mi">56</span> <span class="c1"># avoid leaving sockets open which can trigger a ResourceWarning in some</span>
+<span class="g g-Whitespace">     </span><span class="mi">57</span> <span class="c1"># cases, and look like a memory leak in others.</span>
+<span class="g g-Whitespace">     </span><span class="mi">58</span> <span class="k">with</span> <span class="n">sessions</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span> <span class="k">as</span> <span class="n">session</span><span class="p">:</span>
+<span class="ne">---&gt; </span><span class="mi">59</span>     <span class="k">return</span> <span class="n">session</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="n">method</span><span class="p">,</span> <span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+<span class="nn">File ~\AppData\Local\Programs\Python\Python39\lib\site-packages\requests\sessions.py:587,</span> in <span class="ni">Session.request</span><span class="nt">(self, method, url, params, data, headers, cookies, files, auth, timeout, allow_redirects, proxies, hooks, stream, verify, cert, json)</span>
+<span class="g g-Whitespace">    </span><span class="mi">582</span> <span class="n">send_kwargs</span> <span class="o">=</span> <span class="p">{</span>
+<span class="g g-Whitespace">    </span><span class="mi">583</span>     <span class="s2">&quot;timeout&quot;</span><span class="p">:</span> <span class="n">timeout</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">584</span>     <span class="s2">&quot;allow_redirects&quot;</span><span class="p">:</span> <span class="n">allow_redirects</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">585</span> <span class="p">}</span>
+<span class="g g-Whitespace">    </span><span class="mi">586</span> <span class="n">send_kwargs</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">settings</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">587</span> <span class="n">resp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">prep</span><span class="p">,</span> <span class="o">**</span><span class="n">send_kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">589</span> <span class="k">return</span> <span class="n">resp</span>
+
+<span class="nn">File ~\AppData\Local\Programs\Python\Python39\lib\site-packages\requests\sessions.py:701,</span> in <span class="ni">Session.send</span><span class="nt">(self, request, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">698</span> <span class="n">start</span> <span class="o">=</span> <span class="n">preferred_clock</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">700</span> <span class="c1"># Send the request</span>
+<span class="ne">--&gt; </span><span class="mi">701</span> <span class="n">r</span> <span class="o">=</span> <span class="n">adapter</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">703</span> <span class="c1"># Total elapsed time of the request (approximately)</span>
+<span class="g g-Whitespace">    </span><span class="mi">704</span> <span class="n">elapsed</span> <span class="o">=</span> <span class="n">preferred_clock</span><span class="p">()</span> <span class="o">-</span> <span class="n">start</span>
+
+<span class="nn">File ~\AppData\Local\Programs\Python\Python39\lib\site-packages\requests\adapters.py:565,</span> in <span class="ni">HTTPAdapter.send</span><span class="nt">(self, request, stream, timeout, verify, cert, proxies)</span>
+<span class="g g-Whitespace">    </span><span class="mi">561</span>     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">reason</span><span class="p">,</span> <span class="n">_SSLError</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">562</span>         <span class="c1"># This branch is for urllib3 v1.22 and later.</span>
+<span class="g g-Whitespace">    </span><span class="mi">563</span>         <span class="k">raise</span> <span class="n">SSLError</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">request</span><span class="o">=</span><span class="n">request</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">565</span>     <span class="k">raise</span> <span class="ne">ConnectionError</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">request</span><span class="o">=</span><span class="n">request</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">567</span> <span class="k">except</span> <span class="n">ClosedPoolError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">568</span>     <span class="k">raise</span> <span class="ne">ConnectionError</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">request</span><span class="o">=</span><span class="n">request</span><span class="p">)</span>
+
+<span class="ne">ConnectionError</span>: HTTPConnectionPool(host=&#39;deeplearning.net&#39;, port=80): Max retries exceeded with url: /data/mnist/mnist.pkl.gz (Caused by NewConnectionError(&#39;&lt;urllib3.connection.HTTPConnection object at 0x000001E82E958EB0&gt;: Failed to establish a new connection: [WinError 10060] Se produjo un error durante el intento de conexión ya que la parte conectada no respondió adecuadamente tras un periodo de tiempo, o bien se produjo un error en la conexión establecida ya que el host conectado no ha podido responder&#39;))
+</pre></div>
+</div>
+</div>
+</div>
+<div class="tip admonition">
+<p class="admonition-title">¿Confundido?</p>
+<p>¡chequea un <a class="reference external" href="https://es.python-requests.org/es/latest/user/quickstart.html">Quickstart</a> en la libreria request para comenzar!</p>
+</div>
+</section>
+<section id="span-style-color-4cc9f0-opcional-leyendo-datos-con-pickle-span">
+<h3><span style="color:#4CC9F0">Opcional Leyendo Datos con Pickle</span><a class="headerlink" href="#span-style-color-4cc9f0-opcional-leyendo-datos-con-pickle-span" title="Enlazar permanentemente con este título">#</a></h3>
+<p>El archivo descargado se encuentra en contenido binario.</p>
+<p>Una librería eficiente para leer archivos binarios, se llama <strong>pickle</strong>.</p>
+<p>Además, como el archivo esta comprimido (extensión .gzip) necesitaremos la librería <strong>gzip</strong>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pickle</span>
+<span class="kn">import</span> <span class="nn">gzip</span>
+
+<span class="c1"># Operador lógico with para abrir el archivo descargado y leer bytes (readbytes)</span>
+<span class="k">with</span> <span class="n">gzip</span><span class="o">.</span><span class="n">open</span><span class="p">((</span><span class="n">camino</span> <span class="o">/</span> <span class="n">nombre_archivo</span><span class="p">)</span><span class="o">.</span><span class="n">as_posix</span><span class="p">(),</span> <span class="s2">&quot;rb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        
+        <span class="c1"># desempaqueta la información en diferentes variables (entrenamiento+validación)</span>
+        <span class="p">((</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">),</span> <span class="p">(</span><span class="n">x_valid</span><span class="p">,</span> <span class="n">y_valid</span><span class="p">),</span> <span class="n">_</span><span class="p">)</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;latin-1&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Quizá, en este punto, sea buena idea leer aquí: <a class="reference external" href="https://www.reddit.com/r/learnpython/comments/88h4yz/what_do_the_gzipopen_modes_mean/">What do the gzip.open() modes mean?</a></p>
+</section>
+<section id="span-style-color-4cc9f0-lectura-de-datos-desde-keras-span">
+<h3><span style="color:#4CC9F0">Lectura de datos desde Keras</span><a class="headerlink" href="#span-style-color-4cc9f0-lectura-de-datos-desde-keras-span" title="Enlazar permanentemente con este título">#</a></h3>
+<p>Para empezar rápidamente recomendamos bajar los datos desde la API Keras, ya instalada con Tensorflow.</p>
+</section>
+<section id="span-style-color-4cc9f0-librerias-requeridas-span">
+<h3><span style="color:#4CC9F0">Librerías requeridas</span><a class="headerlink" href="#span-style-color-4cc9f0-librerias-requeridas-span" title="Enlazar permanentemente con este título">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Versión de Tensorflow: &quot;</span><span class="p">,</span><span class="n">tf</span><span class="o">.</span><span class="n">__version__</span><span class="p">,</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Versión de Tensorflow:  2.4.1 
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span> <span class="p">((</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">),</span> <span class="p">(</span><span class="n">x_valid</span><span class="p">,</span> <span class="n">y_valid</span><span class="p">))</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">datasets</span><span class="o">.</span><span class="n">mnist</span><span class="o">.</span><span class="n">load_data</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="s2">&quot;mnist.npz&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y_train</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(60000,)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="span-style-color-4cc9f0-aplana-los-datos-span">
+<h3><span style="color:#4CC9F0">Aplana los datos</span><a class="headerlink" href="#span-style-color-4cc9f0-aplana-los-datos-span" title="Enlazar permanentemente con este título">#</a></h3>
+<p>Si lee los datos directamente desde la URL, probablemente ya están aplanados</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x_train</span> <span class="o">=</span> <span class="n">x_train</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">784</span><span class="p">))</span>
+<span class="n">x_valid</span> <span class="o">=</span> <span class="n">x_valid</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">784</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;x_train.shape=&#39;</span><span class="p">,</span><span class="n">x_train</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;x_valid.shape=&#39;</span><span class="p">,</span><span class="n">x_valid</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>x_train.shape= (60000, 784)
+x_valid.shape= (10000, 784)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="span-style-color-4361ee-visualizando-los-datos-span">
+<h2><span style="color:#4361EE">Visualizando los Datos</span><a class="headerlink" href="#span-style-color-4361ee-visualizando-los-datos-span" title="Enlazar permanentemente con este título">#</a></h2>
+<p><strong>Una vez leídos los datos</strong>, podemos por ejemplo, mirar qué forma tienen los datos:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Forma de los Datos de entrenamiento:&quot;</span><span class="p">,</span><span class="n">x_train</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Forma de los Datos de validación   :&quot;</span><span class="p">,</span><span class="n">x_valid</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Forma de los Datos de entrenamiento: (60000, 784)
+Forma de los Datos de validación   : (10000, 784)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Cada imagen del dataset clásico tiene un tamaño de 28 x 28 pixeles, con lo cual cada una es representada por 784 números entre cero y 255.</p>
+<p>Vamos a <strong>visualizar</strong> los datos con <strong>matplotlib</strong>,</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Imagen de ejemplo:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Elegir una observación al azar usando randint</span>
+<span class="n">azar</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="n">x_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+<span class="c1">#Visualizar la imagen usando imshow en escala de grises</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">x_train</span><span class="p">[</span><span class="n">azar</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="mi">28</span><span class="p">,</span><span class="mi">28</span><span class="p">)),</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;binary&quot;</span><span class="p">)</span>
+<span class="c1">#plt.axis(&quot;off&quot;)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Etiqueta (label) Asignada por Humano:&quot;</span><span class="p">,</span><span class="n">y_train</span><span class="p">[</span><span class="n">azar</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Imagen de ejemplo:
+</pre></div>
+</div>
+<img alt="../../_images/am_Red_De_Cero_28_1.png" src="../../_images/am_Red_De_Cero_28_1.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Etiqueta (label) Asignada por Humano: 9
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Cuántas filas</span>
+<span class="n">filas</span><span class="o">=</span><span class="mi">3</span>
+<span class="c1">#Cuantas columnas</span>
+<span class="n">colus</span><span class="o">=</span><span class="mi">4</span>
+<span class="c1">#Elementos totales</span>
+<span class="n">n</span><span class="o">=</span><span class="n">filas</span><span class="o">*</span><span class="n">colus</span>
+<span class="c1">#Elegir una muestra del dataset via índices</span>
+<span class="n">vector_azar</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="n">x_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="n">n</span><span class="p">,))</span>
+<span class="c1"># contador para dibujar en la grilla</span>
+<span class="n">w</span><span class="o">=</span><span class="mi">1</span>
+<span class="c1">#iniciar espacio de dibujo</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+<span class="c1">#titulo</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s2">&quot;Ejemplos del dataset MNIST&quot;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
+
+<span class="c1"># Loop anidado para recorrer la matriz completa</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">filas</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">colus</span><span class="p">):</span>
+        
+        <span class="c1"># subplots se peden contar incrementalmente</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="n">filas</span><span class="p">,</span><span class="n">colus</span><span class="p">,</span><span class="n">w</span><span class="p">)</span>
+        <span class="c1"># dibujar el ejemplo de la muestra convertida a una matrix 28X28</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">x_train</span><span class="p">[</span><span class="n">vector_azar</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="n">j</span><span class="p">]]</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="mi">28</span><span class="p">,</span> <span class="mi">28</span><span class="p">)),</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;binary&quot;</span><span class="p">)</span>
+        <span class="c1">#mostrar la etiqueta dada por el humano a dicho ejemplo (Aprendizaje supervisado)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;label: &quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">y_train</span><span class="p">[</span><span class="n">vector_azar</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="n">j</span><span class="p">]]))</span>
+        <span class="c1">#No mostrar ejes corrdenados</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s2">&quot;off&quot;</span><span class="p">)</span>
+        <span class="c1"># Incrementar contador</span>
+        <span class="n">w</span><span class="o">+=</span><span class="mi">1</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="c1">#mostrar índices de los ejemplos elegidos</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Indices Elegidos: &quot;</span><span class="p">,</span><span class="n">vector_azar</span><span class="p">,</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="c1"># mostrar etiquetas correspondientes</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Elementos Elegidos: &quot;</span><span class="p">,</span><span class="n">y_train</span><span class="p">[</span><span class="n">vector_azar</span><span class="p">],</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/am_Red_De_Cero_30_0.png" src="../../_images/am_Red_De_Cero_30_0.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Indices Elegidos:  [18130 53097 23195 48655 40085  4958 25519 40485 22172 56032 52463 44372] 
+
+
+Elementos Elegidos:  [8 7 6 8 6 1 2 9 3 5 7 0] 
+</pre></div>
+</div>
+</div>
+</div>
+<p>Observemos algunos datos en bruto:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Extraer pixeles 10-&gt;15 en x y 10-&gt;15 en y</span>
+<span class="n">x_train</span><span class="p">[</span><span class="n">azar</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="mi">28</span><span class="p">,</span><span class="mi">28</span><span class="p">))[</span><span class="mi">10</span><span class="p">:</span><span class="mi">15</span><span class="p">,</span><span class="mi">10</span><span class="p">:</span><span class="mi">15</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[226,  80,   8,   8, 247],
+       [ 42,   0,   0,  84, 253],
+       [  0,   0,  55, 240, 244],
+       [ 27, 124, 238, 255, 135],
+       [254, 254, 241, 122,   2]], dtype=uint8)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Como podemos observar, estos ejemplo ya han sido tratados, pues se muestran número entre cero y uno.</p>
+<p>Usamos la forma alternativa de subir los datos, haciendo uso de los <strong>datasets</strong> internos que vienen por defecto en la instalación de <strong>tensorflow.keras</strong>:</p>
+<p><code class="docutils literal notranslate"><span class="pre">(x_train,</span> <span class="pre">y_train),</span> <span class="pre">(x_valid,</span> <span class="pre">y_valid)</span> <span class="pre">=</span> <span class="pre">tf.keras.datasets.mnist.load_data()</span></code></p>
+</section>
+<section id="span-style-color-4361ee-transformar-datos-a-forma-tensorial-span">
+<h2><span style="color:#4361EE">Transformar Datos a Forma Tensorial</span><a class="headerlink" href="#span-style-color-4361ee-transformar-datos-a-forma-tensorial-span" title="Enlazar permanentemente con este título">#</a></h2>
+<p>En Tensorflow puro se trabaja con tensores mas que con arreglos de numpy, así que deberemos transformar nuestros datos.</p>
+<p>Para este fin, usaremos la función <code class="docutils literal notranslate"><span class="pre">tf.constant</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Chequear la versión de tensorflow disponible</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Versión de Tensorflow: &quot;</span><span class="p">,</span><span class="n">tf</span><span class="o">.</span><span class="n">__version__</span><span class="p">,</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+
+<span class="c1"># transforma los features a la escala [0,1]</span>
+<span class="n">x_train</span><span class="p">,</span> <span class="n">x_valid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">x_train</span><span class="o">/</span><span class="mf">255.0</span><span class="p">,</span><span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">x_valid</span><span class="o">/</span><span class="mf">255.0</span><span class="p">,</span><span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+<span class="n">y_train</span><span class="p">,</span> <span class="n">y_valid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">y_train</span><span class="p">,</span><span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">y_valid</span><span class="p">,</span><span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Versión de Tensorflow:  2.4.1 
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y_train</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([5, 0, 4, ..., 5, 6, 8], dtype=int32)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Usando función map para convertir TODOS los datos a tensor</span>
+<span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">x_valid</span><span class="p">,</span> <span class="n">y_valid</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">,</span> 
+                                    <span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">x_valid</span><span class="p">,</span> <span class="n">y_valid</span><span class="p">))</span>
+<span class="c1">#Mostrar datos</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Datos de Entrenamiento:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Etiquetas de Entrenamiento:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">y_train</span><span class="o">.</span><span class="n">numpy</span><span class="p">(),</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1">#Chequear límites de las etiquetas</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Label mínimo: </span><span class="si">{</span><span class="n">tf</span><span class="o">.</span><span class="n">reduce_min</span><span class="p">(</span><span class="n">y_train</span><span class="p">)</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Label máximo: </span><span class="si">{</span><span class="n">tf</span><span class="o">.</span><span class="n">reduce_max</span><span class="p">(</span><span class="n">y_train</span><span class="p">)</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Label únicos:&quot;</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">y_train</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">numpy</span><span class="p">()))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Datos de Entrenamiento:
+
+tf.Tensor(
+[[0. 0. 0. ... 0. 0. 0.]
+ [0. 0. 0. ... 0. 0. 0.]
+ [0. 0. 0. ... 0. 0. 0.]
+ ...
+ [0. 0. 0. ... 0. 0. 0.]
+ [0. 0. 0. ... 0. 0. 0.]
+ [0. 0. 0. ... 0. 0. 0.]], shape=(60000, 784), dtype=float32) 
+
+Etiquetas de Entrenamiento:
+
+[5 0 4 ... 5 6 8] 
+
+Label mínimo: 0
+Label máximo: 9
+Label únicos: [0 1 2 3 4 5 6 7 8 9]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x_train</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;tf.Tensor: shape=(60000, 784), dtype=float32, numpy=
+array([[0., 0., 0., ..., 0., 0., 0.],
+       [0., 0., 0., ..., 0., 0., 0.],
+       [0., 0., 0., ..., 0., 0., 0.],
+       ...,
+       [0., 0., 0., ..., 0., 0., 0.],
+       [0., 0., 0., ..., 0., 0., 0.],
+       [0., 0., 0., ..., 0., 0., 0.]], dtype=float32)&gt;
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="span-style-color-4361ee-objetivo-de-la-red-neuronal-span">
+<h2><span style="color:#4361EE">Objetivo de la Red Neuronal</span><a class="headerlink" href="#span-style-color-4361ee-objetivo-de-la-red-neuronal-span" title="Enlazar permanentemente con este título">#</a></h2>
+<section id="span-style-color-4cc9f0-modelo-logistico-multinomial-span">
+<h3><span style="color:#4CC9F0">Modelo Logístico Multinomial</span><a class="headerlink" href="#span-style-color-4cc9f0-modelo-logistico-multinomial-span" title="Enlazar permanentemente con este título">#</a></h3>
+<p>El propósito de la red es clasificar cada una de las imágenes en una de 10 clases. Cada clase representa a un dígito entre 0 y 9.</p>
+<p>En este experimento cada imagen será presentada a la entrada de la red como una tensor de una dimensión (1D) y de tamaño (shape) <span class="math notranslate nohighlight">\(28\times 28 = 784\)</span>. Por lo tanto, la capa entrada se tendrán 784 neuronas. La red no tendrá capas ocultas. La capa de salida tendrá 10 neuronas, debido a que hay 10 clases.</p>
+<p>El tipo de red será densa o completamente conectada, es  decir cada neurona de entrada está conectada con cada neurona de salida.</p>
+<p>Así, la matriz de pesos <span class="math notranslate nohighlight">\(\mathbf{W}\)</span> tendrá tamaño <span class="math notranslate nohighlight">\(784 \times 10\)</span> y el vector <span class="math notranslate nohighlight">\(\mathbf{b}\)</span> de interceptos (bias) será de un vector tamaño 10.</p>
+<p>En nuestro primer modelo, la función de activación de la capa de entrada será la identidad y en la capa de salida la función de activación será la función <em>softmax</em> que definimos abajo.</p>
+<p>La siguiente imagen ilustra el diseño (topología) de la primera red que construimos desde cero. Esta red, es realmente un modelo logístico multinomial clásico.</p>
+<p><img alt="Multinomial" src="https://raw.githubusercontent.com/AprendizajeProfundo/Libro-Fundamentos/main/Redes_Neuronales/Imagenes/am_ANN_mnist_748_10.jpg" /></p>
+</section>
+</section>
+<section id="span-style-color-4361ee-red-neuronal-artificial-desde-cero-span">
+<h2><span style="color:#4361EE">Red Neuronal Artificial desde cero!</span><a class="headerlink" href="#span-style-color-4361ee-red-neuronal-artificial-desde-cero-span" title="Enlazar permanentemente con este título">#</a></h2>
+<p>Vamos a crear un modelo simple, para lo cual solamente usaremos las operaciones de Tensorflow.</p>
+<p>Los pesos son inicializados siguiendo la propuesta de <a href='http://proceedings.mlr.press/v9/glorot10a/glorot10a.pdf'>Glorot_Bengio </a>. Se generaran números aleatorios uniformemente distribuidos entre -1 y 1 divididos por <span class="math notranslate nohighlight">\(\sqrt{n}\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">math</span>
+
+
+<span class="n">n</span><span class="o">=</span><span class="n">x_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">output</span><span class="o">=</span><span class="mi">10</span>
+
+<span class="n">weights</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">((</span><span class="n">n</span><span class="p">,</span><span class="n">output</span><span class="p">))</span><span class="o">/</span><span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">n</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+<span class="n">bias</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">output</span><span class="p">),</span><span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">weights</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">bias</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(784, 10)
+(10,)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Usamos  <em>tf.Variable</em> para declarar tensores de tipo variable, es decir, cuyo contenido cambia a los largo de nuestro algoritmo.</p>
+<section id="span-style-color-4cc9f0-racional-span">
+<h3><span style="color:#4CC9F0">Racional</span><a class="headerlink" href="#span-style-color-4cc9f0-racional-span" title="Enlazar permanentemente con este título">#</a></h3>
+<p>Por  otro lado, observe que <em>weights</em> es una matriz de tamaño <span class="math notranslate nohighlight">\(784 \times 10\)</span> y <em>bias</em> es un vector de tamaño 10. Vamos a construir una red neuronal que tiene solamente dos capas: entrada con 784 neuronas y salida con 10 neuronas. Note que nuestros patrones de entrada son vectores de tamaño 784.</p>
+<p>La razón de tener 10 neuronas de salida es porque tenemos un problema de clasificación en 10 clases. Podemos imaginar intuitivamente que construimos un modelo de regresión logística para cada una de las clases.</p>
+<p>Entonces a la salida esperamos tener es la probabilidad de que el patrón de entrada pertenezca a esa clase.</p>
+</section>
+<section id="span-style-color-4cc9f0-diferenciacion-automatica-span">
+<h3><span style="color:#4CC9F0">Diferenciación Automática</span><a class="headerlink" href="#span-style-color-4cc9f0-diferenciacion-automatica-span" title="Enlazar permanentemente con este título">#</a></h3>
+<p>Desde Tensorflow 2.X se incluye <strong>diferenciación automática</strong> para calcular gradientes automáticamente. Esto permite usar funciones estándar de Python como modelos para la redes.</p>
+</section>
+<section id="span-style-color-4cc9f0-funcion-de-activacion-softmax-span">
+<h3><span style="color:#4CC9F0">Función de Activación Softmax</span><a class="headerlink" href="#span-style-color-4cc9f0-funcion-de-activacion-softmax-span" title="Enlazar permanentemente con este título">#</a></h3>
+<p>Vamos a crear un modelo lineal simple. Necesitaremos una función de activación, por lo que vamos a escribir la función <em>log_softmax</em>. La variable <span class="math notranslate nohighlight">\(\eta\)</span> en la función, que corresponde al máximo de los valores, se introduce para tener una función muy robusta, desde el punto de vista computacional.</p>
+<p>Para un conjunto de valores <span class="math notranslate nohighlight">\(x_1,\ldots,x_n\)</span>, la función softmax transforma estos valores en la escala (0,1), que pueden interpretarse como probabilidades. Cada componente de softmax es interpretada como la probabilidad que la imagen pertenezca a la clase representada por dicha componente.</p>
+<p>Matemáticamente se escribe</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{equation}
+Prob[y=j|x] = \frac{\exp(x_j)}{\sum_{k=1}^{n}\exp(x_j)}
+\end{equation}
+\]</div>
+<p>Un cálculo muy estable computacionalmente de estos valores se obtiene de la siguiente manera. Sea <span class="math notranslate nohighlight">\(\eta = \underset{i}{\text{max}} \hspace{2mm} \{x_i\}\)</span>. Es fácil verificar que</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{equation}
+Prob[y=j|x] = \frac{\exp(x_j-\eta)}{\sum_{k=1}^{n}\exp(x_k-\eta)} = \text{softmax}_j(x)
+\end{equation}
+\]</div>
+<p>Observe que <span class="math notranslate nohighlight">\(\log \text{softmax}_j(x)  = x_j - \eta - \log(\sum_{k=1}^n \exp(x_k-\eta))\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="k">def</span> <span class="nf">log_softmax</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="n">η</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">math</span><span class="o">.</span><span class="n">reduce_max</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">x</span> <span class="o">-</span> <span class="n">η</span> <span class="o">-</span> <span class="n">tf</span><span class="o">.</span><span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">math</span><span class="o">.</span><span class="n">reduce_sum</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">math</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="n">η</span><span class="p">),</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+
+<span class="k">def</span> <span class="nf">model</span><span class="p">(</span><span class="n">xb</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">log_softmax</span><span class="p">(</span><span class="n">xb</span><span class="nd">@weights</span> <span class="o">+</span> <span class="n">bias</span><span class="p">)</span> <span class="c1"># z = x&#39;W +b</span>
+    <span class="c1">#return log_softmax(tf.linalg.matmul(xb,weights) + bias)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>En la celda anterior, el símbolo &#64; representa la operación del producto punto (en este caso corresponde a el producto de un vector con una matriz).</p>
+<p>Llamaremos a nuestra función con un lote de datos (en este caso, 64 imágenes). Este es un paso hacia adelante (forward pass). Tenga en cuenta que nuestras predicciones no serán mejores que aleatorias en esta etapa, ya que comenzamos con pesos aleatorios.</p>
+</section>
+</section>
+<section id="span-style-color-4361ee-paso-hacia-adelante-forward-pass-span">
+<h2><span style="color:#4361EE">Paso Hacia Adelante (Forward Pass) </span><a class="headerlink" href="#span-style-color-4361ee-paso-hacia-adelante-forward-pass-span" title="Enlazar permanentemente con este título">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bs</span> <span class="o">=</span> <span class="mi">64</span><span class="c1"># batch size</span>
+
+<span class="n">xb</span> <span class="o">=</span> <span class="n">x_train</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">bs</span><span class="p">]</span>
+<span class="n">preds</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">xb</span><span class="p">)</span> <span class="c1"># predictions</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Predicciones para la primera imagen:</span><span class="se">\n\n</span><span class="s1">&#39;</span><span class="p">,</span><span class="n">preds</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Tamaño de la matriz de predicciones de este lote: &#39;</span><span class="p">,</span> <span class="n">preds</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Predicciones para la primera imagen:
+
+ tf.Tensor(
+[-2.3090463 -2.2887955 -2.2076452 -2.2677054 -2.3034987 -2.2903447
+ -2.3672752 -2.3688927 -2.2506318 -2.386469 ], shape=(10,), dtype=float32) 
+
+Tamaño de la matriz de predicciones de este lote:  (64, 10)
+</pre></div>
+</div>
+</div>
+</div>
+<section id="span-style-color-4cc9f0-funcion-de-perdida-span">
+<h3><span style="color:#4CC9F0">Función de pérdida</span><a class="headerlink" href="#span-style-color-4cc9f0-funcion-de-perdida-span" title="Enlazar permanentemente con este título">#</a></h3>
+<p>Vamos a implementar la función menos log-verosimilitud, la cual usaremos como <strong>función de pérdida</strong> (loss function). Esta es la misma <strong>entropía cruzada</strong>(cross entropy, usando la codificación One-hot).</p>
+<p>Matemáticamente, la función de pérdida en esta caso es definida como sigue:</p>
+</section>
+<section id="span-style-color-4cc9f0-el-modelo-span">
+<h3><span style="color:#4CC9F0">El Modelo</span><a class="headerlink" href="#span-style-color-4cc9f0-el-modelo-span" title="Enlazar permanentemente con este título">#</a></h3>
+<p>Aqui <span class="math notranslate nohighlight">\(\mathbf{x}_i\)</span> denota la observación <span class="math notranslate nohighlight">\(i\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[
+\pi_{ik} = Prob[\mathbf{x} \in \mathcal{C}_k] = sofmax_k(\mathbf{x}_i) = \frac{\exp(\mathbf{x}_i'\mathbf{w}_k + \mathbf{b}_k)}{\sum_{s=1}^K  \exp (\mathbf{x}_i'\mathbf{w}_s+  \mathbf{b}_s)} 
+\]</div>
+</section>
+<section id="id1">
+<h3><span style="color:#4CC9F0">Función de pérdida</span><a class="headerlink" href="#id1" title="Enlazar permanentemente con este título">#</a></h3>
+<p>En esta sección <span class="math notranslate nohighlight">\(\mathbf{W}\)</span> es la martriz completa de pesos. Cada fila <span class="math notranslate nohighlight">\(\mathbf{w}_k\)</span> está asociada a la respectiva categoría <span class="math notranslate nohighlight">\(\mathcal{C}_k\)</span>.</p>
+<p>Entropía cruzada: <strong>-log verosimilitud</strong> .  Aqui <span class="math notranslate nohighlight">\(\mathbf{x}_i\)</span> denota la observación <span class="math notranslate nohighlight">\(i\)</span> y <span class="math notranslate nohighlight">\(y_i\)</span> la respectiva etiqueta. Sea <span class="math notranslate nohighlight">\(\chi_{ik}\)</span> definda por</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\chi_{ik} = \begin{cases} 1, &amp; \text{ si } y_i = k\\
+0, &amp; \text{ en otro caso. }\end{cases}
+\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[
+loss(\mathbf{W},\mathbf{b}) = -\frac{1}{N}  \sum_i \sum_k \chi_{ik} \log \pi_{ik}
+\]</div>
+</section>
+<section id="span-style-color-4cc9f0-prediccion-span">
+<h3><span style="color:#4CC9F0">Predicción</span><a class="headerlink" href="#span-style-color-4cc9f0-prediccion-span" title="Enlazar permanentemente con este título">#</a></h3>
+<div class="math notranslate nohighlight">
+\[
+\tilde{y} = \text{índice}(\max_{k}{\pi_k(x)})
+\]</div>
+</section>
+<section id="precision">
+<h3>Precisión<a class="headerlink" href="#precision" title="Enlazar permanentemente con este título">#</a></h3>
+<div class="math notranslate nohighlight">
+\[
+\begin{equation*}
+\text{accuracy} = \frac{1}{N} \sum_{i=1}^{N} 1_{y_i =\tilde{y}_i}
+\end{equation*}
+\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">nll</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">target</span><span class="p">):</span>
+    <span class="n">indices</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">stack</span><span class="p">([</span><span class="n">tf</span><span class="o">.</span><span class="n">range</span><span class="p">(</span><span class="nb">input</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span><span class="n">target</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">tf</span><span class="o">.</span><span class="n">math</span><span class="o">.</span><span class="n">reduce_mean</span><span class="p">(</span><span class="o">-</span><span class="n">tf</span><span class="o">.</span><span class="n">gather_nd</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">indices</span><span class="p">))</span>
+
+<span class="n">loss_func</span> <span class="o">=</span> <span class="n">nll</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Sobre el código anterior.</p>
+<ol class="simple">
+<li><p><em>tf.range(input.shape[0])</em>  genera un tensor con números en el rango entre 0 y 63, porque la forma (shape) es 64, el tamaño del batch.</p></li>
+<li><p><em>tf.stack([tf.range(input.shape[0], dtype=tf.int32),target], axis=1)</em> crea un tensor bidimensional, en donde cada fila corresponde al índice del elemento que debe tomarse de cada fila de input para calcular la función de pérdida. Por ejemplo, si la fila 3 de índice es [3,4], significará que y_train[3] es 4, y ṕor tanto se requiere tomar el contenido de la cuarta posición de la entrada 3.</p></li>
+<li><p>tf.gather_nd(input, indices). Para cada fila de input toma el valor de input en la posición indicada en el índice, como se explica en el numeral 2.</p></li>
+<li><p>tf.math.reduce_mean(-tf.gather_nd(input, indices)), calcula el resumen. La media, que corresponde exactamente a - log likelihood (log-verosimilitud)</p></li>
+</ol>
+<p>Veamos una ilustración de índices.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ejemplo del tensor indices</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">pattern</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;0&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;1&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;2&#39;</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;3&#39;</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;4&#39;</span><span class="p">:</span><span class="mi">4</span><span class="p">}</span>
+<span class="n">target</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;0&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;1&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;2&#39;</span><span class="p">:</span><span class="mi">5</span><span class="p">,</span> <span class="s1">&#39;3&#39;</span><span class="p">:</span><span class="mi">7</span><span class="p">,</span> <span class="s1">&#39;4&#39;</span><span class="p">:</span><span class="mi">1</span><span class="p">}</span>
+<span class="n">indices</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;pattern&#39;</span><span class="p">:</span> <span class="n">pattern</span><span class="p">,</span> <span class="s1">&#39;target&#39;</span><span class="p">:</span><span class="n">target</span><span class="p">})</span>
+<span class="n">indices</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>pattern</th>
+      <th>target</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>3</td>
+      <td>7</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>4</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>la columna pattern en esta ilustración contiene el índice del respectivo patrón de entrada. La columna target es el target asociado al respectivo patrón de entrada. Indices es esta matriz con las dos columnas.</p>
+<p>La última línea del código calcula la función de pérdida definida arriba.</p>
+<p>Revisamos ahora la <strong>función de pérdida</strong> para el modelo con datos aleatorios. Esto permitirá comparar las mejoras después del paso de propagación hacia atrás  (backpropagation)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">yb</span> <span class="o">=</span> <span class="n">y_train</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">bs</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">loss_func</span><span class="p">(</span><span class="n">preds</span><span class="p">,</span><span class="n">yb</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tf.Tensor(2.2912655, shape=(), dtype=float32)
+</pre></div>
+</div>
+</div>
+</div>
+<p>También implementamos la función precisión (accuracy) de nuestro modelo.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">accuracy</span><span class="p">(</span><span class="n">out</span><span class="p">,</span> <span class="n">yb</span><span class="p">):</span>
+    <span class="n">preds</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">math</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">out</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">output_type</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">int32</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">tf</span><span class="o">.</span><span class="n">math</span><span class="o">.</span><span class="n">reduce_mean</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">dtypes</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">preds</span> <span class="o">==</span> <span class="n">yb</span><span class="p">,</span> <span class="n">tf</span><span class="o">.</span><span class="n">float16</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>chequamos la precisión actual del modelo</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">accuracy</span><span class="p">(</span><span class="n">preds</span><span class="p">,</span><span class="n">yb</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tf.Tensor(0.1094, shape=(), dtype=float16)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="span-style-color-4cc9f0-entrenamiento-de-la-red-span">
+<h3><span style="color:#4CC9F0">Entrenamiento de la Red</span><a class="headerlink" href="#span-style-color-4cc9f0-entrenamiento-de-la-red-span" title="Enlazar permanentemente con este título">#</a></h3>
+<p>Estamos listos para correr el ciclo de entrenamiento. Para calcular los gradientes usaremos diferenciación automática, con la clase tf.GradientTape.</p>
+<ul class="simple">
+<li><p>Seleccionamos un mini-batch de datos de tamaño <em>bs</em></p></li>
+<li><p>Bajo un contexto tf.GradientTape</p></li>
+<li><p>Usamos el modelo para hacer predicciones</p></li>
+<li><p>Calculamos la pérdida</p></li>
+<li><p>Calculamos el gradientes de las operaciones registradas en el contexto de esta cinta (tape).</p></li>
+</ul>
+<p>Ahora usamos estos gradientes para actualizar los pesos (weights) y los desplazamientos (bias).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lr</span> <span class="o">=</span> <span class="mf">0.2</span> <span class="c1"># learning rate</span>
+<span class="n">epochs</span> <span class="o">=</span> <span class="mi">2</span> <span class="c1"># how many epochs to train for</span>
+<span class="n">n</span> <span class="o">=</span> <span class="n">x_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">epoch</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">epochs</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">((</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">//</span><span class="n">bs</span> <span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">start_i</span> <span class="o">=</span> <span class="n">i</span><span class="o">*</span><span class="n">bs</span>
+        <span class="n">end_i</span> <span class="o">=</span> <span class="n">start_i</span> <span class="o">+</span> <span class="n">bs</span>
+        <span class="n">xb</span> <span class="o">=</span> <span class="n">x_train</span><span class="p">[</span><span class="n">start_i</span><span class="p">:</span><span class="n">end_i</span><span class="p">]</span>
+        <span class="n">yb</span> <span class="o">=</span> <span class="n">y_train</span><span class="p">[</span><span class="n">start_i</span><span class="p">:</span><span class="n">end_i</span><span class="p">]</span>
+        <span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">GradientTape</span><span class="p">()</span> <span class="k">as</span> <span class="n">t</span><span class="p">:</span>
+            <span class="n">pred</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">xb</span><span class="p">)</span>
+            <span class="n">loss</span> <span class="o">=</span> <span class="n">loss_func</span><span class="p">(</span><span class="n">pred</span><span class="p">,</span><span class="n">yb</span><span class="p">)</span>
+        <span class="n">dW</span><span class="p">,</span> <span class="n">dB</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">gradient</span><span class="p">(</span><span class="n">loss</span><span class="p">,[</span><span class="n">weights</span><span class="p">,</span><span class="n">bias</span><span class="p">])</span>
+        <span class="n">weights</span><span class="o">.</span><span class="n">assign_sub</span><span class="p">(</span><span class="n">lr</span><span class="o">*</span><span class="n">dW</span><span class="p">)</span>
+        <span class="n">bias</span><span class="o">.</span><span class="n">assign_sub</span><span class="p">(</span><span class="n">lr</span><span class="o">*</span><span class="n">dB</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Hemos creado y entrenado una red neuronal minimal( en este caso una regression logística multinomial, dado que no tiene capas ocultas) totalmente desde cero (from scratch).</p>
+<p>Revisemos la pérdida y precisión del modelo.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># pérdida y precisión datos de entrenamiento</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;train loss: &quot;</span><span class="p">,</span><span class="n">loss_func</span><span class="p">(</span><span class="n">model</span><span class="p">(</span><span class="n">x_train</span><span class="p">),</span><span class="n">y_train</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;train accuracy: &quot;</span><span class="p">,</span><span class="n">accuracy</span><span class="p">(</span><span class="n">model</span><span class="p">(</span><span class="n">x_train</span><span class="p">),</span><span class="n">y_train</span><span class="p">))</span>
+
+<span class="c1"># pérdida y precisión datos de validación</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;test loss: &quot;</span><span class="p">,</span><span class="n">loss_func</span><span class="p">(</span><span class="n">model</span><span class="p">(</span><span class="n">x_valid</span><span class="p">),</span><span class="n">y_valid</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;test accuracy: &quot;</span><span class="p">,</span><span class="n">accuracy</span><span class="p">(</span><span class="n">model</span><span class="p">(</span><span class="n">x_valid</span><span class="p">),</span><span class="n">y_valid</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>train loss:  tf.Tensor(0.30652905, shape=(), dtype=float32)
+train accuracy:  tf.Tensor(0.911, shape=(), dtype=float16)
+test loss:  tf.Tensor(0.30012172, shape=(), dtype=float32)
+test accuracy:  tf.Tensor(0.9136, shape=(), dtype=float16)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="span-style-color-4361ee-recuperando-estimaciones-weights-bias-span">
+<h2><span style="color:#4361EE">Recuperando estimaciones (Weights &amp; Bias)</span><a class="headerlink" href="#span-style-color-4361ee-recuperando-estimaciones-weights-bias-span" title="Enlazar permanentemente con este título">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">weights</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;tf.Variable &#39;Variable:0&#39; shape=(784, 10) dtype=float32, numpy=
+array([[0.01936717, 0.01670487, 0.01259941, ..., 0.0354806 , 0.02773505,
+        0.024815  ],
+       [0.01509231, 0.0284929 , 0.00563908, ..., 0.01314457, 0.02220905,
+        0.00493607],
+       [0.0047584 , 0.02688436, 0.03469312, ..., 0.03535743, 0.02096629,
+        0.0103931 ],
+       ...,
+       [0.00444492, 0.03566462, 0.02684227, ..., 0.03182695, 0.01084574,
+        0.00429973],
+       [0.01353151, 0.01630927, 0.01565207, ..., 0.0348251 , 0.0053246 ,
+        0.00656663],
+       [0.0292965 , 0.02399355, 0.03454986, ..., 0.01452523, 0.01184466,
+        0.009656  ]], dtype=float32)&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bias</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;tf.Variable &#39;Variable:0&#39; shape=(10,) dtype=float32, numpy=
+array([-0.3216015 ,  0.33821732,  0.06465681, -0.23871014,  0.05610637,
+        1.0925262 , -0.07184623,  0.5204884 , -1.2441906 , -0.19565555],
+      dtype=float32)&gt;
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "AprendizajeProfundo/Libro-Fundamentos",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./Redes_Neuronales\Cuadernos"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Álvaro Mauricio Montenegro Díaz, Daniel Mauricio Montenegro Reyes<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

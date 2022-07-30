@@ -1,0 +1,237 @@
+Traceback (most recent call last):
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\jupyter_cache\executors\utils.py", line 51, in single_nb_execution
+    executenb(
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\nbclient\client.py", line 1204, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\nbclient\util.py", line 84, in wrapped
+    return just_run(coro(*args, **kwargs))
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\nbclient\util.py", line 62, in just_run
+    return loop.run_until_complete(coro)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\asyncio\base_events.py", line 642, in run_until_complete
+    return future.result()
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\nbclient\client.py", line 663, in async_execute
+    await self.async_execute_cell(
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\nbclient\client.py", line 965, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\site-packages\nbclient\client.py", line 862, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+
+# Importar librería necesaria para crear archivos localmente
+from pathlib import Path
+# Importar libreria necesaria para descargar archivos de la web
+import requests
+
+# Generar Camino Para archivo
+carpeta_datos= Path("../Datos")
+
+# Especificar el nombre del dataset
+camino = carpeta_datos / "MNIST"
+
+# Crear directorio en el lugar indicado
+camino.mkdir(parents=True, exist_ok=True)
+
+# Posición actual en el equipo
+donde_estoy=!pwd
+#Note que la variable se guarda como una lista, no como un string
+print("\nActualmente estoy en:\n\n",donde_estoy[0],"\n")
+
+# Colocar la URL donde se encuentran los datos
+url = "http://deeplearning.net/data/mnist/"
+# Separar el nombre del archivo (Note que ha sido comprimido)
+nombre_archivo = "mnist.pkl.gz"
+
+# Comprobar si existe el archivo a descargar
+if not (camino / nombre_archivo).exists():
+    
+        #Mensaje para el usuario
+        print("\nBajando Archivo Desde la URL "+url+nombre_archivo+"\n")
+        
+        # Haciendo un request a la url correspondiente y obtener contenido
+        contenido = requests.get(url + nombre_archivo).content
+        
+        # Escribir el contenido binario del request
+        (camino / nombre_archivo).open("wb").write(contenido)
+
+        # Exito, mostrar camino donde se encuentra el archivo descargado
+print("Bajado con éxito en:\n\n"+donde_estoy[0]+"/"+camino.as_posix())
+------------------
+
+[1;31m---------------------------------------------------------------------------[0m
+[1;31mTimeoutError[0m                              Traceback (most recent call last)
+File [1;32m~\AppData\Local\Programs\Python\Python39\lib\site-packages\urllib3\connection.py:174[0m, in [0;36mHTTPConnection._new_conn[1;34m(self)[0m
+[0;32m    173[0m [38;5;28;01mtry[39;00m:
+[1;32m--> 174[0m     conn [38;5;241m=[39m connection[38;5;241m.[39mcreate_connection(
+[0;32m    175[0m         ([38;5;28mself[39m[38;5;241m.[39m_dns_host, [38;5;28mself[39m[38;5;241m.[39mport), [38;5;28mself[39m[38;5;241m.[39mtimeout, [38;5;241m*[39m[38;5;241m*[39mextra_kw
+[0;32m    176[0m     )
+[0;32m    178[0m [38;5;28;01mexcept[39;00m SocketTimeout:
+
+File [1;32m~\AppData\Local\Programs\Python\Python39\lib\site-packages\urllib3\util\connection.py:95[0m, in [0;36mcreate_connection[1;34m(address, timeout, source_address, socket_options)[0m
+[0;32m     94[0m [38;5;28;01mif[39;00m err [38;5;129;01mis[39;00m [38;5;129;01mnot[39;00m [38;5;28;01mNone[39;00m:
+[1;32m---> 95[0m     [38;5;28;01mraise[39;00m err
+[0;32m     97[0m [38;5;28;01mraise[39;00m socket[38;5;241m.[39merror([38;5;124m"[39m[38;5;124mgetaddrinfo returns an empty list[39m[38;5;124m"[39m)
+
+File [1;32m~\AppData\Local\Programs\Python\Python39\lib\site-packages\urllib3\util\connection.py:85[0m, in [0;36mcreate_connection[1;34m(address, timeout, source_address, socket_options)[0m
+[0;32m     84[0m     sock[38;5;241m.[39mbind(source_address)
+[1;32m---> 85[0m [43msock[49m[38;5;241;43m.[39;49m[43mconnect[49m[43m([49m[43msa[49m[43m)[49m
+[0;32m     86[0m [38;5;28;01mreturn[39;00m sock
+
+[1;31mTimeoutError[0m: [WinError 10060] Se produjo un error durante el intento de conexión ya que la parte conectada no respondió adecuadamente tras un periodo de tiempo, o bien se produjo un error en la conexión establecida ya que el host conectado no ha podido responder
+
+During handling of the above exception, another exception occurred:
+
+[1;31mNewConnectionError[0m                        Traceback (most recent call last)
+File [1;32m~\AppData\Local\Programs\Python\Python39\lib\site-packages\urllib3\connectionpool.py:703[0m, in [0;36mHTTPConnectionPool.urlopen[1;34m(self, method, url, body, headers, retries, redirect, assert_same_host, timeout, pool_timeout, release_conn, chunked, body_pos, **response_kw)[0m
+[0;32m    702[0m [38;5;66;03m# Make the request on the httplib connection object.[39;00m
+[1;32m--> 703[0m httplib_response [38;5;241m=[39m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43m_make_request[49m[43m([49m
+[0;32m    704[0m [43m    [49m[43mconn[49m[43m,[49m
+[0;32m    705[0m [43m    [49m[43mmethod[49m[43m,[49m
+[0;32m    706[0m [43m    [49m[43murl[49m[43m,[49m
+[0;32m    707[0m [43m    [49m[43mtimeout[49m[38;5;241;43m=[39;49m[43mtimeout_obj[49m[43m,[49m
+[0;32m    708[0m [43m    [49m[43mbody[49m[38;5;241;43m=[39;49m[43mbody[49m[43m,[49m
+[0;32m    709[0m [43m    [49m[43mheaders[49m[38;5;241;43m=[39;49m[43mheaders[49m[43m,[49m
+[0;32m    710[0m [43m    [49m[43mchunked[49m[38;5;241;43m=[39;49m[43mchunked[49m[43m,[49m
+[0;32m    711[0m [43m[49m[43m)[49m
+[0;32m    713[0m [38;5;66;03m# If we're going to release the connection in ``finally:``, then[39;00m
+[0;32m    714[0m [38;5;66;03m# the response doesn't need to know about the connection. Otherwise[39;00m
+[0;32m    715[0m [38;5;66;03m# it will also try to release it and we'll have a double-release[39;00m
+[0;32m    716[0m [38;5;66;03m# mess.[39;00m
+
+File [1;32m~\AppData\Local\Programs\Python\Python39\lib\site-packages\urllib3\connectionpool.py:398[0m, in [0;36mHTTPConnectionPool._make_request[1;34m(self, conn, method, url, timeout, chunked, **httplib_request_kw)[0m
+[0;32m    397[0m     [38;5;28;01melse[39;00m:
+[1;32m--> 398[0m         conn[38;5;241m.[39mrequest(method, url, [38;5;241m*[39m[38;5;241m*[39mhttplib_request_kw)
+[0;32m    400[0m [38;5;66;03m# We are swallowing BrokenPipeError (errno.EPIPE) since the server is[39;00m
+[0;32m    401[0m [38;5;66;03m# legitimately able to close the connection after sending a valid response.[39;00m
+[0;32m    402[0m [38;5;66;03m# With this behaviour, the received response is still readable.[39;00m
+
+File [1;32m~\AppData\Local\Programs\Python\Python39\lib\site-packages\urllib3\connection.py:239[0m, in [0;36mHTTPConnection.request[1;34m(self, method, url, body, headers)[0m
+[0;32m    238[0m     headers[[38;5;124m"[39m[38;5;124mUser-Agent[39m[38;5;124m"[39m] [38;5;241m=[39m _get_default_user_agent()
+[1;32m--> 239[0m [38;5;28;43msuper[39;49m[43m([49m[43mHTTPConnection[49m[43m,[49m[43m [49m[38;5;28;43mself[39;49m[43m)[49m[38;5;241;43m.[39;49m[43mrequest[49m[43m([49m[43mmethod[49m[43m,[49m[43m [49m[43murl[49m[43m,[49m[43m [49m[43mbody[49m[38;5;241;43m=[39;49m[43mbody[49m[43m,[49m[43m [49m[43mheaders[49m[38;5;241;43m=[39;49m[43mheaders[49m[43m)[49m
+
+File [1;32m~\AppData\Local\Programs\Python\Python39\lib\http\client.py:1285[0m, in [0;36mHTTPConnection.request[1;34m(self, method, url, body, headers, encode_chunked)[0m
+[0;32m   1284[0m [38;5;124;03m"""Send a complete request to the server."""[39;00m
+[1;32m-> 1285[0m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43m_send_request[49m[43m([49m[43mmethod[49m[43m,[49m[43m [49m[43murl[49m[43m,[49m[43m [49m[43mbody[49m[43m,[49m[43m [49m[43mheaders[49m[43m,[49m[43m [49m[43mencode_chunked[49m[43m)[49m
+
+File [1;32m~\AppData\Local\Programs\Python\Python39\lib\http\client.py:1331[0m, in [0;36mHTTPConnection._send_request[1;34m(self, method, url, body, headers, encode_chunked)[0m
+[0;32m   1330[0m     body [38;5;241m=[39m _encode(body, [38;5;124m'[39m[38;5;124mbody[39m[38;5;124m'[39m)
+[1;32m-> 1331[0m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mendheaders[49m[43m([49m[43mbody[49m[43m,[49m[43m [49m[43mencode_chunked[49m[38;5;241;43m=[39;49m[43mencode_chunked[49m[43m)[49m
+
+File [1;32m~\AppData\Local\Programs\Python\Python39\lib\http\client.py:1280[0m, in [0;36mHTTPConnection.endheaders[1;34m(self, message_body, encode_chunked)[0m
+[0;32m   1279[0m     [38;5;28;01mraise[39;00m CannotSendHeader()
+[1;32m-> 1280[0m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43m_send_output[49m[43m([49m[43mmessage_body[49m[43m,[49m[43m [49m[43mencode_chunked[49m[38;5;241;43m=[39;49m[43mencode_chunked[49m[43m)[49m
+
+File [1;32m~\AppData\Local\Programs\Python\Python39\lib\http\client.py:1040[0m, in [0;36mHTTPConnection._send_output[1;34m(self, message_body, encode_chunked)[0m
+[0;32m   1039[0m [38;5;28;01mdel[39;00m [38;5;28mself[39m[38;5;241m.[39m_buffer[:]
+[1;32m-> 1040[0m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43msend[49m[43m([49m[43mmsg[49m[43m)[49m
+[0;32m   1042[0m [38;5;28;01mif[39;00m message_body [38;5;129;01mis[39;00m [38;5;129;01mnot[39;00m [38;5;28;01mNone[39;00m:
+[0;32m   1043[0m 
+[0;32m   1044[0m     [38;5;66;03m# create a consistent interface to message_body[39;00m
+
+File [1;32m~\AppData\Local\Programs\Python\Python39\lib\http\client.py:980[0m, in [0;36mHTTPConnection.send[1;34m(self, data)[0m
+[0;32m    979[0m [38;5;28;01mif[39;00m [38;5;28mself[39m[38;5;241m.[39mauto_open:
+[1;32m--> 980[0m     [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mconnect[49m[43m([49m[43m)[49m
+[0;32m    981[0m [38;5;28;01melse[39;00m:
+
+File [1;32m~\AppData\Local\Programs\Python\Python39\lib\site-packages\urllib3\connection.py:205[0m, in [0;36mHTTPConnection.connect[1;34m(self)[0m
+[0;32m    204[0m [38;5;28;01mdef[39;00m [38;5;21mconnect[39m([38;5;28mself[39m):
+[1;32m--> 205[0m     conn [38;5;241m=[39m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43m_new_conn[49m[43m([49m[43m)[49m
+[0;32m    206[0m     [38;5;28mself[39m[38;5;241m.[39m_prepare_conn(conn)
+
+File [1;32m~\AppData\Local\Programs\Python\Python39\lib\site-packages\urllib3\connection.py:186[0m, in [0;36mHTTPConnection._new_conn[1;34m(self)[0m
+[0;32m    185[0m [38;5;28;01mexcept[39;00m SocketError [38;5;28;01mas[39;00m e:
+[1;32m--> 186[0m     [38;5;28;01mraise[39;00m NewConnectionError(
+[0;32m    187[0m         [38;5;28mself[39m, [38;5;124m"[39m[38;5;124mFailed to establish a new connection: [39m[38;5;132;01m%s[39;00m[38;5;124m"[39m [38;5;241m%[39m e
+[0;32m    188[0m     )
+[0;32m    190[0m [38;5;28;01mreturn[39;00m conn
+
+[1;31mNewConnectionError[0m: <urllib3.connection.HTTPConnection object at 0x000001E82E958EB0>: Failed to establish a new connection: [WinError 10060] Se produjo un error durante el intento de conexión ya que la parte conectada no respondió adecuadamente tras un periodo de tiempo, o bien se produjo un error en la conexión establecida ya que el host conectado no ha podido responder
+
+During handling of the above exception, another exception occurred:
+
+[1;31mMaxRetryError[0m                             Traceback (most recent call last)
+File [1;32m~\AppData\Local\Programs\Python\Python39\lib\site-packages\requests\adapters.py:489[0m, in [0;36mHTTPAdapter.send[1;34m(self, request, stream, timeout, verify, cert, proxies)[0m
+[0;32m    488[0m [38;5;28;01mif[39;00m [38;5;129;01mnot[39;00m chunked:
+[1;32m--> 489[0m     resp [38;5;241m=[39m [43mconn[49m[38;5;241;43m.[39;49m[43murlopen[49m[43m([49m
+[0;32m    490[0m [43m        [49m[43mmethod[49m[38;5;241;43m=[39;49m[43mrequest[49m[38;5;241;43m.[39;49m[43mmethod[49m[43m,[49m
+[0;32m    491[0m [43m        [49m[43murl[49m[38;5;241;43m=[39;49m[43murl[49m[43m,[49m
+[0;32m    492[0m [43m        [49m[43mbody[49m[38;5;241;43m=[39;49m[43mrequest[49m[38;5;241;43m.[39;49m[43mbody[49m[43m,[49m
+[0;32m    493[0m [43m        [49m[43mheaders[49m[38;5;241;43m=[39;49m[43mrequest[49m[38;5;241;43m.[39;49m[43mheaders[49m[43m,[49m
+[0;32m    494[0m [43m        [49m[43mredirect[49m[38;5;241;43m=[39;49m[38;5;28;43;01mFalse[39;49;00m[43m,[49m
+[0;32m    495[0m [43m        [49m[43massert_same_host[49m[38;5;241;43m=[39;49m[38;5;28;43;01mFalse[39;49;00m[43m,[49m
+[0;32m    496[0m [43m        [49m[43mpreload_content[49m[38;5;241;43m=[39;49m[38;5;28;43;01mFalse[39;49;00m[43m,[49m
+[0;32m    497[0m [43m        [49m[43mdecode_content[49m[38;5;241;43m=[39;49m[38;5;28;43;01mFalse[39;49;00m[43m,[49m
+[0;32m    498[0m [43m        [49m[43mretries[49m[38;5;241;43m=[39;49m[38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mmax_retries[49m[43m,[49m
+[0;32m    499[0m [43m        [49m[43mtimeout[49m[38;5;241;43m=[39;49m[43mtimeout[49m[43m,[49m
+[0;32m    500[0m [43m    [49m[43m)[49m
+[0;32m    502[0m [38;5;66;03m# Send the request.[39;00m
+[0;32m    503[0m [38;5;28;01melse[39;00m:
+
+File [1;32m~\AppData\Local\Programs\Python\Python39\lib\site-packages\urllib3\connectionpool.py:787[0m, in [0;36mHTTPConnectionPool.urlopen[1;34m(self, method, url, body, headers, retries, redirect, assert_same_host, timeout, pool_timeout, release_conn, chunked, body_pos, **response_kw)[0m
+[0;32m    785[0m     e [38;5;241m=[39m ProtocolError([38;5;124m"[39m[38;5;124mConnection aborted.[39m[38;5;124m"[39m, e)
+[1;32m--> 787[0m retries [38;5;241m=[39m [43mretries[49m[38;5;241;43m.[39;49m[43mincrement[49m[43m([49m
+[0;32m    788[0m [43m    [49m[43mmethod[49m[43m,[49m[43m [49m[43murl[49m[43m,[49m[43m [49m[43merror[49m[38;5;241;43m=[39;49m[43me[49m[43m,[49m[43m [49m[43m_pool[49m[38;5;241;43m=[39;49m[38;5;28;43mself[39;49m[43m,[49m[43m [49m[43m_stacktrace[49m[38;5;241;43m=[39;49m[43msys[49m[38;5;241;43m.[39;49m[43mexc_info[49m[43m([49m[43m)[49m[43m[[49m[38;5;241;43m2[39;49m[43m][49m
+[0;32m    789[0m [43m[49m[43m)[49m
+[0;32m    790[0m retries[38;5;241m.[39msleep()
+
+File [1;32m~\AppData\Local\Programs\Python\Python39\lib\site-packages\urllib3\util\retry.py:592[0m, in [0;36mRetry.increment[1;34m(self, method, url, response, error, _pool, _stacktrace)[0m
+[0;32m    591[0m [38;5;28;01mif[39;00m new_retry[38;5;241m.[39mis_exhausted():
+[1;32m--> 592[0m     [38;5;28;01mraise[39;00m MaxRetryError(_pool, url, error [38;5;129;01mor[39;00m ResponseError(cause))
+[0;32m    594[0m log[38;5;241m.[39mdebug([38;5;124m"[39m[38;5;124mIncremented Retry for (url=[39m[38;5;124m'[39m[38;5;132;01m%s[39;00m[38;5;124m'[39m[38;5;124m): [39m[38;5;132;01m%r[39;00m[38;5;124m"[39m, url, new_retry)
+
+[1;31mMaxRetryError[0m: HTTPConnectionPool(host='deeplearning.net', port=80): Max retries exceeded with url: /data/mnist/mnist.pkl.gz (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000001E82E958EB0>: Failed to establish a new connection: [WinError 10060] Se produjo un error durante el intento de conexión ya que la parte conectada no respondió adecuadamente tras un periodo de tiempo, o bien se produjo un error en la conexión establecida ya que el host conectado no ha podido responder'))
+
+During handling of the above exception, another exception occurred:
+
+[1;31mConnectionError[0m                           Traceback (most recent call last)
+Input [1;32mIn [1][0m, in [0;36m<cell line: 26>[1;34m()[0m
+[0;32m     29[0m [38;5;28mprint[39m([38;5;124m"[39m[38;5;130;01m\n[39;00m[38;5;124mBajando Archivo Desde la URL [39m[38;5;124m"[39m[38;5;241m+[39murl[38;5;241m+[39mnombre_archivo[38;5;241m+[39m[38;5;124m"[39m[38;5;130;01m\n[39;00m[38;5;124m"[39m)
+[0;32m     31[0m [38;5;66;03m# Haciendo un request a la url correspondiente y obtener contenido[39;00m
+[1;32m---> 32[0m contenido [38;5;241m=[39m [43mrequests[49m[38;5;241;43m.[39;49m[43mget[49m[43m([49m[43murl[49m[43m [49m[38;5;241;43m+[39;49m[43m [49m[43mnombre_archivo[49m[43m)[49m[38;5;241m.[39mcontent
+[0;32m     34[0m [38;5;66;03m# Escribir el contenido binario del request[39;00m
+[0;32m     35[0m (camino [38;5;241m/[39m nombre_archivo)[38;5;241m.[39mopen([38;5;124m"[39m[38;5;124mwb[39m[38;5;124m"[39m)[38;5;241m.[39mwrite(contenido)
+
+File [1;32m~\AppData\Local\Programs\Python\Python39\lib\site-packages\requests\api.py:73[0m, in [0;36mget[1;34m(url, params, **kwargs)[0m
+[0;32m     62[0m [38;5;28;01mdef[39;00m [38;5;21mget[39m(url, params[38;5;241m=[39m[38;5;28;01mNone[39;00m, [38;5;241m*[39m[38;5;241m*[39mkwargs):
+[0;32m     63[0m     [38;5;124mr[39m[38;5;124;03m"""Sends a GET request.[39;00m
+[0;32m     64[0m 
+[0;32m     65[0m [38;5;124;03m    :param url: URL for the new :class:`Request` object.[39;00m
+[1;32m   (...)[0m
+[0;32m     70[0m [38;5;124;03m    :rtype: requests.Response[39;00m
+[0;32m     71[0m [38;5;124;03m    """[39;00m
+[1;32m---> 73[0m     [38;5;28;01mreturn[39;00m request([38;5;124m"[39m[38;5;124mget[39m[38;5;124m"[39m, url, params[38;5;241m=[39mparams, [38;5;241m*[39m[38;5;241m*[39mkwargs)
+
+File [1;32m~\AppData\Local\Programs\Python\Python39\lib\site-packages\requests\api.py:59[0m, in [0;36mrequest[1;34m(method, url, **kwargs)[0m
+[0;32m     55[0m [38;5;66;03m# By using the 'with' statement we are sure the session is closed, thus we[39;00m
+[0;32m     56[0m [38;5;66;03m# avoid leaving sockets open which can trigger a ResourceWarning in some[39;00m
+[0;32m     57[0m [38;5;66;03m# cases, and look like a memory leak in others.[39;00m
+[0;32m     58[0m [38;5;28;01mwith[39;00m sessions[38;5;241m.[39mSession() [38;5;28;01mas[39;00m session:
+[1;32m---> 59[0m     [38;5;28;01mreturn[39;00m session[38;5;241m.[39mrequest(method[38;5;241m=[39mmethod, url[38;5;241m=[39murl, [38;5;241m*[39m[38;5;241m*[39mkwargs)
+
+File [1;32m~\AppData\Local\Programs\Python\Python39\lib\site-packages\requests\sessions.py:587[0m, in [0;36mSession.request[1;34m(self, method, url, params, data, headers, cookies, files, auth, timeout, allow_redirects, proxies, hooks, stream, verify, cert, json)[0m
+[0;32m    582[0m send_kwargs [38;5;241m=[39m {
+[0;32m    583[0m     [38;5;124m"[39m[38;5;124mtimeout[39m[38;5;124m"[39m: timeout,
+[0;32m    584[0m     [38;5;124m"[39m[38;5;124mallow_redirects[39m[38;5;124m"[39m: allow_redirects,
+[0;32m    585[0m }
+[0;32m    586[0m send_kwargs[38;5;241m.[39mupdate(settings)
+[1;32m--> 587[0m resp [38;5;241m=[39m [38;5;28mself[39m[38;5;241m.[39msend(prep, [38;5;241m*[39m[38;5;241m*[39msend_kwargs)
+[0;32m    589[0m [38;5;28;01mreturn[39;00m resp
+
+File [1;32m~\AppData\Local\Programs\Python\Python39\lib\site-packages\requests\sessions.py:701[0m, in [0;36mSession.send[1;34m(self, request, **kwargs)[0m
+[0;32m    698[0m start [38;5;241m=[39m preferred_clock()
+[0;32m    700[0m [38;5;66;03m# Send the request[39;00m
+[1;32m--> 701[0m r [38;5;241m=[39m adapter[38;5;241m.[39msend(request, [38;5;241m*[39m[38;5;241m*[39mkwargs)
+[0;32m    703[0m [38;5;66;03m# Total elapsed time of the request (approximately)[39;00m
+[0;32m    704[0m elapsed [38;5;241m=[39m preferred_clock() [38;5;241m-[39m start
+
+File [1;32m~\AppData\Local\Programs\Python\Python39\lib\site-packages\requests\adapters.py:565[0m, in [0;36mHTTPAdapter.send[1;34m(self, request, stream, timeout, verify, cert, proxies)[0m
+[0;32m    561[0m     [38;5;28;01mif[39;00m [38;5;28misinstance[39m(e[38;5;241m.[39mreason, _SSLError):
+[0;32m    562[0m         [38;5;66;03m# This branch is for urllib3 v1.22 and later.[39;00m
+[0;32m    563[0m         [38;5;28;01mraise[39;00m SSLError(e, request[38;5;241m=[39mrequest)
+[1;32m--> 565[0m     [38;5;28;01mraise[39;00m [38;5;167;01mConnectionError[39;00m(e, request[38;5;241m=[39mrequest)
+[0;32m    567[0m [38;5;28;01mexcept[39;00m ClosedPoolError [38;5;28;01mas[39;00m e:
+[0;32m    568[0m     [38;5;28;01mraise[39;00m [38;5;167;01mConnectionError[39;00m(e, request[38;5;241m=[39mrequest)
+
+[1;31mConnectionError[0m: HTTPConnectionPool(host='deeplearning.net', port=80): Max retries exceeded with url: /data/mnist/mnist.pkl.gz (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000001E82E958EB0>: Failed to establish a new connection: [WinError 10060] Se produjo un error durante el intento de conexión ya que la parte conectada no respondió adecuadamente tras un periodo de tiempo, o bien se produjo un error en la conexión establecida ya que el host conectado no ha podido responder'))
+ConnectionError: HTTPConnectionPool(host='deeplearning.net', port=80): Max retries exceeded with url: /data/mnist/mnist.pkl.gz (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000001E82E958EB0>: Failed to establish a new connection: [WinError 10060] Se produjo un error durante el intento de conexión ya que la parte conectada no respondió adecuadamente tras un periodo de tiempo, o bien se produjo un error en la conexión establecida ya que el host conectado no ha podido responder'))
+

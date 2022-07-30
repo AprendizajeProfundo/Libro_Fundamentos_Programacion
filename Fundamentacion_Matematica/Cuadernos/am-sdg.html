@@ -1,0 +1,1189 @@
+
+<!DOCTYPE html>
+
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Optimización &#8212; Fundamentos de IA y AP</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script src="../../_static/tabs.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../../_static/translations.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Índice" href="../../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../../search.html" />
+    <link rel="next" title="Conceptos básicos de aprendizaje de máquinas" href="../../Machine_Learning/Cuadernos/am_intro_aprendizaje_maquinas.html" />
+    <link rel="prev" title="Optimización multivariada usando JAX" href="Optimization_2.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="es">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../_static/logo-final-ap.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Fundamentos de IA y AP</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../tutorial.html">
+                    <span style="color:#F72585">Bienvenido(a)</span>
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Conociendo el libro
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Inicio/Cuadernos/Consideraciones.html">
+   <span style="color:#F72585">
+    Conociendo el Libro
+   </span>
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Fundamentos de Estadística
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Fundamentacion_Estadistica/Cuadernos/Prob_Conceptos_Basicos.html">
+   <span style="color:#F72585">
+    Probabilidad
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Fundamentacion_Estadistica/Cuadernos/Prob_Variables_Aleatorias.html">
+   <span style="color:#F72585">
+    Variables Aleatorias
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Fundamentacion_Estadistica/Cuadernos/Prob_Var_Prob_conjunta.html">
+   <span style="color:#F72585">
+    Probabilidad Conjunta y Entropía Cruzada
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Fundamentacion_Estadistica/Cuadernos/Prob_Distribuciones_continuas.html">
+   <span style="color:#F72585">
+    Distribuciones de probabilidad continuas
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Fundamentacion_Estadistica/Cuadernos/Regresi%C3%B3n-Lineal-Pyton-Copy1.html">
+   <span style="color:#F72585">
+    Regresión Lineal en Python
+   </span>
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Teoría de la Información
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Fundamentacion_Estadistica/Cuadernos/ti_Teoria_Informacion.html">
+   <span style="color:#F72585">
+    Teoría de la Información
+   </span>
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Álgebra Lineal
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Intro_Tensores_I.html">
+   <span style="color:#F72585">
+    Introducción a tensores
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Intro_Tensores_II.html">
+   <span style="color:#F72585">
+    Tensores
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Tensor_Distribucion_Prob.html">
+   <span style="color:#F72585">
+    Tensores y distribuciones de probabilidad
+   </span>
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Modelación
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="mod_Modelamiento.html">
+   <span style="color:#F72585">
+    Ejemplos de Modelos
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="mod_Ejemplo_Modelamiento.html">
+   <span style="color:#F72585">
+    Ejemplos de Modelamiento
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cal_derivadas.html">
+   <span style="color:#F72585">
+    Introducción a la Derivación
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Optimization_1.html">
+   <span style="color:#F72585">
+    Optimización univariada usando JAX
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Optimization_2.html">
+   <span style="color:#F72585">
+    Optimización multivariada usando JAX
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   <span style="color:#F72585">
+    Optimización
+   </span>
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Aprendizaje de máquinas
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Machine_Learning/Cuadernos/am_intro_aprendizaje_maquinas.html">
+   <span style="color:#F72585">
+    Conceptos básicos de aprendizaje de máquinas
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Machine_Learning/Cuadernos/am_Regresion_logistica_JAX.html">
+   <span style="color:#F72585">
+    Modelo Lineal de Clasificación  con JAX
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Machine_Learning/Cuadernos/am_Regresion_Logistica_Tensorflow.html">
+   <span style="color:#F72585">
+    Modelo Logístico de Clasificación  con Tensorflow 2.X
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Machine_Learning/Cuadernos/am_regresion_Keras.html">
+   <span style="color:#F72585">
+    Regresion Basica con tf.keras: Predecir eficiencia de la gasolina
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Machine_Learning/Cuadernos/am-logistico-keras-cancer.html">
+   <span style="color:#F72585">
+    Modelo logístico de predicción en tf.keras
+   </span>
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Aprendizaje de máquinas no supervisado
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Machine_Learning/Cuadernos/BreveIntroduccion2R.html">
+   <span style="color:#F72585">
+    Breve introducción a R
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Machine_Learning/Cuadernos/AprendizajeNoSupervisado.html">
+   <span style="color:#F72585">
+    Aprendizaje no supervisado
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Machine_Learning/Cuadernos/ACP.html">
+   <span style="color:#F72585">
+    Análisis en componentes principales
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Machine_Learning/Cuadernos/ACS.html">
+   <span style="color:#F72585">
+    Análisis de correspondencias simples
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Machine_Learning/Cuadernos/ACM.html">
+   <span style="color:#F72585">
+    Análisis de correspondencias múltiples (ACM)
+   </span>
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Mapas auto-organizados (SOM)
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Machine_Learning/Cuadernos/som_Introduccion.html">
+   <span style="color:#F72585">
+    Mapas Auto-organizados (SOM)
+   </span>
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Redes Neuronales
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Redes_Neuronales/Cuadernos/RedesNeuronales_intro.html">
+   <span style="color:#F72585">
+    Introducción a Redes Neuronales
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Redes_Neuronales/Cuadernos/Activation_Functions.html">
+   <span style="color:#F72585">
+    Funciones de Activación
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Redes_Neuronales/Cuadernos/Hello_World_ML.html">
+   <span style="color:#F72585">
+    Introducción a Keras Sequential y API Funcional
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Redes_Neuronales/Cuadernos/Intro_Keras_Sequential.html">
+   <span style="color:#F72585">
+    Introducción a la API Sequential de Keras
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Redes_Neuronales/Cuadernos/Intro_Keras_Functional.html">
+   <span style="color:#F72585">
+    Introducción a la API funcional de Keras
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Redes_Neuronales/Cuadernos/am-softmax-keras-iris.html">
+   <span style="color:#F72585">
+    Clasificación, Softmax, Iris
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Redes_Neuronales/Cuadernos/am_regresion_Keras_gasolina.html">
+   <span style="color:#F72585">
+    Regresion Basica con tf.keras: Predecir eficiencia de la gasolina
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Redes_Neuronales/Cuadernos/am-subclassing-iris.html">
+   <span style="color:#F72585">
+    Subclassing-Modelo de Regresión multi-logística
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Redes_Neuronales/Cuadernos/NN_Animation2.html">
+   <span style="color:#F72585">
+    Visualización del Entrenamiento de una Red Neuronal
+   </span>
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/AprendizajeProfundo/Libro-Fundamentos/main?urlpath=tree/Fundamentacion_Matematica/Cuadernos/am-sdg.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://colab.research.google.com/github/AprendizajeProfundo/Libro-Fundamentos/blob/main/Fundamentacion_Matematica/Cuadernos/am-sdg.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Colab"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../../_static/images/logo_colab.png">
+  </span>
+<span class="headerbtn__text-container">Colab</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="initThebeSBT()"
+  class="headerbtn headerbtn-launch-thebe"
+  data-toggle="tooltip"
+data-placement="left"
+title="Launch Thebe"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="headerbtn__text-container">Live Code</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/AprendizajeProfundo/Libro-Fundamentos"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/AprendizajeProfundo/Libro-Fundamentos/issues/new?title=Issue%20on%20page%20%2FFundamentacion_Matematica/Cuadernos/am-sdg.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/AprendizajeProfundo/Libro-Fundamentos/edit/main/Fundamentacion_Matematica/Cuadernos/am-sdg.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Edit this page"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="headerbtn__text-container">suggest edit</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../../_sources/Fundamentacion_Matematica/Cuadernos/am-sdg.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-introduccion-span">
+   <span style="color:#4361EE">
+    Introducción
+   </span>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-metodos-de-optimizacion-basados-en-el-gradiente-span">
+   <span style="color:#4361EE">
+    Métodos de optimización basados en el gradiente
+   </span>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-gradiente-descendiente-en-lote-span">
+   <span style="color:#4361EE">
+    Gradiente descendiente en lote
+   </span>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-gradiente-descendiente-estocastico-span">
+   <span style="color:#4361EE">
+    Gradiente descendiente estocástico
+   </span>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-gradiente-descendiente-estocastico-por-mini-lotes-span">
+   <span style="color:#4361EE">
+    Gradiente descendiente estocástico por mini-lotes
+   </span>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-discusion-span">
+     <span style="color:#4CC9F0">
+      Discusión
+     </span>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-metodo-del-momento-span">
+   <span style="color:#4361EE">
+    Método del momento
+   </span>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-rmsprop-span">
+   <span style="color:#4361EE">
+    RMSprop
+   </span>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-algoritmo-adam-span">
+   <span style="color:#4361EE">
+    Algoritmo Adam
+   </span>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-referencias-span">
+   <span style="color:#4361EE">
+    Referencias
+   </span>
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1><span style="color:#F72585">Optimización</span></h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-introduccion-span">
+   <span style="color:#4361EE">
+    Introducción
+   </span>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-metodos-de-optimizacion-basados-en-el-gradiente-span">
+   <span style="color:#4361EE">
+    Métodos de optimización basados en el gradiente
+   </span>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-gradiente-descendiente-en-lote-span">
+   <span style="color:#4361EE">
+    Gradiente descendiente en lote
+   </span>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-gradiente-descendiente-estocastico-span">
+   <span style="color:#4361EE">
+    Gradiente descendiente estocástico
+   </span>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-gradiente-descendiente-estocastico-por-mini-lotes-span">
+   <span style="color:#4361EE">
+    Gradiente descendiente estocástico por mini-lotes
+   </span>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-discusion-span">
+     <span style="color:#4CC9F0">
+      Discusión
+     </span>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-metodo-del-momento-span">
+   <span style="color:#4361EE">
+    Método del momento
+   </span>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-rmsprop-span">
+   <span style="color:#4361EE">
+    RMSprop
+   </span>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-algoritmo-adam-span">
+   <span style="color:#4361EE">
+    Algoritmo Adam
+   </span>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-referencias-span">
+   <span style="color:#4361EE">
+    Referencias
+   </span>
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="span-style-color-f72585-optimizacion-span">
+<h1><span style="color:#F72585">Optimización</span><a class="headerlink" href="#span-style-color-f72585-optimizacion-span" title="Enlazar permanentemente con este título">#</a></h1>
+<p>Gradiente Descendiente Estocástico</p>
+<figure>
+<img src="https://raw.githubusercontent.com/AprendizajeProfundo/Libro-Fundamentos/main/Fundamentacion_Matematica/Imagenes/512px-3d-gradient-cos.svg.png" height='450' width='450'/>
+</figure>
+<p>Fuente: <a class="reference external" href="https://commons.wikimedia.org/wiki/File:3d-gradient-cos.svg">Wikipedia</a></p>
+<p>Por ejemplo busque en Google <a class="reference external" href="https://matplotlib.org/3.1.1/api/_as_gen/matplotlib.axes.Axes.quiver.html">ax.quiver</a>.</p>
+<section id="span-style-color-4361ee-introduccion-span">
+<h2><span style="color:#4361EE">Introducción</span><a class="headerlink" href="#span-style-color-4361ee-introduccion-span" title="Enlazar permanentemente con este título">#</a></h2>
+<p>La mayoría de los algoritmos de aprendizaje profundo implican optimización de algún tipo. La optimización se refiere a la tarea de minimizar o maximizar alguna función <span class="math notranslate nohighlight">\( f (x) \)</span> alterando <span class="math notranslate nohighlight">\( x \)</span>. Por lo general, expresamos la mayoría de los problemas de optimización en aprendizaje profundo en términos de minimizar una función <span class="math notranslate nohighlight">\(f(x)\)</span>.</p>
+<p><strong>Entenderemos la frase  minimizar una función <span class="math notranslate nohighlight">\(f(x)\)</span> como un procedimiento para encontrar valor <span class="math notranslate nohighlight">\(x^*\)</span> de tal manera que <span class="math notranslate nohighlight">\( f (x^*) \)</span> tenga el menor valor posible.</strong></p>
+<p>Los matemáticos escriben esta frase en símbolos de la siguiente manera:</p>
+<div class="math notranslate nohighlight">
+\[
+x^* = \underset{x}{\operatorname{argmin}}  f(x).
+\]</div>
+<p>La función que queremos minimizar  se llama función o criterio <strong>objetivo</strong>. Cuando estamos minimizando, también podemos llamarla función de costo, <strong>función de pérdida</strong> o función de error.</p>
+<p>La búsqueda de un mínimo global puede ser una tarea muy dura en aprendizaje de máquinas si se tiene en cuenta que las funciones tienen muchas variables y consecuencia se tienen muchas dimensiones, por lo que no podemos <em>verlas</em>. En la siguiente imagen la función tiene dos variables <strong>(features)</strong>. En aprendizaje de máquinas se pueden tener cientos  miles y hasta más variables (features). La siguiente imagen muestra una función con varios máximos y varios mínimos.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">cm</span>
+<span class="kn">from</span> <span class="nn">matplotlib.ticker</span> <span class="kn">import</span> <span class="n">LinearLocator</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">subplot_kw</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;projection&quot;</span><span class="p">:</span> <span class="s2">&quot;3d&quot;</span><span class="p">},</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+
+
+<span class="c1"># Datos.</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mf">6.5</span><span class="p">,</span> <span class="mf">6.5</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">)</span>
+<span class="n">Y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mf">6.5</span><span class="p">,</span> <span class="mf">6.5</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">)</span>
+<span class="n">X</span><span class="p">,</span> <span class="n">Y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">)</span>
+<span class="n">R</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">X</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">Y</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">Z</span> <span class="o">=</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">R</span><span class="p">)</span>
+
+<span class="c1"># Dibujar la superficie</span>
+<span class="n">surf</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">plot_surface</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">Z</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cm</span><span class="o">.</span><span class="n">coolwarm</span><span class="p">,</span>
+                       <span class="n">linewidth</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">antialiased</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Configurar el eje z.</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_zlim</span><span class="p">(</span><span class="o">-</span><span class="mf">1.01</span><span class="p">,</span> <span class="mf">1.01</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">zaxis</span><span class="o">.</span><span class="n">set_major_locator</span><span class="p">(</span><span class="n">LinearLocator</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
+<span class="c1"># Un StrMethodFormatter es usado automaticamente</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">zaxis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{x:.02f}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="c1"># Agrega una barra de colores que asigna valores a los colores.</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">surf</span><span class="p">,</span> <span class="n">shrink</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">aspect</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/am-sdg_6_0.png" src="../../_images/am-sdg_6_0.png" />
+</div>
+</div>
+</section>
+<section id="span-style-color-4361ee-metodos-de-optimizacion-basados-en-el-gradiente-span">
+<h2><span style="color:#4361EE">Métodos de optimización basados en el gradiente</span><a class="headerlink" href="#span-style-color-4361ee-metodos-de-optimizacion-basados-en-el-gradiente-span" title="Enlazar permanentemente con este título">#</a></h2>
+<p>En esta lección vamos a concentrarnos en las técnicas más modernas de optimización desarrolladas para el hacer posible el aprendizaje de máquinas. En este contexto se tiene que:</p>
+<p><strong><center>El problema de entrenar una máquina es un problema de optimización.</center></strong></p>
+<p>A menudo minimizamos las funciones que tienen múltiples entradas: <span class="math notranslate nohighlight">\( f: \mathbb{R}^n \to \mathbb {R} \)</span>.</p>
+<p>Para que el concepto de «minimización» tenga sentido, debe haber una sola salida (función escalar).  Para funciones con múltiples entradas, se hace uso del concepto de derivadas parciales. La derivada parcial <span class="math notranslate nohighlight">\(\frac{\partial}{\partial x_i} f(x)\)</span>  mide como cambia (la velocidad a la que cambia) <span class="math notranslate nohighlight">\(f\)</span>  cuando la variable <span class="math notranslate nohighlight">\(x_i\)</span> crece o decrece desde el punto  <span class="math notranslate nohighlight">\(x\)</span>.</p>
+<p>El gradiente generaliza la noción de derivada al caso en que la derivada es con respecto a una dirección en el espacio. El gradiente de <span class="math notranslate nohighlight">\( f \)</span>, denotado <span class="math notranslate nohighlight">\( \nabla_xf (x) \)</span>,  es el vector que contiene todas las derivadas parciales. El elemento <span class="math notranslate nohighlight">\( i \)</span> del gradiente es la derivada parcial de <span class="math notranslate nohighlight">\( f \)</span> con respecto a <span class="math notranslate nohighlight">\( x_i \)</span>.</p>
+<p>En múltiples dimensiones, los <em>puntos críticos</em> son puntos donde cada elemento del gradiente es igual a cero. Por otro lado, se puede verificar que el gradiente <span class="math notranslate nohighlight">\( \nabla_xf (x) \)</span>  es ese  vector que apunta en la dirección en la cual la función <span class="math notranslate nohighlight">\(f\)</span> crece más rápidamente partiendo precisamente del punto <span class="math notranslate nohighlight">\(x\)</span>. En consecuencia, <span class="math notranslate nohighlight">\( -\nabla_xf (x) \)</span> apunta en la dirección contraria, es decir en la dirección hacia la cual la función decrece más rápido, desde el punto <span class="math notranslate nohighlight">\(x\)</span>. Esta es la clave de los métodos de optimización basados en el gradiente.</p>
+<p>La siguiente imagen ilustra el gradiente proyectado en el plano <span class="math notranslate nohighlight">\(xy\)</span> de la función <span class="math notranslate nohighlight">\(f(x,y)= -(\cos x^2 + \sin x^2)^2\)</span>.</p>
+<figure>
+<center>
+<img src="https://raw.githubusercontent.com/AprendizajeProfundo/Libro-Fundamentos/main/Fundamentacion_Matematica/Imagenes/512px-3d-gradient-cos.svg.png" height='450' width='450'/>
+</center>
+</figure>
+<p>Gradientes de la función <span class="math notranslate nohighlight">\(f(x,y)= -(\cos x^2 + \sin x^2)^2\)</span> proyectados en el plano <span class="math notranslate nohighlight">\(xy\)</span></p>
+<p>Fuente: <a class="reference external" href="https://commons.wikimedia.org/wiki/File:3d-gradient-cos.svg">Wikipedia</a></p>
+<p>El término <strong>gradiente descendiente</strong> indica que se usará <span class="math notranslate nohighlight">\( -\nabla_xf (x) \)</span> para moverse a un siguiente punto en busca de un mínimo local. El método general se escribe como:</p>
+<div class="math notranslate nohighlight">
+\[
+x^{(k+1)} = x^{(k)} − \eta_{k} \nabla_x f(x^{(k)})
+\]</div>
+<p>Los  valores  <span class="math notranslate nohighlight">\(\eta_k\)</span> se denominan genéricamente  <strong>tasa de aprendizaje</strong>. La razón de incorporar la tasa de aprendizaje es controlar el tamaño de paso. Si no hace esta corrección podemos alejarnos en lugar de acercarnos al mínimo que se está buscando.</p>
+<figure>
+<center>
+<img src="https://raw.githubusercontent.com/AprendizajeProfundo/Libro-Fundamentos/main/Fundamentacion_Matematica/Imagenes/350px-Gradient_descent.svg.png" height='300' width='300'/>
+</center>
+</figure>
+<p>Ilustración usando curvas de nivel de como ocurren las iteraciones en el método del gradiente descendiente.</p>
+<p>Fuente: <a class="reference external" href="https://en.wikipedia.org/wiki/Gradient_descent#/media/File:Gradient_descent.svg">Wikipedia</a></p>
+</section>
+<section id="span-style-color-4361ee-gradiente-descendiente-en-lote-span">
+<h2><span style="color:#4361EE">Gradiente descendiente en lote</span><a class="headerlink" href="#span-style-color-4361ee-gradiente-descendiente-en-lote-span" title="Enlazar permanentemente con este título">#</a></h2>
+<p>En el método de gradiente  descendiente vainilla (vainilla se refiere al ejemplo básico), también conocido como descenso de gradiente por lotes, calcula el gradiente de la función de pérdida con respecto a los parámetros <span class="math notranslate nohighlight">\(\boldsymbol{\theta}\)</span> para el <strong>conjunto de datos de entrenamiento completo</strong> <span class="math notranslate nohighlight">\((\mathbf{x}_{train},\mathbf{y}_{train})\)</span>. Si <span class="math notranslate nohighlight">\(\mathfrak{L}\)</span> es la función de pérdida del problema, entonces se tiene que</p>
+<div class="math notranslate nohighlight">
+\[
+\boldsymbol{\theta}_{k+1} =  \boldsymbol{\theta}_k - \eta_k \nabla_{\boldsymbol{\theta}} \mathfrak{L}(\mathbf{x}_{train},\mathbf{y}_{train},\boldsymbol{\theta}_k),
+\]</div>
+<p>El principal problema a resolver con los métodos de gradiente descendiente es cómo definir y actualizar en cada paso la tasa de aprendizaje <span class="math notranslate nohighlight">\(\eta_k \)</span>. Un fragmento de código, en el cual se actualiza la tasa de aprendizaje podría lucir como sigue. Supongamos que al comenzar <span class="math notranslate nohighlight">\(0&lt;\eta_0&lt;1\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">gd</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">loss_func</span><span class="p">,</span> <span class="n">epochs</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span> <span class="p">(</span><span class="n">epochs</span><span class="p">):</span>
+        <span class="n">gradient</span> <span class="o">=</span> <span class="n">evaluate_gradient</span><span class="p">(</span><span class="n">loss_func</span><span class="p">,</span> <span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">theta</span><span class="p">)</span>
+        <span class="n">theta</span> <span class="o">-=</span>  <span class="n">eta</span> <span class="o">*</span> <span class="n">gradient</span>
+        <span class="n">eta</span>   <span class="o">*=</span> <span class="n">eta</span>
+    <span class="k">return</span> <span class="n">theta</span><span class="p">,</span> <span class="n">gradient</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="span-style-color-4361ee-gradiente-descendiente-estocastico-span">
+<h2><span style="color:#4361EE">Gradiente descendiente estocástico</span><a class="headerlink" href="#span-style-color-4361ee-gradiente-descendiente-estocastico-span" title="Enlazar permanentemente con este título">#</a></h2>
+<p>El descenso de gradiente estocástico (SGD), por el contrario, realiza una actualización de parámetros para cada ejemplo de entrenamiento <span class="math notranslate nohighlight">\(x_{train}^{(i)} \)</span> y etiqueta <span class="math notranslate nohighlight">\( y_{train}^ {(i)} \)</span>, <strong>seleccionados al azar en cada época</strong>.</p>
+<div class="math notranslate nohighlight">
+\[
+\boldsymbol{\theta}_{k+1} =  \boldsymbol{\theta}_k - \eta_k \nabla_{\boldsymbol{\theta}} \mathfrak{L}({x}_{train}^{(i)},{y}_{train}^{(i)},\boldsymbol{\theta}_k),
+\]</div>
+<p>En el artículo original de <a class="reference external" href="https://projecteuclid.org/download/pdf_1/euclid.aoms/1177729586">Robbins and Monro (1951)</a> <span class="math notranslate nohighlight">\(\eta\)</span> cambia en cada iteración como acabamos de mostrar y se asume que  <span class="math notranslate nohighlight">\(\{\eta_k\}\)</span> es una sucesión tal que <span class="math notranslate nohighlight">\(\sum_k \eta_k = \infty\)</span>, and <span class="math notranslate nohighlight">\(\sum_k \eta_k^2 &lt; \infty\)</span>. Por ejemplo, se puede escoger <span class="math notranslate nohighlight">\(\eta_k = 1/k\)</span>. Robbins y Monro demostraron que bajo condiciones muy generales este algoritmo converge a la solución de problema, con probabilidad 1.</p>
+<p>Un fragmento de código del algoritmo de Robbins and Monro podría lucir como sigue.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">sgd</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">data_train</span><span class="p">,</span> <span class="n">loss_func</span><span class="p">,</span> <span class="n">epochs</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span> <span class="p">(</span><span class="n">epochs</span><span class="p">):</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">shuffle</span> <span class="p">(</span><span class="n">data</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">example</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+            <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">example</span>
+            <span class="n">gradient</span> <span class="o">=</span> <span class="n">evaluate_gradient</span><span class="p">(</span><span class="n">loss_func</span><span class="p">,</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">theta</span> <span class="p">)</span>
+            <span class="n">theta</span> <span class="o">=</span> <span class="n">theta</span> <span class="o">-</span> <span class="n">eta</span> <span class="o">*</span> <span class="n">gradient</span>
+            <span class="n">eta</span> <span class="o">*=</span> <span class="n">eta</span>
+    <span class="k">return</span> <span class="n">theta</span><span class="p">,</span> <span class="n">gradient</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="span-style-color-4361ee-gradiente-descendiente-estocastico-por-mini-lotes-span">
+<h2><span style="color:#4361EE">Gradiente descendiente estocástico por mini-lotes</span><a class="headerlink" href="#span-style-color-4361ee-gradiente-descendiente-estocastico-por-mini-lotes-span" title="Enlazar permanentemente con este título">#</a></h2>
+<p>El descenso de gradiente por mini-lotes finalmente toma lo mejor de los dos mundos anteriores y realiza una actualización para cada mini-lote de <span class="math notranslate nohighlight">\(n\)</span> ejemplos de entrenamiento:</p>
+<div class="math notranslate nohighlight">
+\[
+\boldsymbol{\theta}_{k+1} =  \boldsymbol{\theta}_k - \eta_k \nabla_{\boldsymbol{\theta}} \mathfrak{L}(\mathbf{x}_{train}^{(i:i+n)},\mathbf{y}_{train}^{(i:i+n)},\boldsymbol{\theta}_k),
+\]</div>
+<p>Desde este punto de la lección, asumiremos que <strong>tomamos mini-lotes</strong>, por lo que omitimos súper-índices en los datos <span class="math notranslate nohighlight">\((\mathbf{x}_{train}^{(i:i+n)},\mathbf{y}_{train}^{(i:i+n)})\)</span> en todas las expresiones.</p>
+<p>Un fragmento de código para este método podría lucir como sigue:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">sgd_mini_batch</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">data_train</span><span class="p">,</span> <span class="n">loss_func</span><span class="p">,</span> <span class="n">epochs</span><span class="p">,</span> <span class="n">batch_size</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span> <span class="p">(</span><span class="n">epochs</span><span class="p">):</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">shuffle</span> <span class="p">(</span><span class="n">data_train</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">batch</span> <span class="ow">in</span> <span class="n">get_batches</span><span class="p">(</span><span class="n">data_train</span> <span class="p">,</span> <span class="n">batch_size</span> <span class="o">=</span> <span class="n">batch_size</span><span class="p">):</span>
+            <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">batch</span>
+            <span class="n">gradient</span> <span class="o">=</span> <span class="n">evaluate_gradient</span><span class="p">(</span><span class="n">loss_func</span><span class="p">,</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">theta</span> <span class="p">)</span>
+            <span class="n">theta</span> <span class="o">-=</span>  <span class="n">eta</span> <span class="o">*</span> <span class="n">gradient</span>
+            <span class="n">eta</span> <span class="o">*=</span> <span class="n">eta</span>
+    <span class="k">return</span> <span class="n">theta</span><span class="p">,</span> <span class="n">gradient</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition-nota admonition">
+<p class="admonition-title">Nota</p>
+<p>El tamaño de los mini-lotes depende del problema y puede ser 32, 64, 128, etc. En el ejemplo,  <em>get_batches()</em> es una función generadora que va entregando lotes de datos a la medida que el algoritmo los requiere. Para las TPU se esperan mini-lotes de tamaño que sea múltiplo de 128.</p>
+</div>
+<section id="span-style-color-4cc9f0-discusion-span">
+<h3><span style="color:#4CC9F0">Discusión</span><a class="headerlink" href="#span-style-color-4cc9f0-discusion-span" title="Enlazar permanentemente con este título">#</a></h3>
+<p>El método vainilla del descenso de gradiente  no garantiza una buena convergencia, y ofrece algunos desafíos que deben abordarse:</p>
+<ol class="simple">
+<li><p>Elegir un ritmo de aprendizaje adecuado puede resultar complicado. Una tasa de aprendizaje demasiado pequeña conduce a una convergencia dolorosamente lenta, mientras que una tasa de aprendizaje demasiado grande puede dificultar la convergencia y hacer que la función de pérdida fluctúe alrededor del mínimo o incluso diverja.</p></li>
+<li><p>Los horarios de actualización de la tasa de aprendizaje intentan ajustar la tasa de aprendizaje durante la entrenamiento, es decir, reducir la tasa de aprendizaje de acuerdo con un programa predefinido o cuando el cambio función de pérdida entre épocas cae por debajo de un umbral. Sin embargo, estos horarios y umbrales deben definirse con anticipación por lo que no pueden adaptarse a las características de un conjunto de datos.</p></li>
+<li><p>Además, la misma tasa de aprendizaje se aplica a todas las actualizaciones de parámetros. Si nuestros datos son escasos y los valores de nuestras variables (características) tienen frecuencias muy diferentes, es posible que no queramos actualizarlas todas en la misma medida, sino realizar una actualización más grande para las características que ocurren con poca frecuencia.</p></li>
+<li><p>Otro desafío clave al minimizar las funciones de error altamente no convexas comunes para las redes neuronales es evitar quedar atrapado en sus numerosos mínimos locales sub-óptimos. Algunos autores argumentan que, de hecho, la dificultad no surge de los mínimos locales sino de los puntos de silla, es decir, puntos donde una dimensión se inclina hacia arriba y otra hacia abajo. Estos puntos de silla suelen estar rodeados por una meseta del mismo error, lo que dificulta notablemente el escape de SGD, ya que el gradiente es cercano a cero en todas las dimensiones.</p></li>
+</ol>
+<figure>
+<center>
+<img src="https://raw.githubusercontent.com/AprendizajeProfundo/Libro-Fundamentos/main/Fundamentacion_Matematica/Imagenes/Gradient_ascent_chair.png" height='450' width='450'/>
+</center>
+</figure>
+<p>Ejemplo de un punto de silla.</p>
+<p>Fuente: <a class="reference external" href="https://en.wikipedia.org/wiki/Gradient_descent#/media/File:Gradient_ascent_(surface).png">Wikipedia</a></p>
+<p>Para una revisión contemporáneas de los algoritmos de optimización modernos puede consultar <a class="reference external" href="https://arxiv.org/pdf/1609.04747.pdf">An overview of gradient descent optimization
+algorithms</a>.</p>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Gradient_descent#/media/File:Gradient_Descent_Example_Nonlinear_Equations.gif">Visualización SGD en Wikipedia</a></p>
+</section>
+</section>
+<section id="span-style-color-4361ee-metodo-del-momento-span">
+<h2><span style="color:#4361EE">Método del momento</span><a class="headerlink" href="#span-style-color-4361ee-metodo-del-momento-span" title="Enlazar permanentemente con este título">#</a></h2>
+<p>SGD tiene problemas para navegar por los barrancos, es decir, áreas donde la superficie se curva mucho más abruptamente en una dimensión que en otra, que son comunes en los óptimos locales. En estos escenarios, SGD oscila a lo largo de las pendientes del barranco mientras solo avanza vacilante por el fondo hacia el óptimo local.</p>
+<p>El método del momento ayuda a acelerar SGD en la dirección relevante y amortigua oscilaciones. Lo hace sumando una fracción <span class="math notranslate nohighlight">\(\lambda\)</span> del vector de actualización del paso anterior al vector de actualización actual.</p>
+<p>El método  se esquematiza como sigue</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+\mathbf{v}_k &amp;= \lambda \mathbf{v}_{k-1} +  \eta \nabla_{\boldsymbol{\theta}} \mathfrak{L}({x}_{train}^{(i)},{y}_{train}^{(i)},\boldsymbol{\theta}_k)\\
+\theta_{k+1} &amp;= \theta_{k} - v_k,
+\end{align}
+\end{split}\]</div>
+<p><span class="math notranslate nohighlight">\(\lambda&lt;1\)</span>. Usualmente, <span class="math notranslate nohighlight">\(\lambda= 0.9\)</span>.</p>
+</section>
+<section id="span-style-color-4361ee-rmsprop-span">
+<h2><span style="color:#4361EE">RMSprop</span><a class="headerlink" href="#span-style-color-4361ee-rmsprop-span" title="Enlazar permanentemente con este título">#</a></h2>
+<p>Desarrollado por Goeff Hinton, no publicado. Se basa en dividir la tasa de aprendizaje en cada caso por un promedio del cuadrado de las componentes del gradiente en el paso anterior. Por cada componente <span class="math notranslate nohighlight">\(\theta\)</span> del vector de parámetros <span class="math notranslate nohighlight">\(\boldsymbol{\theta}\)</span>, sea <span class="math notranslate nohighlight">\(g\)</span> la respectiva componente del gradiente asociada a <span class="math notranslate nohighlight">\(\theta\)</span>, entonces el métodos es como sigue:</p>
+<ol class="simple">
+<li><p><span class="math notranslate nohighlight">\(E[g^2]_t= \lambda E[g^2]_{t-1} + (1-\lambda)g_t^2\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\theta_{t+1} = \theta_t - \tfrac{\eta}{\sqrt{E[g^2]_t + \epsilon}}g_t\)</span></p></li>
+</ol>
+<p><span class="math notranslate nohighlight">\(\epsilon &gt;0\)</span> es para evitar divisiones por cero.</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\lambda\)</span> es el parámetro de decaimiento. Típicamente <span class="math notranslate nohighlight">\(\lambda = 0.9\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\eta\)</span> es la tasa de aprendizaje. Típicamente el valor por defecto es 0.001.</p></li>
+</ul>
+</section>
+<section id="span-style-color-4361ee-algoritmo-adam-span">
+<h2><span style="color:#4361EE">Algoritmo Adam</span><a class="headerlink" href="#span-style-color-4361ee-algoritmo-adam-span" title="Enlazar permanentemente con este título">#</a></h2>
+<p>El algoritmo <a class="reference external" href="https://arxiv.org/pdf/1412.6980.pdf">Adam a method for Stochastic optimization</a> de Kingma y Lei es actualmente el método más utilizado. El siguiente es el algoritmo.</p>
+<p>El símbolo  <span class="math notranslate nohighlight">\(g^2_t\)</span> indica los elementos del producto de Hadamard (componente por componente)  <span class="math notranslate nohighlight">\(g_t\bigodot g_t\)</span>. Según los autores, los mejores resultados han sido obtenidos para los valores de los hiperparámetros  <span class="math notranslate nohighlight">\(\alpha = 0.001\)</span>, <span class="math notranslate nohighlight">\(\beta_1 = 0.9\)</span>, <span class="math notranslate nohighlight">\(\beta_2 = 0.999\)</span> y <span class="math notranslate nohighlight">\(\epsilon = 10−8\)</span>. Todas operaciones entre vectores son hechas componente por componente (producto de Hadamard). con <span class="math notranslate nohighlight">\(\beta_1^t\)</span> and <span class="math notranslate nohighlight">\(\beta_2^t\)</span> se denota la potencia <span class="math notranslate nohighlight">\(t\)</span>-ésima.</p>
+<ol class="simple">
+<li><p>Requerido: <span class="math notranslate nohighlight">\(\alpha\)</span>: Valor de salto (Stepsize)</p></li>
+<li><p>Requerido: <span class="math notranslate nohighlight">\(\beta_1^t\)</span> y <span class="math notranslate nohighlight">\(\beta_2^t \in [0, 1)\)</span>. Ratas de decaimiento exponencial para la estimación de los momentos.</p></li>
+<li><p>Requerido: <span class="math notranslate nohighlight">\(f(\theta)\)</span>: Función de pérdida objetivo con parámetros <span class="math notranslate nohighlight">\(\theta\)</span>.</p></li>
+<li><p>Requerido: <span class="math notranslate nohighlight">\(\theta_0\)</span>: Vector de valores iniciales del vector de parámetros.</p></li>
+<li><p><span class="math notranslate nohighlight">\(m_0  = 0\)</span> (Inicialización del vector momento de primer orden).</p></li>
+<li><p><span class="math notranslate nohighlight">\(v_0 =  0\)</span> (Inicialización del vector momento de segundo orden).</p></li>
+<li><p><span class="math notranslate nohighlight">\(t =  0\)</span> (Inicialización del contador de iteraciones).</p></li>
+<li><p>Mientras <span class="math notranslate nohighlight">\((||\theta_t - \theta_{t-1}||&gt;\delta\)</span>) (Mientras no haya covergencia repita los siguientes pasos:)</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[\begin{split} \begin{align*}
+t  &amp;= t + 1 \\
+g_t &amp;=  \nabla f_t(\theta_{t-1}) \text{ (Obtenga los gradientes de la función de pérdida en el paso $t$ con respeto a los parámetros)}\\
+m_t  &amp;= \beta_1 m_{t−1} + (1 − \beta_1) · g_t \text{ (Actualice la estimación del vector de  momentos de primer orden)}\\
+v_t  &amp;= \beta_2 v_{t−1} + (1 − \beta_2) · g_t^2 \text{ (Actualice la estimación del vector de  momentos de segundo orden)}\\
+\hat{m}_t  &amp;= \frac{m_t}{1 − \beta_1^t}   \text{ (Calcule la corrección de sesgo de la estimación del vector de momentos de primer orden)}\\ 
+\hat{v}_t  &amp;=  \frac{v_t}{1 − \beta_2^t}  \text{ (Calcule la corrección de sesgo de la estimación del vector de momentos de segundo orden)}\\ 
+\theta_t &amp;=   \theta_{t-1}  - \alpha  \frac{\hat{m}_t}{\hat{v}_t + epsilon} \text{ (Actualice los parámetros)}\\
+\end{align*}
+\end{split}\]</div>
+<p>fin mientras</p>
+<p>return <span class="math notranslate nohighlight">\(\theta_t\)</span> (Parámetros resultantes)</p>
+<figure>
+<center>
+<img src="https://raw.githubusercontent.com/AprendizajeProfundo/Libro-Fundamentos/main/Fundamentacion_Matematica/Imagenes/Adam_MsProp.png" height='500' width='500'/>
+</center>
+</figure>
+<p>Comparación de los diferentes métodos de gradiente descendiente estocástico</p>
+<p>Fuente: Alvaro Montenegro</p>
+</section>
+<section id="span-style-color-4361ee-referencias-span">
+<h2><span style="color:#4361EE">Referencias</span><a class="headerlink" href="#span-style-color-4361ee-referencias-span" title="Enlazar permanentemente con este título">#</a></h2>
+<ol class="simple">
+<li><p><a class="reference external" href="https://github.com/AprendizajeProfundo/Diplomado">Alvaro Montenegro y Daniel Montenegro, Inteligencia Artificial y Aprendizaje Profundo, 2021</a></p></li>
+<li><p><a class="reference external" href="https://github.com/AprendizajeProfundo/Diplomado-Avanzado">Alvaro Montenegro, Daniel Montenegro y Oleg Jarma, Inteligencia Artificial y Aprendizaje Profundo Avanzado, 2022</a></p></li>
+</ol>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "AprendizajeProfundo/Libro-Fundamentos",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./Fundamentacion_Matematica\Cuadernos"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="Optimization_2.html" title="anterior página">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">anterior</p>
+            <p class="prev-next-title"><span style="color:#F72585">Optimización multivariada usando JAX </span></p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="../../Machine_Learning/Cuadernos/am_intro_aprendizaje_maquinas.html" title="siguiente página">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">siguiente</p>
+        <p class="prev-next-title"><span style="color:#F72585">Conceptos básicos de aprendizaje de máquinas</span></p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Álvaro Mauricio Montenegro Díaz, Daniel Mauricio Montenegro Reyes<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

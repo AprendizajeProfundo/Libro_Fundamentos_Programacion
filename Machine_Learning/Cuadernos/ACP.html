@@ -1,0 +1,1894 @@
+
+<!DOCTYPE html>
+
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Análisis en componentes principales &#8212; Fundamentos de IA y AP</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script src="../../_static/tabs.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../../_static/translations.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Índice" href="../../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../../search.html" />
+    <link rel="next" title="Análisis de correspondencias simples" href="ACS.html" />
+    <link rel="prev" title="Aprendizaje no supervisado" href="AprendizajeNoSupervisado.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="es">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../_static/logo-final-ap.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Fundamentos de IA y AP</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../tutorial.html">
+                    <span style="color:#F72585">Bienvenido(a)</span>
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Conociendo el libro
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Inicio/Cuadernos/Consideraciones.html">
+   <span style="color:#F72585">
+    Conociendo el Libro
+   </span>
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Fundamentos de Estadística
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Fundamentacion_Estadistica/Cuadernos/Prob_Conceptos_Basicos.html">
+   <span style="color:#F72585">
+    Probabilidad
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Fundamentacion_Estadistica/Cuadernos/Prob_Variables_Aleatorias.html">
+   <span style="color:#F72585">
+    Variables Aleatorias
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Fundamentacion_Estadistica/Cuadernos/Prob_Var_Prob_conjunta.html">
+   <span style="color:#F72585">
+    Probabilidad Conjunta y Entropía Cruzada
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Fundamentacion_Estadistica/Cuadernos/Prob_Distribuciones_continuas.html">
+   <span style="color:#F72585">
+    Distribuciones de probabilidad continuas
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Fundamentacion_Estadistica/Cuadernos/Regresi%C3%B3n-Lineal-Pyton-Copy1.html">
+   <span style="color:#F72585">
+    Regresión Lineal en Python
+   </span>
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Teoría de la Información
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Fundamentacion_Estadistica/Cuadernos/ti_Teoria_Informacion.html">
+   <span style="color:#F72585">
+    Teoría de la Información
+   </span>
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Álgebra Lineal
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Fundamentacion_Matematica/Cuadernos/Intro_Tensores_I.html">
+   <span style="color:#F72585">
+    Introducción a tensores
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Fundamentacion_Matematica/Cuadernos/Intro_Tensores_II.html">
+   <span style="color:#F72585">
+    Tensores
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Fundamentacion_Matematica/Cuadernos/Tensor_Distribucion_Prob.html">
+   <span style="color:#F72585">
+    Tensores y distribuciones de probabilidad
+   </span>
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Modelación
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Fundamentacion_Matematica/Cuadernos/mod_Modelamiento.html">
+   <span style="color:#F72585">
+    Ejemplos de Modelos
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Fundamentacion_Matematica/Cuadernos/mod_Ejemplo_Modelamiento.html">
+   <span style="color:#F72585">
+    Ejemplos de Modelamiento
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Fundamentacion_Matematica/Cuadernos/cal_derivadas.html">
+   <span style="color:#F72585">
+    Introducción a la Derivación
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Fundamentacion_Matematica/Cuadernos/Optimization_1.html">
+   <span style="color:#F72585">
+    Optimización univariada usando JAX
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Fundamentacion_Matematica/Cuadernos/Optimization_2.html">
+   <span style="color:#F72585">
+    Optimización multivariada usando JAX
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Fundamentacion_Matematica/Cuadernos/am-sdg.html">
+   <span style="color:#F72585">
+    Optimización
+   </span>
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Aprendizaje de máquinas
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="am_intro_aprendizaje_maquinas.html">
+   <span style="color:#F72585">
+    Conceptos básicos de aprendizaje de máquinas
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="am_Regresion_logistica_JAX.html">
+   <span style="color:#F72585">
+    Modelo Lineal de Clasificación  con JAX
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="am_Regresion_Logistica_Tensorflow.html">
+   <span style="color:#F72585">
+    Modelo Logístico de Clasificación  con Tensorflow 2.X
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="am_regresion_Keras.html">
+   <span style="color:#F72585">
+    Regresion Basica con tf.keras: Predecir eficiencia de la gasolina
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="am-logistico-keras-cancer.html">
+   <span style="color:#F72585">
+    Modelo logístico de predicción en tf.keras
+   </span>
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Aprendizaje de máquinas no supervisado
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="BreveIntroduccion2R.html">
+   <span style="color:#F72585">
+    Breve introducción a R
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="AprendizajeNoSupervisado.html">
+   <span style="color:#F72585">
+    Aprendizaje no supervisado
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   <span style="color:#F72585">
+    Análisis en componentes principales
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ACS.html">
+   <span style="color:#F72585">
+    Análisis de correspondencias simples
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ACM.html">
+   <span style="color:#F72585">
+    Análisis de correspondencias múltiples (ACM)
+   </span>
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Mapas auto-organizados (SOM)
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="som_Introduccion.html">
+   <span style="color:#F72585">
+    Mapas Auto-organizados (SOM)
+   </span>
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Redes Neuronales
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Redes_Neuronales/Cuadernos/RedesNeuronales_intro.html">
+   <span style="color:#F72585">
+    Introducción a Redes Neuronales
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Redes_Neuronales/Cuadernos/Activation_Functions.html">
+   <span style="color:#F72585">
+    Funciones de Activación
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Redes_Neuronales/Cuadernos/Hello_World_ML.html">
+   <span style="color:#F72585">
+    Introducción a Keras Sequential y API Funcional
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Redes_Neuronales/Cuadernos/Intro_Keras_Sequential.html">
+   <span style="color:#F72585">
+    Introducción a la API Sequential de Keras
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Redes_Neuronales/Cuadernos/Intro_Keras_Functional.html">
+   <span style="color:#F72585">
+    Introducción a la API funcional de Keras
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Redes_Neuronales/Cuadernos/am-softmax-keras-iris.html">
+   <span style="color:#F72585">
+    Clasificación, Softmax, Iris
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Redes_Neuronales/Cuadernos/am_regresion_Keras_gasolina.html">
+   <span style="color:#F72585">
+    Regresion Basica con tf.keras: Predecir eficiencia de la gasolina
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Redes_Neuronales/Cuadernos/am-subclassing-iris.html">
+   <span style="color:#F72585">
+    Subclassing-Modelo de Regresión multi-logística
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Redes_Neuronales/Cuadernos/NN_Animation2.html">
+   <span style="color:#F72585">
+    Visualización del Entrenamiento de una Red Neuronal
+   </span>
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/AprendizajeProfundo/Libro-Fundamentos/main?urlpath=tree/Machine_Learning/Cuadernos/ACP.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://colab.research.google.com/github/AprendizajeProfundo/Libro-Fundamentos/blob/main/Machine_Learning/Cuadernos/ACP.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Colab"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../../_static/images/logo_colab.png">
+  </span>
+<span class="headerbtn__text-container">Colab</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="initThebeSBT()"
+  class="headerbtn headerbtn-launch-thebe"
+  data-toggle="tooltip"
+data-placement="left"
+title="Launch Thebe"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="headerbtn__text-container">Live Code</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/AprendizajeProfundo/Libro-Fundamentos"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/AprendizajeProfundo/Libro-Fundamentos/issues/new?title=Issue%20on%20page%20%2FMachine_Learning/Cuadernos/ACP.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/AprendizajeProfundo/Libro-Fundamentos/edit/main/Machine_Learning/Cuadernos/ACP.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Edit this page"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="headerbtn__text-container">suggest edit</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../../_sources/Machine_Learning/Cuadernos/ACP.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-introduccion-span">
+   <span style="color:#4361EE">
+    Introducción
+   </span>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-objetivos-del-acp-span">
+     <span style="color:#4CC9F0">
+      Objetivos del ACP
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-ejemplo-cafe-y-notacion-span">
+     <span style="color:#4CC9F0">
+      Ejemplo Café y notación
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-nube-de-individuos-span">
+     <span style="color:#4CC9F0">
+      Nube de individuos
+     </span>
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#span-style-color-4cc9f0-centrando-la-nube-de-puntos-span">
+       <span style="color:#4CC9F0">
+        Centrando la nube de puntos
+       </span>
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#span-style-color-4cc9f0-inercia-de-la-nube-de-puntos-span">
+       <span style="color:#4CC9F0">
+        Inercia de la nube de puntos
+       </span>
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-matriz-de-varianzas-y-covarianzas-span">
+     <span style="color:#4CC9F0">
+      Matriz de varianzas y covarianzas
+     </span>
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#span-style-color-4cc9f0-calculo-y-grafica-3d-de-la-matriz-de-datos-estandarizados-x-span">
+       <span style="color:#4CC9F0">
+        Cálculo y gráfica 3D de la matriz de datos estandarizados X
+       </span>
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#span-style-color-4cc9f0-busqueda-del-eje-de-mayor-inercia-proyectada-varianza-span">
+       <span style="color:#4CC9F0">
+        Búsqueda del eje de mayor inercia proyectada (varianza)
+       </span>
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#span-style-color-4cc9f0-con-la-funcion-eigen-base-span">
+       <span style="color:#4CC9F0">
+        Con la función eigen{base}
+       </span>
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#span-style-color-4cc9f0-todos-los-resultados-con-la-funcion-dudi-pca-ade4-en-el-objeto-acpcafe-span">
+       <span style="color:#4CC9F0">
+        Todos los resultados con la función dudi.pca{ade4} en el objeto acpcafe
+       </span>
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-valores-propios-span">
+     <span style="color:#4CC9F0">
+      Valores propios
+     </span>
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#span-style-color-4cc9f0-proyeccion-de-los-cafes-sobre-el-primer-plano-factorial-span">
+       <span style="color:#4CC9F0">
+        Proyección de los cafés sobre el primer plano factorial
+       </span>
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-nube-de-variables-span">
+     <span style="color:#4CC9F0">
+      Nube de variables
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-relaciones-entre-los-espacios-de-individuos-y-de-variables-span">
+     <span style="color:#4CC9F0">
+      Relaciones entre los espacios de individuos y de variables
+     </span>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-circulo-de-correlaciones-del-ejemplo-cafe-span">
+   <span style="color:#4361EE">
+    Círculo de correlaciones del ejemplo café
+   </span>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-ayudas-para-la-interpretacion-span">
+   <span style="color:#4361EE">
+    Ayudas para la interpretación
+   </span>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     <span style="color:#4CC9F0">
+      Valores Propios
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-coordenadas-y-ayudas-para-las-variables-span">
+     <span style="color:#4CC9F0">
+      Coordenadas y ayudas para las variables
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-coordenadas-y-ayudas-para-los-cafes-span">
+     <span style="color:#4CC9F0">
+      Coordenadas y ayudas para los cafés
+     </span>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-proyeccion-de-elementos-suplementarios-o-ilustrativos-span">
+   <span style="color:#4361EE">
+    Proyección de elementos suplementarios o ilustrativos
+   </span>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-acp-generalizado-span">
+   <span style="color:#4361EE">
+    ACP generalizado
+   </span>
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1><span style="color:#F72585">Análisis en componentes principales</span></h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-introduccion-span">
+   <span style="color:#4361EE">
+    Introducción
+   </span>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-objetivos-del-acp-span">
+     <span style="color:#4CC9F0">
+      Objetivos del ACP
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-ejemplo-cafe-y-notacion-span">
+     <span style="color:#4CC9F0">
+      Ejemplo Café y notación
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-nube-de-individuos-span">
+     <span style="color:#4CC9F0">
+      Nube de individuos
+     </span>
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#span-style-color-4cc9f0-centrando-la-nube-de-puntos-span">
+       <span style="color:#4CC9F0">
+        Centrando la nube de puntos
+       </span>
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#span-style-color-4cc9f0-inercia-de-la-nube-de-puntos-span">
+       <span style="color:#4CC9F0">
+        Inercia de la nube de puntos
+       </span>
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-matriz-de-varianzas-y-covarianzas-span">
+     <span style="color:#4CC9F0">
+      Matriz de varianzas y covarianzas
+     </span>
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#span-style-color-4cc9f0-calculo-y-grafica-3d-de-la-matriz-de-datos-estandarizados-x-span">
+       <span style="color:#4CC9F0">
+        Cálculo y gráfica 3D de la matriz de datos estandarizados X
+       </span>
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#span-style-color-4cc9f0-busqueda-del-eje-de-mayor-inercia-proyectada-varianza-span">
+       <span style="color:#4CC9F0">
+        Búsqueda del eje de mayor inercia proyectada (varianza)
+       </span>
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#span-style-color-4cc9f0-con-la-funcion-eigen-base-span">
+       <span style="color:#4CC9F0">
+        Con la función eigen{base}
+       </span>
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#span-style-color-4cc9f0-todos-los-resultados-con-la-funcion-dudi-pca-ade4-en-el-objeto-acpcafe-span">
+       <span style="color:#4CC9F0">
+        Todos los resultados con la función dudi.pca{ade4} en el objeto acpcafe
+       </span>
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-valores-propios-span">
+     <span style="color:#4CC9F0">
+      Valores propios
+     </span>
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#span-style-color-4cc9f0-proyeccion-de-los-cafes-sobre-el-primer-plano-factorial-span">
+       <span style="color:#4CC9F0">
+        Proyección de los cafés sobre el primer plano factorial
+       </span>
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-nube-de-variables-span">
+     <span style="color:#4CC9F0">
+      Nube de variables
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-relaciones-entre-los-espacios-de-individuos-y-de-variables-span">
+     <span style="color:#4CC9F0">
+      Relaciones entre los espacios de individuos y de variables
+     </span>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-circulo-de-correlaciones-del-ejemplo-cafe-span">
+   <span style="color:#4361EE">
+    Círculo de correlaciones del ejemplo café
+   </span>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-ayudas-para-la-interpretacion-span">
+   <span style="color:#4361EE">
+    Ayudas para la interpretación
+   </span>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     <span style="color:#4CC9F0">
+      Valores Propios
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-coordenadas-y-ayudas-para-las-variables-span">
+     <span style="color:#4CC9F0">
+      Coordenadas y ayudas para las variables
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-coordenadas-y-ayudas-para-los-cafes-span">
+     <span style="color:#4CC9F0">
+      Coordenadas y ayudas para los cafés
+     </span>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-proyeccion-de-elementos-suplementarios-o-ilustrativos-span">
+   <span style="color:#4361EE">
+    Proyección de elementos suplementarios o ilustrativos
+   </span>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-acp-generalizado-span">
+   <span style="color:#4361EE">
+    ACP generalizado
+   </span>
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="span-style-color-f72585-analisis-en-componentes-principales-span">
+<h1><span style="color:#F72585">Análisis en componentes principales</span><a class="headerlink" href="#span-style-color-f72585-analisis-en-componentes-principales-span" title="Enlazar permanentemente con este título">#</a></h1>
+<div class="admonition">
+<p class="admonition-title">Nota</p>
+<p>Los trozos de código de esta página son de R. Por favor, ejecútelos en Colab o Binder</p>
+</div>
+<section id="span-style-color-4361ee-introduccion-span">
+<h2><span style="color:#4361EE">Introducción</span><a class="headerlink" href="#span-style-color-4361ee-introduccion-span" title="Enlazar permanentemente con este título">#</a></h2>
+<p>El análisis en componentes principales (ACP) es muy conocido en la Ciencia de Datos como una técnica de reducción de dimensión, pero es mucho más que eso. Si se aborda desde un punto de vista geométrico, es una técnica poderosa para la visualización de datos. Su generalización ha permitido el desarrollo de otros métodos sobre todo para la descripción de variables cualitativas, en cuyo caso también sirve como método de cuantificación de lo cualitativo. Esa visión geométrica de origen francés es la que presentamos aquí. Hacemos uso del R en primera instancia para entender los métodos y luego para llevarlos a la práctica. En este cuaderno introducimos el ACP como se conoce en la mayoría de los ámbitos y que podemos llamar ACP canónico, y al final presentamos el ACP general o generalizado, como un marco común a los métodos derivados, que podemos llamar métodos factoriales o en ejes principales, de los que forman parte los análisis de correspondencias simples y múltiples.</p>
+<section id="span-style-color-4cc9f0-objetivos-del-acp-span">
+<h3><span style="color:#4CC9F0">Objetivos del ACP</span><a class="headerlink" href="#span-style-color-4cc9f0-objetivos-del-acp-span" title="Enlazar permanentemente con este título">#</a></h3>
+<ol class="simple">
+<li><p>Comparar los individuos entre si</p></li>
+<li><p>Describir las relaciones entre las variables</p></li>
+<li><p>Reducir la dimensión de la representación</p></li>
+</ol>
+</section>
+<section id="span-style-color-4cc9f0-ejemplo-cafe-y-notacion-span">
+<h3><span style="color:#4CC9F0">Ejemplo Café y notación</span><a class="headerlink" href="#span-style-color-4cc9f0-ejemplo-cafe-y-notacion-span" title="Enlazar permanentemente con este título">#</a></h3>
+<p>Para entender el ACP  utilizamos un ejemplo muy pequeño, disponible en <em>FactoClass</em>, y que denominamos Café. Es el resultado de un experimento realizado en el Laboratorio de Investigaciones Químicas del Café.</p>
+<p>El experimento considera 3 factores:</p>
+<ul class="simple">
+<li><p>Agregado (sin maíz, cebada)</p></li>
+<li><p>Porcentaje del agregado (20% y 40%)</p></li>
+<li><p>Grado de tostación (clara y oscura)</p></li>
+</ul>
+<p>Se producen  «libras de café» tostado y molido para los 10 tratamientos del experimento y con ellas se preparan tazas de café que se someten a mediciones físicas químicas y de degustación. El ejemplo de esta sección utiliza solo las tres variables físicas, para visualizar la geometría del ACP. La tabla de datos de 10 filas y 3 columnas la definimos como <strong>Y</strong>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">install.packages</span><span class="p">(</span><span class="s">&#39;FactoClass&#39;</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">FactoClass</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Installing package into &#39;C:/Users/User/AppData/Local/R/win-library/4.2&#39;
+(as &#39;lib&#39; is unspecified)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>package &#39;FactoClass&#39; successfully unpacked and MD5 sums checked
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The downloaded binary packages are in
+	C:\Users\User\AppData\Local\Temp\RtmpsBRzLv\downloaded_packages
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Loading required package: ade4
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Loading required package: ggplot2
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Loading required package: ggrepel
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Loading required package: xtable
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Loading required package: scatterplot3d
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># carga de FactoClass y definición de Y</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">FactoClass</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># definición de Y</span>
+<span class="nf">data</span><span class="p">(</span><span class="n">cafe</span><span class="p">)</span>
+<span class="n">Y</span><span class="o">&lt;-</span><span class="n">cafe</span><span class="p">[</span><span class="m">1</span><span class="o">:</span><span class="m">10</span><span class="p">,</span><span class="m">1</span><span class="o">:</span><span class="m">3</span><span class="p">]</span>
+<span class="n">Y</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A data.frame: 10 × 3</caption>
+<thead>
+	<tr><th></th><th scope=col>Color</th><th scope=col>DA</th><th scope=col>EA</th></tr>
+	<tr><th></th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;int&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><th scope=row>ExCl</th><td>298</td><td>385.1</td><td>25</td></tr>
+	<tr><th scope=row>C40M</th><td>361</td><td>481.3</td><td>41</td></tr>
+	<tr><th scope=row>C40C</th><td>321</td><td>422.6</td><td>40</td></tr>
+	<tr><th scope=row>C20M</th><td>335</td><td>444.3</td><td>33</td></tr>
+	<tr><th scope=row>C20C</th><td>314</td><td>368.7</td><td>32</td></tr>
+	<tr><th scope=row>ExOs</th><td>186</td><td>346.6</td><td>28</td></tr>
+	<tr><th scope=row>O40M</th><td>278</td><td>422.6</td><td>43</td></tr>
+	<tr><th scope=row>O40C</th><td>238</td><td>403.0</td><td>42</td></tr>
+	<tr><th scope=row>O20M</th><td>226</td><td>368.7</td><td>36</td></tr>
+	<tr><th scope=row>O20C</th><td>210</td><td>368.7</td><td>35</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<p>La identificación de las filas (cafés, individuos) es nemotécnica y nos informa del respectivo tratamiento. Por ejemplo ExCl, significa café excelso (sin contaminación) y de tostación clara, C40M significa tostación clara contaminado con 40% de maíz.</p>
+</section>
+<section id="span-style-color-4cc9f0-nube-de-individuos-span">
+<h3><span style="color:#4CC9F0">Nube de individuos</span><a class="headerlink" href="#span-style-color-4cc9f0-nube-de-individuos-span" title="Enlazar permanentemente con este título">#</a></h3>
+<p>Sobre la matriz <strong>Y</strong> se tienen dos representación geométricas, la primera es el espacio de las filas, donde las filas de <strong>Y</strong> se representan en  <span class="math notranslate nohighlight">\(\mathbb{R}^p\)</span>: los ejes son las variables y los puntos los individuos. El conjunto de puntos de denomina nube de individuos y se nota <span class="math notranslate nohighlight">\(N_n\)</span>. El centro de gravedad de la nube de puntos es:
+$<span class="math notranslate nohighlight">\(
+\mathbf{g}= \sum_{i=1}^{n} p_i  \mathbf{y}_i  = \frac{1}{n} \sum_{i=1}^{n} \mathbf{y}_i
+\)</span><span class="math notranslate nohighlight">\(
+Aquí la representación de la nube en \)</span>3D$, junto con su centro de gravedad.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">par</span><span class="p">(</span><span class="n">las</span><span class="o">=</span><span class="m">1</span><span class="p">);</span> <span class="c1"># grafica;</span>
+<span class="n">Y3D</span><span class="o">&lt;-</span><span class="nf">scatterplot3d</span><span class="p">(</span><span class="n">Y</span><span class="p">,</span><span class="n">main</span><span class="o">=</span><span class="s">&quot;Y&quot;</span><span class="p">,</span><span class="n">type</span><span class="o">=</span><span class="s">&quot;h&quot;</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s">&quot;black&quot;</span><span class="p">,</span><span class="n">box</span><span class="o">=</span><span class="kc">FALSE</span><span class="p">,</span>
+				   <span class="n">las</span><span class="o">=</span><span class="m">1</span><span class="p">);</span> 
+<span class="n">Y3D</span><span class="o">$</span><span class="nf">points3d</span><span class="p">(</span><span class="n">Y</span><span class="p">,</span><span class="n">pch</span><span class="o">=</span><span class="m">1</span><span class="p">);</span>
+<span class="nf">addgrids3d</span><span class="p">(</span><span class="n">Y</span><span class="p">,</span> <span class="n">grid</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&quot;xy&quot;</span><span class="p">,</span><span class="s">&quot;xz&quot;</span><span class="p">,</span><span class="s">&quot;yz&quot;</span><span class="p">));</span>
+<span class="n">cord2d</span><span class="o">&lt;-</span><span class="n">Y3D</span><span class="o">$</span><span class="nf">xyz.convert</span><span class="p">(</span><span class="n">Y</span><span class="p">)</span> <span class="c1"># convertir cordenadas 3D a 2D;</span>
+<span class="c1"># poner etiquetas;</span>
+<span class="nf">text</span><span class="p">(</span><span class="n">cord2d</span><span class="p">,</span><span class="n">labels</span><span class="o">=</span><span class="nf">rownames</span><span class="p">(</span><span class="n">Y</span><span class="p">),</span> <span class="n">cex</span><span class="o">=</span><span class="m">0.8</span><span class="p">,</span><span class="n">col</span><span class="o">=</span><span class="s">&quot;black&quot;</span><span class="p">,</span><span class="n">pos</span><span class="o">=</span><span class="m">3</span><span class="p">);</span> 
+<span class="c1"># poner el centro de gravedad en la gráfica</span>
+<span class="n">g</span> <span class="o">&lt;-</span> <span class="nf">colMeans</span><span class="p">(</span><span class="n">Y</span><span class="p">)</span> 
+<span class="n">Y3D</span><span class="o">$</span><span class="nf">points3d</span><span class="p">(</span><span class="nf">t</span><span class="p">(</span><span class="n">g</span><span class="p">),</span><span class="n">pch</span><span class="o">=</span><span class="m">19</span><span class="p">,</span><span class="n">col</span><span class="o">=</span><span class="s">&quot;darkgreen&quot;</span><span class="p">,</span><span class="n">type</span> <span class="o">=</span> <span class="s">&quot;h&quot;</span><span class="p">);</span>
+<span class="nf">text</span><span class="p">(</span><span class="n">Y3D</span><span class="o">$</span><span class="nf">xyz.convert</span><span class="p">(</span><span class="nf">t</span><span class="p">(</span><span class="n">g</span><span class="p">)),</span><span class="n">labels</span><span class="o">=</span><span class="s">&quot;g&quot;</span><span class="p">,</span><span class="n">pos</span><span class="o">=</span><span class="m">3</span><span class="p">,</span><span class="n">col</span><span class="o">=</span><span class="s">&quot;black&quot;</span><span class="p">,</span>
+     <span class="n">cex</span><span class="o">=</span><span class="m">1.3</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/ACP_14_0.png" src="../../_images/ACP_14_0.png" />
+</div>
+</div>
+<section id="span-style-color-4cc9f0-centrando-la-nube-de-puntos-span">
+<h4><span style="color:#4CC9F0">Centrando la nube de puntos</span><a class="headerlink" href="#span-style-color-4cc9f0-centrando-la-nube-de-puntos-span" title="Enlazar permanentemente con este título">#</a></h4>
+<p>Los ejes se trasladan al centro de gravedad, restando a cada vector individuo el centro de gravedad:
+$<span class="math notranslate nohighlight">\(
+\mathbf{y_C}_i = \mathbf{y}_i - \mathbf{g}
+\)</span>$</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># cálculo de la matriz de datos centrados y representación en 3D</span>
+<span class="n">Yc</span><span class="o">&lt;-</span><span class="nf">scale</span><span class="p">(</span><span class="n">Y</span><span class="p">,</span><span class="n">scale</span><span class="o">=</span><span class="kc">FALSE</span><span class="p">)</span>   <span class="c1">#calculo</span>
+<span class="n">Yc</span>
+<span class="nf">attr</span><span class="p">(</span><span class="n">Yc</span><span class="p">,</span><span class="s">&quot;scaled:center&quot;</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">g</span>  <span class="c1">#la función scale muestra el centro de gravedad</span>
+<span class="n">g</span>
+<span class="c1"># grafica de datos centrados</span>
+<span class="nf">par</span><span class="p">(</span><span class="n">las</span><span class="o">=</span><span class="m">1</span><span class="p">);</span>
+<span class="n">Yc3D</span><span class="o">&lt;-</span><span class="nf">scatterplot3d</span><span class="p">(</span><span class="n">Yc</span><span class="p">,</span><span class="n">main</span><span class="o">=</span><span class="s">&quot;Yc&quot;</span><span class="p">,</span><span class="n">type</span><span class="o">=</span><span class="s">&quot;h&quot;</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s">&quot;black&quot;</span><span class="p">,</span>
+	               <span class="n">box</span><span class="o">=</span><span class="kc">FALSE</span><span class="p">,</span><span class="n">las</span><span class="o">=</span><span class="m">1</span><span class="p">);</span>
+<span class="n">Yc3D</span><span class="o">$</span><span class="nf">points3d</span><span class="p">(</span><span class="n">Yc</span><span class="p">,</span><span class="n">pch</span><span class="o">=</span><span class="m">1</span><span class="p">);</span>
+<span class="nf">addgrids3d</span><span class="p">(</span><span class="n">Yc</span><span class="p">,</span><span class="n">grid</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;xy&quot;</span><span class="p">,</span> <span class="s">&quot;xz&quot;</span><span class="p">,</span> <span class="s">&quot;yz&quot;</span><span class="p">));</span>
+<span class="nf">text </span><span class="p">(</span><span class="n">Yc3D</span><span class="o">$</span><span class="nf">xyz.convert</span><span class="p">(</span><span class="n">Yc</span><span class="p">),</span><span class="n">labels</span><span class="o">=</span><span class="nf">rownames</span><span class="p">(</span><span class="n">Yc</span><span class="p">),</span><span class="n">cex</span><span class="o">=</span><span class="m">0.8</span><span class="p">,</span>
+	  <span class="n">col</span><span class="o">=</span><span class="s">&quot;black&quot;</span><span class="p">,</span><span class="n">pos</span><span class="o">=</span><span class="m">3</span><span class="p">);</span>
+<span class="n">Yc3D</span><span class="o">$</span><span class="nf">points3d</span><span class="p">(</span><span class="nf">t</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="m">0</span> <span class="p">,</span><span class="m">0</span> <span class="p">,</span><span class="m">0</span><span class="p">)),</span><span class="n">pch</span><span class="o">=</span><span class="m">19</span> <span class="p">,</span> <span class="n">col</span> <span class="o">=</span><span class="s">&quot;darkgreen&quot;</span><span class="p">,</span><span class="n">type</span> <span class="o">=</span> <span class="s">&quot;h&quot;</span><span class="p">);</span>
+<span class="nf">text</span><span class="p">(</span><span class="n">Yc3D</span><span class="o">$</span><span class="nf">xyz.convert </span><span class="p">(</span><span class="nf">t</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="m">0</span> <span class="p">,</span><span class="m">0</span> <span class="p">,</span><span class="m">0</span><span class="p">))),</span><span class="n">labels</span> <span class="o">=</span><span class="s">&quot;0&quot;</span><span class="p">,</span><span class="n">pos</span> <span class="o">=</span><span class="m">3</span><span class="p">,</span> 
+     <span class="n">col</span> <span class="o">=</span><span class="s">&quot;darkgreen&quot;</span><span class="p">,</span><span class="n">cex</span> <span class="o">=</span><span class="m">1.3</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A matrix: 10 × 3 of type dbl</caption>
+<thead>
+	<tr><th></th><th scope=col>Color</th><th scope=col>DA</th><th scope=col>EA</th></tr>
+</thead>
+<tbody>
+	<tr><th scope=row>ExCl</th><td> 21.3</td><td>-16.06</td><td>-10.5</td></tr>
+	<tr><th scope=row>C40M</th><td> 84.3</td><td> 80.14</td><td>  5.5</td></tr>
+	<tr><th scope=row>C40C</th><td> 44.3</td><td> 21.44</td><td>  4.5</td></tr>
+	<tr><th scope=row>C20M</th><td> 58.3</td><td> 43.14</td><td> -2.5</td></tr>
+	<tr><th scope=row>C20C</th><td> 37.3</td><td>-32.46</td><td> -3.5</td></tr>
+	<tr><th scope=row>ExOs</th><td>-90.7</td><td>-54.56</td><td> -7.5</td></tr>
+	<tr><th scope=row>O40M</th><td>  1.3</td><td> 21.44</td><td>  7.5</td></tr>
+	<tr><th scope=row>O40C</th><td>-38.7</td><td>  1.84</td><td>  6.5</td></tr>
+	<tr><th scope=row>O20M</th><td>-50.7</td><td>-32.46</td><td>  0.5</td></tr>
+	<tr><th scope=row>O20C</th><td>-66.7</td><td>-32.46</td><td> -0.5</td></tr>
+</tbody>
+</table>
+</div><div class="output text_html"><style>
+.dl-inline {width: auto; margin:0; padding: 0}
+.dl-inline>dt, .dl-inline>dd {float: none; width: auto; display: inline-block}
+.dl-inline>dt::after {content: ":\0020"; padding-right: .5ex}
+.dl-inline>dt:not(:first-of-type) {padding-left: .5ex}
+</style><dl class=dl-inline><dt>Color</dt><dd>276.7</dd><dt>DA</dt><dd>401.16</dd><dt>EA</dt><dd>35.5</dd></dl>
+</div><img alt="../../_images/ACP_17_2.png" src="../../_images/ACP_17_2.png" />
+</div>
+</div>
+</section>
+<section id="span-style-color-4cc9f0-inercia-de-la-nube-de-puntos-span">
+<h4><span style="color:#4CC9F0">Inercia de la nube de puntos</span><a class="headerlink" href="#span-style-color-4cc9f0-inercia-de-la-nube-de-puntos-span" title="Enlazar permanentemente con este título">#</a></h4>
+<div class="math notranslate nohighlight">
+\[
+Inercia(N_n) = \sum\limits_{i=1}^{n}{p_i
+d^2(i,\mathbf{g})}
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+  Inercia(N_n) =
+ \sum\limits_{i=1}^{n} p_i\sum\limits_{j=1}^{p}y_{{_C}_{ij}}^2 =
+  \sum\limits_{j=1}^{p}\sum\limits_{i=1}^{n} p_i y_{{_C}_{ij}}^2
+ = \sum\limits_{j=1}^{p}\sigma_j^2 
+\]</div>
+</section>
+</section>
+<section id="span-style-color-4cc9f0-matriz-de-varianzas-y-covarianzas-span">
+<h3><span style="color:#4CC9F0">Matriz de varianzas y covarianzas</span><a class="headerlink" href="#span-style-color-4cc9f0-matriz-de-varianzas-y-covarianzas-span" title="Enlazar permanentemente con este título">#</a></h3>
+<p>Si los pesos de los individuos son iguales: <span class="math notranslate nohighlight">\(p_i=\frac{1}{n}\)</span>
+$<span class="math notranslate nohighlight">\(
+  \mathbf{V}=\dfrac{1}{n} \mathbf{Y'_C}\mathbf{Y_C} \)</span><span class="math notranslate nohighlight">\( 
+La inercia de la nube de puntos es también: \)</span>Inercia(N_n) = traza(\mathbf{V})$</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">V</span><span class="o">&lt;-</span><span class="nf">covfacwt</span><span class="p">(</span><span class="n">Y</span><span class="p">)</span> <span class="c1"># función de ade4, divide por n</span>
+<span class="c1"># la función var(Y) divide por n-1</span>
+<span class="nf">round</span><span class="p">(</span><span class="n">V</span><span class="p">,</span><span class="m">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A matrix: 3 × 3 of type dbl</caption>
+<thead>
+	<tr><th></th><th scope=col>Color</th><th scope=col>DA</th><th scope=col>EA</th></tr>
+</thead>
+<tbody>
+	<tr><th scope=row>Color</th><td>3106</td><td>1738</td><td> 61</td></tr>
+	<tr><th scope=row>DA</th><td>1738</td><td>1560</td><td>129</td></tr>
+	<tr><th scope=row>EA</th><td>  61</td><td> 129</td><td> 33</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<section id="span-style-color-4cc9f0-calculo-y-grafica-3d-de-la-matriz-de-datos-estandarizados-x-span">
+<h4><span style="color:#4CC9F0">Cálculo y gráfica 3D de la matriz de datos estandarizados X</span><a class="headerlink" href="#span-style-color-4cc9f0-calculo-y-grafica-3d-de-la-matriz-de-datos-estandarizados-x-span" title="Enlazar permanentemente con este título">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Cálculo de matriz X estandarizada</span>
+<span class="n">X</span><span class="o">&lt;-</span><span class="nf">scale</span><span class="p">(</span><span class="n">Y</span><span class="p">)</span>
+<span class="nf">round</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="m">2</span><span class="p">)</span>
+<span class="c1"># aquí la función scale calcula la media y la desviación estándar</span>
+<span class="c1"># las varianzas que calcula R es la muestral: se divide por n-1</span>
+<span class="nf">attr</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="s">&quot;scaled:center&quot;</span><span class="p">)</span>
+<span class="nf">round</span><span class="p">(</span><span class="nf">attr</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="s">&quot;scaled:scale&quot;</span><span class="p">),</span><span class="m">1</span><span class="p">)</span>
+<span class="c1"># gráfica de la matriz centrada y reducida (estandrizada)</span>
+<span class="nf">par</span><span class="p">(</span><span class="n">las</span><span class="o">=</span><span class="m">1</span><span class="p">)</span> <span class="c1"># etiquetas de los dos ejes sean horizontales;</span>
+<span class="n">X3D</span><span class="o">&lt;-</span><span class="nf">scatterplot3d</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">main</span><span class="o">=</span><span class="s">&quot;X&quot;</span><span class="p">,</span><span class="n">type</span> <span class="o">=</span><span class="s">&quot;h&quot;</span><span class="p">,</span><span class="n">box</span><span class="o">=</span><span class="kc">FALSE</span><span class="p">);</span> 
+<span class="n">X3D</span><span class="o">$</span><span class="nf">points3d</span><span class="p">(</span><span class="n">Yc</span><span class="p">,</span><span class="n">pch</span><span class="o">=</span><span class="m">1</span><span class="p">);</span>
+<span class="nf">addgrids3d</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">grid</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;xy&quot;</span><span class="p">,</span><span class="s">&quot;xz&quot;</span><span class="p">,</span><span class="s">&quot;yz&quot;</span><span class="p">),</span><span class="n">col.grid</span><span class="o">=</span><span class="s">&quot;grey80&quot;</span><span class="p">);</span>
+<span class="nf">text </span><span class="p">(</span><span class="n">X3D</span><span class="o">$</span><span class="nf">xyz.convert</span><span class="p">(</span><span class="n">X</span><span class="p">),</span><span class="n">labels</span><span class="o">=</span><span class="nf">rownames</span><span class="p">(</span><span class="n">X</span><span class="p">),</span><span class="n">cex</span><span class="o">=</span><span class="m">0.8</span><span class="p">,</span><span class="n">pos</span><span class="o">=</span><span class="m">3</span><span class="p">);</span>
+<span class="n">X3D</span><span class="o">$</span><span class="nf">points3d </span><span class="p">(</span><span class="nf">t</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">0</span><span class="p">,</span><span class="m">0</span><span class="p">)),</span><span class="n">pch</span><span class="o">=</span><span class="m">19</span><span class="p">,</span><span class="n">col</span><span class="o">=</span><span class="s">&quot;darkgreen&quot;</span><span class="p">,</span><span class="n">type</span><span class="o">=</span><span class="s">&quot;h&quot;</span><span class="p">);</span>
+<span class="nf">text</span><span class="p">(</span><span class="n">X3D</span><span class="o">$</span><span class="nf">xyz.convert</span><span class="p">(</span><span class="nf">t</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">0</span><span class="p">,</span><span class="m">0</span><span class="p">))),</span><span class="n">labels</span><span class="o">=</span><span class="s">&quot;0&quot;</span><span class="p">,</span><span class="n">pos</span><span class="o">=</span><span class="m">3</span><span class="p">,</span><span class="n">col</span><span class="o">=</span><span class="s">&quot;darkgreen&quot;</span>
+	 <span class="p">,</span><span class="n">cex</span><span class="o">=</span><span class="m">0.8</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A matrix: 10 × 3 of type dbl</caption>
+<thead>
+	<tr><th></th><th scope=col>Color</th><th scope=col>DA</th><th scope=col>EA</th></tr>
+</thead>
+<tbody>
+	<tr><th scope=row>ExCl</th><td> 0.36</td><td>-0.39</td><td>-1.72</td></tr>
+	<tr><th scope=row>C40M</th><td> 1.44</td><td> 1.92</td><td> 0.90</td></tr>
+	<tr><th scope=row>C40C</th><td> 0.75</td><td> 0.51</td><td> 0.74</td></tr>
+	<tr><th scope=row>C20M</th><td> 0.99</td><td> 1.04</td><td>-0.41</td></tr>
+	<tr><th scope=row>C20C</th><td> 0.63</td><td>-0.78</td><td>-0.57</td></tr>
+	<tr><th scope=row>ExOs</th><td>-1.54</td><td>-1.31</td><td>-1.23</td></tr>
+	<tr><th scope=row>O40M</th><td> 0.02</td><td> 0.51</td><td> 1.23</td></tr>
+	<tr><th scope=row>O40C</th><td>-0.66</td><td> 0.04</td><td> 1.07</td></tr>
+	<tr><th scope=row>O20M</th><td>-0.86</td><td>-0.78</td><td> 0.08</td></tr>
+	<tr><th scope=row>O20C</th><td>-1.14</td><td>-0.78</td><td>-0.08</td></tr>
+</tbody>
+</table>
+</div><div class="output text_html"><style>
+.dl-inline {width: auto; margin:0; padding: 0}
+.dl-inline>dt, .dl-inline>dd {float: none; width: auto; display: inline-block}
+.dl-inline>dt::after {content: ":\0020"; padding-right: .5ex}
+.dl-inline>dt:not(:first-of-type) {padding-left: .5ex}
+</style><dl class=dl-inline><dt>Color</dt><dd>276.7</dd><dt>DA</dt><dd>401.16</dd><dt>EA</dt><dd>35.5</dd></dl>
+</div><div class="output text_html"><style>
+.dl-inline {width: auto; margin:0; padding: 0}
+.dl-inline>dt, .dl-inline>dd {float: none; width: auto; display: inline-block}
+.dl-inline>dt::after {content: ":\0020"; padding-right: .5ex}
+.dl-inline>dt:not(:first-of-type) {padding-left: .5ex}
+</style><dl class=dl-inline><dt>Color</dt><dd>58.7</dd><dt>DA</dt><dd>41.6</dd><dt>EA</dt><dd>6.1</dd></dl>
+</div><img alt="../../_images/ACP_24_3.png" src="../../_images/ACP_24_3.png" />
+</div>
+</div>
+</section>
+<section id="span-style-color-4cc9f0-busqueda-del-eje-de-mayor-inercia-proyectada-varianza-span">
+<h4><span style="color:#4CC9F0">Búsqueda del eje de mayor inercia proyectada (varianza)</span><a class="headerlink" href="#span-style-color-4cc9f0-busqueda-del-eje-de-mayor-inercia-proyectada-varianza-span" title="Enlazar permanentemente con este título">#</a></h4>
+<p>El valor de la proyección de un individuo <em>i</em> sobre el eje generado por un vector <span class="math notranslate nohighlight">\(\mathbf{u}\)</span> unitario es: <span class="math notranslate nohighlight">\(&lt;\mathbf{x}_i,\mathbf{u}&gt;=\mathbf{x}_i'\mathbf{u}\)</span>.</p>
+<p>El individuo <span class="math notranslate nohighlight">\(i\)</span> suma a la inercia proyectada (varianza) sobre el eje <span class="math notranslate nohighlight">\(\mathbf{u}\)</span> la cantidad <span class="math notranslate nohighlight">\(\dfrac{1}{n} (\mathbf{x}_i'\mathbf{u})^2\)</span>.</p>
+<p>La inercia total de la nube de individuos (varianza), proyectada sobre el eje <span class="math notranslate nohighlight">\(\mathbf{u}\)</span> es entonces:
+$<span class="math notranslate nohighlight">\(
+\sum_{i=1}^{n} \frac{1}{n} (\mathbf{x}_i'\mathbf{u})^2 =
+\frac{1}{n}(\mathbf{Xu})'\mathbf{Xu} = \mathbf{u'}\frac{1}{n}\mathbf{X'Xu}
+\)</span>$</p>
+<center>
+<img src="https://github.com/cepardot/DiplomadoIAyAP20211/blob/main/uProyeccion.png?raw=TRUE" alt="Proyección sobre u" width="300" height="400">
+<center><p>Geométricamente la búsqueda del eje equivale a rotarlo hasta que la suma de cuadrados de las proyecciones de los puntos sobre él  sea máxima. Cuando los puntos tienen pesos iguales el eje coincide con la dirección donde la nube de puntos esté más alargada. Se puede observar que cualquier vector que esté sobre la recta es solución y por lo tanto se introduce la condición de que el vector sea unitario: <span class="math notranslate nohighlight">\(\mathbf{u'u}=1\)</span>, con lo cual las soluciones son dos, ya que si <span class="math notranslate nohighlight">\(\mathbf{u}\)</span> es solución <span class="math notranslate nohighlight">\(-\mathbf{u}\)</span> también lo es. Cómo es una optimización se pueden tener diferentes procedimientos para hacerlo. En Álgebra lineal se obtiene una solución analítica utilizando la técnica de multiplicadores de Lagrange.</p>
+<center>
+<img src="https://images3.programmerclick.com/611/1d/1da21c4ce8bb7e0d68f27776d42a0c13.gif" alt="Linea proyeccion" width="400" height="500">
+<center><p>La solución es uno de los dos vectores propios unitarios asociados al valor propio más grande de la matriz:
+$<span class="math notranslate nohighlight">\(
+\dfrac{1}{n}\mathbf{X'X}
+\)</span><span class="math notranslate nohighlight">\(
+que es la matriz de correlaciones. Una pareja (valor propio más grande, vector propio) se denota 
+\)</span>(\lambda_1 ,\mathbf{u}_1)$</p>
+<p>La matriz de correlaciones, cuando <span class="math notranslate nohighlight">\(n\geq p\)</span>, generalmente tiene <span class="math notranslate nohighlight">\(p\)</span> valores propios, los cuales se ordenan de mayor a menor:
+$<span class="math notranslate nohighlight">\(
+\lambda_1 \geq \lambda_2 \geq \cdots \lambda_s \geq \cdots \lambda_S \geq \cdots \lambda_p
+\)</span>$</p>
+<p>Los
+<span class="math notranslate nohighlight">\(p\)</span> vectores propios
+<span class="math notranslate nohighlight">\(\{\mathbf{u_1},\cdots,\mathbf{u_s},\cdots,\mathbf{u_S} \cdots,\mathbf{u_p} \}\)</span>
+generan un sistema de nuevos ejes, denominados componentes principales, que son variables, calculadas como combinaciones lineales (sumas ponderadas de las <span class="math notranslate nohighlight">\(p\)</span> variables originales), se notan como <span class="math notranslate nohighlight">\(F_s, s=1,2 \cdots p\)</span>, que se pueden entender como nuevas variables y como vectores de dimensión <span class="math notranslate nohighlight">\(n \times 1\)</span>, cada uno con los valores de la nueva variable. Los  <span class="math notranslate nohighlight">\(p\)</span> vectores <span class="math notranslate nohighlight">\(\mathbf{u}_s\)</span> conforman una nueva base para soportar la nube de puntos.</p>
+<center>
+<img src="https://miro.medium.com/max/972/1*foB2cfjPCgHVnSyon293pQ.gif" alt="eigenvectores" width="250" height="350">
+<center><p>Geométricamente lo que se ha hecho es una rotación rígida de los ejes. Veamos lo que sucede con el ejemplo café.</p>
+</section>
+<section id="span-style-color-4cc9f0-con-la-funcion-eigen-base-span">
+<h4><span style="color:#4CC9F0">Con la función eigen{base}</span><a class="headerlink" href="#span-style-color-4cc9f0-con-la-funcion-eigen-base-span" title="Enlazar permanentemente con este título">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">V</span><span class="o">&lt;-</span><span class="nf">cor</span><span class="p">(</span><span class="n">Y</span><span class="p">)</span>
+<span class="nf">eigen</span><span class="p">(</span><span class="n">V</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>eigen() decomposition
+$values
+[1] 2.0670307 0.8216466 0.1113227
+
+$vectors
+           [,1]        [,2]       [,3]
+[1,] -0.5794934 -0.57140813  0.5811025
+[2,] -0.6728898 -0.06680772 -0.7367197
+[3,] -0.4597898  0.81794222  0.3457801
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="span-style-color-4cc9f0-todos-los-resultados-con-la-funcion-dudi-pca-ade4-en-el-objeto-acpcafe-span">
+<h4><span style="color:#4CC9F0">Todos los resultados con la función dudi.pca{ade4} en el objeto acpcafe</span><a class="headerlink" href="#span-style-color-4cc9f0-todos-los-resultados-con-la-funcion-dudi-pca-ade4-en-el-objeto-acpcafe-span" title="Enlazar permanentemente con este título">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">acpcafe</span><span class="o">&lt;-</span><span class="nf">dudi.pca</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">scannf</span><span class="o">=</span><span class="kc">FALSE</span><span class="p">,</span><span class="n">nf</span><span class="o">=</span><span class="m">3</span><span class="p">)</span>
+<span class="n">acpcafe</span> <span class="c1">#contenido del objeto café</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Duality diagramm
+class: pca dudi
+$call: dudi.pca(df = X, scannf = FALSE, nf = 3)
+
+$nf: 3 axis-components saved
+$rank: 3
+eigen values: 2.067 0.8216 0.1113
+  vector length mode    content       
+1 $cw    3      numeric column weights
+2 $lw    10     numeric row weights   
+3 $eig   3      numeric eigen values  
+
+  data.frame nrow ncol content             
+1 $tab       10   3    modified array      
+2 $li        10   3    row coordinates     
+3 $l1        10   3    row normed scores   
+4 $co        3    3    column coordinates  
+5 $c1        3    3    column normed scores
+other elements: cent norm 
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="span-style-color-4cc9f0-valores-propios-span">
+<h3><span style="color:#4CC9F0">Valores propios</span><a class="headerlink" href="#span-style-color-4cc9f0-valores-propios-span" title="Enlazar permanentemente con este título">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">round</span><span class="p">(</span><span class="n">acpcafe</span><span class="o">$</span><span class="n">eig</span><span class="p">,</span><span class="m">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style>
+.list-inline {list-style: none; margin:0; padding: 0}
+.list-inline>li {display: inline-block}
+.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+</style>
+<ol class=list-inline><li>2.067</li><li>0.822</li><li>0.111</li></ol>
+</div></div>
+</div>
+<p><em>Vectores propios</em></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">round</span><span class="p">(</span><span class="n">acpcafe</span><span class="o">$</span><span class="n">c1</span><span class="p">,</span><span class="m">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A data.frame: 3 × 3</caption>
+<thead>
+	<tr><th></th><th scope=col>CS1</th><th scope=col>CS2</th><th scope=col>CS3</th></tr>
+	<tr><th></th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><th scope=row>Color</th><td>0.579</td><td>-0.571</td><td> 0.581</td></tr>
+	<tr><th scope=row>DA</th><td>0.673</td><td>-0.067</td><td>-0.737</td></tr>
+	<tr><th scope=row>EA</th><td>0.460</td><td> 0.818</td><td> 0.346</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<p>Note que el primer vector propio (columna CS1) tiene todas las coordenadas positivas y el primer vector propio obtenido con la función <em>eigen</em> de R tiene las tres coordenadas negativas ¿A qué se debe esto?</p>
+<hr class="docutils" />
+<p><em>Coordenadas de los individuos sobre los nuevos ejes</em></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="bp">F</span><span class="o">&lt;-</span><span class="n">acpcafe</span><span class="o">$</span><span class="n">li</span>
+<span class="nf">round</span><span class="p">(</span><span class="bp">F</span><span class="p">,</span><span class="m">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A data.frame: 10 × 3</caption>
+<thead>
+	<tr><th></th><th scope=col>Axis1</th><th scope=col>Axis2</th><th scope=col>Axis3</th></tr>
+	<tr><th></th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><th scope=row>ExCl</th><td>-0.89</td><td>-1.68</td><td>-0.11</td></tr>
+	<tr><th scope=row>C40M</th><td> 2.68</td><td>-0.22</td><td>-0.29</td></tr>
+	<tr><th scope=row>C40C</th><td> 1.18</td><td> 0.15</td><td> 0.33</td></tr>
+	<tr><th scope=row>C20M</th><td> 1.14</td><td>-1.02</td><td>-0.35</td></tr>
+	<tr><th scope=row>C20C</th><td>-0.44</td><td>-0.82</td><td> 0.79</td></tr>
+	<tr><th scope=row>ExOs</th><td>-2.47</td><td>-0.04</td><td>-0.38</td></tr>
+	<tr><th scope=row>O40M</th><td> 0.98</td><td> 1.01</td><td> 0.06</td></tr>
+	<tr><th scope=row>O40C</th><td> 0.15</td><td> 1.31</td><td>-0.05</td></tr>
+	<tr><th scope=row>O20M</th><td>-1.04</td><td> 0.65</td><td> 0.11</td></tr>
+	<tr><th scope=row>O20C</th><td>-1.29</td><td> 0.67</td><td>-0.12</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<p><em>Grafica 3D de los cafés</em></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># gráfica de la matriz centrada y reducida (estandrizada)</span>
+<span class="nf">par</span><span class="p">(</span><span class="n">las</span><span class="o">=</span><span class="m">1</span><span class="p">)</span> <span class="c1"># etiquetas de los dos ejes sean horizontales;</span>
+<span class="n">X3D</span><span class="o">&lt;-</span><span class="nf">scatterplot3d</span><span class="p">(</span><span class="bp">F</span><span class="p">,</span><span class="n">main</span><span class="o">=</span><span class="s">&quot;Cafés sobre los nuevos ejes&quot;</span><span class="p">,</span><span class="n">type</span> <span class="o">=</span><span class="s">&quot;h&quot;</span><span class="p">,</span><span class="n">box</span><span class="o">=</span><span class="kc">FALSE</span><span class="p">);</span> 
+<span class="n">X3D</span><span class="o">$</span><span class="nf">points3d</span><span class="p">(</span><span class="bp">F</span><span class="p">,</span><span class="n">pch</span><span class="o">=</span><span class="m">1</span><span class="p">);</span>
+<span class="nf">addgrids3d</span><span class="p">(</span><span class="bp">F</span><span class="p">,</span><span class="n">grid</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;xy&quot;</span><span class="p">,</span><span class="s">&quot;xz&quot;</span><span class="p">,</span><span class="s">&quot;yz&quot;</span><span class="p">));</span>
+<span class="nf">text</span><span class="p">(</span><span class="n">X3D</span><span class="o">$</span><span class="nf">xyz.convert</span><span class="p">(</span><span class="bp">F</span><span class="p">),</span><span class="n">labels</span><span class="o">=</span><span class="nf">rownames</span><span class="p">(</span><span class="bp">F</span><span class="p">),</span><span class="n">cex</span><span class="o">=</span><span class="m">0.8</span><span class="p">,</span><span class="n">pos</span><span class="o">=</span><span class="m">3</span><span class="p">);</span>
+<span class="n">X3D</span><span class="o">$</span><span class="nf">points3d </span><span class="p">(</span><span class="nf">t</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">0</span><span class="p">,</span><span class="m">0</span><span class="p">)),</span><span class="n">pch</span><span class="o">=</span><span class="m">19</span><span class="p">,</span><span class="n">col</span><span class="o">=</span><span class="s">&quot;darkgreen&quot;</span><span class="p">,</span><span class="n">type</span><span class="o">=</span><span class="s">&quot;h&quot;</span><span class="p">);</span>
+<span class="nf">text</span><span class="p">(</span><span class="n">X3D</span><span class="o">$</span><span class="nf">xyz.convert</span><span class="p">(</span><span class="nf">t</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">0</span><span class="p">,</span><span class="m">0</span><span class="p">))),</span><span class="n">labels</span><span class="o">=</span><span class="s">&quot;0&quot;</span><span class="p">,</span><span class="n">pos</span><span class="o">=</span><span class="m">3</span><span class="p">,</span><span class="n">col</span><span class="o">=</span><span class="s">&quot;darkgreen&quot;</span>
+	 <span class="p">,</span><span class="n">cex</span><span class="o">=</span><span class="m">0.8</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/ACP_45_0.png" src="../../_images/ACP_45_0.png" />
+</div>
+</div>
+<section id="span-style-color-4cc9f0-proyeccion-de-los-cafes-sobre-el-primer-plano-factorial-span">
+<h4><span style="color:#4CC9F0">Proyección de los cafés sobre el primer plano factorial</span><a class="headerlink" href="#span-style-color-4cc9f0-proyeccion-de-los-cafes-sobre-el-primer-plano-factorial-span" title="Enlazar permanentemente con este título">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">plot</span><span class="p">(</span><span class="n">acpcafe</span><span class="p">,</span><span class="n">Tcol</span><span class="o">=</span><span class="kc">FALSE</span><span class="p">,</span><span class="n">gg</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">)</span>  <span class="c1"># plot.dudi{FactoClass}</span>
+<span class="c1">## con gg=TRUE, la función usa ggplot2 y ggrepel </span>
+<span class="c1">## para que las etiquetas no queden superpuestas</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/ACP_47_0.png" src="../../_images/ACP_47_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># para que los ejes queden con la misma escala</span>
+<span class="nf">plot</span><span class="p">(</span><span class="n">acpcafe</span><span class="p">,</span><span class="n">Tcol</span><span class="o">=</span><span class="kc">FALSE</span><span class="p">,</span><span class="n">asp</span><span class="o">=</span><span class="m">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/ACP_48_0.png" src="../../_images/ACP_48_0.png" />
+</div>
+</div>
+<p>Histograma de valores propios</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">barplot</span><span class="p">(</span><span class="n">acpcafe</span><span class="o">$</span><span class="n">eig</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/ACP_50_0.png" src="../../_images/ACP_50_0.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="span-style-color-4cc9f0-nube-de-variables-span">
+<h3><span style="color:#4CC9F0">Nube de variables</span><a class="headerlink" href="#span-style-color-4cc9f0-nube-de-variables-span" title="Enlazar permanentemente con este título">#</a></h3>
+<p>La matriz de datos <span class="math notranslate nohighlight">\(\mathbf{Y}\)</span> y sus transformaciones tienen una interpretación dual a la de los individuos: la nube de variables. Ahora los ejes son los individuos y las variables son los puntos. En el ejemplo café, se tienen entonces, tres puntos variable en <span class="math notranslate nohighlight">\(\mathbf{R}^{10}\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">Y</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A data.frame: 10 × 3</caption>
+<thead>
+	<tr><th></th><th scope=col>Color</th><th scope=col>DA</th><th scope=col>EA</th></tr>
+	<tr><th></th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;int&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><th scope=row>ExCl</th><td>298</td><td>385.1</td><td>25</td></tr>
+	<tr><th scope=row>C40M</th><td>361</td><td>481.3</td><td>41</td></tr>
+	<tr><th scope=row>C40C</th><td>321</td><td>422.6</td><td>40</td></tr>
+	<tr><th scope=row>C20M</th><td>335</td><td>444.3</td><td>33</td></tr>
+	<tr><th scope=row>C20C</th><td>314</td><td>368.7</td><td>32</td></tr>
+	<tr><th scope=row>ExOs</th><td>186</td><td>346.6</td><td>28</td></tr>
+	<tr><th scope=row>O40M</th><td>278</td><td>422.6</td><td>43</td></tr>
+	<tr><th scope=row>O40C</th><td>238</td><td>403.0</td><td>42</td></tr>
+	<tr><th scope=row>O20M</th><td>226</td><td>368.7</td><td>36</td></tr>
+	<tr><th scope=row>O20C</th><td>210</td><td>368.7</td><td>35</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<p>En el espacio de las variables los pesos están en la diagonal de <span class="math notranslate nohighlight">\(\mathbf{I}_p\)</span>, es decir son uno para todas las variables, y la métrica (matriz que define el producto interno) es la matriz diagonal con los pesos de los individuos, es decir <span class="math notranslate nohighlight">\(\frac{1}{n}\mathbf{I}_n\)</span>, para el caso de pesos iguales. Con esta métrica las estadísticas de resumen y las transformaciones de la matriz desde <span class="math notranslate nohighlight">\(\mathbf{Y}\)</span> hasta la <span class="math notranslate nohighlight">\(\mathbf{X}\)</span> tienen significado geométrico, lo que resumo a continuación (ver el capítulo 3 del <a class="reference external" href="https://bit.ly/3mD9rEY">libro Estadística descriptiva multivariada</a>).</p>
+<ul class="simple">
+<li><p>Media de una variable <span class="math notranslate nohighlight">\(j\)</span>:
+$<span class="math notranslate nohighlight">\(
+\bar{Y}_j = \frac{1}{n} \sum_{i=1}^{n} y_{ij} = 
+\frac{1}{n}\mathbf{Y'}_j \mathbf{1_{_n}} =
+\left&lt;  \mathbf{Y}_j,\mathbf{1_{_n}} \right&gt;_{\frac{1}{n}\mathbf{I}_n} 
+\)</span>$</p></li>
+<li><p>Centrado de una variable
+$<span class="math notranslate nohighlight">\(
+\mathbf{Y}_{C_j}=\mathbf{Y}_j - \overline{Y} \mathbf{1}_n 
+\)</span><span class="math notranslate nohighlight">\(
+donde \)</span>\mathbf{1}_n<span class="math notranslate nohighlight">\( es un vector de \)</span>n<span class="math notranslate nohighlight">\( unos (\)</span>n \times 1$).</p></li>
+</ul>
+<center>
+<img src="https://github.com/cepardot/DiplomadoIAyAP20211/blob/main/EDMvariables.png?raw=TRUE" alt="Significado de la media y el centrado de una variable" width="400" height="500">
+<center><ul class="simple">
+<li><p>Varianza</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+var(Y_j) = \frac{1}{n} \sum_{i=1}^n (y_{ij} - \bar{Y}_j)^2 = 
+\left&lt;\mathbf{Y_{C}}_j,\mathbf{Y_{C}}_j\right&gt;_{\frac{1}{n}\mathbf{I}_n}
+\]</div>
+<ul class="simple">
+<li><p>Covarianza</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+ cov(Y_j,Y_{k}) = \frac{1}{n} \sum_{i=1}^n (y_{ij} - \bar{Y}_j)(y_{ik} - \bar{Y}_{k}) = 
+\left&lt;\mathbf{Y_{C}}_j,\mathbf{Y_{C}}_{k}\right&gt;_{\frac{1}{n}\mathbf{I}_n}
+\]</div>
+<ul class="simple">
+<li><p>Significado del reducido</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+\mathbf{X_j}=
+\dfrac{1}{\sigma_j}\mathbf{Y}_{C_j}
+\]</div>
+<p>Varianza de una variable centrada y reducida:</p>
+<div class="math notranslate nohighlight">
+\[
+&lt;\mathbf{X_j,X_j}&gt;_{\frac{1}{n}\mathbf{I_n}}=\mathbf{X_j^{'}}\left(\frac{1}{n}\mathbf{I}_n\right)\mathbf{X}_j=
+\frac{1}{n}\mathbf{X_j^{'}X_j}=1
+\]</div>
+<p>Las variables estandarizadas se pueden ver como flechas que terminan en el cascarón hiperesféricon de radio 1 y centro origen.</p>
+<ul class="simple">
+<li><p>Correlación</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+cor(Y_j,Y_{k}) = \frac{cov(Y_j,Y_{k})}{\sigma_j \sigma_{k}}=
+\frac{ &lt;\mathbf{Y_{C_j},Y_{C_k}}&gt;_{\frac{1}{n}\mathbf{I_n}}}{\| \mathbf{Y_{C_j}} \|_{\frac{1}{n}\mathbf{I_n}} \|\mathbf{Y_{C_k}} \|_{\frac{1}{n}\mathbf{I_n}}}=
+&lt;\mathbf{X_j,X_{k}}&gt;_{\frac{1}{n}\mathbf{I_n}}
+\]</div>
+<p>El espacio de las variables de un ACP normado es una representación de la matriz de correlaciones.</p>
+<p>Si entre dos vectores variables hay un ángulo pequeño, su correlación es alta; mientras dos vectores variables ortogonales indican que las variables no están correlacionadas.</p>
+<p><strong>Búsqueda de los nuevos ejes</strong></p>
+<p>El procedimento para encontrar los nuevos ejes es el mismo que en el de los individuos.</p>
+<center>
+<img src="https://github.com/cepardot/DiplomadoIAyAP20211/blob/main/EDMvariablesprimerEjeColor.png?raw=TRUE" alt="Búsqueda de los nuevos ejes en el espacio de las variables" width="300" height="400">
+<center>
+<p>Solución con vectores propios <span class="math notranslate nohighlight">\(\frac{1}{n}\mathbf{I}_n\)</span> unitarios asociados a los <span class="math notranslate nohighlight">\(\mu\)</span> valores propios de la matriz:
+$<span class="math notranslate nohighlight">\(
+\frac{1}{n}\mathbf{XX'}
+\)</span>$</p>
+<ul class="simple">
+<li><p>Esta matriz es <span class="math notranslate nohighlight">\(n \times n\)</span>, pero solo tiene <span class="math notranslate nohighlight">\(p\)</span> valores propios mayores que 0 (se supone que <span class="math notranslate nohighlight">\(n \geq p\)</span>)</p></li>
+<li><p>Los dos espacios están relacionados.</p></li>
+</ul>
+</section>
+<section id="span-style-color-4cc9f0-relaciones-entre-los-espacios-de-individuos-y-de-variables-span">
+<h3><span style="color:#4CC9F0">Relaciones entre los espacios de individuos y de variables</span><a class="headerlink" href="#span-style-color-4cc9f0-relaciones-entre-los-espacios-de-individuos-y-de-variables-span" title="Enlazar permanentemente con este título">#</a></h3>
+<ul class="simple">
+<li><p>La matriz  $<span class="math notranslate nohighlight">\(\frac{1}{n}\mathbf{XX'}\)</span><span class="math notranslate nohighlight">\( tiene \)</span>p<span class="math notranslate nohighlight">\( valores propios, que son iguales a los valores propios de \)</span><span class="math notranslate nohighlight">\(\frac{1}{n}\mathbf{X'X}\)</span><span class="math notranslate nohighlight">\( y los restantes \)</span>n - p$ valores propios son 0.</p></li>
+<li><p>El vector coordenadas de los <span class="math notranslate nohighlight">\(n\)</span> individuos sobre el eje <span class="math notranslate nohighlight">\(s\)</span>  <span class="math notranslate nohighlight">\(\mathbf{F}_s\)</span>, es un vector propio de $<span class="math notranslate nohighlight">\(\frac{1}{n}\mathbf{XX'}\)</span>$.</p></li>
+<li><p>La varianza de <span class="math notranslate nohighlight">\(\mathbf{F}_s\)</span> es <span class="math notranslate nohighlight">\(\lambda_s\)</span>, y por lo tanto, el vector propio <span class="math notranslate nohighlight">\(\mathbf{v}_s\)</span> se puede calcular mediante:  $<span class="math notranslate nohighlight">\(\mathbf{v}_s=\frac{1}{\sqrt{\lambda_s}}\mathbf{F}_s\)</span>$.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\mathbf{G}_s\)</span>, vector de coordenadas de las <span class="math notranslate nohighlight">\(p\)</span> variables sobre el eje <span class="math notranslate nohighlight">\(s\)</span>, es un vector propio de $<span class="math notranslate nohighlight">\(\frac{1}{n}\mathbf{X'X}\)</span>$.</p></li>
+<li><p>La varianza de <span class="math notranslate nohighlight">\(\mathbf{G}_s\)</span> es <span class="math notranslate nohighlight">\(\lambda_s\)</span>, y por lo tanto, se puede obtener mediante:   $<span class="math notranslate nohighlight">\(\mathbf{G}_s =\sqrt{\lambda_s}\mathbf{u}_s\)</span>$.</p></li>
+<li><p>En el ACP normado, las coordenadas de <span class="math notranslate nohighlight">\(\mathbf{G}_s\)</span> son las correlaciones entre las variables y el eje <span class="math notranslate nohighlight">\(s\)</span>: <span class="math notranslate nohighlight">\(cor(Y_j,F_s)\)</span>.</p></li>
+</ul>
+</section>
+</section>
+<section id="span-style-color-4361ee-circulo-de-correlaciones-del-ejemplo-cafe-span">
+<h2><span style="color:#4361EE">Círculo de correlaciones del ejemplo café</span><a class="headerlink" href="#span-style-color-4361ee-circulo-de-correlaciones-del-ejemplo-cafe-span" title="Enlazar permanentemente con este título">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">s.corcircle</span><span class="p">(</span><span class="n">acpcafe</span><span class="o">$</span><span class="n">co</span><span class="p">)</span>
+<span class="c1"># matriz de correlaciones</span>
+<span class="nf">round</span><span class="p">(</span><span class="nf">cor</span><span class="p">(</span><span class="n">Y</span><span class="p">),</span><span class="m">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A matrix: 3 × 3 of type dbl</caption>
+<thead>
+	<tr><th></th><th scope=col>Color</th><th scope=col>DA</th><th scope=col>EA</th></tr>
+</thead>
+<tbody>
+	<tr><th scope=row>Color</th><td>1.00</td><td>0.79</td><td>0.19</td></tr>
+	<tr><th scope=row>DA</th><td>0.79</td><td>1.00</td><td>0.57</td></tr>
+	<tr><th scope=row>EA</th><td>0.19</td><td>0.57</td><td>1.00</td></tr>
+</tbody>
+</table>
+</div><img alt="../../_images/ACP_61_1.png" src="../../_images/ACP_61_1.png" />
+</div>
+</div>
+</section>
+<section id="span-style-color-4361ee-ayudas-para-la-interpretacion-span">
+<h2><span style="color:#4361EE">Ayudas para la interpretación</span><a class="headerlink" href="#span-style-color-4361ee-ayudas-para-la-interpretacion-span" title="Enlazar permanentemente con este título">#</a></h2>
+<p>Es importante evitar malas lecturas de los ejes y planos factoriales. En las ayudas para la interpretación se encuentran índices para evitarlo. Otras ayudas orientan la lectura de las gráficas y la toma de decisiones metodológicas. A continuación se presentan las del ejemplo café y se recomienda leer sobre ellas en el capítulo 3 del libro EDM</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">ayuacpcafe</span><span class="o">&lt;-</span><span class="nf">inertia</span><span class="p">(</span><span class="n">acpcafe</span><span class="p">,</span><span class="bp">T</span><span class="p">,</span><span class="bp">T</span><span class="p">)</span> <span class="c1"># inertia.dudi es una función de ade4</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="id1">
+<h3><span style="color:#4CC9F0">Valores Propios</span><a class="headerlink" href="#id1" title="Enlazar permanentemente con este título">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">ayuacpcafe</span><span class="o">$</span><span class="n">tot.inertia</span>
+<span class="nf">barplot</span><span class="p">(</span><span class="n">ayuacpcafe</span><span class="o">$</span><span class="n">tot.inertia</span><span class="o">$</span><span class="n">inertia</span><span class="p">[</span><span class="m">3</span><span class="o">:</span><span class="m">1</span><span class="p">],</span><span class="n">hor</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">)</span>
+<span class="nf">abline</span><span class="p">(</span><span class="n">h</span><span class="o">=</span><span class="m">1</span><span class="p">,</span><span class="n">col</span><span class="o">=</span><span class="s">&quot;darkgreen&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A data.frame: 3 × 3</caption>
+<thead>
+	<tr><th></th><th scope=col>inertia</th><th scope=col>cum</th><th scope=col>cum(%)</th></tr>
+	<tr><th></th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><th scope=row>Ax1</th><td>2.0670307</td><td>2.067031</td><td> 68.90102</td></tr>
+	<tr><th scope=row>Ax2</th><td>0.8216466</td><td>2.888677</td><td> 96.28924</td></tr>
+	<tr><th scope=row>Ax3</th><td>0.1113227</td><td>3.000000</td><td>100.00000</td></tr>
+</tbody>
+</table>
+</div><img alt="../../_images/ACP_66_1.png" src="../../_images/ACP_66_1.png" />
+</div>
+</div>
+</section>
+<section id="span-style-color-4cc9f0-coordenadas-y-ayudas-para-las-variables-span">
+<h3><span style="color:#4CC9F0">Coordenadas y ayudas para las variables</span><a class="headerlink" href="#span-style-color-4cc9f0-coordenadas-y-ayudas-para-las-variables-span" title="Enlazar permanentemente con este título">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">names</span><span class="p">(</span><span class="n">ayuacpcafe</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style>
+.list-inline {list-style: none; margin:0; padding: 0}
+.list-inline>li {display: inline-block}
+.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+</style>
+<ol class=list-inline><li>'tot.inertia'</li><li>'row.contrib'</li><li>'row.abs'</li><li>'row.rel'</li><li>'row.cum'</li><li>'col.contrib'</li><li>'col.abs'</li><li>'col.rel'</li><li>'col.cum'</li><li>'nf'</li><li>'call'</li></ol>
+</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">attach</span><span class="p">(</span><span class="n">ayuacpcafe</span><span class="p">)</span>
+<span class="nf">round</span><span class="p">(</span><span class="nf">cbind</span><span class="p">(</span><span class="n">acpcafe</span><span class="o">$</span><span class="n">co</span><span class="p">,</span><span class="n">Ca</span><span class="o">=</span><span class="n">col.abs</span><span class="p">,</span><span class="n">Cos2</span><span class="o">=</span><span class="n">col.rel</span><span class="p">,</span><span class="n">conInercia</span><span class="o">=</span><span class="n">col.contrib</span><span class="p">),</span><span class="m">2</span><span class="p">)</span>
+<span class="nf">detach</span><span class="p">(</span><span class="n">ayuacpcafe</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A data.frame: 3 × 10</caption>
+<thead>
+	<tr><th></th><th scope=col>Comp1</th><th scope=col>Comp2</th><th scope=col>Comp3</th><th scope=col>Ca.Axis1</th><th scope=col>Ca.Axis2</th><th scope=col>Ca.Axis3</th><th scope=col>Cos2.Axis1</th><th scope=col>Cos2.Axis2</th><th scope=col>Cos2.Axis3</th><th scope=col>conInercia</th></tr>
+	<tr><th></th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><th scope=row>Color</th><td>0.83</td><td>-0.52</td><td> 0.19</td><td>33.58</td><td>32.65</td><td>33.77</td><td>69.41</td><td>-26.83</td><td> 3.76</td><td>33.33</td></tr>
+	<tr><th scope=row>DA</th><td>0.97</td><td>-0.06</td><td>-0.25</td><td>45.28</td><td> 0.45</td><td>54.28</td><td>93.59</td><td> -0.37</td><td>-6.04</td><td>33.33</td></tr>
+	<tr><th scope=row>EA</th><td>0.66</td><td> 0.74</td><td> 0.12</td><td>21.14</td><td>66.90</td><td>11.96</td><td>43.70</td><td> 54.97</td><td> 1.33</td><td>33.33</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+</section>
+<section id="span-style-color-4cc9f0-coordenadas-y-ayudas-para-los-cafes-span">
+<h3><span style="color:#4CC9F0">Coordenadas y ayudas para los cafés</span><a class="headerlink" href="#span-style-color-4cc9f0-coordenadas-y-ayudas-para-los-cafes-span" title="Enlazar permanentemente con este título">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">attach</span><span class="p">(</span><span class="n">ayuacpcafe</span><span class="p">)</span>
+<span class="nf">round</span><span class="p">(</span><span class="nf">cbind</span><span class="p">(</span><span class="n">acpcafe</span><span class="o">$</span><span class="n">li</span><span class="p">,</span><span class="n">Ca</span><span class="o">=</span><span class="n">row.abs</span><span class="p">,</span><span class="n">Cos2</span><span class="o">=</span><span class="n">row.rel</span><span class="p">,</span><span class="n">conInercia</span><span class="o">=</span><span class="n">row.contrib</span><span class="p">),</span><span class="m">2</span><span class="p">)</span>
+<span class="nf">detach</span><span class="p">(</span><span class="n">ayuacpcafe</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A data.frame: 10 × 10</caption>
+<thead>
+	<tr><th></th><th scope=col>Axis1</th><th scope=col>Axis2</th><th scope=col>Axis3</th><th scope=col>Ca.Axis1</th><th scope=col>Ca.Axis2</th><th scope=col>Ca.Axis3</th><th scope=col>Cos2.Axis1</th><th scope=col>Cos2.Axis2</th><th scope=col>Cos2.Axis3</th><th scope=col>conInercia</th></tr>
+	<tr><th></th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><th scope=row>ExCl</th><td>-0.89</td><td>-1.68</td><td>-0.11</td><td> 3.80</td><td>34.19</td><td> 1.01</td><td>-21.80</td><td>-77.89</td><td>-0.31</td><td>12.02</td></tr>
+	<tr><th scope=row>C40M</th><td> 2.68</td><td>-0.22</td><td>-0.29</td><td>34.72</td><td> 0.60</td><td> 7.39</td><td> 98.20</td><td> -0.67</td><td>-1.13</td><td>24.36</td></tr>
+	<tr><th scope=row>C40C</th><td> 1.18</td><td> 0.15</td><td> 0.33</td><td> 6.78</td><td> 0.26</td><td> 9.85</td><td> 91.45</td><td>  1.39</td><td> 7.16</td><td> 5.11</td></tr>
+	<tr><th scope=row>C20M</th><td> 1.14</td><td>-1.02</td><td>-0.35</td><td> 6.31</td><td>12.77</td><td>10.77</td><td> 52.75</td><td>-42.41</td><td>-4.84</td><td> 8.25</td></tr>
+	<tr><th scope=row>C20C</th><td>-0.44</td><td>-0.82</td><td> 0.79</td><td> 0.95</td><td> 8.23</td><td>55.37</td><td>-13.20</td><td>-45.42</td><td>41.38</td><td> 4.97</td></tr>
+	<tr><th scope=row>ExOs</th><td>-2.47</td><td>-0.04</td><td>-0.38</td><td>29.49</td><td> 0.02</td><td>12.73</td><td>-97.70</td><td> -0.02</td><td>-2.27</td><td>20.79</td></tr>
+	<tr><th scope=row>O40M</th><td> 0.98</td><td> 1.01</td><td> 0.06</td><td> 4.60</td><td>12.44</td><td> 0.35</td><td> 48.09</td><td> 51.72</td><td> 0.19</td><td> 6.59</td></tr>
+	<tr><th scope=row>O40C</th><td> 0.15</td><td> 1.31</td><td>-0.05</td><td> 0.10</td><td>20.98</td><td> 0.22</td><td>  1.21</td><td> 98.65</td><td>-0.14</td><td> 5.82</td></tr>
+	<tr><th scope=row>O20M</th><td>-1.04</td><td> 0.65</td><td> 0.11</td><td> 5.24</td><td> 5.07</td><td> 1.02</td><td>-71.67</td><td> 27.58</td><td> 0.75</td><td> 5.03</td></tr>
+	<tr><th scope=row>O20C</th><td>-1.29</td><td> 0.67</td><td>-0.12</td><td> 8.00</td><td> 5.43</td><td> 1.29</td><td>-78.22</td><td> 21.10</td><td>-0.68</td><td> 7.05</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+</section>
+</section>
+<section id="span-style-color-4361ee-proyeccion-de-elementos-suplementarios-o-ilustrativos-span">
+<h2><span style="color:#4361EE">Proyección de elementos suplementarios o ilustrativos</span><a class="headerlink" href="#span-style-color-4361ee-proyeccion-de-elementos-suplementarios-o-ilustrativos-span" title="Enlazar permanentemente con este título">#</a></h2>
+<p>Sobre los planos factoriales de las variables se pueden proyectar variables continuas que no participaron en el análisis, lo que enriquece los análisis.</p>
+<p>En los planos factoriales de los individuos se pueden proyectar: individuos suplementarios, variables cualitativas, y los antiguos ejes unitarios para las variables activas que estén bien representadas.</p>
+<p>Ver capítulos 3 y 4 del libro EDM.</p>
+</section>
+<section id="span-style-color-4361ee-acp-generalizado-span">
+<h2><span style="color:#4361EE">ACP generalizado</span><a class="headerlink" href="#span-style-color-4361ee-acp-generalizado-span" title="Enlazar permanentemente con este título">#</a></h2>
+<p>La generalización del ACP es que al permitir otras matrices de producto interno se puede establecer un marco común para los métodos en ejes principales, lo cual se puede consultar en el capítulo 4 del libro EDM.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "AprendizajeProfundo/Libro-Fundamentos",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "r"
+        },
+        kernelOptions: {
+            kernelName: "ir",
+            path: "./Machine_Learning\Cuadernos"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'ir'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="AprendizajeNoSupervisado.html" title="anterior página">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">anterior</p>
+            <p class="prev-next-title"><span style="color:#F72585">Aprendizaje no supervisado</span></p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="ACS.html" title="siguiente página">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">siguiente</p>
+        <p class="prev-next-title"><span style="color:#F72585">Análisis de correspondencias simples</span></p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Álvaro Mauricio Montenegro Díaz, Daniel Mauricio Montenegro Reyes<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
