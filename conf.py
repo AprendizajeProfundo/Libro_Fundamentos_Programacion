@@ -13,7 +13,7 @@ execution_allow_errors = False
 execution_excludepatterns = []
 execution_in_temp = False
 execution_timeout = 30
-extensions = ['sphinx_togglebutton', 'sphinx_copybutton', 'myst_nb', 'jupyter_book', 'sphinx_thebe', 'sphinx_comments', 'sphinx_external_toc', 'sphinx.ext.intersphinx', 'sphinx_panels', 'sphinx_book_theme', 'sphinx_inline_tabs', 'sphinx_click.ext', 'sphinx_proof', 'sphinxcontrib.bibtex', 'sphinx_jupyterbook_latex']
+extensions = ['sphinx_togglebutton', 'sphinx_copybutton', 'myst_nb', 'jupyter_book', 'sphinx_thebe', 'sphinx_comments', 'sphinx_external_toc', 'sphinx.ext.intersphinx', 'sphinx_design', 'sphinx_book_theme', 'sphinx_inline_tabs', 'sphinx_click.ext', 'sphinx_proof', 'sphinxcontrib.bibtex', 'sphinx_jupyterbook_latex']
 external_toc_exclude_missing = False
 external_toc_path = '_toc.yml'
 html_baseurl = ''
@@ -22,8 +22,8 @@ html_js_files = ['https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/requir
 html_logo = 'logo-final-ap.png'
 html_sourcelink_suffix = ''
 html_theme = 'sphinx_book_theme'
-html_theme_options = {'search_bar_text': 'Search this book...', 'launch_buttons': {'notebook_interface': 'classic', 'binderhub_url': 'https://mybinder.org', 'jupyterhub_url': '', 'thebe': True, 'colab_url': 'https://colab.research.google.com'}, 'path_to_docs': '', 'repository_url': 'https://github.com/AprendizajeProfundo/Libro-Estadistica-Bayesiana', 'repository_branch': 'main', 'google_analytics_id': '', 'extra_navbar': 'Powered by <a href="https://jupyterbook.org">Jupyter Book</a>', 'extra_footer': '', 'home_page_in_toc': True, 'use_repository_button': True, 'use_edit_page_button': True, 'use_issues_button': True}
-html_title = 'Estadística Bayesiana'
+html_theme_options = {'search_bar_text': 'Search this book...', 'launch_buttons': {'notebook_interface': 'classic', 'binderhub_url': 'https://mybinder.org', 'jupyterhub_url': '', 'thebe': True, 'colab_url': 'https://colab.research.google.com'}, 'path_to_docs': '', 'repository_url': 'https://github.com/AprendizajeProfundo/Libro_Fundamentos_Programacion', 'repository_branch': 'main', 'google_analytics_id': '', 'extra_navbar': 'Powered by <a href="https://jupyterbook.org">Jupyter Book</a>', 'extra_footer': '', 'home_page_in_toc': True, 'announcement': '', 'use_repository_button': True, 'use_edit_page_button': True, 'use_issues_button': True}
+html_title = 'Fundamentos de Programación'
 jupyter_cache = ''
 jupyter_execute_notebooks = 'force'
 language = None
@@ -32,7 +32,6 @@ myst_enable_extensions = ['colon_fence', 'dollarmath', 'linkify', 'substitution'
 myst_url_schemes = ['mailto', 'http', 'https']
 nb_output_stderr = 'show'
 numfig = True
-panels_add_bootstrap_css = False
 pygments_style = 'sphinx'
 suppress_warnings = ['myst.domains']
 use_jupyterbook_latex = True

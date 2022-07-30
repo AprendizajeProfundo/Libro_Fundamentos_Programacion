@@ -8,8 +8,7 @@ openpyxl
 scipy
 plotly
 ffmpeg
-torch==1.10.0
-torchvision==0.11.1
+torch
 pyro-ppl
 tensorflow
 tensorflow-probability

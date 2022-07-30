@@ -1,6 +1,3 @@
-# Table of contents
-# Learn more at https://jupyterbook.org/customize/toc.html
-
 format: jb-book
 root: tutorial
 parts:
@@ -18,5 +15,11 @@ parts:
     - file: Python/Cuadernos/Taller_Numpy
     - file: Python/Cuadernos/Taller_Pandas
     - file: Python/Cuadernos/La_API_tf_data    
-  
-  
+- caption: Pytorch
+  chapters:
+  - file: Pytorch/Cuadernos/Pytorch_01
+  - file: Pytorch/Cuadernos/Pytorch_02
+  - file: Pytorch/Cuadernos/Pytorch_03
+  - file: Pytorch/Cuadernos/Pytorch_04
+  - file: Pytorch/Cuadernos/Pytorch_05
+  - file: Pytorch/Cuadernos/Pytorch_06
