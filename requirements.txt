@@ -16,4 +16,4 @@ minisom
 graphviz
 scikit-learn
 scikit-image
-torchvision==0.11.1
+torchvision
