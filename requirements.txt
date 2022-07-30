@@ -8,8 +8,12 @@ openpyxl
 scipy
 plotly
 ffmpeg
-torch
-pyro-ppl
+torch==1.11.0
 tensorflow
-tensorflow-probability
-pystan
+jax[cpu]
+pydot
+minisom
+graphviz
+scikit-learn
+scikit-image
+torchvision==0.11.1
