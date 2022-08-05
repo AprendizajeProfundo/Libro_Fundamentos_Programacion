@@ -697,14 +697,14 @@ title="Print to PDF"
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>x=  tensor([1., 1., 1., 1., 1.])
 y=  tensor([0., 1., 0.])
-w=  tensor([[ 0.0456, -0.6267, -0.2629],
-        [-0.2867,  1.0827, -1.0344],
-        [-1.9011, -1.2343, -0.6856],
-        [-2.1183, -1.5819,  0.6532],
-        [-0.9095,  0.7908, -1.1447]], requires_grad=True)
-b=  tensor([ 0.2104, -0.4743,  0.4587], requires_grad=True)
-z=  tensor([-4.9597, -2.0437, -2.0158], grad_fn=&lt;AddBackward0&gt;)
-loss=  tensor(0.7658, grad_fn=&lt;BinaryCrossEntropyWithLogitsBackward0&gt;)
+w=  tensor([[ 0.1822,  1.0553, -0.0314],
+        [ 1.4257, -0.2499, -0.3343],
+        [-2.7036,  0.1441, -0.7776],
+        [-0.3631, -0.8794,  1.5661],
+        [-0.0706,  2.2683, -0.2012]], requires_grad=True)
+b=  tensor([1.4422, 2.5679, 0.3581], requires_grad=True)
+z=  tensor([-0.0873,  4.9064,  0.5796], grad_fn=&lt;AddBackward0&gt;)
+loss=  tensor(0.5607, grad_fn=&lt;BinaryCrossEntropyWithLogitsBackward0&gt;)
 </pre></div>
 </div>
 </div>
@@ -734,8 +734,8 @@ Grafo computacional del cálculo descrito arriba.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Gradient function for z = &lt;AddBackward0 object at 0x0000028BBD8E0A00&gt;
-Gradient function for loss = &lt;BinaryCrossEntropyWithLogitsBackward0 object at 0x0000028BBD8A6CA0&gt;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Gradient function for z = &lt;AddBackward0 object at 0x0000021461D50940&gt;
+Gradient function for loss = &lt;BinaryCrossEntropyWithLogitsBackward0 object at 0x0000021461D275B0&gt;
 </pre></div>
 </div>
 </div>
@@ -754,12 +754,12 @@ Gradient function for loss = &lt;BinaryCrossEntropyWithLogitsBackward0 object at
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>w.grad=  tensor([[ 0.0023, -0.2951,  0.0392],
-        [ 0.0023, -0.2951,  0.0392],
-        [ 0.0023, -0.2951,  0.0392],
-        [ 0.0023, -0.2951,  0.0392],
-        [ 0.0023, -0.2951,  0.0392]])
-b.grad=  tensor([ 0.0023, -0.2951,  0.0392])
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>w.grad=  tensor([[ 0.1594, -0.0024,  0.2137],
+        [ 0.1594, -0.0024,  0.2137],
+        [ 0.1594, -0.0024,  0.2137],
+        [ 0.1594, -0.0024,  0.2137],
+        [ 0.1594, -0.0024,  0.2137]])
+b.grad=  tensor([ 0.1594, -0.0024,  0.2137])
 </pre></div>
 </div>
 </div>
