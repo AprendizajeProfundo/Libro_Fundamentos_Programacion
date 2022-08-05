@@ -1972,7 +1972,17 @@ z 26
 <p>Note lo que ocurre cuando intentamos acceder por medio de índices (posiciones):</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#print(Rios[0])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">Rios</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">KeyError</span><span class="g g-Whitespace">                                  </span>Traceback (most recent call last)
+<span class="nn">Input In [32],</span> in <span class="ni">&lt;cell line: 1&gt;</span><span class="nt">()</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="nb">print</span><span class="p">(</span><span class="n">Rios</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+<span class="ne">KeyError</span>: 0
 </pre></div>
 </div>
 </div>
@@ -2081,7 +2091,7 @@ z 26
 <p>Claro está, si se intenta acceder a una llave incorrecta, obtendremos el siguiente error:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#print(my_dic[&#39;Valor&#39;])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">my_dic</span><span class="p">[</span><span class="s1">&#39;Valor&#39;</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -2619,7 +2629,7 @@ False
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;banano&#39;, &#39;naranja&#39;, &#39;fresa&#39;, &#39;tomate&#39;}
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;naranja&#39;, &#39;fresa&#39;, &#39;banano&#39;, &#39;tomate&#39;}
 </pre></div>
 </div>
 </div>
@@ -2635,7 +2645,7 @@ False
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;banano&#39;, &#39;naranja&#39;, &#39;fresa&#39;, &#39;tomate&#39;}
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;naranja&#39;, &#39;fresa&#39;, &#39;banano&#39;, &#39;tomate&#39;}
 </pre></div>
 </div>
 </div>
@@ -2677,7 +2687,7 @@ False
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;naranja&#39;, &#39;fresa&#39;, &#39;tomate&#39;, &#39;banano&#39;, &#39;cebolla&#39;}
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;cebolla&#39;, &#39;fresa&#39;, &#39;banano&#39;, &#39;naranja&#39;, &#39;tomate&#39;}
 </pre></div>
 </div>
 </div>
@@ -2690,7 +2700,7 @@ False
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;banano&#39;, &#39;naranja&#39;, &#39;fresa&#39;}
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;naranja&#39;, &#39;fresa&#39;, &#39;banano&#39;}
 </pre></div>
 </div>
 </div>
@@ -2703,7 +2713,7 @@ False
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;naranja&#39;, &#39;banano&#39;, &#39;cebolla&#39;, &#39;fresa&#39;}
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;cebolla&#39;, &#39;banano&#39;, &#39;fresa&#39;, &#39;naranja&#39;}
 </pre></div>
 </div>
 </div>
@@ -2783,7 +2793,17 @@ False
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#fruta_congelada.add(&#39;pera&#39;)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fruta_congelada</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s1">&#39;pera&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">AttributeError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
+<span class="nn">c:\Users\User\OneDrive\Documentos\Libro-Programacion\Python\Colecciones.ipynb Celda 184</span> in <span class="ni">&lt;cell line: 1&gt;</span><span class="nt">()</span>
+<span class="o">----&gt;</span> <span class="o">&lt;</span><span class="n">a</span> <span class="n">href</span><span class="o">=</span><span class="s1">&#39;vscode-notebook-cell:/c%3A/Users/User/OneDrive/Documentos/Libro-Programacion/Python/Colecciones.ipynb#ch0000183?line=0&#39;</span><span class="o">&gt;</span><span class="mi">1</span><span class="o">&lt;/</span><span class="n">a</span><span class="o">&gt;</span> <span class="n">fruta_congelada</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s1">&#39;pera&#39;</span><span class="p">)</span>
+
+<span class="ne">AttributeError</span>: &#39;frozenset&#39; object has no attribute &#39;add&#39;
 </pre></div>
 </div>
 </div>

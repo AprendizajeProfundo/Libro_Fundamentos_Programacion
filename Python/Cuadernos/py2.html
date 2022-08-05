@@ -58,8 +58,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Operaciones entre variables" href="py3.html" />
-    <link rel="prev" title="Introducción al lenguaje Python" href="py1.html" />
+    <link rel="next" title="Operadores aritméticos y lógicos" href="py3.html" />
+    <link rel="prev" title="Conceptos básicos de programación" href="py0.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -140,9 +140,9 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="py1.html">
+  <a class="reference internal" href="py0.html">
    <span style="color:#F72585">
-    Introducción al lenguaje Python
+    Conceptos básicos de programación
    </span>
   </a>
  </li>
@@ -156,7 +156,7 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1">
   <a class="reference internal" href="py3.html">
    <span style="color:#F72585">
-    Operaciones entre variables
+    Operadores aritméticos y lógicos
    </span>
   </a>
  </li>
@@ -248,6 +248,20 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal" href="../../Pytorch/Cuadernos/Pytorch_06.html">
    <span style="color:#F72585">
     Optimización con torch
+   </span>
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  TensorFlow
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../TensorFlow/Cuadernos/Tensorflow-01.html">
+   <span style="color:#F72585">
+    Inicio Rápido
    </span>
   </a>
  </li>
@@ -518,6 +532,13 @@ title="Print to PDF"
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-que-es-un-cast-span">
+     <span style="color:#4CC9F0">
+      ¿Que es un cast?
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#span-style-color-4cc9f0-usando-input-span">
      <span style="color:#4CC9F0">
       Usando input
@@ -575,6 +596,27 @@ title="Print to PDF"
      </span>
     </a>
    </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-variables-no-asignadas-span">
+     <span style="color:#4CC9F0">
+      Variables no asignadas
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-eliminacion-de-variables-span">
+     <span style="color:#4CC9F0">
+      Eliminacion de variables
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     <span style="color:#4CC9F0">
+      Ejercicio
+     </span>
+    </a>
+   </li>
   </ul>
  </li>
 </ul>
@@ -603,6 +645,13 @@ title="Print to PDF"
    </span>
   </a>
   <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-que-es-un-cast-span">
+     <span style="color:#4CC9F0">
+      ¿Que es un cast?
+     </span>
+    </a>
+   </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#span-style-color-4cc9f0-usando-input-span">
      <span style="color:#4CC9F0">
@@ -656,6 +705,27 @@ title="Print to PDF"
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#span-style-color-4cc9f0-ejercicio-span">
+     <span style="color:#4CC9F0">
+      Ejercicio
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-variables-no-asignadas-span">
+     <span style="color:#4CC9F0">
+      Variables no asignadas
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-eliminacion-de-variables-span">
+     <span style="color:#4CC9F0">
+      Eliminacion de variables
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
      <span style="color:#4CC9F0">
       Ejercicio
      </span>
@@ -698,8 +768,8 @@ title="Print to PDF"
 </div>
 </div>
 </div>
-<p>Se observan dos cosas interesantes. Primero, el tipo de dato es una clase ‘int’. Todo en Python son objetos, incluidos la variables simples. En otro cuaderno estudiaremos las clases y objetos en detalle.</p>
-<p>Segundo, En Python puede tener números enteros tan grandes como desee, a diferencia de otros lenguajes. de otros lenguajes.</p>
+<p>Se observan dos cosas interesantes. Primero, el tipo de dato es una clase ‘int’. Todo en Python son objetos, incluidos la variables simples. En otro capítulo estudiaremos las clases y objetos en detalle.</p>
+<p>Segundo, En Python puede tener números enteros tan grandes como desee, a diferencia de otros lenguajes de programación.</p>
 <p>Para convertir un tipo de dato diferente a int, siempre que sea posible se usa el <em>cast</em> int. Por ejemplo</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -724,9 +794,13 @@ title="Print to PDF"
 </div>
 </div>
 </div>
+<section id="span-style-color-4cc9f0-que-es-un-cast-span">
+<h3><span style="color:#4CC9F0">¿Que es un cast?</span><a class="headerlink" href="#span-style-color-4cc9f0-que-es-un-cast-span" title="Permalink to this headline">#</a></h3>
+<p>Es una palabra que se antepone a un valor o a una variable para cambiarle el tipo de dato, como se ilustra en el ejemplo anterior.</p>
+</section>
 <section id="span-style-color-4cc9f0-usando-input-span">
 <h3><span style="color:#4CC9F0">Usando input</span><a class="headerlink" href="#span-style-color-4cc9f0-usando-input-span" title="Permalink to this headline">#</a></h3>
-<p>La sentencia <em>input</em> se utiliza para solicitar información al usuario. <em>input</em> siempre regresa un string.</p>
+<p>La sentencia <em>input</em> se utiliza para solicitar información al usuario. La función <em>input</em> siempre regresa un string.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">edad</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s1">&#39;Por favor entre su edad:&#39;</span><span class="p">))</span>
@@ -770,7 +844,8 @@ title="Print to PDF"
 </section>
 <section id="span-style-color-4361ee-punto-flotante-span">
 <h2><span style="color:#4361EE">Punto Flotante</span><a class="headerlink" href="#span-style-color-4361ee-punto-flotante-span" title="Permalink to this headline">#</a></h2>
-<p>Lo número reales son representados usando el estándar IEEE 754 double presición.</p>
+<p>Lo número reales son representados usando el estándar <a class="reference external" href="https://en.wikipedia.org/wiki/Double-precision_floating-point_format">IEEE 754 double precision</a>. El formato de punto flotante de doble precisión (a veces llamado FP64 o float64 ) es un formato de número de computadora , que generalmente ocupa 64 bits en la memoria de la computadora; representa un amplio rango dinámico de valores numéricos mediante el uso de un punto de base flotante .</p>
+<p>El punto flotante se usa para representar valores fraccionarios, o cuando se necesita un rango más amplio que el proporcionado por el punto fijo (del mismo ancho de bit), incluso a costa de la precisión. Se puede elegir la doble precisión cuando el rango o la precisión de la precisión simple sean insuficientes.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mf">1.</span>
@@ -921,7 +996,7 @@ title="Print to PDF"
 </div>
 </div>
 </div>
-<p>Como vimos, la función print es la que nos permite imprimir estos mensajes. El texto \n indica una nueva linea en el texto:</p>
+<p>Como vimos, la función print es la que nos permite imprimir estos mensajes. La secuencia de control <code class="docutils literal notranslate"><span class="pre">\n</span></code> indica una nueva linea en el texto:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Una línea</span><span class="se">\n</span><span class="s2">Otra línea&quot;</span><span class="p">)</span>
@@ -949,7 +1024,7 @@ ombresrchivo.ipynb
 </div>
 </div>
 </div>
-<p>En este caso la aparición del símbolo  \  daño el mensaje. La primera solución es la siguiente. ¿puede explicarla por favor?</p>
+<p>En este caso la aparición del símbolo  <code class="docutils literal notranslate"><span class="pre">\</span></code>  daño el mensaje. La primera solución es la siguiente. ¿puede explicarla por favor?</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;La ruta del archivo es C:</span><span class="se">\\</span><span class="s1">nombres</span><span class="se">\\</span><span class="s1">archivo.ipynb&#39;</span><span class="p">)</span>
@@ -990,7 +1065,7 @@ ombresrchivo.ipynb
 </div>
 </div>
 </div>
-<p>Extrayendo el elemento cero del texto (<strong>primer caracter</strong>):</p>
+<p>Extrayendo el elemento cero del texto (<em>primer caracter</em>):</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">texto</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
@@ -1003,7 +1078,7 @@ ombresrchivo.ipynb
 </div>
 </div>
 </div>
-<p>Extrayendo el elemento uno del texto (<strong>segundo caracter</strong>):</p>
+<p>Extrayendo el elemento uno del texto (<em>segundo caracter</em>):</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">texto</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
@@ -1016,7 +1091,7 @@ ombresrchivo.ipynb
 </div>
 </div>
 </div>
-<p>Extrayendo el elemento cinco hasta el elemento 9 del texto (<strong>sin incluir el 9</strong>):</p>
+<p>Extrayendo el elemento cinco hasta el elemento 9 del texto (<em>sin incluir el 9</em>):</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">texto</span><span class="p">[</span><span class="mi">5</span><span class="p">:</span><span class="mi">9</span><span class="p">]</span> <span class="c1">#[ )</span>
@@ -1029,7 +1104,7 @@ ombresrchivo.ipynb
 </div>
 </div>
 </div>
-<p><strong>También se pueden usar índices negativos</strong> (Python exclusive):</p>
+<p>También se pueden usar índices negativos</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">texto</span><span class="p">[</span><span class="mi">3</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
@@ -1079,7 +1154,7 @@ Apple, Watermelon, Grape, 28
 </div>
 </div>
 </div>
-<p>También es posible asignar un <strong>mismo valor</strong> a diferentes variables:</p>
+<p>También es posible asignar un <em>mismo valor</em> a diferentes variables:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Asignación múltiple del mismo valor</span>
@@ -1101,7 +1176,7 @@ x3 = 0.5
 </div>
 <section id="span-style-color-4cc9f0-ejercicio-span">
 <h3><span style="color:#4CC9F0">Ejercicio</span><a class="headerlink" href="#span-style-color-4cc9f0-ejercicio-span" title="Permalink to this headline">#</a></h3>
-<p>Explique qué hace el siguiente código. Imprima</p>
+<p>Explique qué hace el siguiente código.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">10</span>
@@ -1118,27 +1193,45 @@ x3 = 0.5
 </div>
 </div>
 </div>
-<p>Admonition</p>
-<div class="warning admonition">
-<p class="admonition-title">Cuidado</p>
-<p>Cuidado con las variables no asignadas. Generan error al usarse si ser asignadas</p>
-</div>
+</section>
+<section id="span-style-color-4cc9f0-variables-no-asignadas-span">
+<h3><span style="color:#4CC9F0">Variables no asignadas</span><a class="headerlink" href="#span-style-color-4cc9f0-variables-no-asignadas-span" title="Permalink to this headline">#</a></h3>
+<p>Toda variable debe ser incializada, es decir, debe tener algún valor asignado antes se de ser utilizada. Observe el siguiente ejemplo.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="c1"># Variable sin asignar</span>
-<span class="p">[[</span><span class="n">Volver</span> <span class="n">al</span> <span class="n">inicio</span><span class="p">]](</span><span class="c1">#Contenido)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span>  <span class="n">Input</span> <span class="n">In</span> <span class="p">[</span><span class="mi">26</span><span class="p">]</span>
-    <span class="p">[[</span><span class="n">Volver</span> <span class="n">al</span> <span class="n">inicio</span><span class="p">]](</span><span class="c1">#Contenido)</span>
-             <span class="o">^</span>
-<span class="ne">SyntaxError</span>: invalid syntax
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">35</span><span class="o">-</span><span class="mi">4778835</span><span class="n">ece5b</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">n</span> <span class="c1"># Variable sin asignar</span>
+
+<span class="ne">NameError</span>: name &#39;n&#39; is not defined
 </pre></div>
 </div>
 </div>
 </div>
+<p>El error ocurre porque la variable <code class="docutils literal notranslate"><span class="pre">n</span></code> no ha sido asignada.</p>
+</section>
+<section id="span-style-color-4cc9f0-eliminacion-de-variables-span">
+<h3><span style="color:#4CC9F0">Eliminacion de variables</span><a class="headerlink" href="#span-style-color-4cc9f0-eliminacion-de-variables-span" title="Permalink to this headline">#</a></h3>
+<p>Una variable y en general un objeto puede ser eliminado del entrono actual con la sentencia <code class="docutils literal notranslate"><span class="pre">del</span></code>. Por ejemplo:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">w</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="k">del</span> <span class="n">w</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">w</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id1">
+<h3><span style="color:#4CC9F0">Ejercicio</span><a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h3>
+<p>Describa lo sucedido en el último ejemplo, por favor.</p>
 </section>
 </section>
 </section>
@@ -1170,17 +1263,17 @@ x3 = 0.5
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="py1.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="py0.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title"><span style="color:#F72585">Introducción al lenguaje Python</span></p>
+            <p class="prev-next-title"><span style="color:#F72585">Conceptos básicos de programación</span></p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="py3.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span style="color:#F72585">Operaciones entre variables</span></p>
+        <p class="prev-next-title"><span style="color:#F72585">Operadores aritméticos y lógicos</span></p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

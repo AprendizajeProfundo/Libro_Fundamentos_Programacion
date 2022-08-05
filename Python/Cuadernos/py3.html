@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Operaciones entre variables &#8212; Fundamentos de Programación</title>
+    <title>Operadores aritméticos y lógicos &#8212; Fundamentos de Programación</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -140,9 +140,9 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="py1.html">
+  <a class="reference internal" href="py0.html">
    <span style="color:#F72585">
-    Introducción al lenguaje Python
+    Conceptos básicos de programación
    </span>
   </a>
  </li>
@@ -156,7 +156,7 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
    <span style="color:#F72585">
-    Operaciones entre variables
+    Operadores aritméticos y lógicos
    </span>
   </a>
  </li>
@@ -248,6 +248,20 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal" href="../../Pytorch/Cuadernos/Pytorch_06.html">
    <span style="color:#F72585">
     Optimización con torch
+   </span>
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  TensorFlow
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../TensorFlow/Cuadernos/Tensorflow-01.html">
+   <span style="color:#F72585">
+    Inicio Rápido
    </span>
   </a>
  </li>
@@ -525,9 +539,9 @@ title="Print to PDF"
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-ejemplo-span">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-precedencia-de-operadores-aritmeticos-span">
      <span style="color:#4CC9F0">
-      Ejemplo
+      Precedencia de operadores aritméticos
      </span>
     </a>
    </li>
@@ -569,6 +583,20 @@ title="Print to PDF"
     División y residuo entre enteros
    </span>
   </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-resultados-con-numeros-complejos-span">
+   <span style="color:#4361EE">
+    Resultados con números complejos
+   </span>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-redondeo-de-numeros-reales-span">
+   <span style="color:#4361EE">
+    Redondeo de números reales
+   </span>
+  </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id2">
@@ -588,7 +616,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1><span style="color:#F72585">Operaciones entre variables</span></h1>
+                <h1><span style="color:#F72585">Operadores aritméticos y lógicos</span></h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -613,9 +641,9 @@ title="Print to PDF"
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-ejemplo-span">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-precedencia-de-operadores-aritmeticos-span">
      <span style="color:#4CC9F0">
-      Ejemplo
+      Precedencia de operadores aritméticos
      </span>
     </a>
    </li>
@@ -657,6 +685,20 @@ title="Print to PDF"
     División y residuo entre enteros
    </span>
   </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-resultados-con-numeros-complejos-span">
+   <span style="color:#4361EE">
+    Resultados con números complejos
+   </span>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-redondeo-de-numeros-reales-span">
+   <span style="color:#4361EE">
+    Redondeo de números reales
+   </span>
+  </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id2">
@@ -677,17 +719,17 @@ title="Print to PDF"
                 
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="span-style-color-f72585-operaciones-entre-variables-span">
-<h1><span style="color:#F72585">Operaciones entre variables</span><a class="headerlink" href="#span-style-color-f72585-operaciones-entre-variables-span" title="Permalink to this headline">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="span-style-color-f72585-operadores-aritmeticos-y-logicos-span">
+<h1><span style="color:#F72585">Operadores aritméticos y lógicos</span><a class="headerlink" href="#span-style-color-f72585-operadores-aritmeticos-y-logicos-span" title="Permalink to this headline">#</a></h1>
 <section id="span-style-color-4361ee-suma-de-variables-y-concatenacion-de-variables-span">
 <h2><span style="color:#4361EE">Suma de variables y concatenación de variables</span><a class="headerlink" href="#span-style-color-4361ee-suma-de-variables-y-concatenacion-de-variables-span" title="Permalink to this headline">#</a></h2>
-<p>Python es tan sencillo e intuitivo, que es posible sumar diferentes variables y sumarlas con el símbolo <strong>+</strong>. Cuando las variables son numéricas, se <strong>suman matemáticamente</strong> y cuando es texto se <strong>concatenan</strong>.</p>
+<p>Python es tan sencillo e intuitivo, que es posible sumar diferentes variables y sumarlas con el símbolo <strong>+</strong>. Cuando las variables son numéricas, se <strong>suman matemáticamente</strong> y cuando son texto se <strong>concatenan</strong>. Revise cuidadosamente el siguiente ejemplo.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Sumar dos textos</span>
 
-<span class="n">x</span> <span class="o">=</span> <span class="s2">&quot;Python is &quot;</span><span class="p">;</span> 
-<span class="n">y</span> <span class="o">=</span> <span class="s2">&quot;awesome&quot;</span><span class="p">;</span>
+<span class="n">x</span> <span class="o">=</span> <span class="s2">&quot;Python es &quot;</span><span class="p">;</span> 
+<span class="n">y</span> <span class="o">=</span> <span class="s2">&quot;asombroso&quot;</span><span class="p">;</span>
 <span class="n">z</span> <span class="o">=</span>  <span class="n">x</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">y</span><span class="p">);</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">z</span><span class="p">);</span>
 
@@ -696,17 +738,17 @@ title="Print to PDF"
 <span class="n">n1</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
 <span class="n">n2</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
 <span class="n">suma</span> <span class="o">=</span> <span class="n">n1</span> <span class="o">+</span> <span class="n">n2</span><span class="p">;</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">suma</span><span class="p">);</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;suma =&#39;</span><span class="p">,</span> <span class="n">suma</span><span class="p">);</span>
 
 <span class="c1"># Escribir texto y números</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="s2">&quot;the number&quot;</span><span class="p">,</span><span class="n">n1</span><span class="p">);</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="s2">&quot;el número&quot;</span><span class="p">,</span><span class="n">n1</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Python is awesome
-6
-Python is the number 1
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Python es asombroso
+suma = 6
+Python es el número 1
 </pre></div>
 </div>
 </div>
@@ -715,7 +757,7 @@ Python is the number 1
 </section>
 <section id="span-style-color-4361ee-operadores-aritmeticos-y-redondeo-span">
 <h2><span style="color:#4361EE">Operadores Aritméticos y redondeo</span><a class="headerlink" href="#span-style-color-4361ee-operadores-aritmeticos-y-redondeo-span" title="Permalink to this headline">#</a></h2>
-<p>La fortuna de que Python reconozca variables numéricas nos permite usarla como una calculadora simple, podemos ejecutar operaciones muy sencillas teniendo en cuenta la siguiente tabla:</p>
+<p>La fortuna de que Python reconozca variables numéricas nos permite usarlo como una calculadora simple. Por ejemplo, podemos ejecutar operaciones muy sencillas teniendo en cuenta la siguiente tabla:</p>
 <table class="colwidths-auto table">
 <thead>
 <tr class="row-odd"><th class="text-align:center head"><p><strong>Operador</strong></p></th>
@@ -738,17 +780,58 @@ Python is the number 1
 <tr class="row-even"><td class="text-align:center"><p><code class="docutils literal notranslate"><span class="pre">**</span></code></p></td>
 <td class="text-align:center"><p>Potencia</p></td>
 </tr>
+<tr class="row-odd"><td class="text-align:center"><p><code class="docutils literal notranslate"><span class="pre">%</span></code></p></td>
+<td class="text-align:center"><p>Módulo</p></td>
+</tr>
 </tbody>
 </table>
-<section id="span-style-color-4cc9f0-ejemplo-span">
-<h3><span style="color:#4CC9F0">Ejemplo</span><a class="headerlink" href="#span-style-color-4cc9f0-ejemplo-span" title="Permalink to this headline">#</a></h3>
-<p>Si queremos operar:</p>
+<p>La operación módulo consiste en encontrar el residuo de dividir un número entero positivo entre otro. Por ejemplo, el residuo de dividir 5 entre 2 es 1, como ilustra la siguiente línea de código.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mi">5</span><span class="o">%</span><span class="k">2</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1
+</pre></div>
+</div>
+</div>
+</div>
+<section id="span-style-color-4cc9f0-precedencia-de-operadores-aritmeticos-span">
+<h3><span style="color:#4CC9F0">Precedencia de operadores aritméticos</span><a class="headerlink" href="#span-style-color-4cc9f0-precedencia-de-operadores-aritmeticos-span" title="Permalink to this headline">#</a></h3>
+<p>Con el propósito que el interpretador de Python pueda traducir exitosamente una expresión numérica, existen reglas de precedencia en el orden  ejecución de las operaciones. Estas reglas son comunes a todos los lenguajes de programación. La siguiente tabla muestra la procedencia, es decir, el orden en el cual se ejecutan las operaciones aritméticas en una expresión numérica.</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="text-align:center head"><p><strong>Precedencia</strong></p></th>
+<th class="text-align:center head"><p><strong>Operadores</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-align:center"><p>0</p></td>
+<td class="text-align:center"><p><code class="docutils literal notranslate"><span class="pre">(...)</span></code></p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:center"><p>1</p></td>
+<td class="text-align:center"><p><code class="docutils literal notranslate"><span class="pre">**</span></code></p></td>
+</tr>
+<tr class="row-even"><td class="text-align:center"><p>2</p></td>
+<td class="text-align:center"><p><code class="docutils literal notranslate"><span class="pre">%</span></code></p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:center"><p>3</p></td>
+<td class="text-align:center"><p><code class="docutils literal notranslate"><span class="pre">*</span></code>, <code class="docutils literal notranslate"><span class="pre">/</span></code></p></td>
+</tr>
+<tr class="row-even"><td class="text-align:center"><p>4</p></td>
+<td class="text-align:center"><p><code class="docutils literal notranslate"><span class="pre">+</span></code>, <code class="docutils literal notranslate"><span class="pre">-</span></code></p></td>
+</tr>
+</tbody>
+</table>
+<p>Si queremos operar por ejemplo la expresión:</p>
 <div class="math notranslate nohighlight">
-\[ 5\times(3-5)^2-\cfrac{6}{(9)^{1/2}}\]</div>
+\[ 5\times(3-5)^2-\cfrac{6}{9^{1/2}}\]</div>
 <p>tenemos que escribir:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mi">5</span><span class="o">*</span><span class="p">(</span><span class="mi">3</span><span class="o">-</span><span class="mi">5</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">-</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mi">9</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mi">5</span><span class="o">*</span><span class="p">(</span><span class="mi">3</span><span class="o">-</span><span class="mi">5</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">6</span><span class="o">/</span><span class="mi">9</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -758,12 +841,12 @@ Python is the number 1
 </div>
 </div>
 </div>
-<p><em>Recuerde oprimir [Shift]+[Enter]</em>.</p>
-<p>El orden en que se interpretan las expresiones es como en todos los demás lenguajes comunes de programación.</p>
+<p><em>Recuerde oprimir [Shift]+[Enter]</em> para ejecutar la sentencia.</p>
+<p>El cálculo  ocurre de la siguiente forma</p>
 </section>
 <section id="span-style-color-4cc9f0-ejercicio-span">
 <h3><span style="color:#4CC9F0">Ejercicio</span><a class="headerlink" href="#span-style-color-4cc9f0-ejercicio-span" title="Permalink to this headline">#</a></h3>
-<p>Es muy importante usar bien los paréntesis, el uso o desuso puede generar problemas graves en las cuentas, encuentre el error y describa lo que hizo la máquina en los siguientes casos respecto a la operación anterior:</p>
+<p>Es muy importante usar bien los paréntesis, el uso o desuso puede generar problemas graves en las cuentas, encuentre el error y describa lo que hizo Python  en los siguientes casos respecto a la operación anterior:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mi">5</span><span class="o">*</span><span class="mi">3</span><span class="o">-</span><span class="mi">5</span><span class="o">**</span><span class="mi">2</span><span class="o">-</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mi">9</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">))</span>
@@ -821,32 +904,39 @@ Python is the number 1
 <tr class="row-odd"><th class="text-align:center head"><p><strong>Operador</strong></p></th>
 <th class="text-align:center head"><p><strong>Descripción</strong></p></th>
 <th class="text-align:center head"><p><strong>Ejemplo</strong></p></th>
+<th class="text-align:center head"><p><strong>Resultado</strong></p></th>
 </tr>
 </thead>
 <tbody>
 <tr class="row-even"><td class="text-align:center"><p><code class="docutils literal notranslate"><span class="pre">==</span></code></p></td>
 <td class="text-align:center"><p>Prueba si dos valores son iguales</p></td>
 <td class="text-align:center"><p>3==3</p></td>
+<td class="text-align:center"><p>True</p></td>
 </tr>
 <tr class="row-odd"><td class="text-align:center"><p><code class="docutils literal notranslate"><span class="pre">!=</span></code></p></td>
 <td class="text-align:center"><p>Prueba si dos valores no son iguales entren si</p></td>
 <td class="text-align:center"><p>2!=3</p></td>
+<td class="text-align:center"><p>True</p></td>
 </tr>
 <tr class="row-even"><td class="text-align:center"><p><code class="docutils literal notranslate"><span class="pre">&lt;</span></code></p></td>
 <td class="text-align:center"><p>Prueba si el valor de la izquierza es menor que el de la derecha</p></td>
 <td class="text-align:center"><p>4&lt;3</p></td>
+<td class="text-align:center"><p>False</p></td>
 </tr>
 <tr class="row-odd"><td class="text-align:center"><p><code class="docutils literal notranslate"><span class="pre">&gt;</span></code></p></td>
 <td class="text-align:center"><p>Prueba si el valor de la izquierza es mayor que el de la derecha</p></td>
-<td class="text-align:center"><p>4&lt;3</p></td>
+<td class="text-align:center"><p>4&gt;3</p></td>
+<td class="text-align:center"><p>True</p></td>
 </tr>
 <tr class="row-even"><td class="text-align:center"><p><code class="docutils literal notranslate"><span class="pre">&lt;=</span></code></p></td>
 <td class="text-align:center"><p>Prueba si el valor de la izquierza es menor o igual que el de la derecha</p></td>
 <td class="text-align:center"><p>4&lt;=3</p></td>
+<td class="text-align:center"><p>False</p></td>
 </tr>
 <tr class="row-odd"><td class="text-align:center"><p><code class="docutils literal notranslate"><span class="pre">&gt;=</span></code></p></td>
 <td class="text-align:center"><p>Prueba si el valor de la izquierza es mayor igual que el de la derecha</p></td>
-<td class="text-align:center"><p>4&lt;=3</p></td>
+<td class="text-align:center"><p>4&gt;=3</p></td>
+<td class="text-align:center"><p>True</p></td>
 </tr>
 </tbody>
 </table>
@@ -858,20 +948,24 @@ Python is the number 1
 <tr class="row-odd"><th class="text-align:center head"><p><strong>Operador</strong></p></th>
 <th class="text-align:center head"><p><strong>Descripción</strong></p></th>
 <th class="text-align:center head"><p><strong>Ejemplo</strong></p></th>
+<th class="text-align:center head"><p><strong>Resultado</strong></p></th>
 </tr>
 </thead>
 <tbody>
 <tr class="row-even"><td class="text-align:center"><p><code class="docutils literal notranslate"><span class="pre">and</span></code></p></td>
 <td class="text-align:center"><p>Regresa verdadero si el valor de las izquierda y el de la derecha son verdaderos</p></td>
 <td class="text-align:center"><p>(3&lt;4) and (5&gt;1)</p></td>
+<td class="text-align:center"><p>True</p></td>
 </tr>
 <tr class="row-odd"><td class="text-align:center"><p><code class="docutils literal notranslate"><span class="pre">or</span></code></p></td>
 <td class="text-align:center"><p>Regresa verdadero si uno de los dos valores a(izquierda o derecha es verdadero, o ambos</p></td>
-<td class="text-align:center"><p>(3&lt;4) or (5&lt;1)</p></td>
+<td class="text-align:center"><p>(3&gt;4) or (5&lt;1)</p></td>
+<td class="text-align:center"><p>False</p></td>
 </tr>
 <tr class="row-even"><td class="text-align:center"><p><code class="docutils literal notranslate"><span class="pre">not</span></code></p></td>
 <td class="text-align:center"><p>Regresa verdadero si el valor que se esta evaluado es falso</p></td>
-<td class="text-align:center"><p>not 3&gt;2</p></td>
+<td class="text-align:center"><p>not (3&gt;2)</p></td>
+<td class="text-align:center"><p>False</p></td>
 </tr>
 </tbody>
 </table>
@@ -888,12 +982,12 @@ Python is the number 1
 <span class="k">else</span><span class="p">:</span>
     <span class="n">status</span> <span class="o">=</span> <span class="s1">&#39;no adolecente&#39;</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="n">status</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;status =&#39;</span><span class="p">,</span> <span class="n">status</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>adolecente
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>status = adolecente
 </pre></div>
 </div>
 </div>
@@ -902,10 +996,10 @@ Python is the number 1
 </section>
 <section id="span-style-color-4361ee-division-y-residuo-entre-enteros-span">
 <h2><span style="color:#4361EE">División y residuo entre enteros</span><a class="headerlink" href="#span-style-color-4361ee-division-y-residuo-entre-enteros-span" title="Permalink to this headline">#</a></h2>
-<p>La división es una operación bien especial pues la mayoría de ocasiones produce un número con parte fraccionaria. Sin embargo, cuando estábamos pequeños nos enseñaron a dividir enteros dando como respuesta un entero llamado cociente y lo que hacia falta para completar la división, un número llamado residuo. En Python podemos calcular esos valores con <code class="docutils literal notranslate"><span class="pre">\\</span></code> para el cociente y <code class="docutils literal notranslate"><span class="pre">%</span></code>para el residuo. Por ejemplo, sabemos que:</p>
+<p>La división es una operación bien especial pues la mayoría de ocasiones produce un número con parte fraccionaria. Sin embargo, cuando estábamos pequeños nos enseñaron a dividir enteros dando como respuesta un entero llamado cociente y lo que hacia falta para completar la división, un número llamado residuo. En Python podemos calcular esos valores con <code class="docutils literal notranslate"><span class="pre">//</span></code> para el cociente y <code class="docutils literal notranslate"><span class="pre">%</span></code>para el residuo. Por ejemplo, sabemos que:</p>
 <div class="math notranslate nohighlight">
-\[ 20 \div 3 = 6 \ \ \ \text{ con residuo } 2\]</div>
-<p>tenemos:</p>
+\[ 20 \div 3 = 6, \ \ \ \text{ con residuo } 2.\]</div>
+<p>Tenemos que en Python se escribe la división entre enteros como</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mi">20</span><span class="o">//</span><span class="mi">3</span>
@@ -918,6 +1012,7 @@ Python is the number 1
 </div>
 </div>
 </div>
+<p>y el residuo de la división, es decir la operación módulo como</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mi">20</span><span class="o">%</span><span class="k">3</span>
@@ -930,6 +1025,10 @@ Python is the number 1
 </div>
 </div>
 </div>
+</section>
+<section id="span-style-color-4361ee-resultados-con-numeros-complejos-span">
+<h2><span style="color:#4361EE">Resultados con números complejos</span><a class="headerlink" href="#span-style-color-4361ee-resultados-con-numeros-complejos-span" title="Permalink to this headline">#</a></h2>
+<p>Revise la siguiente línea y asegúrese que la entiende. Si tiene dudas consulte al instructor.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mi">3</span><span class="o">+</span><span class="p">(</span><span class="o">-</span><span class="mi">4</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span> <span class="c1"># Recordemos un poquito de nuestras matemáticas</span>
@@ -942,42 +1041,48 @@ Python is the number 1
 </div>
 </div>
 </div>
-<p>Finalmente, una función elemental y útil para el tratamiento de números decimales es <code class="docutils literal notranslate"><span class="pre">round</span></code>. Lo usamos para redondear los valores a uno con el decimal que escojamos. Tenemos:</p>
+</section>
+<section id="span-style-color-4361ee-redondeo-de-numeros-reales-span">
+<h2><span style="color:#4361EE">Redondeo de números reales</span><a class="headerlink" href="#span-style-color-4361ee-redondeo-de-numeros-reales-span" title="Permalink to this headline">#</a></h2>
+<p>Finalmente, una función elemental y útil para el tratamiento de números decimales es <code class="docutils literal notranslate"><span class="pre">round</span></code>. La usamos para redondear los valores reales con el número de decimales que escojamos. Por defecto el redondeo quita todas la cifras decimales. Por favor revise los siguientes dos ejemplos y haga sus pruebas propias.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n1</span><span class="o">=</span><span class="mi">47</span><span class="o">/</span><span class="mi">3</span>
-<span class="n">n1</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Cálculo original</span>
+<span class="n">n1</span><span class="o">=</span><span class="mi">47</span><span class="o">/</span><span class="mi">3</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">n1</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>15.666666666666666
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n2</span><span class="o">=</span><span class="nb">round</span><span class="p">(</span><span class="n">n1</span><span class="p">)</span>
-<span class="n">n2</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>16
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>15.666666666666666
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n3</span><span class="o">=</span><span class="nb">round</span><span class="p">(</span><span class="n">n1</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
-<span class="n">n3</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Redondea sin cifras decimales</span>
+<span class="n">n2</span><span class="o">=</span><span class="nb">round</span><span class="p">(</span><span class="n">n1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">n2</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>15.667
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>16
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Redeondeo con tres cifras decimales</span>
+<span class="n">n3</span><span class="o">=</span><span class="nb">round</span><span class="p">(</span><span class="n">n1</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">n3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>15.667
 </pre></div>
 </div>
 </div>
@@ -997,15 +1102,13 @@ Python is the number 1
 <span class="nb">print</span><span class="p">(</span><span class="n">pi</span><span class="p">)</span>
 
 <span class="c1"># Your code here</span>
-<span class="nb">round</span><span class="p">(</span><span class="n">pi</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">pi</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3.141592653589793
-</pre></div>
-</div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3.14159
+3.14159
 </pre></div>
 </div>
 </div>

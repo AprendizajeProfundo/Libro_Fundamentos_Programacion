@@ -140,9 +140,9 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="py1.html">
+  <a class="reference internal" href="py0.html">
    <span style="color:#F72585">
-    Introducción al lenguaje Python
+    Conceptos básicos de programación
    </span>
   </a>
  </li>
@@ -156,7 +156,7 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1">
   <a class="reference internal" href="py3.html">
    <span style="color:#F72585">
-    Operaciones entre variables
+    Operadores aritméticos y lógicos
    </span>
   </a>
  </li>
@@ -248,6 +248,20 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal" href="../../Pytorch/Cuadernos/Pytorch_06.html">
    <span style="color:#F72585">
     Optimización con torch
+   </span>
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  TensorFlow
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../TensorFlow/Cuadernos/Tensorflow-01.html">
+   <span style="color:#F72585">
+    Inicio Rápido
    </span>
   </a>
  </li>
@@ -511,25 +525,128 @@ title="Print to PDF"
     <nav id="bd-toc-nav" aria-label="Page">
         <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#span-style-color-4361ee-parametros-y-variables-en-funciones-span">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-introduccion-span">
    <span style="color:#4361EE">
-    Parámetros y Variables en Funciones
+    Introducción
    </span>
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#span-style-color-4361ee-creacion-de-funciones-span">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-analogia-con-la-vida-diaria-span">
    <span style="color:#4361EE">
-    Creación de Funciones
+    Analogía con la vida diaria
+   </span>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-una-funcion-como-caja-negra-span">
+     <span style="color:#4CC9F0">
+      Una función como caja negra
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-ejemplo-funcion-cortarmanzana-x-span">
+     <span style="color:#4CC9F0">
+      Ejemplo Función
+      <code class="docutils literal notranslate">
+       <span class="pre">
+        CortarManzana(x)
+       </span>
+      </code>
+      :
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-ejercicio-span">
+     <span style="color:#4CC9F0">
+      Ejercicio
+     </span>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-parametros-y-argumentos-en-las-funciones-span">
+   <span style="color:#4361EE">
+    Parámetros y argumentos en las funciones
+   </span>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-ejemplo-de-como-producir-una-grafica-de-la-funcion-sin-x-span">
+     <span style="color:#4CC9F0">
+      Ejemplo de como producir  una gráfica de la función
+      <code class="docutils literal notranslate">
+       <span class="pre">
+        sin(x)
+       </span>
+      </code>
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     <span style="color:#4CC9F0">
+      Ejercicio
+     </span>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-creacion-de-funciones-en-python-span">
+   <span style="color:#4361EE">
+    Creación de Funciones en Python
+   </span>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-una-funcion-que-regresa-dos-valores-span">
+     <span style="color:#4CC9F0">
+      Una función que regresa dos valores
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-anotando-typing-los-parametros-de-una-funcion-span">
+     <span style="color:#4CC9F0">
+      Anotando (typing) los parámetros de una función
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-valor-de-los-parametros-por-defecto-span">
+     <span style="color:#4CC9F0">
+      Valor de los parámetros por defecto
+     </span>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-funciones-anonimas-fuciones-lambda-span">
+   <span style="color:#4361EE">
+    Funciones anónimas. Fuciones lambda
    </span>
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#span-style-color-4361ee-cual-es-la-diferencia-y-utilidad-de-la-funcion-lambda-span">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-un-ejemplo-de-programacion-funcional-span">
    <span style="color:#4361EE">
-    ¿Cuál es la diferencia y utilidad de la función lambda?
+    Un ejemplo de programación funcional
    </span>
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     <span style="color:#4CC9F0">
+      Ejercicio
+     </span>
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#span-style-color-4361ee-programacion-funcional-span">
@@ -571,7 +688,14 @@ title="Print to PDF"
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#span-style-color-4cc9f0-propiedades-de-las-funciones-de-primera-clase-span">
      <span style="color:#4CC9F0">
-      Propiedades de las funciones de primera clase:
+      Propiedades de las funciones de primera clase
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-ejemplo-span">
+     <span style="color:#4CC9F0">
+      Ejemplo
      </span>
     </a>
    </li>
@@ -604,25 +728,128 @@ title="Print to PDF"
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#span-style-color-4361ee-parametros-y-variables-en-funciones-span">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-introduccion-span">
    <span style="color:#4361EE">
-    Parámetros y Variables en Funciones
+    Introducción
    </span>
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#span-style-color-4361ee-creacion-de-funciones-span">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-analogia-con-la-vida-diaria-span">
    <span style="color:#4361EE">
-    Creación de Funciones
+    Analogía con la vida diaria
+   </span>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-una-funcion-como-caja-negra-span">
+     <span style="color:#4CC9F0">
+      Una función como caja negra
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-ejemplo-funcion-cortarmanzana-x-span">
+     <span style="color:#4CC9F0">
+      Ejemplo Función
+      <code class="docutils literal notranslate">
+       <span class="pre">
+        CortarManzana(x)
+       </span>
+      </code>
+      :
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-ejercicio-span">
+     <span style="color:#4CC9F0">
+      Ejercicio
+     </span>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-parametros-y-argumentos-en-las-funciones-span">
+   <span style="color:#4361EE">
+    Parámetros y argumentos en las funciones
+   </span>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-ejemplo-de-como-producir-una-grafica-de-la-funcion-sin-x-span">
+     <span style="color:#4CC9F0">
+      Ejemplo de como producir  una gráfica de la función
+      <code class="docutils literal notranslate">
+       <span class="pre">
+        sin(x)
+       </span>
+      </code>
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     <span style="color:#4CC9F0">
+      Ejercicio
+     </span>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-creacion-de-funciones-en-python-span">
+   <span style="color:#4361EE">
+    Creación de Funciones en Python
+   </span>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-una-funcion-que-regresa-dos-valores-span">
+     <span style="color:#4CC9F0">
+      Una función que regresa dos valores
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-anotando-typing-los-parametros-de-una-funcion-span">
+     <span style="color:#4CC9F0">
+      Anotando (typing) los parámetros de una función
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-valor-de-los-parametros-por-defecto-span">
+     <span style="color:#4CC9F0">
+      Valor de los parámetros por defecto
+     </span>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-funciones-anonimas-fuciones-lambda-span">
+   <span style="color:#4361EE">
+    Funciones anónimas. Fuciones lambda
    </span>
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#span-style-color-4361ee-cual-es-la-diferencia-y-utilidad-de-la-funcion-lambda-span">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-un-ejemplo-de-programacion-funcional-span">
    <span style="color:#4361EE">
-    ¿Cuál es la diferencia y utilidad de la función lambda?
+    Un ejemplo de programación funcional
    </span>
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     <span style="color:#4CC9F0">
+      Ejercicio
+     </span>
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#span-style-color-4361ee-programacion-funcional-span">
@@ -664,7 +891,14 @@ title="Print to PDF"
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#span-style-color-4cc9f0-propiedades-de-las-funciones-de-primera-clase-span">
      <span style="color:#4CC9F0">
-      Propiedades de las funciones de primera clase:
+      Propiedades de las funciones de primera clase
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-ejemplo-span">
+     <span style="color:#4CC9F0">
+      Ejemplo
      </span>
     </a>
    </li>
@@ -689,29 +923,44 @@ title="Print to PDF"
                 
   <section class="tex2jax_ignore mathjax_ignore" id="span-style-color-f72585-funciones-en-python-span">
 <h1><span style="color:#F72585">Funciones en Python</span><a class="headerlink" href="#span-style-color-f72585-funciones-en-python-span" title="Permalink to this headline">#</a></h1>
-<p>Para entender funciones en Python (Paquetes dentro de módulos de Python), debemos pensar en actos reales para poder hacer una <strong>analogía</strong> en el ambiente de programación.</p>
+<section id="span-style-color-4361ee-introduccion-span">
+<h2><span style="color:#4361EE">Introducción</span><a class="headerlink" href="#span-style-color-4361ee-introduccion-span" title="Permalink to this headline">#</a></h2>
+<p>En Python, una función es un grupo de declaraciones relacionadas que realizan una tarea específica.</p>
+<p>Las funciones ayudan a dividir nuestro programa en partes más pequeñas y modulares. A medida que nuestro programa crece más y más, las funciones lo hacen más organizado y manejable. Además, evita la repetición y hace que el código sea reutilizable.</p>
+</section>
+<section id="span-style-color-4361ee-analogia-con-la-vida-diaria-span">
+<h2><span style="color:#4361EE">Analogía con la vida diaria</span><a class="headerlink" href="#span-style-color-4361ee-analogia-con-la-vida-diaria-span" title="Permalink to this headline">#</a></h2>
+<p>Una  analogía con la vida diaria puede ser la siguiente.</p>
 <p>Imagínese cuando se levanta.</p>
-<p>Lo que ocurre primero, es que uno se siente vivo, se abren los ojos (no siempre), se hace pereza un rato, se levanta de la cama y luego se inicia el día (cada persona tiene sus maneras diferentes de lograrlo).</p>
-<p>Esta serie de <strong>pasos consecutivos</strong> conforman lo que se llama una <strong>función</strong>.</p>
-<p>En el común, una <strong>función es en realidad una acción</strong> o una serie de acciones que generan un resultado a través de un proceso intermedio.</p>
-<p>Para poder distinguir funciones, unas de otras, se le dan dotado de nombres diferentes.</p>
+<p>Lo que ocurre primero, es que uno se siente vivo, se abren los ojos (no siempre), se hace pereza un rato, se levanta de la cama y luego se inicia el día (cada persona tiene sus maneras diferentes de hacerlo).</p>
+<p>Esta serie de <em>pasos consecutivos</em> conforman lo que se llama una <code class="docutils literal notranslate"><span class="pre">función</span></code>.</p>
+<p>En el común, una <em>función es en general una secuencia de pasos</em> o una serie de acciones que generan un resultado específico. De manera abstracta, esos pasos consecutivos se encapsulan en una función, lo cual entrega ventajas cuando se describe una situación compleja y por lo general de carácter repetitivo.</p>
+<p>Para poder distinguir funciones, unas de otras, se les asignan nombres diferentes.</p>
 <p>Por ejemplo, la función antes descrita podría nombrarse como <strong>Levantarse</strong>:</p>
 <p>Está función se compone de los siguientes pasos:</p>
 <ol class="simple">
-<li><p><strong>Sentirse vivo.</strong></p></li>
-<li><p><strong>Abrir los ojos.</strong></p></li>
-<li><p><strong>Hacer pereza.</strong></p></li>
-<li><p><strong>Levantarse.</strong></p></li>
+<li><p>Sentirse vivo.</p></li>
+<li><p>Abrir los ojos.</p></li>
+<li><p>Hacer pereza.</p></li>
+<li><p>Levantarse.</p></li>
 </ol>
+<p>Así, aunque cada persona puede desarrollar la actividad de levantarse, de manera general tal actividad se puede ver como una un función que alguien ejecuta en algún momento.</p>
 <p>En el lenguaje de programación, ésto se podría escribir como</p>
 <p><code class="docutils literal notranslate"><span class="pre">Levantarse(x)</span></code></p>
-<p>donde <span class="math notranslate nohighlight">\(x\)</span> representa el individuo que hace la acción y los paréntesis significan que se habla de una función, y por lo tanto, <strong>no se confunde</strong> con una variable.</p>
-<p><strong>Ejemplo:</strong></p>
-<p>Función <code class="docutils literal notranslate"><span class="pre">CortarManzana(x)</span></code>:</p>
-<p>Esta función se puede ilustrar dela siguiente manera:</p>
-<p><img alt="Manzanita" src="https://photos1.blogger.com/blogger/1290/1572/1600/Apple_slicing_function.png" /></p>
-<p>Como podemos ver, una función es realmente es una <strong>“Caja Negra”</strong>:</p>
-<p>La podemos usar, sin importar qué hay dentro de ella.</p>
+<p>donde <span class="math notranslate nohighlight">\(x\)</span> representa el individuo que hace la acción y los paréntesis significan que se habla de una función, y por lo tanto, <em>no se confunde</em> con una variable.</p>
+<section id="span-style-color-4cc9f0-una-funcion-como-caja-negra-span">
+<h3><span style="color:#4CC9F0">Una función como caja negra</span><a class="headerlink" href="#span-style-color-4cc9f0-una-funcion-como-caja-negra-span" title="Permalink to this headline">#</a></h3>
+<p>En un lenguaje de programación, una función puede entenderse como una caja negra. Como el control remoto de su televisor.</p>
+<p>Los ingenieros que desarrollan y producen el control remoto cierran el objeto una vez lo construyen y por lo general elaboran un manual para enseñar a los usuario a usar el control.</p>
+</section>
+<section id="span-style-color-4cc9f0-ejemplo-funcion-cortarmanzana-x-span">
+<h3><span style="color:#4CC9F0">Ejemplo Función <code class="docutils literal notranslate"><span class="pre">CortarManzana(x)</span></code>:</span><a class="headerlink" href="#span-style-color-4cc9f0-ejemplo-funcion-cortarmanzana-x-span" title="Permalink to this headline">#</a></h3>
+<p>Un ejemplo muy simple es el siguiente. Imagine una máquina que corta manzanas como se ilustra en la siguiente imagen.</p>
+<p>Función cortar manzana. Créditos: tomada de <a class="reference external" href="https://photos1.blogger.com/blogger/1290/1572/1600/Apple_slicing_function.png">función cortar manzana</a>.</p>
+<figure>
+<img src="https://raw.githubusercontent.com/AprendizajeProfundo/Libro_Fundamentos_Programacion/main/Python/Imagenes/Apple_slicing_function.png" width="400" align="left" />   
+</figure><p>Como podemos ver, una función es realmente es una <code class="docutils literal notranslate"><span class="pre">Caja</span> <span class="pre">Negra</span></code>: la podemos usar, sin importar qué hay dentro de ella.</p>
+<p>Sin embargo, la máquina puede tener algunos controles (parámetros) que determinan la forma como la máquina funciona. Por ejemplo el número de cortes. Luego de parametrizada la maquina, podemos empezar a pasar manzanas por ella.</p>
 <p>Ya hemos visto algunas <strong>funciones básicas</strong> de Python (Built-in):</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">print()</span></code></p></li>
@@ -720,11 +969,14 @@ title="Print to PDF"
 </ul>
 <p>En <a class="reference external" href="https://docs.python.org/3/library/functions.html">este link</a>, se encuentra un manual de todas las funciones <strong>básicas</strong> de Python.</p>
 <p>Veamos algunas de ellas:</p>
-<p><strong>Ejercicio</strong></p>
+</section>
+<section id="span-style-color-4cc9f0-ejercicio-span">
+<h3><span style="color:#4CC9F0">Ejercicio</span><a class="headerlink" href="#span-style-color-4cc9f0-ejercicio-span" title="Permalink to this headline">#</a></h3>
 <p>Viendo la entra y salida del código, infiera qué hace la función correspondiente:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="o">-</span><span class="mi">5</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Valor absoluto</span>
+<span class="n">x</span> <span class="o">=</span> <span class="o">-</span><span class="mi">5</span>
 <span class="n">y</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">x =&quot;</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;y = &quot;</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
@@ -740,7 +992,8 @@ y =  5
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">d</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">({</span><span class="s2">&quot;Saludo&quot;</span><span class="p">:</span> <span class="s2">&quot;Hola&quot;</span><span class="p">,</span> <span class="s2">&quot;Despido&quot;</span><span class="p">:</span> <span class="s2">&quot;Adiós&quot;</span><span class="p">,</span> <span class="s2">&quot;Palabra&quot;</span><span class="p">:</span> <span class="s2">&quot;Extraño&quot;</span><span class="p">})</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Creación de un diccionario</span>
+<span class="n">d</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">({</span><span class="s2">&quot;Saludo&quot;</span><span class="p">:</span> <span class="s2">&quot;Hola&quot;</span><span class="p">,</span> <span class="s2">&quot;Despido&quot;</span><span class="p">:</span> <span class="s2">&quot;Adiós&quot;</span><span class="p">,</span> <span class="s2">&quot;Palabra&quot;</span><span class="p">:</span> <span class="s2">&quot;Extraño&quot;</span><span class="p">})</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Dicionario: &quot;</span><span class="p">,</span><span class="n">d</span><span class="p">,</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -753,7 +1006,7 @@ y =  5
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Suma</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Suma de los elementos de una lista</span>
 <span class="n">v</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">]</span>
 <span class="n">s</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;resultado:&quot;</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
@@ -768,24 +1021,41 @@ y =  5
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a1</span><span class="o">=</span><span class="nb">max</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
-<span class="n">a2</span><span class="o">=</span><span class="nb">min</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Máximo y mínimo</span>
+<span class="n">a1</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+<span class="n">a2</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;a1:&quot;</span><span class="p">,</span><span class="n">a1</span><span class="p">,</span><span class="s2">&quot;, a2:&quot;</span><span class="p">,</span><span class="n">a2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;a1: </span><span class="si">{}</span><span class="s2">, a2: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">a1</span><span class="p">,</span> <span class="n">a2</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>a1: 6 , a2: 1
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>a1: 6, a2: 1
 </pre></div>
 </div>
 </div>
 </div>
-<section id="span-style-color-4361ee-parametros-y-variables-en-funciones-span">
-<h2><span style="color:#4361EE">Parámetros y Variables en Funciones</span><a class="headerlink" href="#span-style-color-4361ee-parametros-y-variables-en-funciones-span" title="Permalink to this headline">#</a></h2>
-<p>Las funciones pueden tener uno o más parámetros asociados.</p>
-<p>Por ejemplo la función <span class="math notranslate nohighlight">\(f(x,y,z)=w\)</span>, recibe los argumentos <span class="math notranslate nohighlight">\(x,y,z\)</span> y produce el resultado <span class="math notranslate nohighlight">\(w\)</span>.</p>
-<p><strong>Ejemplo:</strong></p>
+</section>
+</section>
+<section id="span-style-color-4361ee-parametros-y-argumentos-en-las-funciones-span">
+<h2><span style="color:#4361EE">Parámetros y argumentos en las funciones</span><a class="headerlink" href="#span-style-color-4361ee-parametros-y-argumentos-en-las-funciones-span" title="Permalink to this headline">#</a></h2>
+<p>Las funciones pueden tener uno o más parámetros asociados. Estos son contenedores que recibiran los datos  (argumentos) para que la función pueda hacer su trabajo.</p>
+<p>Consideremos por ejemplo la función matemática seno (<code class="docutils literal notranslate"><span class="pre">sin</span></code> en inglés)</p>
+<div class="math notranslate nohighlight">
+\[
+y = \sin (x)
+\]</div>
+<p>En el ejemplo, el parámetro de la función es ‘x’ que representa a cualquier valor que pueda ser utilizado para calcular la función.</p>
+<p>Un argumento por ejemplo es <span class="math notranslate nohighlight">\(\pi/2\)</span>. Entonces el resultado obtenido es 1, como aprendimos en la escuela secundaria.</p>
+<section id="span-style-color-4cc9f0-ejemplo-de-como-producir-una-grafica-de-la-funcion-sin-x-span">
+<h3><span style="color:#4CC9F0">Ejemplo de como producir  una gráfica de la función <code class="docutils literal notranslate"><span class="pre">sin(x)</span></code></span><a class="headerlink" href="#span-style-color-4cc9f0-ejemplo-de-como-producir-una-grafica-de-la-funcion-sin-x-span" title="Permalink to this headline">#</a></h3>
+<p>Para este ejemplo utilizaremos dos librerías de Python: Numpy y Matplotlib. Puede ir a los capítulos correspondientes para los detalles.</p>
+<p>La librería Numpy se llamara con el alias <code class="docutils literal notranslate"><span class="pre">np</span></code> y se usa un punto para llamar algún objeto de la librería. Similar con Matplotlib que llamaremos con el alias de <code class="docutils literal notranslate"><span class="pre">plt</span></code>.</p>
+<ul class="simple">
+<li><p>La función <code class="docutils literal notranslate"><span class="pre">np.linspace</span></code> genera valores entre dos extremos. En el ejemplo genera 30 puntos entre 0 y <span class="math notranslate nohighlight">\(2\pi\)</span>.</p></li>
+<li><p>La función <code class="docutils literal notranslate"><span class="pre">np.sin</span></code> calcula la función seno para algún conjunto de argumentos. Observe que la función calcula la función para cada uno de los argumentos dispuestos en el objeto x.</p></li>
+<li><p>La función <code class="docutils literal notranslate"><span class="pre">np.plt</span></code> dibuja el gráfico de la función entre los valores 0 y <span class="math notranslate nohighlight">\(2\pi\)</span>.</p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Comente adecuadamente las siguientes líneas de código</span>
@@ -793,41 +1063,70 @@ y =  5
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 
+<span class="c1"># calcula la función sin en 30 puntos</span>
 <span class="n">x</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span><span class="mi">30</span><span class="p">)</span>
 <span class="n">y</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;x=</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;y=</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="c1"># Imprime la tabla de valores. </span>
+<span class="c1"># Usamos zip para pegar las columnas x, y</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Estos son los valores para el gráfico  de la función&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;x     y&quot;</span><span class="p">)</span>
+<span class="n">x_y</span> <span class="o">=</span> <span class="nb">zip</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">values</span> <span class="ow">in</span> <span class="n">x_y</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">values</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="c1"># crea la imagen</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39; Imagen de la función y = sin(x)&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>x=
- [0.         0.21666156 0.43332312 0.64998469 0.86664625 1.08330781
- 1.29996937 1.51663094 1.7332925  1.94995406 2.16661562 2.38327719
- 2.59993875 2.81660031 3.03326187 3.24992343 3.466585   3.68324656
- 3.89990812 4.11656968 4.33323125 4.54989281 4.76655437 4.98321593
- 5.1998775  5.41653906 5.63320062 5.84986218 6.06652374 6.28318531] 
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Estos son los valores para el gráfico  de la función
+x     y
+(0.0, 0.0)
+(0.22, 0.21)
+(0.43, 0.42)
+(0.65, 0.61)
+(0.87, 0.76)
+(1.08, 0.88)
+(1.3, 0.96)
+(1.52, 1.0)
+(1.73, 0.99)
+(1.95, 0.93)
+(2.17, 0.83)
+(2.38, 0.69)
+(2.6, 0.52)
+(2.82, 0.32)
+(3.03, 0.11)
+(3.25, -0.11)
+(3.47, -0.32)
+(3.68, -0.52)
+(3.9, -0.69)
+(4.12, -0.83)
+(4.33, -0.93)
+(4.55, -0.99)
+(4.77, -1.0)
+(4.98, -0.96)
+(5.2, -0.88)
+(5.42, -0.76)
+(5.63, -0.61)
+(5.85, -0.42)
+(6.07, -0.21)
+(6.28, -0.0)
 
-y=
- [ 0.00000000e+00  2.14970440e-01  4.19889102e-01  6.05174215e-01
-  7.62162055e-01  8.83512044e-01  9.63549993e-01  9.98533414e-01
-  9.86826523e-01  9.28976720e-01  8.27688998e-01  6.87699459e-01
-  5.15553857e-01  3.19301530e-01  1.08119018e-01 -1.08119018e-01
- -3.19301530e-01 -5.15553857e-01 -6.87699459e-01 -8.27688998e-01
- -9.28976720e-01 -9.86826523e-01 -9.98533414e-01 -9.63549993e-01
- -8.83512044e-01 -7.62162055e-01 -6.05174215e-01 -4.19889102e-01
- -2.14970440e-01 -2.44929360e-16] 
+ Imagen de la función y = sin(x)
 </pre></div>
 </div>
-<img alt="../../_images/py5_8_1.png" src="../../_images/py5_8_1.png" />
+<img alt="../../_images/py5_20_1.png" src="../../_images/py5_20_1.png" />
 </div>
 </div>
-<p><strong>Ejercicio:</strong></p>
+</section>
+<section id="id1">
+<h3><span style="color:#4CC9F0">Ejercicio</span><a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h3>
 <ol class="simple">
-<li><p>Investigue las funciones y atributos internos de matplotlib para hacer una matriz 3x1 que contengan:</p></li>
+<li><p>Investigue las funciones y atributos internos de Matplotlib para hacer una matriz 3x1 que contengan:</p></li>
 </ol>
 <ul class="simple">
 <li><p>Una función matemática.</p></li>
@@ -836,18 +1135,46 @@ y=
 </ul>
 <ol class="simple">
 <li><p>Investigue sobre 5 funciones de Python que acepten al menos 3 parámetros.</p></li>
-<li><p>Use la librería <code class="docutils literal notranslate"><span class="pre">pandas</span></code> para hacer gráficos útiles sobre el <code class="docutils literal notranslate"><span class="pre">Predio_206.csv</span></code>.</p></li>
 </ol>
 </section>
-<section id="span-style-color-4361ee-creacion-de-funciones-span">
-<h2><span style="color:#4361EE">Creación de Funciones</span><a class="headerlink" href="#span-style-color-4361ee-creacion-de-funciones-span" title="Permalink to this headline">#</a></h2>
-<p>También es posible crear funciones para generar rutinas específicas.</p>
-<p>Hay dos maneras de generar funciones en Python:</p>
+</section>
+<section id="span-style-color-4361ee-creacion-de-funciones-en-python-span">
+<h2><span style="color:#4361EE">Creación de Funciones en Python</span><a class="headerlink" href="#span-style-color-4361ee-creacion-de-funciones-en-python-span" title="Permalink to this headline">#</a></h2>
+<p>Hay dos maneras básicas para definir funciones en Python:</p>
 <ol class="simple">
-<li><p><strong>def</strong></p></li>
-<li><p><strong>lambda</strong></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">def</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">lambda</span></code></p></li>
 </ol>
-<p><strong>Ejemplo:</strong></p>
+<p>De manera muy general, una función se define iniciando con la cláusula <em>def()</em>. Dentro de los paréntesis se colocan los parámetros que usará la función.</p>
+<p>Nuestro primer ejemplo es una función que suma dos número y regresa el resultado.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># función suma</span>
+<span class="k">def</span> <span class="nf">suma</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span>
+    <span class="k">return</span> <span class="n">s</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>La cláusula <code class="docutils literal notranslate"><span class="pre">return</span></code> se usa para retornar el resultado de la función.</p>
+<p>Calcular la función es bastante simple. Por ejemplo la suma entre 3 y 5 se puede calcular como</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">s</span> <span class="o">=</span> <span class="n">suma</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>8
+</pre></div>
+</div>
+</div>
+</div>
+<section id="span-style-color-4cc9f0-una-funcion-que-regresa-dos-valores-span">
+<h3><span style="color:#4CC9F0">Una función que regresa dos valores</span><a class="headerlink" href="#span-style-color-4cc9f0-una-funcion-que-regresa-dos-valores-span" title="Permalink to this headline">#</a></h3>
+<p>De manera formal, una función retorna un único valor. Desde el punto de vista práctico, un objeto como (3,4) es una <code class="docutils literal notranslate"><span class="pre">tupla</span></code> en Python que estudiamos en otro módulo. Una función puede regresar un tupla y cualquier otro objeto complicado. Observe el siguiente ejemplo.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Explicar las siguientes líneas de código</span>
@@ -859,6 +1186,20 @@ y=
 </div>
 </div>
 </div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="n">mysum_prod</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(7, 12)
+</pre></div>
+</div>
+</div>
+</div>
+<p>También podemos separar la salida, si es lo que se requiere, de la siguiente manera:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">suma</span><span class="p">,</span> <span class="n">prod</span> <span class="o">=</span> <span class="n">mysum_prod</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
@@ -874,9 +1215,14 @@ El producto es: 12
 </div>
 </div>
 </div>
-<p>Con este tipo de funciones es posible “anotarlas”. Se pueden dar pequeñas pistas de qué tipo de datos queremos que entren a la función y los que salen. Esto es muy util para mejorar la lectura del código.</p>
-<p>Por supuesto, aún es posible usar tipos de datos diferentes a los que sugerimos. Esto es debido al principio pythonico</p>
-<p>Hagamos la anterior función más exacta</p>
+</section>
+<section id="span-style-color-4cc9f0-anotando-typing-los-parametros-de-una-funcion-span">
+<h3><span style="color:#4CC9F0">Anotando (typing) los parámetros de una función</span><a class="headerlink" href="#span-style-color-4cc9f0-anotando-typing-los-parametros-de-una-funcion-span" title="Permalink to this headline">#</a></h3>
+<p>Recuerde que la asignación de variables en Python es dinámica. Esto facilita la programación, pero introduce algunos problemas.</p>
+<p>En el caso de las funciones, es importante que el usuario (que siempre incluye al programador) sepa que tipos de parámetros espera una función. Para hacerlo, las versiones de Python desde 2.0 introdujeron el concepto anotación o tipificación de los parámetros de una función.</p>
+<p>Se pretende indicar al usuario de la función qué tipo de datos se espera que entren a la función y los que salen. Esto es muy útil para mejorar la lectura del código.</p>
+<p>Por supuesto, aún es posible usar tipos de datos diferentes a los que sugerimos. Esto es debido al principio pythonico de tener asignación dinámica.</p>
+<p>Para ilustrar la anotación revise el siguiente ejemplo.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">mysum_prod</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]:</span>
@@ -894,6 +1240,34 @@ El producto es: 12
 </div>
 </div>
 </div>
+</section>
+<section id="span-style-color-4cc9f0-valor-de-los-parametros-por-defecto-span">
+<h3><span style="color:#4CC9F0">Valor de los parámetros por defecto</span><a class="headerlink" href="#span-style-color-4cc9f0-valor-de-los-parametros-por-defecto-span" title="Permalink to this headline">#</a></h3>
+<p>En ocasiones se espera definir valores por defecto para los parámetros de una función. Esta se hace simplemente escribiendo <code class="docutils literal notranslate"><span class="pre">parametro=valor</span></code>. Veamos el ejemplo</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># función suma con parámetros por defecto</span>
+<span class="k">def</span> <span class="nf">suma</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span>
+    <span class="k">return</span> <span class="n">s</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">suma</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4
+</pre></div>
+</div>
+</div>
+</div>
+<p>El cuidado que hay que tener es que los parámetros por defecto siempre van después de los parámetros obligatorios. En el ejemplo la variable <em>x</em> es obligatoria y debe ser entregado a la función. Por otro lado la variable <em>y</em> esta definida por defecto.</p>
+</section>
+</section>
+<section id="span-style-color-4361ee-funciones-anonimas-fuciones-lambda-span">
+<h2><span style="color:#4361EE">Funciones anónimas. Fuciones lambda</span><a class="headerlink" href="#span-style-color-4361ee-funciones-anonimas-fuciones-lambda-span" title="Permalink to this headline">#</a></h2>
+<p>Hay situaciones, principalmente relacionadas con la programación funcional, en la cuales no se requiere dar un nombre a una función, sino más bien definir la forma como trabaja la función.</p>
+<p>Observe el siguiente ejemplo.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Explique qué diferencias hay entre éste método y el anterior</span>
@@ -913,10 +1287,16 @@ El producto es: 12
 </div>
 </div>
 </div>
+<p>En este ejemplo, la función anónima lambda recibe dos argumentos y regresa su suma. Le hemos dado un nombre: sumita. Pero realmente esto no es necesario. Sin embargo muestra como es posible asignar una función a un objeto, para ser utilizada como una función normal.</p>
+<p>La lógica es la siguiente:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">lambda</span> <span class="pre">arg1,arg2:</span> <span class="pre">arg1+arg2</span></code> define la función anónima.</p></li>
+<li><p>la función anónima es asignada al objeto sumita, con lo cual sumita será una función que hace lo mismo que  la función anónima, pero ahora llamada como una función definida con <code class="docutils literal notranslate"><span class="pre">def</span></code>.</p></li>
+</ul>
 </section>
-<section id="span-style-color-4361ee-cual-es-la-diferencia-y-utilidad-de-la-funcion-lambda-span">
-<h2><span style="color:#4361EE">¿Cuál es la diferencia y utilidad de la función lambda?</span><a class="headerlink" href="#span-style-color-4361ee-cual-es-la-diferencia-y-utilidad-de-la-funcion-lambda-span" title="Permalink to this headline">#</a></h2>
-<p><strong>Pista:</strong></p>
+<section id="span-style-color-4361ee-un-ejemplo-de-programacion-funcional-span">
+<h2><span style="color:#4361EE">Un ejemplo de programación funcional</span><a class="headerlink" href="#span-style-color-4361ee-un-ejemplo-de-programacion-funcional-span" title="Permalink to this headline">#</a></h2>
+<p>Observe detenidamente el siguiente fragmento de código.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Explicar adecuadamente</span>
@@ -937,6 +1317,15 @@ El producto es: 12
 </div>
 </div>
 </div>
+<p>La lógica es la siguiente:</p>
+<ul class="simple">
+<li><p>La función <em>myfunc</em> regresa otra función que tendrá un valor predefinido, llamado aquí <em>n</em>. Esa función se usa para definir otra función que recibirá una parámetro <em>a</em> para multiplicarlo por <em>n</em>.</p></li>
+<li><p>Cuando hacemos la asignación <code class="docutils literal notranslate"><span class="pre">mydoubler</span> <span class="pre">=</span> <span class="pre">myfunc(2)</span></code> se ha definido una nueva función que se llamará <em>mydobler</em>. la cual recibirá un argumento y lo multiplicará por 2 (el valor de <em>n</em>)</p></li>
+</ul>
+<section id="id2">
+<h3><span style="color:#4CC9F0">Ejercicio</span><a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h3>
+<p>Estudie detenidamente  el ejemplo anterior y construya un ejemplo suyo.</p>
+</section>
 </section>
 <section id="span-style-color-4361ee-programacion-funcional-span">
 <h2><span style="color:#4361EE">Programación Funcional</span><a class="headerlink" href="#span-style-color-4361ee-programacion-funcional-span" title="Permalink to this headline">#</a></h2>
@@ -969,13 +1358,13 @@ El producto es: 12
 <span class="n">Modified_List</span> <span class="o">=</span> <span class="n">pure_func</span><span class="p">(</span><span class="n">Original_List</span><span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Lista original:&quot;</span><span class="p">,</span> <span class="n">Original_List</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Lista modifciada:&quot;</span><span class="p">,</span> <span class="n">Modified_List</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Lista modificada:&quot;</span><span class="p">,</span> <span class="n">Modified_List</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Lista original: [1, 2, 3, 4]
-Lista modifciada: [1, 4, 9, 16]
+Lista modificada: [1, 4, 9, 16]
 </pre></div>
 </div>
 </div>
@@ -1028,7 +1417,7 @@ Lista modifciada: [1, 4, 9, 16]
 <p>Los objetos de primera clase se manejan uniformemente en todo momento. Pueden almacenarse en estructuras de datos, pasarse como argumentos o usarse en estructuras de control. Se dice que un lenguaje de programación admite funciones de primera clase si trata las funciones como objetos de primera clase.</p>
 </section>
 <section id="span-style-color-4cc9f0-propiedades-de-las-funciones-de-primera-clase-span">
-<h3><span style="color:#4CC9F0">Propiedades de las funciones de primera clase:</span><a class="headerlink" href="#span-style-color-4cc9f0-propiedades-de-las-funciones-de-primera-clase-span" title="Permalink to this headline">#</a></h3>
+<h3><span style="color:#4CC9F0">Propiedades de las funciones de primera clase</span><a class="headerlink" href="#span-style-color-4cc9f0-propiedades-de-las-funciones-de-primera-clase-span" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>Una función es una instancia del tipo de objeto.</p></li>
 <li><p>Puede almacenar la función en una variable.</p></li>
@@ -1036,10 +1425,12 @@ Lista modifciada: [1, 4, 9, 16]
 <li><p>Puede devolver la función desde una función.</p></li>
 <li><p>Puede almacenarlos en estructuras de datos como tablas hash, listas,…</p></li>
 </ul>
-<p>Ejemplo:</p>
+</section>
+<section id="span-style-color-4cc9f0-ejemplo-span">
+<h3><span style="color:#4CC9F0">Ejemplo</span><a class="headerlink" href="#span-style-color-4cc9f0-ejemplo-span" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Programa Python program para ilustrar</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Programa Python  para ilustrar</span>
 <span class="c1"># funciones de orden mayor</span>
 
 
@@ -1098,7 +1489,7 @@ hola, soy creada por una función pasada como argumento.
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;map object at 0x000001E5BDCEC250&gt;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;map object at 0x000001F01A1D05B0&gt;
 2 4 6 8 
 </pre></div>
 </div>
@@ -1109,7 +1500,7 @@ hola, soy creada por una función pasada como argumento.
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ejemplo de uso de filter()</span>
 
 <span class="c1"># función que filtra las vocales en una lista</span>
-<span class="k">def</span> <span class="nf">fun</span><span class="p">(</span><span class="n">variable</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">vocal</span><span class="p">(</span><span class="n">variable</span><span class="p">):</span>
 
     <span class="n">letters</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;e&#39;</span><span class="p">,</span> <span class="s1">&#39;i&#39;</span><span class="p">,</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="s1">&#39;u&#39;</span><span class="p">]</span>
 
@@ -1123,7 +1514,7 @@ hola, soy creada por una función pasada como argumento.
 <span class="n">sequence</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="s1">&#39;e&#39;</span><span class="p">,</span> <span class="s1">&#39;e&#39;</span><span class="p">,</span> <span class="s1">&#39;j&#39;</span><span class="p">,</span> <span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="s1">&#39;s&#39;</span><span class="p">,</span> <span class="s1">&#39;i&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">]</span>
 
 <span class="c1"># uso de la función filter</span>
-<span class="n">filtered</span> <span class="o">=</span> <span class="nb">filter</span><span class="p">(</span><span class="n">fun</span><span class="p">,</span> <span class="n">sequence</span><span class="p">)</span>
+<span class="n">filtered</span> <span class="o">=</span> <span class="nb">filter</span><span class="p">(</span><span class="n">vocal</span><span class="p">,</span> <span class="n">sequence</span><span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Las letras filtradas son:&#39;</span><span class="p">)</span>
 

@@ -57,7 +57,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Funciones en Python" href="py5.html" />
-    <link rel="prev" title="Operaciones entre variables" href="py3.html" />
+    <link rel="prev" title="Operadores aritméticos y lógicos" href="py3.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -138,9 +138,9 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="py1.html">
+  <a class="reference internal" href="py0.html">
    <span style="color:#F72585">
-    Introducción al lenguaje Python
+    Conceptos básicos de programación
    </span>
   </a>
  </li>
@@ -154,7 +154,7 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1">
   <a class="reference internal" href="py3.html">
    <span style="color:#F72585">
-    Operaciones entre variables
+    Operadores aritméticos y lógicos
    </span>
   </a>
  </li>
@@ -246,6 +246,20 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal" href="../../Pytorch/Cuadernos/Pytorch_06.html">
    <span style="color:#F72585">
     Optimización con torch
+   </span>
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  TensorFlow
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../TensorFlow/Cuadernos/Tensorflow-01.html">
+   <span style="color:#F72585">
+    Inicio Rápido
    </span>
   </a>
  </li>
@@ -532,16 +546,23 @@ title="Print to PDF"
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-if-span">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-estructura-if-span">
      <span style="color:#4CC9F0">
-      If
+      Estructura if
      </span>
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-elif-span">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-estructura-if-else-span">
      <span style="color:#4CC9F0">
-      elif
+      Estructura if- else
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-estructura-elif-span">
+     <span style="color:#4CC9F0">
+      Estructura elif
      </span>
     </a>
    </li>
@@ -553,18 +574,18 @@ title="Print to PDF"
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-match-span">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-estrutura-de-decision-multiple-match-python-3-10-span">
      <span style="color:#4CC9F0">
-      Match
+      Estrutura de decisión múltiple Match. Python 3.10
      </span>
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#span-style-color-4361ee-indentacion-en-python-span">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-alcance-de-la-estructuras-de-control-indentacion-en-python-span">
    <span style="color:#4361EE">
-    Indentación en Python
+    Alcance de la estructuras de control. Indentación en Python
    </span>
   </a>
   <ul class="nav section-nav flex-column">
@@ -572,6 +593,13 @@ title="Print to PDF"
     <a class="reference internal nav-link" href="#span-style-color-4cc9f0-ejemplo-indentacion-en-python-span">
      <span style="color:#4CC9F0">
       Ejemplo: Indentación en Python
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-numero-de-espacios-al-indentar-span">
+     <span style="color:#4CC9F0">
+      Número de espacios al indentar
      </span>
     </a>
    </li>
@@ -613,9 +641,16 @@ title="Print to PDF"
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-break-span">
+    <a class="reference internal nav-link" href="#id3">
      <span style="color:#4CC9F0">
-      Break
+      Ejercicio
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-sentencia-break-span">
+     <span style="color:#4CC9F0">
+      Sentencia break
      </span>
     </a>
    </li>
@@ -629,6 +664,13 @@ title="Print to PDF"
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id4">
+     <span style="color:#4CC9F0">
+      Ejemplo
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#span-style-color-4cc9f0-ciclos-anidados-span">
      <span style="color:#4CC9F0">
       Ciclos anidados
@@ -636,7 +678,62 @@ title="Print to PDF"
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id3">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-ejemplo-de-la-tablas-multiplicar-span">
+     <span style="color:#4CC9F0">
+      Ejemplo de la tablas multiplicar
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-ejemplo-de-una-sucesion-creciente-de-asteriscos-span">
+     <span style="color:#4CC9F0">
+      Ejemplo de una sucesión creciente de asteríscos
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-buscando-una-letra-en-una-cadena-string-con-un-ciclo-for-span">
+     <span style="color:#4CC9F0">
+      Buscando una letra en  una cadena (string) con un ciclo for
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-clausula-in-un-ciclo-for-span">
+     <span style="color:#4CC9F0">
+      Cláusula
+      <code class="docutils literal notranslate">
+       <span class="pre">
+        in
+       </span>
+      </code>
+      un ciclo for
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-ejemplo-de-recorrer-una-cadena-exhaustivamente-span">
+     <span style="color:#4CC9F0">
+      Ejemplo de recorrer una cadena exhaustivamente
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-ejemplo-de-como-romper-la-ejecucion-un-ciclo-infinito-span">
+     <span style="color:#4CC9F0">
+      Ejemplo de como romper la ejecución  un ciclo infinito
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-ejemplo-de-ciclo-con-terminacion-condicional-span">
+     <span style="color:#4CC9F0">
+      Ejemplo de ciclo con terminación condicional
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id5">
      <span style="color:#4CC9F0">
       Ejercicio
      </span>
@@ -645,9 +742,9 @@ title="Print to PDF"
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#span-style-color-4361ee-manejo-de-excepciones-span">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-manejo-de-excepciones-estructura-try-except-span">
    <span style="color:#4361EE">
-    Manejo de excepciones
+    Manejo de excepciones. Estructura try - except
    </span>
   </a>
  </li>
@@ -694,16 +791,23 @@ title="Print to PDF"
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-if-span">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-estructura-if-span">
      <span style="color:#4CC9F0">
-      If
+      Estructura if
      </span>
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-elif-span">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-estructura-if-else-span">
      <span style="color:#4CC9F0">
-      elif
+      Estructura if- else
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-estructura-elif-span">
+     <span style="color:#4CC9F0">
+      Estructura elif
      </span>
     </a>
    </li>
@@ -715,18 +819,18 @@ title="Print to PDF"
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-match-span">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-estrutura-de-decision-multiple-match-python-3-10-span">
      <span style="color:#4CC9F0">
-      Match
+      Estrutura de decisión múltiple Match. Python 3.10
      </span>
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#span-style-color-4361ee-indentacion-en-python-span">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-alcance-de-la-estructuras-de-control-indentacion-en-python-span">
    <span style="color:#4361EE">
-    Indentación en Python
+    Alcance de la estructuras de control. Indentación en Python
    </span>
   </a>
   <ul class="nav section-nav flex-column">
@@ -734,6 +838,13 @@ title="Print to PDF"
     <a class="reference internal nav-link" href="#span-style-color-4cc9f0-ejemplo-indentacion-en-python-span">
      <span style="color:#4CC9F0">
       Ejemplo: Indentación en Python
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-numero-de-espacios-al-indentar-span">
+     <span style="color:#4CC9F0">
+      Número de espacios al indentar
      </span>
     </a>
    </li>
@@ -775,9 +886,16 @@ title="Print to PDF"
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-break-span">
+    <a class="reference internal nav-link" href="#id3">
      <span style="color:#4CC9F0">
-      Break
+      Ejercicio
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-sentencia-break-span">
+     <span style="color:#4CC9F0">
+      Sentencia break
      </span>
     </a>
    </li>
@@ -791,6 +909,13 @@ title="Print to PDF"
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id4">
+     <span style="color:#4CC9F0">
+      Ejemplo
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#span-style-color-4cc9f0-ciclos-anidados-span">
      <span style="color:#4CC9F0">
       Ciclos anidados
@@ -798,7 +923,62 @@ title="Print to PDF"
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id3">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-ejemplo-de-la-tablas-multiplicar-span">
+     <span style="color:#4CC9F0">
+      Ejemplo de la tablas multiplicar
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-ejemplo-de-una-sucesion-creciente-de-asteriscos-span">
+     <span style="color:#4CC9F0">
+      Ejemplo de una sucesión creciente de asteríscos
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-buscando-una-letra-en-una-cadena-string-con-un-ciclo-for-span">
+     <span style="color:#4CC9F0">
+      Buscando una letra en  una cadena (string) con un ciclo for
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-clausula-in-un-ciclo-for-span">
+     <span style="color:#4CC9F0">
+      Cláusula
+      <code class="docutils literal notranslate">
+       <span class="pre">
+        in
+       </span>
+      </code>
+      un ciclo for
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-ejemplo-de-recorrer-una-cadena-exhaustivamente-span">
+     <span style="color:#4CC9F0">
+      Ejemplo de recorrer una cadena exhaustivamente
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-ejemplo-de-como-romper-la-ejecucion-un-ciclo-infinito-span">
+     <span style="color:#4CC9F0">
+      Ejemplo de como romper la ejecución  un ciclo infinito
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-ejemplo-de-ciclo-con-terminacion-condicional-span">
+     <span style="color:#4CC9F0">
+      Ejemplo de ciclo con terminación condicional
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id5">
      <span style="color:#4CC9F0">
       Ejercicio
      </span>
@@ -807,9 +987,9 @@ title="Print to PDF"
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#span-style-color-4361ee-manejo-de-excepciones-span">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-manejo-de-excepciones-estructura-try-except-span">
    <span style="color:#4361EE">
-    Manejo de excepciones
+    Manejo de excepciones. Estructura try - except
    </span>
   </a>
  </li>
@@ -833,7 +1013,7 @@ title="Print to PDF"
 </ul>
 <section id="span-style-color-4361ee-secuencia-span">
 <h2><span style="color:#4361EE">Secuencia</span><a class="headerlink" href="#span-style-color-4361ee-secuencia-span" title="Permalink to this headline">#</a></h2>
-<p>La ejecución de cualquier programa (algoritmo codificado en algún lenguaje de programación) se realiza en orden de aparición de las sentencias. Una <strong>sentencia</strong> puede ser <strong>simple</strong> (solamente una instrucción) o <strong>compuesta</strong> (varias instrucciones).</p>
+<p>La ejecución de cualquier programa (algoritmo codificado en algún lenguaje de programación) se realiza en orden de aparición de las sentencias. Una <code class="docutils literal notranslate"><span class="pre">sentencia</span></code> puede ser <em>simple</em> (solamente una instrucción) o <em>compuesta</em> (varias instrucciones).</p>
 <section id="span-style-color-4cc9f0-ejemplo-span">
 <h3><span style="color:#4CC9F0">Ejemplo</span><a class="headerlink" href="#span-style-color-4cc9f0-ejemplo-span" title="Permalink to this headline">#</a></h3>
 <p>Observe el siguiente código Python</p>
@@ -857,8 +1037,8 @@ title="Print to PDF"
 </section>
 <section id="span-style-color-4361ee-seleccion-span">
 <h2><span style="color:#4361EE">Selección</span><a class="headerlink" href="#span-style-color-4361ee-seleccion-span" title="Permalink to this headline">#</a></h2>
-<section id="span-style-color-4cc9f0-if-span">
-<h3><span style="color:#4CC9F0">If</span><a class="headerlink" href="#span-style-color-4cc9f0-if-span" title="Permalink to this headline">#</a></h3>
+<section id="span-style-color-4cc9f0-estructura-if-span">
+<h3><span style="color:#4CC9F0">Estructura if</span><a class="headerlink" href="#span-style-color-4cc9f0-estructura-if-span" title="Permalink to this headline">#</a></h3>
 <p>Esta estructura de control está diseñada para que un programa pueda seguir diferentes caminos de ejecución, dependiendo de la evaluación de una expresión lógica. Observe el siguiente ejemplo.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -894,10 +1074,14 @@ lunes
 </div>
 </div>
 </div>
-<p>En este caso,  no se imprime nada, debido a que la condición es falsa. Ahora observe el siguiente ejemplo</p>
+<p>En este caso,  no se imprime nada, debido a que la condición es falsa.</p>
+</section>
+<section id="span-style-color-4cc9f0-estructura-if-else-span">
+<h3><span style="color:#4CC9F0">Estructura if- else</span><a class="headerlink" href="#span-style-color-4cc9f0-estructura-if-else-span" title="Permalink to this headline">#</a></h3>
+<p>Cuando hay dos alternativas de ejecución, dependiendo de la evaluación de un condición, se puede emplear la estructura <code class="docutils literal notranslate"><span class="pre">if-else</span></code>. Ahora observe el siguiente ejemplo.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ejemplo if</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ejemplo if-else</span>
 <span class="n">x</span> <span class="o">=</span> <span class="mi">3</span>
 <span class="n">y</span> <span class="o">=</span> <span class="mi">5</span>
 
@@ -919,10 +1103,9 @@ Martes
 </div>
 <p>Lo que se agregó aquí fue un <code class="docutils literal notranslate"><span class="pre">else</span></code>. Este tiende a ponerse después de un <code class="docutils literal notranslate"><span class="pre">if</span></code> y se ejecuta cuando las condiciones puestas en este no se cumplen</p>
 </section>
-<section id="span-style-color-4cc9f0-elif-span">
-<h3><span style="color:#4CC9F0">elif</span><a class="headerlink" href="#span-style-color-4cc9f0-elif-span" title="Permalink to this headline">#</a></h3>
-<p>usamos <code class="docutils literal notranslate"><span class="pre">elif</span></code> (forma corta de “else if”) si queremos evaluar más casos dentro de la estructura de la selección.</p>
-<p>Hagamos el anterior ejemplo más complejo</p>
+<section id="span-style-color-4cc9f0-estructura-elif-span">
+<h3><span style="color:#4CC9F0">Estructura elif</span><a class="headerlink" href="#span-style-color-4cc9f0-estructura-elif-span" title="Permalink to this headline">#</a></h3>
+<p>Usaremos la estructura  <code class="docutils literal notranslate"><span class="pre">elif</span></code> (forma corta de “else if”) si queremos evaluar más de una condición separada dentro de la estructura de la selección. Hagamos el anterior ejemplo más complejo</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ejemplo elif</span>
@@ -949,70 +1132,75 @@ Martes
 </div>
 </div>
 </div>
+<p>Lo que ocurre es lo siguiente:</p>
+<ul class="simple">
+<li><p>En este último ejemplo, se evalúa primero la condición <code class="docutils literal notranslate"><span class="pre">x&gt;z</span></code>. Si la evaluación de la condición es <code class="docutils literal notranslate"><span class="pre">True</span></code> se ejecutan las dos sentencia siguientes y se termina la ejecución de toda la estructura de control.  En ejemplo, el resultado de la evaluación de la condición es <code class="docutils literal notranslate"><span class="pre">False</span></code>, por lo que se salta a la siguiente parte de la estructura, es decir a la parte <code class="docutils literal notranslate"><span class="pre">elif</span></code>.</p></li>
+<li><p>En este caso la evaluación de la condición <code class="docutils literal notranslate"><span class="pre">y&gt;z</span></code> es <code class="docutils literal notranslate"><span class="pre">True</span></code>, por lo que se ejecutan las dos siguientes sentencias y termina la ejecución de la estructura de decisión.</p></li>
+<li><p>Fin de  la estructura de decisión.</p></li>
+</ul>
 </section>
 <section id="span-style-color-4cc9f0-ejercicio-span">
 <h3><span style="color:#4CC9F0">Ejercicio</span><a class="headerlink" href="#span-style-color-4cc9f0-ejercicio-span" title="Permalink to this headline">#</a></h3>
-<p>El siguiente código calcula la longitud del nombre y escribe una frase acorde a la longitud. Observe que en el comando <code class="docutils literal notranslate"><span class="pre">print()</span></code> , <code class="docutils literal notranslate"><span class="pre">sep=</span></code> es un parámetro que separa los valores ingresados dentro de la función print. Como vemos, escribimos <code class="docutils literal notranslate"><span class="pre">N='Tu_nombre'</span></code> eso asigna a la letra N el texto <em>Tu_nombre</em>.  La función <em>len</em> devuelve la longitud de la cadena.</p>
+<p>El siguiente código calcula la longitud del nombre y escribe una frase acorde a la longitud. Observe que en el comando <code class="docutils literal notranslate"><span class="pre">print()</span></code> , <code class="docutils literal notranslate"><span class="pre">sep=</span></code> es un parámetro que separa los valores ingresados dentro de la función print. Como vemos, escribimos <code class="docutils literal notranslate"><span class="pre">N='Tu_nombre'</span></code> eso asigna a la variable <em>N</em> el texto <em>Tu_nombre</em>.  La función <code class="docutils literal notranslate"><span class="pre">len</span></code> devuelve la longitud de la cadena.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">N</span><span class="o">=</span><span class="s1">&#39;Daniel&#39;</span><span class="c1"># cambiar &#39;Tu_nombre&#39; por su verdadero nombre</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">N</span> <span class="o">=</span> <span class="s1">&#39;Daniel&#39;</span><span class="c1"># cambiar &#39;Tu_nombre&#39; por su verdadero nombre</span>
 <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">N</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">10</span><span class="p">:</span>
-    <span class="n">A</span><span class="o">=</span><span class="s2">&quot;es un nombre muy largo&quot;</span>
+    <span class="n">A</span> <span class="o">=</span> <span class="s2">&quot;es un nombre largo&quot;</span>
 <span class="k">else</span><span class="p">:</span>
-    <span class="n">A</span><span class="o">=</span><span class="s2">&quot;es un nombre muy corto&quot;</span>
+    <span class="n">A</span> <span class="o">=</span> <span class="s2">&quot;es un nombre corto&quot;</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="n">N</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="n">sep</span><span class="o">=</span><span class="s2">&quot; &quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Daniel es un nombre muy corto
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Daniel es un nombre corto
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">N</span><span class="o">=</span><span class="s1">&#39;Alvaro Mauricio Montenegro Díaz&#39;</span> <span class="c1">#cambiar &#39;Tu_nombre_completo&#39; por su verdadero nombre completo</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">N</span> <span class="o">=</span> <span class="s1">&#39;Alvaro Mauricio Montenegro Díaz&#39;</span> <span class="c1">#cambiar &#39;Tu_nombre_completo&#39; por su verdadero nombre completo</span>
 <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">N</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">10</span><span class="p">:</span>
-    <span class="n">A</span><span class="o">=</span><span class="s2">&quot;es un nombre muy largo&quot;</span>
+    <span class="n">A</span> <span class="o">=</span> <span class="s2">&quot;es un nombre muy largo&quot;</span>
 <span class="k">else</span><span class="p">:</span>
-    <span class="n">A</span><span class="o">=</span><span class="s2">&quot;es un nombre muy corto&quot;</span>
+    <span class="n">A</span> <span class="o">=</span> <span class="s2">&quot;es un nombre muy corto&quot;</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="n">N</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="n">sep</span><span class="o">=</span><span class="s2">&quot;/&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">N</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="n">sep</span><span class="o">=</span><span class="s2">&quot;...&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Alvaro Mauricio Montenegro Díaz/es un nombre muy largo
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Alvaro Mauricio Montenegro Díaz...es un nombre muy largo
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">N</span><span class="o">=</span><span class="s1">&#39;El nombre&#39;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">N</span> <span class="o">=</span> <span class="s1">&#39;El nombre&#39;</span>
 <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">N</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">10</span><span class="p">:</span>
-    <span class="n">A</span><span class="o">=</span><span class="s2">&quot;es un nombre muy largo&quot;</span>
+    <span class="n">A</span><span class="o">=</span><span class="s2">&quot;es un nombre largo&quot;</span>
 <span class="k">else</span><span class="p">:</span>
-    <span class="n">A</span><span class="o">=</span><span class="s2">&quot;es un nombre muy corto&quot;</span>
+    <span class="n">A</span><span class="o">=</span><span class="s2">&quot;es un nombre corto&quot;</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="n">N</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="n">sep</span><span class="o">=</span><span class="s2">&quot;         &quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>El nombre         es un nombre muy corto
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>El nombre         es un nombre corto
 </pre></div>
 </div>
 </div>
 </div>
 </section>
-<section id="span-style-color-4cc9f0-match-span">
-<h3><span style="color:#4CC9F0">Match</span><a class="headerlink" href="#span-style-color-4cc9f0-match-span" title="Permalink to this headline">#</a></h3>
-<p>Esto solo es posible en la versión 3.10 de python</p>
-<p>en otros lenguajes de programación existe la estructura de de selección llamada “Switch”, usada cuando hay muchos casos para evaluar igualdad. En estos casos hacer if else constantes es un desperdicio de memoria</p>
-<p>en C/C++ se ven así:</p>
+<section id="span-style-color-4cc9f0-estrutura-de-decision-multiple-match-python-3-10-span">
+<h3><span style="color:#4CC9F0">Estrutura de decisión múltiple Match. Python 3.10</span><a class="headerlink" href="#span-style-color-4cc9f0-estrutura-de-decision-multiple-match-python-3-10-span" title="Permalink to this headline">#</a></h3>
+<p>Esto solo es posible desde la versión 3.10 de Python. Durante muchos años, los usuario del lenguaje pidieron incluir esta estructura disponible en otros lenguajes de programación, como C, C++. En C existe la estructura de selección llamada “switch”, usada cuando hay muchos casos para evaluarla condición. En estos casos hacer <code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">elif</span> <span class="pre">else</span></code> constantemente es un desperdicio de memoria y de velocidad.</p>
+<p>En C/C++ la estructura switch se ve así:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">switch</span><span class="p">(</span><span class="n">variable_a_evaluar</span><span class="p">):</span>
     <span class="k">case</span> <span class="n">valor1</span><span class="p">:</span>
         <span class="n">algo_pasa1</span><span class="p">()</span>
@@ -1027,7 +1215,7 @@ Martes
         <span class="n">nada_pasa</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>En python no existía nada parecido, hasta la versión 3.10 donde se creó el caso <code class="docutils literal notranslate"><span class="pre">match</span></code>, dándonos la capacidad del switch y otras nuevas cosas</p>
+<p>En Python no existía nada parecido, hasta la versión 3.10 donde se creó el caso <code class="docutils literal notranslate"><span class="pre">match</span></code>, dándonos la capacidad del switch y otras nuevas cosas</p>
 <p>Hagamos un ejemplo básico</p>
 <div class="tab-set docutils">
 <input checked="True" class="tab-input" id="tab-set--0-input--1" name="tab-set--0" type="radio"><label class="tab-label" for="tab-set--0-input--1">Python</label><div class="tab-content docutils">
@@ -1041,7 +1229,7 @@ Martes
 </div>
 </div>
 </div>
-<p>Dentro del match también sucede el caso “default”, que se cumple cuando los otros casos no, en python esto se toma con un <code class="docutils literal notranslate"><span class="pre">_</span></code></p>
+<p>Dentro del match también sucede el caso “default”, que se cumple cuando los otros casos no, en Python esto se toma con un <code class="docutils literal notranslate"><span class="pre">_</span></code></p>
 <div class="tab-set docutils">
 <input checked="True" class="tab-input" id="tab-set--1-input--1" name="tab-set--1" type="radio"><label class="tab-label" for="tab-set--1-input--1">Python</label><div class="tab-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">status</span> <span class="o">=</span> <span class="mi">401</span>
@@ -1063,7 +1251,7 @@ Martes
 </div>
 </div>
 </div>
-<p>En la mayoría de lenguajes que usan switch, cada acción solo puede atribuirse a un caso. En python es posible aplicar una acción a varios casos</p>
+<p>En la mayoría de lenguajes que usan switch, cada acción solo puede atribuirse a un caso. En Python es posible aplicar una acción a varios casos</p>
 <div class="tab-set docutils">
 <input checked="True" class="tab-input" id="tab-set--2-input--1" name="tab-set--2" type="radio"><label class="tab-label" for="tab-set--2-input--1">Python</label><div class="tab-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">status</span> <span class="o">=</span> <span class="mi">403</span>
@@ -1083,14 +1271,14 @@ Martes
 </div>
 </section>
 </section>
-<section id="span-style-color-4361ee-indentacion-en-python-span">
-<h2><span style="color:#4361EE">Indentación en Python</span><a class="headerlink" href="#span-style-color-4361ee-indentacion-en-python-span" title="Permalink to this headline">#</a></h2>
+<section id="span-style-color-4361ee-alcance-de-la-estructuras-de-control-indentacion-en-python-span">
+<h2><span style="color:#4361EE">Alcance de la estructuras de control. Indentación en Python</span><a class="headerlink" href="#span-style-color-4361ee-alcance-de-la-estructuras-de-control-indentacion-en-python-span" title="Permalink to this headline">#</a></h2>
 <p>Indentar significa <strong>mover un bloque de texto hacia la derecha</strong>, dejando una serie de espacios o un tabulador para distinguirlo del texto alineado a la izquierda.</p>
 <p>Por ejemplo:</p>
 <blockquote>
 <div><p>Este texto está indentado.</p>
 </div></blockquote>
-<p>En <strong>Python</strong>, la indentación es obligatoria para indica el alcance de una estructura. Además solamente debe usarse para tal fín.</p>
+<p>En Python, la indentación es obligatoria para indica el alcance de una estructura. Además solamente debe usarse para tal fín.</p>
 <section id="span-style-color-4cc9f0-ejemplo-indentacion-en-python-span">
 <h3><span style="color:#4CC9F0">Ejemplo: Indentación en Python</span><a class="headerlink" href="#span-style-color-4cc9f0-ejemplo-indentacion-en-python-span" title="Permalink to this headline">#</a></h3>
 <p>En este ejemplo</p>
@@ -1117,7 +1305,7 @@ Martes
 </div>
 </div>
 </div>
-<p><strong>Sin la indentación</strong>, el código produce un <strong>error</strong>:</p>
+<p>Sin la indentación, el código produce un error:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mi">3</span>
@@ -1138,19 +1326,32 @@ Martes
 </div>
 </div>
 </div>
-<p>No importa cuántos espacios en blanco se dejen, siempre y cuando sea <strong>al menos uno</strong>:</p>
+</section>
+<section id="span-style-color-4cc9f0-numero-de-espacios-al-indentar-span">
+<h3><span style="color:#4CC9F0">Número de espacios al indentar</span><a class="headerlink" href="#span-style-color-4cc9f0-numero-de-espacios-al-indentar-span" title="Permalink to this headline">#</a></h3>
+<p>No importa cuántos espacios en blanco se dejen, siempre y cuando sea <em>al menos uno</em>. Revise el siguiente ejemplo.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="mi">5</span> <span class="o">&gt;</span> <span class="mi">3</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Five is greater than Three&quot;</span><span class="p">)</span>  
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># la identación con 4 espacios</span>
 <span class="k">if</span> <span class="mi">5</span> <span class="o">&gt;</span> <span class="mi">3</span><span class="p">:</span>
-       <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Five is greater than Three&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Five is greater than Three&quot;</span><span class="p">)</span>  
+
+<span class="c1"># la identación con 6 espacios</span>
+<span class="k">if</span> <span class="mi">5</span> <span class="o">&gt;</span> <span class="mi">3</span><span class="p">:</span>
+     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Five is greater than Three&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Five is greater than Three
 Five is greater than Three
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Observe</span> <span class="n">que</span> <span class="n">el</span> <span class="n">número</span> <span class="n">de</span> <span class="n">espacios</span> <span class="n">en</span> <span class="n">la</span> <span class="n">identación</span> <span class="n">no</span> <span class="n">afectó</span> <span class="n">la</span> <span class="n">salida</span><span class="o">.</span>
 </pre></div>
 </div>
 </div>
@@ -1169,12 +1370,12 @@ Five is greater than Three
 <span class="k">else</span><span class="p">:</span>
     <span class="n">status</span> <span class="o">=</span> <span class="s1">&#39;no adolecente&#39;</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="n">status</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;status=&#39;</span><span class="p">,</span> <span class="n">status</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>adolecente
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>status= adolecente
 </pre></div>
 </div>
 </div>
@@ -1186,26 +1387,26 @@ Five is greater than Three
 <p>Este tercer tipo de estructura de control se usa para los casos en los cuales es necesario correr un proceso varas veces en forma continua.</p>
 <section id="span-style-color-4cc9f0-ciclo-while-span">
 <h3><span style="color:#4CC9F0">Ciclo while</span><a class="headerlink" href="#span-style-color-4cc9f0-ciclo-while-span" title="Permalink to this headline">#</a></h3>
-<p>Al comienzo del ciclo se evalúa una condición. Si la condición es verdadera se ejecuta de nuevo el ciclo. En otro caso, termina. Corra y analice el siguiente fragmento (snippet) de código</p>
+<p>Al comienzo del ciclo se evalúa una condición. Si la condición es verdadera se ejecuta de nuevo el ciclo. En otro caso, termina. Corra y analice el siguiente fragmento (snippet) de código.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">contador</span> <span class="o">=</span> <span class="mi">0</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Starting&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;¡Empezando!&#39;</span><span class="p">)</span>
 <span class="k">while</span> <span class="n">contador</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">:</span>
-    <span class="c1">#Instrucciones útiles</span>
+    <span class="c1">#Instrucciones ejecutables</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">contador</span><span class="p">,</span><span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
     <span class="n">contador</span> <span class="o">=</span> <span class="n">contador</span> <span class="o">+</span> <span class="mi">1</span>
     
 <span class="nb">print</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Done&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;¡Hecho!&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Starting
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>¡Empezando!
 0  1  2  3  4  5  6  7  8  9  
-Done
+¡Hecho!
 </pre></div>
 </div>
 </div>
@@ -1217,34 +1418,44 @@ Done
 </section>
 <section id="span-style-color-4cc9f0-ciclo-for-span">
 <h3><span style="color:#4CC9F0">Ciclo for</span><a class="headerlink" href="#span-style-color-4cc9f0-ciclo-for-span" title="Permalink to this headline">#</a></h3>
-<p>En este caso se usa una variable de salto que va recorriendo un conjunto de valores hasta terminar. Revise el siguiente snippet.</p>
+<p>En este caso se usa una variable de salto que va recorriendo un conjunto de valores hasta terminar. Revise el siguiente fragmento de código.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Start:&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Inicio:&#39;</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">20</span><span class="p">):</span>
     <span class="c1"># Instrucciones útiles</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Done.&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Hecho.&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Start:
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Inicio:
 0  1  2  3  4  5  6  7  8  9  10  11  12  13  14  15  16  17  18  19  
-Done.
+Hecho.
 </pre></div>
 </div>
 </div>
 </div>
-<div class="question admonition">
-<p class="admonition-title">Pregunta</p>
-<p>¿Cuál es la diferencia entre while y for?</p>
+</section>
+<section id="id3">
+<h3><span style="color:#4CC9F0">Ejercicio</span><a class="headerlink" href="#id3" title="Permalink to this headline">#</a></h3>
+<ol class="simple">
+<li><p>Discuta Cuál es la diferencia entre la estructuras <code class="docutils literal notranslate"><span class="pre">while</span></code> y <code class="docutils literal notranslate"><span class="pre">for</span></code>.</p></li>
+<li><p>Reescriba los dos ejemplos anteriores cambiado de <code class="docutils literal notranslate"><span class="pre">while</span></code> a <code class="docutils literal notranslate"><span class="pre">for</span></code> y viceversa, según el caso.</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Consigne aquí sus respuestas</span>
+</pre></div>
+</div>
+</div>
 </div>
 </section>
-<section id="span-style-color-4cc9f0-break-span">
-<h3><span style="color:#4CC9F0">Break</span><a class="headerlink" href="#span-style-color-4cc9f0-break-span" title="Permalink to this headline">#</a></h3>
-<p>Se usa para terminar la ejecución de un ciclo while o for. Corra el siguiente ejemplo dando diferentes valores.</p>
+<section id="span-style-color-4cc9f0-sentencia-break-span">
+<h3><span style="color:#4CC9F0">Sentencia break</span><a class="headerlink" href="#span-style-color-4cc9f0-sentencia-break-span" title="Permalink to this headline">#</a></h3>
+<p>Esta sentencia usa para terminar la ejecución de un ciclo while o for. Corra el siguiente ejemplo dando diferentes valores para el rango de valores, digamos 3, 5, 10.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
@@ -1269,18 +1480,25 @@ Done.
 </section>
 <section id="span-style-color-4361ee-estructuras-de-control-anidadas-span">
 <h2><span style="color:#4361EE">Estructuras de control anidadas</span><a class="headerlink" href="#span-style-color-4361ee-estructuras-de-control-anidadas-span" title="Permalink to this headline">#</a></h2>
-<p>Es posible incluir (o anidar) estructuras de control dentro de otras estructuras de control.</p>
-<p>Esto es de gran utilidad para realizar programas de mayor complejidad.</p>
-<p><strong>Ejemplo:</strong></p>
+<p>Es posible incluir (o anidar) estructuras de control dentro de otras estructuras de control. Esto es de gran utilidad para realizar programas de mayor complejidad.</p>
+<section id="id4">
+<h3><span style="color:#4CC9F0">Ejemplo</span><a class="headerlink" href="#id4" title="Permalink to this headline">#</a></h3>
+<p>Comenzamos por asignar valores a dos variables y las imprimimos usando la opción format de la función <code class="docutils literal notranslate"><span class="pre">print</span></code>. Asegúrese de entender la sentencia print.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mi">5</span>
 <span class="n">y</span> <span class="o">=</span> <span class="mi">3</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;x = </span><span class="si">{}</span><span class="s1">, y = </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>x = 5, y = 3
 </pre></div>
 </div>
 </div>
 </div>
+<p>A continuación usamos los valores de x y y en una estructura anidada. Asegúrese de entender la ejecución. Tenemos una estructura <em>for</em> <code class="docutils literal notranslate"><span class="pre">anidada</span></code> dentro de una estructura <em>if</em>. Si la condición en la estructura if es True, como en el ejemplo, se ejecutan las siguientes tres sentencias: print, for, y asignación. La últimas dos sentencias al final de código siempre se ejecutan, porque están por fuera de la estructura if.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">x</span><span class="o">&gt;</span><span class="n">y</span><span class="p">:</span>
@@ -1311,10 +1529,14 @@ Done.
 </div>
 </div>
 </div>
+</section>
 <section id="span-style-color-4cc9f0-ciclos-anidados-span">
 <h3><span style="color:#4CC9F0">Ciclos anidados</span><a class="headerlink" href="#span-style-color-4cc9f0-ciclos-anidados-span" title="Permalink to this headline">#</a></h3>
-<p>Un ejemplo de ciclos anidados, por ejemplo crear las tablas de multiplicar, puede ser de gran utilidad para realizar procesos iterativos.</p>
-<p><strong>Ejemplo:</strong></p>
+<p>Un ejemplo de ciclos anidados,  puede ser de gran utilidad para realizar procesos iterativos. Por ejemplo crear las tablas de multiplicar.</p>
+</section>
+<section id="span-style-color-4cc9f0-ejemplo-de-la-tablas-multiplicar-span">
+<h3><span style="color:#4CC9F0">Ejemplo de la tablas multiplicar</span><a class="headerlink" href="#span-style-color-4cc9f0-ejemplo-de-la-tablas-multiplicar-span" title="Permalink to this headline">#</a></h3>
+<p>En el siguiente fragmento imprimimos las tablas de multiplicar hasta 4, con multiplicadores hasta 12. Veámos.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Algunas Tablas de Multiplicar:&quot;</span><span class="p">)</span>
@@ -1391,13 +1613,17 @@ Tabla del 4
 </div>
 </div>
 </div>
-<p><strong>Ejemplo 2:</strong></p>
+</section>
+<section id="span-style-color-4cc9f0-ejemplo-de-una-sucesion-creciente-de-asteriscos-span">
+<h3><span style="color:#4CC9F0">Ejemplo de una sucesión creciente de asteríscos</span><a class="headerlink" href="#span-style-color-4cc9f0-ejemplo-de-una-sucesion-creciente-de-asteriscos-span" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">11</span><span class="p">):</span>             <span class="c1">#line 1</span>
-    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span><span class="p">):</span>            <span class="c1">#line 2</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;*&#39;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>        <span class="c1">#line 3</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>                     <span class="c1">#line 4</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Sucesión creciente de asteríscos</span>
+<span class="n">num_lineas</span> <span class="o">=</span> <span class="mi">11</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">num_lineas</span><span class="p">):</span>             
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span><span class="p">):</span>           
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;*&#39;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>        
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>                    
 </pre></div>
 </div>
 </div>
@@ -1416,13 +1642,17 @@ Tabla del 4
 </div>
 </div>
 </div>
-<p>También es posible aplicar un else a las estructuras “for” y “while”. Lo que se ponga en este se va a ejecutar al final del loop a menos que se use un break en este</p>
+</section>
+<section id="span-style-color-4cc9f0-buscando-una-letra-en-una-cadena-string-con-un-ciclo-for-span">
+<h3><span style="color:#4CC9F0">Buscando una letra en  una cadena (string) con un ciclo for</span><a class="headerlink" href="#span-style-color-4cc9f0-buscando-una-letra-en-una-cadena-string-con-un-ciclo-for-span" title="Permalink to this headline">#</a></h3>
+<p>También es posible aplicar un else a las estructuras “for” y “while”. Lo que se ponga en este se va a ejecutar al final del ciclo (loop) a menos que se use una clúsula break. En el siguiente ejemplo se busca determinar si una letra esta dentro de un texto. Investigamos si la letra u está o no en el texto. Observe el uso de la clúsula <code class="docutils literal notranslate"><span class="pre">in</span></code> (en) para recorrer el texto.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">texto</span> <span class="o">=</span> <span class="s2">&quot;Esta frase no tiene cierta letra&quot;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># en este caso no está la letra u en el texto</span>
+<span class="n">texto</span> <span class="o">=</span> <span class="s2">&quot;Esta frase no tiene cierta letra&quot;</span>
 
 <span class="k">for</span> <span class="n">letra</span> <span class="ow">in</span> <span class="n">texto</span><span class="p">:</span>
-    <span class="k">if</span> <span class="n">letra</span> <span class="o">==</span> <span class="s2">&quot;u&quot;</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">letra</span> <span class="o">==</span> <span class="s2">&quot;u&quot;</span> <span class="ow">or</span> <span class="n">letra</span> <span class="o">==</span> <span class="s2">&quot;U&quot;</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Letra U encontrada&quot;</span><span class="p">)</span>
         <span class="k">break</span>
 <span class="k">else</span><span class="p">:</span>
@@ -1438,7 +1668,8 @@ Tabla del 4
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">texto</span> <span class="o">=</span> <span class="s2">&quot;la letra &#39;u&#39; está en la frase&quot;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># en este caso si está la letra u en el texto</span>
+<span class="n">texto</span> <span class="o">=</span> <span class="s2">&quot;la letra &#39;u&#39; está en la frase&quot;</span>
 
 <span class="k">for</span> <span class="n">letra</span> <span class="ow">in</span> <span class="n">texto</span><span class="p">:</span>
     <span class="k">if</span> <span class="n">letra</span> <span class="o">==</span> <span class="s2">&quot;u&quot;</span><span class="p">:</span>
@@ -1455,21 +1686,45 @@ Tabla del 4
 </div>
 </div>
 </div>
+</section>
+<section id="span-style-color-4cc9f0-clausula-in-un-ciclo-for-span">
+<h3><span style="color:#4CC9F0">Cláusula <code class="docutils literal notranslate"><span class="pre">in</span></code> un ciclo for</span><a class="headerlink" href="#span-style-color-4cc9f0-clausula-in-un-ciclo-for-span" title="Permalink to this headline">#</a></h3>
+<p>Como se observa en el ejemplo previo, la cláusula <code class="docutils literal notranslate"><span class="pre">in</span></code> se ha usado para recorrer el texto completo. Esta cláusula es muy importante para recorrer estructuras de datos, que llamaremos iterables y que estudiaremos en otra lección. Básicamente si un objeto tiene varias elementos que pueden ser visitados individualmente (<code class="docutils literal notranslate"><span class="pre">objeto</span> <span class="pre">iterable</span></code>), la cláusula <em>in/</em> se usa para recorrer el objeto, sin tener que indicar una posición específica en el objeto.</p>
+<p>En el ejemplo hemos recorrido <em>texto</em> que es una cadena (string). Toda cadena está conformada por caracteres, y es posible recorrer la cadena y usar cada caracter. No podemos modificar individualmente cada caracter. Veamos el siguiente ejemplo.</p>
+</section>
+<section id="span-style-color-4cc9f0-ejemplo-de-recorrer-una-cadena-exhaustivamente-span">
+<h3><span style="color:#4CC9F0">Ejemplo de recorrer una cadena exhaustivamente </span><a class="headerlink" href="#span-style-color-4cc9f0-ejemplo-de-recorrer-una-cadena-exhaustivamente-span" title="Permalink to this headline">#</a></h3>
+<p>En este ejemplo recorremos la cadena e imprimimos cada caracter de la cadena individualmente.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">texto</span> <span class="o">=</span> <span class="s2">&quot;Esta es una cadena&quot;</span>
 
-<span class="k">while</span> <span class="n">count</span> <span class="o">&lt;</span> <span class="mi">5</span><span class="p">:</span>
-    
+<span class="k">for</span> <span class="n">char</span> <span class="ow">in</span> <span class="n">texto</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">char</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39; &#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>E s t a   e s   u n a   c a d e n a 
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="span-style-color-4cc9f0-ejemplo-de-como-romper-la-ejecucion-un-ciclo-infinito-span">
+<h3><span style="color:#4CC9F0">Ejemplo de como romper la ejecución  un ciclo infinito</span><a class="headerlink" href="#span-style-color-4cc9f0-ejemplo-de-como-romper-la-ejecucion-un-ciclo-infinito-span" title="Permalink to this headline">#</a></h3>
+<p>En este ejemplo empezamos imprimiendo números de forma secuencial. El ciclo no termina nunca, si no se rompe con una cláusula <em>break</em>. Observe que la condición evaluada por la estructura while es <em>True</em>, por lo que el ciclo no puede terminar sin interrumpirlo con la cláusula break.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ciclo infinito terminado con break</span>
+<span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">fin</span> <span class="o">=</span> <span class="mi">3</span>
+
+<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">count</span><span class="p">)</span>
-    
-    <span class="k">if</span> <span class="n">count</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">count</span> <span class="o">==</span> <span class="n">fin</span><span class="p">:</span>
         <span class="k">break</span>
-    
     <span class="n">count</span><span class="o">+=</span><span class="mi">1</span>
-<span class="k">else</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;llegamos al final del loop&quot;</span><span class="p">)</span>
-    
 </pre></div>
 </div>
 </div>
@@ -1482,6 +1737,14 @@ Tabla del 4
 </div>
 </div>
 </div>
+</section>
+<section id="span-style-color-4cc9f0-ejemplo-de-ciclo-con-terminacion-condicional-span">
+<h3><span style="color:#4CC9F0">Ejemplo de ciclo con terminación condicional</span><a class="headerlink" href="#span-style-color-4cc9f0-ejemplo-de-ciclo-con-terminacion-condicional-span" title="Permalink to this headline">#</a></h3>
+<p>En este ejemplo, el ciclo termina por una de dos razones:</p>
+<ol class="simple">
+<li><p>Se ejecutan el ciclo todas las veces previstas.</p></li>
+<li><p>Se rompe la ejecución con break.</p></li>
+</ol>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
@@ -1494,7 +1757,7 @@ Tabla del 4
         <span class="k">break</span>
     <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
 <span class="k">else</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;llegamos al final del loop&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;llegamos al final del ciclo&quot;</span><span class="p">)</span>
     
 </pre></div>
 </div>
@@ -1505,15 +1768,15 @@ Tabla del 4
 2
 3
 4
-llegamos al final del loop
+llegamos al final del ciclo
 </pre></div>
 </div>
 </div>
 </div>
 </section>
-<section id="id3">
-<h3><span style="color:#4CC9F0">Ejercicio</span><a class="headerlink" href="#id3" title="Permalink to this headline">#</a></h3>
-<p>Escriba un código que le diga al computador que devuelva los textos <strong>I’m ready to code!</strong> si su nombre tiene más de diez caracteres o <strong>Hello, World!</strong> si pasa lo contrario, para medir la longitud de su nombre utilice la función <code class="docutils literal notranslate"><span class="pre">len()</span></code>.</p>
+<section id="id5">
+<h3><span style="color:#4CC9F0">Ejercicio</span><a class="headerlink" href="#id5" title="Permalink to this headline">#</a></h3>
+<p>Escriba un código que le diga al computador que devuelva los textos <em>Estoy listo para codificar!</em> si su nombre tiene más de diez caracteres u *Hola mundo! <em>si pasa lo contrario</em>. Para medir la longitud de su nombre utilice la función <code class="docutils literal notranslate"><span class="pre">len()</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="s2">&quot;Tu_nombre&quot;</span><span class="p">)</span> <span class="c1">#pruebe la funcion len. Cambia Tu_nombre por su nombre real.</span>
@@ -1535,27 +1798,53 @@ llegamos al final del loop
 </div>
 </section>
 </section>
-<section id="span-style-color-4361ee-manejo-de-excepciones-span">
-<h2><span style="color:#4361EE">Manejo de excepciones</span><a class="headerlink" href="#span-style-color-4361ee-manejo-de-excepciones-span" title="Permalink to this headline">#</a></h2>
-<p>En python llamamos a los errores “excepciones”. Cuando suceden estos, python para su ejecución y genera un mensaje de error. Ya hemos visto que sucede cuando llamamos una variable a la cual no se la ha asignado nada.</p>
-<p>Lo que podemos hacer es “intentar” ejecutar algo, y si tendría un problema de error ejecutamos otra sección de código. De esta forma no se detiene todo el código.</p>
+<section id="span-style-color-4361ee-manejo-de-excepciones-estructura-try-except-span">
+<h2><span style="color:#4361EE">Manejo de excepciones. Estructura try - except</span><a class="headerlink" href="#span-style-color-4361ee-manejo-de-excepciones-estructura-try-except-span" title="Permalink to this headline">#</a></h2>
+<p>Como habrá observado hasta ahora, cuando se produce un error, Python termina la ejecución y hace una traza de la ejecución hasta que se produjo el error e indica el tipo de error. Ya hemos visto que sucede cuando por ejemplo llamamos una variable a la cual no se la ha asignado nada.</p>
+<p>Para cambiar este comportamiento, los errores pueden ser capturados con <code class="docutils literal notranslate"><span class="pre">excepciones</span></code> para ser procesados y evitar que el programa termine por causa del error. Siempre que se produce un error, Python genera una excepción (que puede imaginar como un mensaje) que el programador puede capturar.</p>
+<p>Lo que podemos hacer es “intentar” ejecutar algo, y si se tiene un problema de error ejecutamos otra sección de código. De esta forma no se detiene todo el código. Observemos el siguiente ejemplo.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">try</span><span class="p">:</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># se genera error y termina la ejecución</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">no_variable</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Aqui sigue la ejecución...&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">30</span><span class="o">-</span><span class="n">d3602e5b1cba</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># se genera error y termina la ejecución</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="nb">print</span><span class="p">(</span><span class="n">no_variable</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Aqui sigue la ejecución...&#39;</span><span class="p">)</span>
+
+<span class="ne">NameError</span>: name &#39;no_variable&#39; is not defined
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># captura el error</span>
+<span class="k">try</span><span class="p">:</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">no_variable</span><span class="p">)</span>
 <span class="k">except</span><span class="p">:</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;variable no encontrada&quot;</span><span class="p">)</span>
+    
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Aqui sigue la ejecución...&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>variable no encontrada
+Aqui sigue la ejecución...
 </pre></div>
 </div>
 </div>
 </div>
 <p>Como el bloque <code class="docutils literal notranslate"><span class="pre">try</span></code> generaría un error, se ejecuta el bloque <code class="docutils literal notranslate"><span class="pre">except</span></code> en su lugar</p>
-<p>Podemos ser específicos con el tipo de errores que obtenemos y ejecutar cosas distintas respecto a esto</p>
+<p>Podemos ser específicos con el tipo de errores que obtenemos y ejecutar cosas distintas respecto a esto.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">try</span><span class="p">:</span>
@@ -1633,7 +1922,7 @@ código terminado, que tenga un buen día!
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title"><span style="color:#F72585">Operaciones entre variables</span></p>
+            <p class="prev-next-title"><span style="color:#F72585">Operadores aritméticos y lógicos</span></p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="py5.html" title="next page">
