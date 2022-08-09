@@ -6,15 +6,18 @@ parts:
     - file: Inicio/Cuadernos/Consideraciones
 - caption: Introducción
   chapters:
-    - file: Python/Cuadernos/py1
-    - file: Python/Cuadernos/py2
-    - file: Python/Cuadernos/py3
-    - file: Python/Cuadernos/py4
-    - file: Python/Cuadernos/py5
-    - file: Python/Cuadernos/Colecciones
+    - file: Python/Cuadernos/py_01
+    - file: Python/Cuadernos/py_02
+    - file: Python/Cuadernos/py_03
+    - file: Python/Cuadernos/py_04
+    - file: Python/Cuadernos/py_05
+    - file: Python/Cuadernos/py_06
+    - file: Python/Cuadernos/py_07
+    - file: Python/Cuadernos/py_08
+    - file: Python/Cuadernos/py_09
+    - file: Python/Cuadernos/py_10
     - file: Python/Cuadernos/Taller_Numpy
     - file: Python/Cuadernos/Taller_Pandas
-    - file: Python/Cuadernos/La_API_tf_data    
 - caption: Pytorch
   chapters:
   - file: Pytorch/Cuadernos/Pytorch_01
