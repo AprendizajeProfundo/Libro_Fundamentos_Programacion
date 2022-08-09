@@ -26,3 +26,7 @@ parts:
   - file: Pytorch/Cuadernos/Pytorch_04
   - file: Pytorch/Cuadernos/Pytorch_05
   - file: Pytorch/Cuadernos/Pytorch_06
+- caption: TensorFlow
+  chapters:
+  - file: TensorFlow/Cuadernos/Tensorflow-01
+  - file: TensorFlow/Cuadernos/La_API_tf_data
