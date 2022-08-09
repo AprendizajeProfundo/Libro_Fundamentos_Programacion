@@ -1,0 +1,938 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Iterables e iteradores &#8212; Fundamentos de Programación</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script src="../../_static/tabs.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Tuplas" href="py_07.html" />
+    <link rel="prev" title="Funciones en Python" href="py_05.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../_static/logo-final-ap.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Fundamentos de Programación</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../tutorial.html">
+                    <span style="color:#F72585">Bienvenido(a)</span>
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Primeros Pasos
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Inicio/Cuadernos/Consideraciones.html">
+   <span style="color:#F72585">
+    Conociendo el Libro
+   </span>
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Introducción
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="py_01.html">
+   <span style="color:#F72585">
+    Introducción al lenguaje de programación Python
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="py_02.html">
+   <span style="color:#F72585">
+    Tipos de Datos Básicos
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="py_03.html">
+   <span style="color:#F72585">
+    Operadores aritméticos y lógicos
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="py_04.html">
+   <span style="color:#F72585">
+    Estructuras de control
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="py_05.html">
+   <span style="color:#F72585">
+    Funciones en Python
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   <span style="color:#F72585">
+    Iterables e iteradores
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="py_07.html">
+   <span style="color:#F72585">
+    Tuplas
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="py_08.html">
+   <span style="color:#F72585">
+    Listas
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="py_09.html">
+   <span style="color:#F72585">
+    Diccionarios
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="py_10.html">
+   <span style="color:#F72585">
+    Conjuntos
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Colecciones.html">
+   <span style="color:#F72585">
+    Listas, Tuplas y Diccionarios en Python
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Taller_Numpy.html">
+   <span style="color:#F72585">
+    Taller de numpy
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Taller_Pandas.html">
+   <span style="color:#F72585">
+    Taller de manejo de Datos en Pandas
+   </span>
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Pytorch
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Pytorch/Cuadernos/Pytorch_01.html">
+   <span style="color:#F72585">
+    Inicio Rápido
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Pytorch/Cuadernos/Pytorch_02.html">
+   <span style="color:#F72585">
+    Tensores
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Pytorch/Cuadernos/Pytorch_03.html">
+   <span style="color:#F72585">
+    DataSets y DataLoaders
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Pytorch/Cuadernos/Pytorch_04.html">
+   <span style="color:#F72585">
+    Transforms
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Pytorch/Cuadernos/Pytorch_05.html">
+   <span style="color:#F72585">
+    Diferenciación automática con torch.autograd
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Pytorch/Cuadernos/Pytorch_06.html">
+   <span style="color:#F72585">
+    Optimización con torch
+   </span>
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  TensorFlow
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../TensorFlow/Cuadernos/Tensorflow-01.html">
+   <span style="color:#F72585">
+    Inicio Rápido
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../TensorFlow/Cuadernos/La_API_tf_data.html">
+   <span style="color:#F72585">
+    Canalización de datos. La API tf.data
+   </span>
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/AprendizajeProfundo/Libro_Fundamentos_Programacion/main?urlpath=tree/Python/Cuadernos/py_06.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://colab.research.google.com/github/AprendizajeProfundo/Libro_Fundamentos_Programacion/blob/main/Python/Cuadernos/py_06.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Colab"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../../_static/images/logo_colab.png">
+  </span>
+<span class="headerbtn__text-container">Colab</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="initThebeSBT()"
+  class="headerbtn headerbtn-launch-thebe"
+  data-toggle="tooltip"
+data-placement="left"
+title="Launch Thebe"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="headerbtn__text-container">Live Code</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/AprendizajeProfundo/Libro_Fundamentos_Programacion"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/AprendizajeProfundo/Libro_Fundamentos_Programacion/issues/new?title=Issue%20on%20page%20%2FPython/Cuadernos/py_06.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/AprendizajeProfundo/Libro_Fundamentos_Programacion/edit/main/Python/Cuadernos/py_06.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Edit this page"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="headerbtn__text-container">suggest edit</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../../_sources/Python/Cuadernos/py_06.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-introduccion-span">
+   <span style="color:#4361EE">
+    Introducción
+   </span>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-iterables-e-iteradores-span">
+   <span style="color:#4361EE">
+    Iterables e iteradores
+   </span>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-iterables-span">
+     <span style="color:#4CC9F0">
+      Iterables
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-iteradores-span">
+     <span style="color:#4CC9F0">
+      Iteradores
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-generadores-span">
+     <span style="color:#4CC9F0">
+      Generadores
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-ejemplo-de-una-funcion-generadora-span">
+     <span style="color:#4CC9F0">
+      Ejemplo de una función generadora
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-creacion-de-una-clase-iterable-span">
+     <span style="color:#4CC9F0">
+      Creación de una clase iterable
+     </span>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-colecciones-span">
+   <span style="color:#4361EE">
+    Colecciones
+   </span>
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1><span style="color:#F72585">Iterables e iteradores</span></h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-introduccion-span">
+   <span style="color:#4361EE">
+    Introducción
+   </span>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-iterables-e-iteradores-span">
+   <span style="color:#4361EE">
+    Iterables e iteradores
+   </span>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-iterables-span">
+     <span style="color:#4CC9F0">
+      Iterables
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-iteradores-span">
+     <span style="color:#4CC9F0">
+      Iteradores
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-generadores-span">
+     <span style="color:#4CC9F0">
+      Generadores
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-ejemplo-de-una-funcion-generadora-span">
+     <span style="color:#4CC9F0">
+      Ejemplo de una función generadora
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-creacion-de-una-clase-iterable-span">
+     <span style="color:#4CC9F0">
+      Creación de una clase iterable
+     </span>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-colecciones-span">
+   <span style="color:#4361EE">
+    Colecciones
+   </span>
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="span-style-color-f72585-iterables-e-iteradores-span">
+<h1><span style="color:#F72585">Iterables e iteradores</span><a class="headerlink" href="#span-style-color-f72585-iterables-e-iteradores-span" title="Permalink to this headline">#</a></h1>
+<section id="span-style-color-4361ee-introduccion-span">
+<h2><span style="color:#4361EE">Introducción</span><a class="headerlink" href="#span-style-color-4361ee-introduccion-span" title="Permalink to this headline">#</a></h2>
+<p>Este es una lección introductoria al concepto de Iterables e iteradores en Python.</p>
+</section>
+<section id="span-style-color-4361ee-iterables-e-iteradores-span">
+<h2><span style="color:#4361EE">Iterables e iteradores</span><a class="headerlink" href="#span-style-color-4361ee-iterables-e-iteradores-span" title="Permalink to this headline">#</a></h2>
+<p>Hay dos protocolos que es muy probable tenga que utilizar, o posiblemente necesite
+implementar en algún momento; estos son el protocolo Iterable y el protocolo Iterador.
+Estos dos protocolos están estrechamente relacionados y son muy utilizados y respaldados por un
+gran cantidad de tipos.</p>
+<p>Una de las razones por las que los iteradores y los iterables son importados es que se pueden usar con
+sentencias <em>for</em> en Python; esto hace  que sea muy fácil integrar un iterable en el código
+que necesita procesar una secuencia de valores a su vez</p>
+<section id="span-style-color-4cc9f0-iterables-span">
+<h3><span style="color:#4CC9F0">Iterables</span><a class="headerlink" href="#span-style-color-4cc9f0-iterables-span" title="Permalink to this headline">#</a></h3>
+<p>El protocolo Iterable es utilizado por tipos donde es posible procesar su contenido.
+uno a la vez.</p>
+<p>Un Iterable es un objeto que proporcionará un Iterador que puede ser
+utilizado para realizar este procesamiento.</p>
+<p>Como tal, el iterable no es el iterador en sí mismo; sino el proveedor del iterador.</p>
+<p>Hay muchos tipos iterables en Python, incluidas listas, conjuntos, diccionarios,
+tuplas, etc. Todos estos son contenedores iterables que proporcionarán un iterador.</p>
+<p>Es posible además construir clases que generen iteradores personalizados. De momento trabajaremos con los tipos que ya lo soportan, mencionados arriba.</p>
+</section>
+<section id="span-style-color-4cc9f0-iteradores-span">
+<h3><span style="color:#4CC9F0">Iteradores</span><a class="headerlink" href="#span-style-color-4cc9f0-iteradores-span" title="Permalink to this headline">#</a></h3>
+<p>Un iterador es un objeto que devolverá una secuencia de valores.</p>
+<p>Los iteradores pueden ser finitos de longitud o infinito (aunque la mayoría de  iteradores orientados a contenedores proporcionan un conjunto fijo de valores.</p>
+</section>
+<section id="span-style-color-4cc9f0-generadores-span">
+<h3><span style="color:#4CC9F0">Generadores</span><a class="headerlink" href="#span-style-color-4cc9f0-generadores-span" title="Permalink to this headline">#</a></h3>
+<p>Un generador es una función especial que se puede utilizar para generar una secuencia de
+valores que se van a iterar sobre  demanda (es decir, cuando se necesitan los valores) en lugar de
+que producido todo por adelantado.</p>
+<p>Lo único que hace que una función  generadora trabaje como generador es el uso de
+palabra clave <em>yield</em>.</p>
+</section>
+<section id="span-style-color-4cc9f0-ejemplo-de-una-funcion-generadora-span">
+<h3><span style="color:#4CC9F0">Ejemplo de una función generadora</span><a class="headerlink" href="#span-style-color-4cc9f0-ejemplo-de-una-funcion-generadora-span" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">gen_numbers</span><span class="p">():</span>
+    <span class="k">yield</span> <span class="mi">1</span>
+    <span class="k">yield</span> <span class="mi">2</span>
+    <span class="k">yield</span> <span class="mi">3</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Esta es una función generadora, ya que tiene al menos una declaración <em>yield</em> (de hecho, tiene
+Tres).</p>
+<p>Cada vez que se llama a la función <em>gen_numbers ()</em> dentro de una instrucción <em>for</em>
+devolverá uno de los valores asociados con una declaración <em>yield</em>; en este caso el
+valor 1, luego el valor 2 y finalmente el valor 3 antes de que regrese (termine).</p>
+<p>Ahora construimos una ciclo <em>for</em> que va llamando los números a la medida que los necesita. Observe que la variable <em>i</em> en este ejemplos es un iterador entregado por la función <em>gen_numbers()</em>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">gen_numbers</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1
+2
+3
+</pre></div>
+</div>
+</div>
+</div>
+<p>Para enteder un poco mejor como se ejecuta <em>yield</em> discuta en clase el siguiente fragmento (snnipet) de código.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">gen_numbers2</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Start&#39;</span><span class="p">)</span>
+    <span class="k">yield</span> <span class="mi">1</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Continue&#39;</span><span class="p">)</span>
+    <span class="k">yield</span> <span class="mi">2</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Final&#39;</span><span class="p">)</span>
+    <span class="k">yield</span> <span class="mi">3</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;End&#39;</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">gen_numbers2</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Start
+1
+Continue
+2
+Final
+3
+End
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="span-style-color-4cc9f0-creacion-de-una-clase-iterable-span">
+<h3><span style="color:#4CC9F0">Creación de una clase iterable</span><a class="headerlink" href="#span-style-color-4cc9f0-creacion-de-una-clase-iterable-span" title="Permalink to this headline">#</a></h3>
+<p>Más adelante veremos clases a plenitud. Aquí introducimos una clase muy sencilla para mostrar como crear un iterable personalizado.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Evens</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">limit</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">limit</span> <span class="o">=</span> <span class="n">limit</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">val</span> <span class="o">=</span> <span class="mi">0</span>
+    
+    <span class="c1"># Hace esta clase iterable</span>
+    <span class="k">def</span> <span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span>
+    
+    <span class="c1"># Hace esta clase un iterador</span>
+    <span class="k">def</span> <span class="fm">__next__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">val</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">limit</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">StopIteration</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">return_val</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">val</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">val</span> <span class="o">+=</span> <span class="mi">2</span>
+            <span class="k">return</span> <span class="n">return_val</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Solamente vamos a resaltar unas pocas cosas de esta clase <em>Events</em></p>
+<ul class="simple">
+<li><p>El método  __iter__()  retorna <em>self</em>; este es un patrón muy común y asume que la clase también implementa el protocolo iterador.</p></li>
+<li><p>El método  __next__() retorna el siguiente valor en la secuencia o dispara una excepción con <em>StopIteration</em> para indicar que no hay más valores dsiponibles.</p></li>
+</ul>
+<p>El protocolo implica que cuando Python encuentra la definición de la función __iter__() construye la maquinaria para que la clase sea un iterable. De la misma forma, cuando encuentra la función __next__() construye la maquinaria para que la clase entregue un iterador.</p>
+<p>Veámos en acción <em>Evens</em>. Discuta en la clase.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;¡Empezamos&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">Evens</span><span class="p">(</span><span class="mi">16</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">end</span><span class="o">=</span><span class="s1">&#39;, &#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Hecho!&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>¡Empezamos
+0, 2, 4, 6, 8, 10, 12, 14, 16, 
+Hecho!
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="span-style-color-4361ee-colecciones-span">
+<h2><span style="color:#4361EE">Colecciones</span><a class="headerlink" href="#span-style-color-4361ee-colecciones-span" title="Permalink to this headline">#</a></h2>
+<p>Una colección es un contenedor de objetos del mismo tipo. Por defecto en Python existen cuatro tipos de contenedores:</p>
+<ul class="simple">
+<li><p><strong>Tuplas (tuple).</strong> Esta es una colección de objetos que están ordenados y son inmutables (no pueden modificarse). Las tuplas admiten elementos repetidos y sus miembros son indexados.</p></li>
+<li><p><strong>Listas (list).</strong> Son colecciones de objetos que están ordenado y son mutables, es decir, sus contenidos pueden ser modificados. Los elementos son indexados y permite duplicados.</p></li>
+<li><p><strong>Conjuntos (set).</strong> Son contenedores de datos que no son ordenados ni indexados. Son mutables, pero no admiten duplicados.</p></li>
+<li><p><strong>Diccionarios (dictionary)</strong> Son contenedores no ordenados, que son indexados mediante una clave, la cual referencia a un valor. El valor es retornado cuando se le solicita con la clave. No se admiten claves repetidas, pero si valores repetidos.</p></li>
+</ul>
+<p>Recuerde que todo en Python es realmente un tipo de objeto.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "AprendizajeProfundo/Libro_Fundamentos_Programacion",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./Python\Cuadernos"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="py_05.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title"><span style="color:#F72585">Funciones en Python</span></p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="py_07.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span style="color:#F72585">Tuplas</span></p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Álvaro Mauricio Montenegro Díaz, Daniel Mauricio Montenegro Reyes<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

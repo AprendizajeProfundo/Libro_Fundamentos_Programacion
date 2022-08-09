@@ -57,7 +57,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Tensores" href="Pytorch_02.html" />
-    <link rel="prev" title="Canalización de datos. La API tf.data" href="../../Python/Cuadernos/La_API_tf_data.html" />
+    <link rel="prev" title="Taller de manejo de Datos en Pandas" href="../../Python/Cuadernos/Taller_Pandas.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -138,9 +138,9 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../../Python/Cuadernos/py1.html">
+  <a class="reference internal" href="../../Python/Cuadernos/py0.html">
    <span style="color:#F72585">
-    Introducción al lenguaje Python
+    Conceptos básicos de programación
    </span>
   </a>
  </li>
@@ -154,7 +154,7 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1">
   <a class="reference internal" href="../../Python/Cuadernos/py3.html">
    <span style="color:#F72585">
-    Operaciones entre variables
+    Operadores aritméticos y lógicos
    </span>
   </a>
  </li>
@@ -190,13 +190,6 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal" href="../../Python/Cuadernos/Taller_Pandas.html">
    <span style="color:#F72585">
     Taller de manejo de Datos en Pandas
-   </span>
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../Python/Cuadernos/La_API_tf_data.html">
-   <span style="color:#F72585">
-    Canalización de datos. La API tf.data
    </span>
   </a>
  </li>
@@ -246,6 +239,27 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal" href="Pytorch_06.html">
    <span style="color:#F72585">
     Optimización con torch
+   </span>
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  TensorFlow
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../TensorFlow/Cuadernos/Tensorflow-01.html">
+   <span style="color:#F72585">
+    Inicio Rápido
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../TensorFlow/Cuadernos/La_API_tf_data.html">
+   <span style="color:#F72585">
+    Canalización de datos. La API tf.data
    </span>
   </a>
  </li>
@@ -1014,47 +1028,42 @@ NeuralNetwork(
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 1
 -------------------------------
+loss: 2.298863 [    0/60000]
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>loss: 2.306007 [    0/60000]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>loss: 2.293265 [ 6400/60000]
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>loss: 2.302773 [ 6400/60000]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>loss: 2.284286 [12800/60000]
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>loss: 2.291560 [12800/60000]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>loss: 2.282606 [19200/60000]
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>loss: 2.294537 [19200/60000]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>loss: 2.268638 [25600/60000]
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>loss: 2.286654 [25600/60000]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>loss: 2.248510 [32000/60000]
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>loss: 2.265105 [32000/60000]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>loss: 2.241190 [38400/60000]
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>loss: 2.280893 [38400/60000]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>loss: 2.221210 [44800/60000]
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>loss: 2.264679 [44800/60000]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>loss: 2.220416 [51200/60000]
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>loss: 2.278024 [51200/60000]
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>loss: 2.243173 [57600/60000]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>loss: 2.200808 [57600/60000]
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Test Error: 
- Accuracy: 26.9%, Avg loss: 2.250623 
+ Accuracy: 52.2%, Avg loss: 2.202248 
 
 Epoch 2
 -------------------------------
-loss: 2.262949 [    0/60000]
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>loss: 2.261336 [ 6400/60000]
+loss: 2.205961 [    0/60000]
 </pre></div>
 </div>
 </div>
@@ -1158,11 +1167,11 @@ loss: 2.262949 [    0/60000]
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="../../Python/Cuadernos/La_API_tf_data.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="../../Python/Cuadernos/Taller_Pandas.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title"><span style="color:#F72585">Canalización de datos. La API tf.data</span></p>
+            <p class="prev-next-title"><span style="color:#F72585">Taller de manejo de Datos en Pandas</span></p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="Pytorch_02.html" title="next page">

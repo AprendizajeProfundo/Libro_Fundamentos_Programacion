@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Introducción al lenguaje Python &#8212; Fundamentos de Programación</title>
+    <title>Introducción al lenguaje de programación Python &#8212; Fundamentos de Programación</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -57,7 +57,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Tipos de Datos Básicos" href="py2.html" />
-    <link rel="prev" title="Conociendo el Libro" href="../../Inicio/Cuadernos/Consideraciones.html" />
+    <link rel="prev" title="Conceptos básicos de programación" href="py0.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -137,10 +137,17 @@ const thebe_selector_output = ".output, .cell_output"
  </span>
 </p>
 <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="py0.html">
+   <span style="color:#F72585">
+    Conceptos básicos de programación
+   </span>
+  </a>
+ </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
    <span style="color:#F72585">
-    Introducción al lenguaje Python
+    Introducción al lenguaje de programación Python
    </span>
   </a>
  </li>
@@ -154,7 +161,7 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1">
   <a class="reference internal" href="py3.html">
    <span style="color:#F72585">
-    Operaciones entre variables
+    Operadores aritméticos y lógicos
    </span>
   </a>
  </li>
@@ -190,13 +197,6 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal" href="Taller_Pandas.html">
    <span style="color:#F72585">
     Taller de manejo de Datos en Pandas
-   </span>
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="La_API_tf_data.html">
-   <span style="color:#F72585">
-    Canalización de datos. La API tf.data
    </span>
   </a>
  </li>
@@ -246,6 +246,27 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal" href="../../Pytorch/Cuadernos/Pytorch_06.html">
    <span style="color:#F72585">
     Optimización con torch
+   </span>
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  TensorFlow
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../TensorFlow/Cuadernos/Tensorflow-01.html">
+   <span style="color:#F72585">
+    Inicio Rápido
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../TensorFlow/Cuadernos/La_API_tf_data.html">
+   <span style="color:#F72585">
+    Canalización de datos. La API tf.data
    </span>
   </a>
  </li>
@@ -516,6 +537,57 @@ title="Print to PDF"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-breve-historia-de-python-span">
+   <span style="color:#4361EE">
+    Breve historia de Python
+   </span>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-version-1-0-span">
+     <span style="color:#4CC9F0">
+      Versión 1.0
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-version-2-0-span">
+     <span style="color:#4CC9F0">
+      Versión 2.0
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-version-3-0-span">
+     <span style="color:#4CC9F0">
+      Versión 3.0
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-sobre-numpy-span">
+     <span style="color:#4CC9F0">
+      Sobre Numpy
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-sobre-pandas-span">
+     <span style="color:#4CC9F0">
+      Sobre Pandas
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-sobre-matplotlib-span">
+     <span style="color:#4CC9F0">
+      Sobre Matplotlib
+     </span>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#span-style-color-4361ee-que-es-python-span">
    <span style="color:#4361EE">
     ¿Qué es Python?
@@ -523,16 +595,23 @@ title="Print to PDF"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#span-style-color-4361ee-que-puede-hacer-python-span">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-para-que-se-usa-python-span">
    <span style="color:#4361EE">
-    ¿Qué puede hacer Python?
+    ¿Para qué se usa Python?
    </span>
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#span-style-color-4361ee-por-que-python-span">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-caracteristicas-generales-del-lenguaje-span">
    <span style="color:#4361EE">
-    ¿Por qué Python?
+    Características generales del lenguaje
+   </span>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-el-desarrollo-modular-de-python-ecosistema-span">
+   <span style="color:#4361EE">
+    El desarrollo modular de Python. Ecosistema
    </span>
   </a>
  </li>
@@ -591,7 +670,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1><span style="color:#F72585">Introducción al lenguaje Python</span></h1>
+                <h1><span style="color:#F72585">Introducción al lenguaje de programación Python</span></h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -609,6 +688,57 @@ title="Print to PDF"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-breve-historia-de-python-span">
+   <span style="color:#4361EE">
+    Breve historia de Python
+   </span>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-version-1-0-span">
+     <span style="color:#4CC9F0">
+      Versión 1.0
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-version-2-0-span">
+     <span style="color:#4CC9F0">
+      Versión 2.0
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-version-3-0-span">
+     <span style="color:#4CC9F0">
+      Versión 3.0
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-sobre-numpy-span">
+     <span style="color:#4CC9F0">
+      Sobre Numpy
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-sobre-pandas-span">
+     <span style="color:#4CC9F0">
+      Sobre Pandas
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-sobre-matplotlib-span">
+     <span style="color:#4CC9F0">
+      Sobre Matplotlib
+     </span>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#span-style-color-4361ee-que-es-python-span">
    <span style="color:#4361EE">
     ¿Qué es Python?
@@ -616,16 +746,23 @@ title="Print to PDF"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#span-style-color-4361ee-que-puede-hacer-python-span">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-para-que-se-usa-python-span">
    <span style="color:#4361EE">
-    ¿Qué puede hacer Python?
+    ¿Para qué se usa Python?
    </span>
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#span-style-color-4361ee-por-que-python-span">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-caracteristicas-generales-del-lenguaje-span">
    <span style="color:#4361EE">
-    ¿Por qué Python?
+    Características generales del lenguaje
+   </span>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-el-desarrollo-modular-de-python-ecosistema-span">
+   <span style="color:#4361EE">
+    El desarrollo modular de Python. Ecosistema
    </span>
   </a>
  </li>
@@ -685,27 +822,71 @@ title="Print to PDF"
                 
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="span-style-color-f72585-introduccion-al-lenguaje-python-span">
-<h1><span style="color:#F72585">Introducción al lenguaje Python</span><a class="headerlink" href="#span-style-color-f72585-introduccion-al-lenguaje-python-span" title="Permalink to this headline">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="span-style-color-f72585-introduccion-al-lenguaje-de-programacion-python-span">
+<h1><span style="color:#F72585">Introducción al lenguaje de programación Python</span><a class="headerlink" href="#span-style-color-f72585-introduccion-al-lenguaje-de-programacion-python-span" title="Permalink to this headline">#</a></h1>
 <section id="span-style-color-4361ee-introduccion-span">
 <h2><span style="color:#4361EE">Introducción</span><a class="headerlink" href="#span-style-color-4361ee-introduccion-span" title="Permalink to this headline">#</a></h2>
-<p>Este es un cuaderno introductorio a Python diseñado en JupyterLab, exploraremos las funciones básicas disponibles de <strong>Python</strong> y la programación básica para su posterior uso en el diplomado. Comencemos con un ambiente de <strong>Python 3</strong>. Para una introducción más extensa, ir <a class="reference external" href="https://www.w3schools.com/python/">aquí</a>.</p>
+<p>Comenzaremos con un ambiente de <strong>Python 3</strong>. Pero antes un poco de su ecosistema y su  historia.</p>
+</section>
+<section id="span-style-color-4361ee-breve-historia-de-python-span">
+<h2><span style="color:#4361EE">Breve historia de Python</span><a class="headerlink" href="#span-style-color-4361ee-breve-historia-de-python-span" title="Permalink to this headline">#</a></h2>
+<p>Python fue concebido a fines de la década de 1980 por Guido van Rossum en Centrum Wiskunde &amp; Informatica (CWI) en los Países Bajos como un sucesor del lenguaje de programación ABC.  La primera versión ya incluía clases con herencias, manejo de excepciones, funciones y una de las características principales de Python: funcionamiento modular. Esto permitía que fuese un lenguaje mucho más limpio y accesible para la gente con pocos conocimientos de programación. Una característica que se mantiene hasta el día de hoy.
+Hasta el año 2018, el desarrollo de este popular lenguaje de programación estaba dirigido personalmente por Van Rossum, pero decidió apartarse y, desde 2019, son cinco las personas que deciden como evoluciona y se desarrolla Python. Un consejo que se renueva de forma anual.</p>
+<p>Guido van Rossum en OSCON_2006.
+Créditos: Wikipedia</p>
+<figure>
+<img src="https://raw.githubusercontent.com/AprendizajeProfundo/Libro_Fundamentos_Programacion/main/Python/Imagenes/Guido_van_Rossum_OSCON_2006_cropped.png" width="180" align="left" />   
+</figure>
+<section id="span-style-color-4cc9f0-version-1-0-span">
+<h3><span style="color:#4CC9F0"> Versión 1.0</span><a class="headerlink" href="#span-style-color-4cc9f0-version-1-0-span" title="Permalink to this headline">#</a></h3>
+<p>Van Rossum empezó a desarrollar Python mientras trabajaba en CWI. Fue este centro de investigación quien liberó, en 1995 la versión 1.2 de Python. A partir de este momento, ya desvinculado de CWI, Van Rossum hizo aún más accesible el código y para el año 2000, el equipo principal de desarrolladores de Python se cambió a <a class="reference external" href="http://BeOpen.com">BeOpen.com</a> para formar el equipo de BeOpen Python Labs.</p>
+</section>
+<section id="span-style-color-4cc9f0-version-2-0-span">
+<h3><span style="color:#4CC9F0"> Versión 2.0</span><a class="headerlink" href="#span-style-color-4cc9f0-version-2-0-span" title="Permalink to this headline">#</a></h3>
+<p>En octubre del año 2000 se publica la segunda versión de Python. Una nueva versión en la que se incluyó la generación de listas, una de las características más importantes del lenguaje este lenguaje de programación. En 2001, se crea la Python Software Foundation, la cual a partir de Python 2.1 es dueña de todo el código, documentación y especificaciones del lenguaje.</p>
+</section>
+<section id="span-style-color-4cc9f0-version-3-0-span">
+<h3><span style="color:#4CC9F0"> Versión 3.0</span><a class="headerlink" href="#span-style-color-4cc9f0-version-3-0-span" title="Permalink to this headline">#</a></h3>
+<p>La última gran actualización de la historia de Python se produjo en el año 2008 con el lanzamiento de la versión 3.0, que venía a solucionar los principales fallos en el diseño de este lenguaje de programación.
+Aunque Python mantiene su filosofía en esta última versión, como lenguaje de programación ha ido acumulando formas nuevas y redundantes de programar un mismo elemento. De ahí la necesidad de nuevas versiones que eliminen estos constructores duplicados.
+Python 3.0 rompe la compatibilidad hacia atrás del lenguaje, ya que el código de Python 2.x no necesariamente debe correr en Python 3.0 sin modificación alguna.</p>
+</section>
+<section id="span-style-color-4cc9f0-sobre-numpy-span">
+<h3><span style="color:#4CC9F0">Sobre Numpy</span><a class="headerlink" href="#span-style-color-4cc9f0-sobre-numpy-span" title="Permalink to this headline">#</a></h3>
+<p>Python no se diseñó originalmente para computación numérica, pero atrajo la atención de la comunidad científica y de ingeniería desde el principio. En 1995 se fundó el grupo de interés especial (SIG) matrix-sig con el objetivo de definir un paquete de computación de matriz ; entre sus miembros se encontraba el diseñador y mantenedor de Python, Guido van Rossum , quien amplió la sintaxis de Python (en particular, la sintaxis de indexación) para facilitar la computación de arreglos .</p>
+<p>Jim Fulton completó una implementación de un paquete de matriz, luego Jim Hugunin generalizó y lo llamó Numeric (también conocido como las “extensiones numéricas de Python” o “NumPy”).</p>
+<p>Posteriormente se escribió un nuevo paquete llamado Numarray como un reemplazo más flexible para Numeric. Al igual que Numeric, ahora también está obsoleto. Numarray tenía operaciones más rápidas para matrices grandes, pero era más lento que Numeric en las pequeñas, por lo que durante un tiempo ambos paquetes se usaron en paralelo para diferentes casos de uso.</p>
+<p>La última versión de Numeric (v24.2) se publicó el 11 de noviembre de 2005, mientras que la última versión de numarray (v1.5.2) se publicó el 24 de agosto de 2006.</p>
+<p>A principios de 2005, el desarrollador de NumPy, Travis Oliphant, quería unificar a la comunidad en torno a un único paquete de matriz y transfirió las características de Numarray a Numeric, lanzando el resultado como NumPy 1.0 en 2006. Este nuevo proyecto era parte de SciPy . Para evitar instalar el paquete SciPy grande solo para obtener un objeto de matriz, este nuevo paquete se separó y se llamó NumPy. El soporte para Python 3 se agregó en 2011 con NumPy versión 1.5.0, <a class="reference external" href="https://en.wikipedia.org/wiki/NumPy">Wikipedia</a></p>
+</section>
+<section id="span-style-color-4cc9f0-sobre-pandas-span">
+<h3><span style="color:#4CC9F0">Sobre Pandas</span><a class="headerlink" href="#span-style-color-4cc9f0-sobre-pandas-span" title="Permalink to this headline">#</a></h3>
+<p>Wes McKinney, empezó a desarrollar Pandas en el año 2008 mientras trabajaba en AQR Capital por la necesidad que tenía de una herramienta flexible de alto rendimiento para realizar análisis cuantitativo en datos financieros. Antes de dejar AQR convenció a la administración de la empresa de distribuir esta biblioteca bajo licencia de código abierto. Otro empleado de AQR, Chang Ella, se unió en 2012 al esfuerzo de desarrollo de la biblioteca, <a class="reference external" href="https://es.wikipedia.org/wiki/Pandas_(software)#Historia">Wikipedia</a>.</p>
+</section>
+<section id="span-style-color-4cc9f0-sobre-matplotlib-span">
+<h3><span style="color:#4CC9F0">Sobre Matplotlib</span><a class="headerlink" href="#span-style-color-4cc9f0-sobre-matplotlib-span" title="Permalink to this headline">#</a></h3>
+<p>Matplotlib es una biblioteca de gráficos para  Python y su extensión matemática numérica NumPy . Proporciona una API orientada a objetos para incrustar gráficos en aplicaciones que utilizan juegos de herramientas GUI de uso general como Tkinter , wxPython , Qt o GTK . También hay una interfaz de procedimiento “pylab” basada en una máquina de estado (como OpenGL ), diseñada para parecerse mucho a la de MATLAB.</p>
+<p>Matplotlib fue escrito originalmente por John D. Hunter . Desde entonces ha tenido una comunidad de desarrollo activa y se distribuye bajo una licencia estilo BSD . Michael Droettboom fue nominado como desarrollador principal de matplotlib poco antes de la muerte de John Hunter en agosto de 2012 y se le unió Thomas Caswell. Matplotlib es un proyecto patrocinado fiscalmente por NumFOCUS .</p>
+<p>Matplotlib 2.0.x es compatible con las versiones de Python 2.7 a 3.10. El soporte de Python 3 comenzó con Matplotlib 1.2. Matplotlib 1.4 es la última versión compatible con Python 2.6. Matplotlib se comprometió a no admitir Python 2 después de 2020 al firmar la Declaración de Python 3, <a class="reference external" href="https://en.wikipedia.org/wiki/Matplotlib">Wikipedia</a></p>
+</section>
 </section>
 <section id="span-style-color-4361ee-que-es-python-span">
 <h2><span style="color:#4361EE">¿Qué es Python?</span><a class="headerlink" href="#span-style-color-4361ee-que-es-python-span" title="Permalink to this headline">#</a></h2>
 <figure>
 <img src="https://raw.githubusercontent.com/AprendizajeProfundo/Libro_Fundamentos_Programacion/main/Python/Imagenes/python-logo-master-v3-TM.png"  width="400"/> 
 </figure>
-<p>Python es un lenguaje de programación (¿Qué es un programa?) popular que se usa normalmente para:</p>
+<p><a class="reference external" href="https://www.python.org/">Python</a> es un lenguaje de programación (¿Qué es un programa?) popular que se usa normalmente para:</p>
 <ul class="simple">
 <li><p>Desarrollo web en servidores.</p></li>
 <li><p>Desarrollo de Software.</p></li>
 <li><p>Cálculos Matemáticos.</p></li>
 <li><p>Desarrollo de Scripts.</p></li>
 </ul>
+<p>Python es actualmente el segundo lenguaje de programación después de Java. El tercer lenguaje es C++.</p>
+<p>Con el advenimiento de la ciencia de datos y de la inteligencia artificial Python se convirtió en el lenguaje preferido en estas áreas  junto a R.</p>
 </section>
-<section id="span-style-color-4361ee-que-puede-hacer-python-span">
-<h2><span style="color:#4361EE">¿Qué puede hacer Python?</span><a class="headerlink" href="#span-style-color-4361ee-que-puede-hacer-python-span" title="Permalink to this headline">#</a></h2>
+<section id="span-style-color-4361ee-para-que-se-usa-python-span">
+<h2><span style="color:#4361EE">¿Para qué se usa Python?</span><a class="headerlink" href="#span-style-color-4361ee-para-que-se-usa-python-span" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p>Puede ser usado en un servidor para crear <strong>aplicaciones web</strong>,</p></li>
 <li><p>Puede conectarse a sistemas de <strong>bases de datos</strong>. Puede leer y modificar archivos.</p></li>
@@ -713,17 +894,26 @@ title="Print to PDF"
 <li><p><strong>Prototipo rápido</strong> para producción de Software.</p></li>
 </ul>
 </section>
-<section id="span-style-color-4361ee-por-que-python-span">
-<h2><span style="color:#4361EE">¿Por qué Python?</span><a class="headerlink" href="#span-style-color-4361ee-por-que-python-span" title="Permalink to this headline">#</a></h2>
+<section id="span-style-color-4361ee-caracteristicas-generales-del-lenguaje-span">
+<h2><span style="color:#4361EE">Características generales del lenguaje</span><a class="headerlink" href="#span-style-color-4361ee-caracteristicas-generales-del-lenguaje-span" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p>Funciona en diferentes <strong>plataformas</strong> (Windows, Mac, Linux, etc).</p></li>
 <li><p>Tiene una <strong>sintaxis</strong> (forma de escribir) simple, similar al idioma inglés.</p></li>
-<li><p>Tiene una sintáxis que permite escribir programas en <strong>muy pocas líneas</strong>, comparado con otros lenguajes de programación.</p></li>
+<li><p>Tiene una sintaxis que permite escribir programas en <strong>muy pocas líneas</strong>, comparado con otros lenguajes de programación.</p></li>
 <li><p>Python se ejecuta en un <strong>sistema interpretado</strong>. Es decir, que los códigos se pueden correr <strong>justo después de ser escritos</strong>; en otras palabras, no necesitan compilación previa.</p></li>
 <li><p>Se puede usar como un lenguaje <strong>clásico</strong>, como un lenguaje <strong>orientado a objetos</strong>, o como un lenguaje <strong>funcional</strong>.</p></li>
 <li><p>Es el principal lenguaje de la <strong>Ciencia de Datos</strong>.</p></li>
 </ul>
 </section>
+<section id="span-style-color-4361ee-el-desarrollo-modular-de-python-ecosistema-span">
+<h2><span style="color:#4361EE"> El desarrollo modular de Python. Ecosistema</span><a class="headerlink" href="#span-style-color-4361ee-el-desarrollo-modular-de-python-ecosistema-span" title="Permalink to this headline">#</a></h2>
+<p>Una de las principales características de Python es el enorme ecosistema que acompaña al núcleo (kernel). La ciencia de datos impulsó este desarrollo. A partir del desarrollo de la ciencia de datos en el siglo 21, junto con la aparición de las enorme cantidades de datos, los científicos miraron hacia los lenguajes de programación  existentes y eligieron a Python por encima de R, debido a que R no es un lenguaje de programación general.</p>
+<p>La imagen muestra parte del ecosistema de Python, que hoy se considerá como básico para cualquier científico de datos moderno.</p>
+<p>Las diferentes librerías fueron apareciendo a la medida que los científicos empezaron a utilizar Python como su lenguaje básico. La razón principal fue la eficiencia tanto en velocidad como en manejo de memoria. Python es interpretado y en consecuencia lento. Pero por otro lado es un lenguaje muy fácil de aprender, flexible, estructurado, orientado a objetos y funcional.</p>
+<p>Los científicos se preguntaron ¿Cómo hacer de Python el lenguaje de base, pero ganar en eficiencia? La respuesta fue: crear un ecosistema, con librerías especializadas muy eficientes.</p>
+<figure>
+<img src="https://raw.githubusercontent.com/AprendizajeProfundo/Libro_Fundamentos_Programacion/main/Python/Imagenes/ecosistema-python_2.png"  width="800"/> 
+</figure></section>
 <section id="span-style-color-4361ee-hello-world-span">
 <h2><span style="color:#4361EE">Hello World!</span><a class="headerlink" href="#span-style-color-4361ee-hello-world-span" title="Permalink to this headline">#</a></h2>
 <p>El primer ejemplo clásico de programación es saludar, o sea, decirle al computador que muestre un saludo. Para esto, se usa la función de Python llamada <strong>print</strong>. Para colocar un saludo (o un <strong>texto cualquiera</strong>), se debe colocar entre <strong>comillas dobles o sencillas</strong> dentro del comando print. Entonces, para que el computador muestre un saludo, por ejemplo <strong>Hello, World!</strong>, debemos escribir en ambiente de código como sigue</p>
@@ -874,11 +1064,11 @@ En cambio ahora x es un string: 25 de mayo
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="../../Inicio/Cuadernos/Consideraciones.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="py0.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title"><span style="color:#F72585">Conociendo el Libro</span></p>
+            <p class="prev-next-title"><span style="color:#F72585">Conceptos básicos de programación</span></p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="py2.html" title="next page">

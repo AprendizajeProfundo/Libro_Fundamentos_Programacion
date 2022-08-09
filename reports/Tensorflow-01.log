@@ -32,8 +32,9 @@ nbclient.exceptions.CellTimeoutError: A cell timed out while it was being execut
 The message was: Cell execution timed out.
 Here is a preview of the cell contents:
 -------------------
-['import tensorflow as tf', 'from tensorflow.keras.models import Model', 'from tensorflow.keras.models import Sequential', 'from tensorflow.keras.layers import Flatten, Dense', 'from tensorflow.keras.layers import Activation']
-...
-['', 'import matplotlib.pyplot as plt', 'import numpy as np', '', 'from sklearn.preprocessing import LabelBinarizer']
+hist =  model.fit(trainX, trainY, batch_size=batch_size, 
+                  validation_data=(testX, testY),
+                  steps_per_epoch=trainX.shape[0] // batch_size,
+                  epochs=epochs, verbose=1)
 -------------------
 
