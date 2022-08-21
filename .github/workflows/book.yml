@@ -22,6 +22,8 @@ jobs:
     - name: Install dependencies
       run: |
         pip install -r requirements.txt
+        pip install sphinx
+        pip install jupyter-book
     # Build the book
     - name: Build the book
       run: |
