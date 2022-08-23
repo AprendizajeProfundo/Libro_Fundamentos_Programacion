@@ -19,6 +19,7 @@ parts:
     - file: Python/Cuadernos/py_10
     - file: Python/Cuadernos/py_11
     - file: Python/Cuadernos/py_12
+    - file: Python/Cuadernos/py_13
     - file: Python/Cuadernos/Taller_Numpy
     - file: Python/Cuadernos/Taller_Pandas
 - caption: Pytorch
