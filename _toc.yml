@@ -6,6 +6,7 @@ parts:
     - file: Inicio/Cuadernos/Consideraciones
 - caption: Introducción
   chapters:
+    - file: Python/Cuadernos/py_00
     - file: Python/Cuadernos/py_01
     - file: Python/Cuadernos/py_02
     - file: Python/Cuadernos/py_03
@@ -16,6 +17,8 @@ parts:
     - file: Python/Cuadernos/py_08
     - file: Python/Cuadernos/py_09
     - file: Python/Cuadernos/py_10
+    - file: Python/Cuadernos/py_11
+    - file: Python/Cuadernos/py_12
     - file: Python/Cuadernos/Taller_Numpy
     - file: Python/Cuadernos/Taller_Pandas
 - caption: Pytorch
