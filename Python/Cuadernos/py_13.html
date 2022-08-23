@@ -55,6 +55,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Taller de numpy" href="Taller_Numpy.html" />
+    <link rel="prev" title="Decoradores" href="py_12.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -133,7 +135,7 @@ const thebe_selector_output = ".output, .cell_output"
   Introducción
  </span>
 </p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="py_00.html">
    <span style="color:#F72585">
@@ -222,6 +224,13 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal" href="py_12.html">
    <span style="color:#F72585">
     Decoradores
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   <span style="color:#F72585">
+    Patrones para Programación orientada a Objetos en Python
    </span>
   </a>
  </li>
@@ -943,13 +952,13 @@ title="Print to PDF"
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">FileNotFoundError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_2558</span><span class="o">/</span><span class="mf">1779118915.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_2568</span><span class="o">/</span><span class="mf">1779118915.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
 <span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># usando el método de clase</span>
 <span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">path</span> <span class="o">=</span> <span class="s1">&#39;https://raw.githubusercontent.com/AprendizajeProfundo/Libro_Fundamentos_Programacion/main/Python/Datos/cuenta.csv&#39;</span>
 <span class="ne">----&gt; </span><span class="mi">3</span> <span class="n">mi_cuenta</span> <span class="o">=</span> <span class="n">CuentaBancaria</span><span class="o">.</span><span class="n">from_csv</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
 <span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="nb">print</span><span class="p">(</span><span class="n">mi_cuenta</span><span class="o">.</span><span class="n">cliente</span><span class="p">,</span> <span class="n">mi_cuenta</span><span class="o">.</span><span class="n">numero_cuenta</span><span class="p">,</span> <span class="n">mi_cuenta</span><span class="o">.</span><span class="n">saldo</span><span class="p">,</span> <span class="n">mi_cuenta</span><span class="o">.</span><span class="n">creada_en</span><span class="p">)</span>
 
-<span class="nn">/tmp/ipykernel_2558/1014366421.py</span> in <span class="ni">from_csv</span><span class="nt">(cls, filepath)</span>
+<span class="nn">/tmp/ipykernel_2568/1014366421.py</span> in <span class="ni">from_csv</span><span class="nt">(cls, filepath)</span>
 <span class="g g-Whitespace">     </span><span class="mi">17</span>     <span class="nd">@classmethod</span>
 <span class="g g-Whitespace">     </span><span class="mi">18</span>     <span class="k">def</span> <span class="nf">from_csv</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">filepath</span><span class="p">):</span>
 <span class="ne">---&gt; </span><span class="mi">19</span>         <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
@@ -1867,6 +1876,20 @@ class CuentaBancaria(builtins.object)
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="py_12.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title"><span style="color:#F72585">Decoradores</span></p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="Taller_Numpy.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span style="color:#F72585">Taller de numpy</span></p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
 </div>
             </footer>
         </div>
