@@ -22,7 +22,7 @@ jobs:
     - name: Install dependencies
       run: |
         pip install -r requirements.txt
-        pip install sphinx
+        pip install sphinx==3.0.9
         pip install jupyter-book
         pip install sphinx_inline_tabs
         pip install sphinx_click
