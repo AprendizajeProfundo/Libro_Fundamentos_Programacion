@@ -26,6 +26,7 @@ jobs:
         pip install jupyter-book
         pip install sphinx_inline_tabs
         pip install sphinx_click
+        pip install sphinx_proof
     # Build the book
     - name: Build the book
       run: |
