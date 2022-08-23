@@ -23,10 +23,9 @@ jobs:
       run: |
         pip install -r requirements.txt
         pip install sphinx==3.0.9
-        pip install jupyter-book
+        pip install jupyter-book==0.13.0
         pip install sphinx_inline_tabs
         pip install sphinx_click
-        pip install sphinx_proof
     # Build the book
     - name: Build the book
       run: |
