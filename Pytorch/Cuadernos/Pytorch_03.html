@@ -137,6 +137,13 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
+  <a class="reference internal" href="../../Python/Cuadernos/py_00.html">
+   <span style="color:#F72585">
+    Conceptos básicos de programación
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="../../Python/Cuadernos/py_01.html">
    <span style="color:#F72585">
     Introducción al lenguaje de programación Python
@@ -203,6 +210,20 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal" href="../../Python/Cuadernos/py_10.html">
    <span style="color:#F72585">
     Conjuntos
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Python/Cuadernos/py_11.html">
+   <span style="color:#F72585">
+    Programación orientada a Objetos en Python
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Python/Cuadernos/py_12.html">
+   <span style="color:#F72585">
+    Decoradores
    </span>
   </a>
  </li>
@@ -872,11 +893,11 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--2022-08-23 21:38:29--  http://yann.lecun.com/exdb/mnist/train-images-idx3-ubyte.gz
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--2022-08-23 23:32:50--  http://yann.lecun.com/exdb/mnist/train-images-idx3-ubyte.gz
 Resolving yann.lecun.com (yann.lecun.com)... 
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>172.67.171.76, 104.21.29.36, 2606:4700:3036::ac43:ab4c, ...
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>172.67.171.76, 104.21.29.36, 2606:4700:3034::6815:1d24, ...
 Connecting to yann.lecun.com (yann.lecun.com)|172.67.171.76|:80... connected.
 HTTP request sent, awaiting response... 
 </pre></div>
@@ -889,16 +910,18 @@ Saving to: ‘train-images-idx3-ubyte.gz’
           train-ima   0%[                    ]       0  --.-KB/s               
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>         train-imag  92%[=================&gt;  ]   8.76M  42.7MB/s               
-train-images-idx3-u 100%[===================&gt;]   9.45M  42.9MB/s    in 0.2s    
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>train-images-idx3-u 100%[===================&gt;]   9.45M  --.-KB/s    in 0.1s    
 
-2022-08-23 21:38:29 (42.9 MB/s) - ‘train-images-idx3-ubyte.gz’ saved [9912422/9912422]
+2022-08-23 23:32:51 (64.5 MB/s) - ‘train-images-idx3-ubyte.gz’ saved [9912422/9912422]
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--2022-08-23 21:38:30--  http://yann.lecun.com/exdb/mnist/train-labels-idx1-ubyte.gz
-Resolving yann.lecun.com (yann.lecun.com)... 104.21.29.36, 172.67.171.76, 2606:4700:3034::6815:1d24, ...
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--2022-08-23 23:32:51--  http://yann.lecun.com/exdb/mnist/train-labels-idx1-ubyte.gz
+Resolving yann.lecun.com (yann.lecun.com)... 104.21.29.36, 172.67.171.76, 2606:4700:3036::ac43:ab4c, ...
 Connecting to yann.lecun.com (yann.lecun.com)|104.21.29.36|:80... connected.
-HTTP request sent, awaiting response... 200 OK
+HTTP request sent, awaiting response... 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>200 OK
 Length: 28881 (28K) [application/x-gzip]
 Saving to: ‘train-labels-idx1-ubyte.gz’
 
@@ -906,11 +929,11 @@ Saving to: ‘train-labels-idx1-ubyte.gz’
           train-lab   0%[                    ]       0  --.-KB/s               
 train-labels-idx1-u 100%[===================&gt;]  28.20K  --.-KB/s    in 0s      
 
-2022-08-23 21:38:30 (389 MB/s) - ‘train-labels-idx1-ubyte.gz’ saved [28881/28881]
+2022-08-23 23:32:51 (196 MB/s) - ‘train-labels-idx1-ubyte.gz’ saved [28881/28881]
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--2022-08-23 21:38:30--  http://yann.lecun.com/exdb/mnist/t10k-images-idx3-ubyte.gz
-Resolving yann.lecun.com (yann.lecun.com)... 104.21.29.36, 172.67.171.76, 2606:4700:3034::6815:1d24, ...
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--2022-08-23 23:32:51--  http://yann.lecun.com/exdb/mnist/t10k-images-idx3-ubyte.gz
+Resolving yann.lecun.com (yann.lecun.com)... 104.21.29.36, 172.67.171.76, 2606:4700:3036::ac43:ab4c, ...
 Connecting to yann.lecun.com (yann.lecun.com)|104.21.29.36|:80... connected.
 HTTP request sent, awaiting response... 200 OK
 Length: 1648877 (1.6M) [application/x-gzip]
@@ -922,11 +945,11 @@ Saving to: ‘t10k-images-idx3-ubyte.gz’
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>t10k-images-idx3-ub 100%[===================&gt;]   1.57M  --.-KB/s    in 0.05s   
 
-2022-08-23 21:38:30 (29.9 MB/s) - ‘t10k-images-idx3-ubyte.gz’ saved [1648877/1648877]
+2022-08-23 23:32:51 (31.8 MB/s) - ‘t10k-images-idx3-ubyte.gz’ saved [1648877/1648877]
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--2022-08-23 21:38:30--  http://yann.lecun.com/exdb/mnist/t10k-labels-idx1-ubyte.gz
-Resolving yann.lecun.com (yann.lecun.com)... 104.21.29.36, 172.67.171.76, 2606:4700:3034::6815:1d24, ...
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--2022-08-23 23:32:51--  http://yann.lecun.com/exdb/mnist/t10k-labels-idx1-ubyte.gz
+Resolving yann.lecun.com (yann.lecun.com)... 104.21.29.36, 172.67.171.76, 2606:4700:3036::ac43:ab4c, ...
 Connecting to yann.lecun.com (yann.lecun.com)|104.21.29.36|:80... connected.
 HTTP request sent, awaiting response... 
 </pre></div>
@@ -939,7 +962,7 @@ Saving to: ‘t10k-labels-idx1-ubyte.gz’
           t10k-labe   0%[                    ]       0  --.-KB/s               
 t10k-labels-idx1-ub 100%[===================&gt;]   4.44K  --.-KB/s    in 0s      
 
-2022-08-23 21:38:30 (433 MB/s) - ‘t10k-labels-idx1-ubyte.gz’ saved [4542/4542]
+2022-08-23 23:32:51 (637 MB/s) - ‘t10k-labels-idx1-ubyte.gz’ saved [4542/4542]
 </pre></div>
 </div>
 </div>
@@ -1105,7 +1128,7 @@ t10k-labels-idx1-ub 100%[===================&gt;]   4.44K  --.-KB/s    in 0s
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;torch.utils.data.dataloader.DataLoader at 0x7fe2241a3b50&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;torch.utils.data.dataloader.DataLoader at 0x7f6cf7adc050&gt;
 </pre></div>
 </div>
 </div>
@@ -1134,7 +1157,7 @@ Labels batch shape: torch.Size([64])
 </pre></div>
 </div>
 <img alt="../../_images/Pytorch_03_35_1.png" src="../../_images/Pytorch_03_35_1.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Label: 3
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Label: 7
 </pre></div>
 </div>
 </div>

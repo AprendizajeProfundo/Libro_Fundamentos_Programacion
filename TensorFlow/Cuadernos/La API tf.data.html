@@ -135,6 +135,13 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
+  <a class="reference internal" href="../../Python/Cuadernos/py_00.html">
+   <span style="color:#F72585">
+    Conceptos básicos de programación
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="../../Python/Cuadernos/py_01.html">
    <span style="color:#F72585">
     Introducción al lenguaje de programación Python
@@ -201,6 +208,20 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal" href="../../Python/Cuadernos/py_10.html">
    <span style="color:#F72585">
     Conjuntos
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Python/Cuadernos/py_11.html">
+   <span style="color:#F72585">
+    Programación orientada a Objetos en Python
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Python/Cuadernos/py_12.html">
+   <span style="color:#F72585">
+    Decoradores
    </span>
   </a>
  </li>
@@ -919,8 +940,8 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-08-23 21:39:18.428036: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcudart.so.11.0&#39;; dlerror: libcudart.so.11.0: cannot open shared object file: No such file or directory
-2022-08-23 21:39:18.428081: I tensorflow/stream_executor/cuda/cudart_stub.cc:29] Ignore above cudart dlerror if you do not have a GPU set up on your machine.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-08-23 23:33:35.580160: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcudart.so.11.0&#39;; dlerror: libcudart.so.11.0: cannot open shared object file: No such file or directory
+2022-08-23 23:33:35.580191: I tensorflow/stream_executor/cuda/cudart_stub.cc:29] Ignore above cudart dlerror if you do not have a GPU set up on your machine.
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Versión disponible de TensorFlow: 2.9.1
@@ -942,10 +963,10 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-08-23 21:39:22.097200: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcuda.so.1&#39;; dlerror: libcuda.so.1: cannot open shared object file: No such file or directory
-2022-08-23 21:39:22.097242: W tensorflow/stream_executor/cuda/cuda_driver.cc:269] failed call to cuInit: UNKNOWN ERROR (303)
-2022-08-23 21:39:22.097265: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:156] kernel driver does not appear to be running on this host (fv-az397-760): /proc/driver/nvidia/version does not exist
-2022-08-23 21:39:22.097623: I tensorflow/core/platform/cpu_feature_guard.cc:193] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX2 AVX512F FMA
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-08-23 23:33:38.315088: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcuda.so.1&#39;; dlerror: libcuda.so.1: cannot open shared object file: No such file or directory
+2022-08-23 23:33:38.315127: W tensorflow/stream_executor/cuda/cuda_driver.cc:269] failed call to cuInit: UNKNOWN ERROR (303)
+2022-08-23 23:33:38.315145: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:156] kernel driver does not appear to be running on this host (fv-az127-723): /proc/driver/nvidia/version does not exist
+2022-08-23 23:33:38.315426: I tensorflow/core/platform/cpu_feature_guard.cc:193] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX2 AVX512F FMA
 To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
 </pre></div>
 </div>
@@ -1052,10 +1073,10 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0.0648 0.1098 0.5178 0.369  0.8862 0.2409 0.9274 0.4242 0.8448 0.2284]
-[0.6444 0.7082 0.1198 0.1917 0.665  0.0961 0.5453 0.0575 0.6552 0.1514]
-[0.8476 0.6043 0.9931 0.8505 0.4709 0.5006 0.9168 0.2137 0.1561 0.391 ]
-[0.8325 0.3587 0.8585 0.8455 0.4121 0.4446 0.8909 0.3989 0.1328 0.9969]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0.5207 0.5828 0.3947 0.4485 0.9335 0.1643 0.0531 0.6411 0.5603 0.5729]
+[0.8574 0.1635 0.0625 0.0606 0.517  0.5863 0.7833 0.4182 0.4261 0.915 ]
+[0.4068 0.1688 0.7023 0.1686 0.7869 0.2561 0.762  0.6574 0.8239 0.7232]
+[0.6114 0.503  0.298  0.4759 0.6762 0.4762 0.9241 0.2447 0.3497 0.8998]
 </pre></div>
 </div>
 </div>
@@ -1159,47 +1180,47 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&lt;tf.Tensor: shape=(10,), dtype=float32, numpy=
-array([0.0648, 0.1098, 0.5178, 0.369 , 0.8862, 0.2409, 0.9274, 0.4242,
-       0.8448, 0.2284], dtype=float32)&gt;, (&lt;tf.Tensor: shape=(), dtype=float32, numpy=0.84407485&gt;, &lt;tf.Tensor: shape=(100,), dtype=int32, numpy=
-array([58, 48, 39, 36, 96, 41, 78, 75, 83, 11, 98, 15, 96, 44, 18,  2,  5,
-       55, 84, 43, 20,  4,  3, 92, 15, 56,  1, 91, 89, 24, 17, 50, 34, 58,
-       88, 88, 46,  6, 68, 86, 75, 27, 41, 14, 18, 71,  6, 11, 44, 98, 34,
-       80, 77, 95, 94, 41, 54, 71, 17, 91, 67, 32,  9, 34, 37, 72, 67, 95,
-       57, 83, 14, 42, 25,  9, 51, 87, 23, 35, 24, 65, 97, 95, 40, 78, 29,
-       61, 57, 73,  7, 45, 26, 89, 12, 81, 85,  7, 51, 60, 68, 50],
+array([0.5207, 0.5828, 0.3947, 0.4485, 0.9335, 0.1643, 0.0531, 0.6411,
+       0.5603, 0.5729], dtype=float32)&gt;, (&lt;tf.Tensor: shape=(), dtype=float32, numpy=0.05201006&gt;, &lt;tf.Tensor: shape=(100,), dtype=int32, numpy=
+array([60, 73, 78, 55, 26, 12, 22, 54, 55, 36, 78, 18, 60, 51, 29, 62, 45,
+       49, 35, 54, 62, 29, 44, 26, 22, 63, 60,  6, 86, 62, 83, 19, 26, 97,
+       58, 70, 24, 25,  6, 68,  9, 31, 21, 74, 39, 64, 60, 98, 76, 14, 67,
+       66,  3, 10, 77,  4, 71,  3, 88, 16, 23, 81, 87, 59, 94, 67, 45, 17,
+       54, 17, 64,  4, 10, 88, 46, 76, 26, 55, 32, 71, 49, 89, 58, 35,  9,
+       98,  2, 71,  5, 30, 27, 47, 42, 80, 25, 31, 15, 15, 37, 89],
       dtype=int32)&gt;)) 
 
 (&lt;tf.Tensor: shape=(10,), dtype=float32, numpy=
-array([0.6444, 0.7082, 0.1198, 0.1917, 0.665 , 0.0961, 0.5453, 0.0575,
-       0.6552, 0.1514], dtype=float32)&gt;, (&lt;tf.Tensor: shape=(), dtype=float32, numpy=0.53445816&gt;, &lt;tf.Tensor: shape=(100,), dtype=int32, numpy=
-array([15,  3, 69,  7, 20, 88, 44, 63,  6, 82, 78, 92, 36, 29, 37,  1, 91,
-        3, 79, 20, 17, 24, 27, 80, 51, 15,  8, 78, 70, 57, 95, 62, 19, 72,
-       60, 31, 23, 84, 12, 90, 18, 33,  0, 12, 45, 96, 18, 49, 34, 49, 44,
-       79, 73, 15, 94, 74, 90, 34, 87, 72, 57, 16, 65,  2, 10, 13, 10, 67,
-       64, 14, 15, 59, 60, 79, 99,  1, 22, 14, 26, 75, 78, 36, 43, 96, 79,
-       35,  9, 41, 66, 52, 43, 46, 68, 13, 39,  7, 53, 52, 87, 20],
+array([0.8574, 0.1635, 0.0625, 0.0606, 0.517 , 0.5863, 0.7833, 0.4182,
+       0.4261, 0.915 ], dtype=float32)&gt;, (&lt;tf.Tensor: shape=(), dtype=float32, numpy=0.24076009&gt;, &lt;tf.Tensor: shape=(100,), dtype=int32, numpy=
+array([24, 50, 57, 97, 14, 99, 17, 32, 45, 90, 27,  5, 62, 26, 62, 49, 16,
+       63, 23, 10, 20, 94, 17, 92, 48,  8, 96, 46, 80, 84, 40, 84, 66, 48,
+       66, 39, 99, 64, 60, 57, 72,  2, 83, 34, 77, 61,  1,  1, 71, 83, 37,
+       42, 24, 36, 96, 17, 42, 69, 43, 71, 60, 32, 53, 98, 43, 89,  3, 32,
+       51, 56, 90,  1, 87, 59, 19, 74, 37, 49, 84, 91, 41,  7, 94, 94, 68,
+       62, 29,  8, 79, 48, 80, 36, 48, 78, 86, 68, 22, 86, 96, 80],
       dtype=int32)&gt;)) 
 
 (&lt;tf.Tensor: shape=(10,), dtype=float32, numpy=
-array([0.8476, 0.6043, 0.9931, 0.8505, 0.4709, 0.5006, 0.9168, 0.2137,
-       0.1561, 0.391 ], dtype=float32)&gt;, (&lt;tf.Tensor: shape=(), dtype=float32, numpy=0.99121547&gt;, &lt;tf.Tensor: shape=(100,), dtype=int32, numpy=
-array([24, 85, 73, 59, 35, 87, 71, 93,  5, 60, 84, 57, 69, 67, 27,  3, 32,
-       91, 51, 73, 58, 68, 56, 62, 92, 55, 63,  1, 88, 70, 13, 44, 61, 29,
-       91,  6, 87, 68, 22, 64, 61, 99, 47, 32, 52, 13, 96, 99, 22, 48,  0,
-       12, 22, 36, 80, 80, 88, 97, 44, 61, 58, 98, 55, 62, 94, 90, 45, 74,
-       77, 28, 14,  0, 85, 16,  8, 25, 70, 16, 36, 95, 96, 54, 12,  4, 49,
-       79, 53, 47, 84, 72, 68, 63, 59, 86, 95, 14, 98, 81, 73, 16],
+array([0.4068, 0.1688, 0.7023, 0.1686, 0.7869, 0.2561, 0.762 , 0.6574,
+       0.8239, 0.7232], dtype=float32)&gt;, (&lt;tf.Tensor: shape=(), dtype=float32, numpy=0.7945155&gt;, &lt;tf.Tensor: shape=(100,), dtype=int32, numpy=
+array([29, 11, 31, 71, 48, 82, 24, 63, 10, 96, 23,  4, 64, 49, 42, 47,  2,
+       20,  4, 88,  7, 81, 11, 91, 53, 68, 54, 49, 73, 88, 26, 11, 37, 59,
+       61, 42, 24, 57, 93, 70, 35, 60, 30, 48, 71, 20, 50, 86, 80,  5, 68,
+       17, 54, 47, 10, 31, 97, 31,  4, 30, 73, 36, 33, 25, 94, 70,  4, 53,
+       79, 90, 51, 73, 58, 21, 38, 59, 39, 14, 93, 76, 16, 40, 62, 90, 84,
+       85, 34, 41, 73, 52, 16, 89, 46, 10, 79, 58, 94, 41, 56, 96],
       dtype=int32)&gt;)) 
 
 (&lt;tf.Tensor: shape=(10,), dtype=float32, numpy=
-array([0.8325, 0.3587, 0.8585, 0.8455, 0.4121, 0.4446, 0.8909, 0.3989,
-       0.1328, 0.9969], dtype=float32)&gt;, (&lt;tf.Tensor: shape=(), dtype=float32, numpy=0.26036334&gt;, &lt;tf.Tensor: shape=(100,), dtype=int32, numpy=
-array([64, 79, 38, 59, 72, 70, 96, 11, 67,  1, 18, 18, 32,  1, 62, 59, 31,
-       97, 47, 54, 54, 85, 68, 95, 12, 22, 12, 14, 17, 77, 91, 95, 15, 77,
-       80, 85, 96, 99, 35, 63,  1,  9, 84, 20,  0, 66, 68, 12, 38, 57, 64,
-       66, 51, 33, 23, 70, 79, 67,  6, 92, 88, 40, 31,  0, 14,  7, 83, 86,
-       90, 16, 54, 34, 19, 24, 39,  3, 60, 44, 16, 73,  4, 42, 17, 21, 99,
-       42,  2, 87, 50, 43, 88, 89, 38, 59, 74, 78, 33,  7,  4,  7],
+array([0.6114, 0.503 , 0.298 , 0.4759, 0.6762, 0.4762, 0.9241, 0.2447,
+       0.3497, 0.8998], dtype=float32)&gt;, (&lt;tf.Tensor: shape=(), dtype=float32, numpy=0.940068&gt;, &lt;tf.Tensor: shape=(100,), dtype=int32, numpy=
+array([19, 55, 24, 46, 41, 47, 69, 28, 33, 88, 60, 63, 93,  2, 41, 40, 17,
+       90, 68, 80, 10, 93, 28, 27, 59, 42, 86, 20, 20, 84, 27, 26, 37, 56,
+       10, 54, 63, 79, 17, 76, 79, 65, 31, 22, 87, 53, 64, 20, 22, 71, 85,
+       39, 13, 15, 88, 73, 77, 42,  4, 17, 31, 60, 81, 67, 43, 98, 53, 25,
+       82, 77, 70, 18, 90, 39, 58, 11, 58, 73, 54, 77, 13, 92, 51, 21, 34,
+       43, 80, 44, 62, 99, 59, 64, 42, 43, 16, 17, 17, 75, 64, 98],
       dtype=int32)&gt;)) 
 </pre></div>
 </div>
@@ -1219,7 +1240,7 @@ shapes: (10,), (), (100,)
 shapes: (10,), (), (100,)
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-08-23 21:39:22.329260: W tensorflow/core/data/root_dataset.cc:247] Optimization loop failed: CANCELLED: Operation was cancelled
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-08-23 23:33:38.484270: W tensorflow/core/data/root_dataset.cc:247] Optimization loop failed: CANCELLED: Operation was cancelled
 </pre></div>
 </div>
 </div>
@@ -1274,7 +1295,7 @@ shapes: (10,), (), (100,)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-08-23 21:39:23.012440: W tensorflow/core/framework/cpu_allocator_impl.cc:82] Allocation of 376320000 exceeds 10% of free system memory.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-08-23 23:33:39.072296: W tensorflow/core/framework/cpu_allocator_impl.cc:82] Allocation of 376320000 exceeds 10% of free system memory.
 </pre></div>
 </div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;TensorSliceDataset element_spec=(TensorSpec(shape=(28, 28), dtype=tf.float64, name=None), TensorSpec(shape=(), dtype=tf.uint8, name=None))&gt;
@@ -1365,14 +1386,13 @@ shapes: (10,), (), (100,)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0 : [-0.3831  0.4306  0.6542 -1.6522  1.742   1.6418]
-1 : [-0.5825  0.026 ]
-2 : []
-3 : [ 0.0595 -0.5252  0.02   -1.4292  0.3635]
-4 : [-1.7778  0.0648 -1.0411  0.6816]
-5 : [ 1.0646 -1.73   -1.0951  1.3225 -0.4032  0.4096 -0.8778 -0.0395 -1.1491]
-6 : [ 1.3774e+00 -4.9897e-01 -1.1906e+00 -1.8530e+00 -7.8870e-01 -2.2046e-04
- -1.2022e+00]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0 : [-0.9924 -0.0263  0.7299  2.3056 -0.6584 -0.462   0.2479]
+1 : [-0.1067  1.091   1.3568]
+2 : [ 0.3876 -0.3784  0.353  -0.6077]
+3 : [ 0.0429 -2.8442 -0.8998  0.2388]
+4 : []
+5 : [-1.3205  0.0149  0.6161  1.0548]
+6 : [-1.2874 -1.7065 -0.4031 -0.2704  0.8284 -0.2503 -0.0684 -0.5557 -1.1271]
 </pre></div>
 </div>
 </div>
@@ -1410,18 +1430,18 @@ shapes: (10,), (), (100,)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[ 8 17  7  5 11 10 18 24 19  2]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[15  4 12 19 11 21 23  5  9  0]
 
-[[ 0.3435 -0.3256 -0.2824  0.8025 -0.3641  0.2076 -0.7958  0.7478]
- [ 0.0329  0.9271 -0.9592 -0.5235 -1.1232  1.4088  0.0809  0.    ]
- [-0.2185 -0.3339 -0.3769  0.      0.      0.      0.      0.    ]
- [ 1.2068 -0.289   0.      0.      0.      0.      0.      0.    ]
- [-0.3721  1.089   0.6053 -0.0657 -0.263  -0.9437  0.4296  0.    ]
- [ 1.8773  0.6327  0.      0.      0.      0.      0.      0.    ]
- [-0.0302 -1.3757 -0.8857 -0.0535  2.2736 -1.0132  0.      0.    ]
- [-0.7909 -1.0429 -0.2038  1.4894 -0.5887  0.6613  0.      0.    ]
- [-1.6607  0.8414  0.1111  0.029  -0.3961  1.3604  0.      0.    ]
- [ 0.0091  0.1156  0.      0.      0.      0.      0.      0.    ]]
+[[ 0.      0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.6304  0.7524  0.      0.      0.      0.      0.      0.      0.    ]
+ [ 1.6092 -0.9776  1.2074  0.2762  1.1794 -0.5006 -0.9266  0.2415  0.    ]
+ [-0.1474 -0.8501 -0.1718 -2.0664  0.0476  0.      0.      0.      0.    ]
+ [-0.9299  0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [-0.4527  0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [-1.602   0.9005 -1.0105 -0.7341  0.      0.      0.      0.      0.    ]
+ [ 1.168   0.4955  0.      0.      0.      0.      0.      0.      0.    ]
+ [-0.0308 -0.8823  0.9502 -0.3337 -0.4705  0.5725  0.9737 -0.3299  0.8477]
+ [-2.5217  2.575   0.0535 -0.589   0.1867 -0.7804  0.4858 -0.4386  0.    ]]
 </pre></div>
 </div>
 </div>
@@ -1440,166 +1460,145 @@ shapes: (10,), (), (100,)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[ 4  0  7 16 20  1 12 18 23  3]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[16  7 20 21 15  6 25  0 12 17]
 
-[[ 0.1146  0.2154  2.325   0.5641  1.2649  0.      0.      0.    ]
- [-0.8609  0.8428  0.4905  1.5897  0.2429  0.      0.      0.    ]
- [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
- [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
- [-0.1841  0.2945  1.0087 -0.4047 -2.9244  0.853   0.7532 -0.2156]
- [-0.7542  1.1825  1.7416  0.7931 -0.4974  0.      0.      0.    ]
- [ 0.      0.      0.      0.      0.      0.      0.      0.    ]
- [-0.315   0.      0.      0.      0.      0.      0.      0.    ]
- [ 0.7109 -2.5033 -0.9059 -0.8995  2.6265  0.      0.      0.    ]
- [-0.7611  0.6918  1.2848 -0.0481  0.2514 -0.7339 -0.3629 -0.4002]]
-
-[27 14 21  6 19 13 22 15  8 37]
-
-[[-1.0232e+00  0.0000e+00  0.0000e+00  0.0000e+00  0.0000e+00  0.0000e+00
+[[ 3.3296e-01  3.1777e-02 -9.0785e-01 -6.2653e-02  1.4417e-01 -6.1812e-02
+  -1.1459e+00  0.0000e+00  0.0000e+00]
+ [-1.5559e+00 -2.1666e-03 -5.5763e-01 -2.6209e-01  5.9697e-01 -7.1820e-01
+   2.2086e+00 -1.8475e+00  0.0000e+00]
+ [ 9.0903e-01 -3.8562e-01 -4.9047e-01 -1.1357e+00  9.4665e-02 -6.3982e-01
    0.0000e+00  0.0000e+00  0.0000e+00]
- [ 2.4602e-01 -4.0399e-02  3.2731e-01 -2.6702e+00 -4.4942e-01 -3.0898e-01
-   1.1392e+00  0.0000e+00  0.0000e+00]
- [-3.1000e-01  6.0987e-01  7.2962e-01  5.1783e-01 -2.4309e-03 -2.3624e-01
+ [ 3.5296e-01 -9.8909e-01 -2.1096e-01  0.0000e+00  0.0000e+00  0.0000e+00
    0.0000e+00  0.0000e+00  0.0000e+00]
- [ 4.0673e-01 -2.1298e-02 -2.0791e+00 -1.9332e-01 -9.8801e-02  0.0000e+00
+ [-4.4988e-02  1.3839e-01  6.0622e-01  1.1489e+00  1.6512e-01 -1.0636e-01
+  -6.7270e-01  8.3547e-01  0.0000e+00]
+ [-1.4038e+00  6.1688e-01  0.0000e+00  0.0000e+00  0.0000e+00  0.0000e+00
    0.0000e+00  0.0000e+00  0.0000e+00]
- [-1.3940e+00 -2.1185e+00 -8.1499e-01 -1.3932e-01  1.8939e-01 -4.9057e-01
-  -6.5732e-01 -1.7596e+00  4.4753e-01]
- [ 1.8419e-01 -7.7289e-01  0.0000e+00  0.0000e+00  0.0000e+00  0.0000e+00
+ [-3.2685e-01  6.1076e-01 -4.6402e-01 -2.0631e+00 -8.3401e-01 -1.3477e-01
+  -1.1370e+00  1.2544e+00 -6.7060e-01]
+ [-4.1116e-01 -8.2721e-01  1.3324e+00  0.0000e+00  0.0000e+00  0.0000e+00
    0.0000e+00  0.0000e+00  0.0000e+00]
- [ 3.0476e-01  0.0000e+00  0.0000e+00  0.0000e+00  0.0000e+00  0.0000e+00
-   0.0000e+00  0.0000e+00  0.0000e+00]
- [-3.4106e-01 -3.7141e-01  8.9339e-01 -2.1437e+00  1.8150e-01  2.9809e-01
-  -1.5122e+00  3.0802e-01 -2.0078e+00]
- [ 1.3059e+00  7.0629e-01  3.3454e-01  1.4458e+00  2.0356e-01  4.9069e-01
-   3.5743e-01  0.0000e+00  0.0000e+00]
  [ 0.0000e+00  0.0000e+00  0.0000e+00  0.0000e+00  0.0000e+00  0.0000e+00
+   0.0000e+00  0.0000e+00  0.0000e+00]
+ [ 1.0234e+00  4.6546e-01  2.8840e-01  4.3362e-01 -2.4355e-01  4.0297e-01
    0.0000e+00  0.0000e+00  0.0000e+00]]
 
-[ 2 26 38  5 31 24 44 43 40 45]
+[11  8 19  4 14 18 22 24 29  9]
 
-[[-0.5801  0.3492 -1.0489 -0.5198 -0.3685 -0.8136  0.088 ]
- [ 0.3043 -1.1325 -0.5028 -0.423  -1.6145 -1.6725  0.    ]
- [-0.824   0.6324  0.      0.      0.      0.      0.    ]
- [-0.5894  0.      0.      0.      0.      0.      0.    ]
- [ 0.5061 -0.7875  2.5586 -0.9279  0.      0.      0.    ]
- [ 0.      0.      0.      0.      0.      0.      0.    ]
- [ 0.      0.      0.      0.      0.      0.      0.    ]
- [-0.2545  0.835   0.0331  0.      0.      0.      0.    ]
- [-0.9829 -0.26   -1.0637 -0.4457  0.6278 -0.0692  0.    ]
- [-1.4779  0.93    0.3468 -0.7019  0.694   0.      0.    ]]
-
-[36 33 51 11 25 32 17 42 57 50]
-
-[[ 0.      0.      0.      0.      0.      0.      0.      0.      0.    ]
- [-0.1987 -0.1858  0.2064 -0.109  -0.4679  1.1162 -0.6756  0.1387 -2.0142]
- [ 0.836  -0.2989  0.2709 -0.8694  0.2429  0.      0.      0.      0.    ]
- [-0.2156  0.3756  0.4778 -1.3826  0.151   0.1903  0.0089  0.      0.    ]
- [ 0.3588  0.4948 -0.5407 -0.8881 -1.449  -0.1084  1.5759 -0.6908  0.    ]
- [-0.0672 -0.571   0.      0.      0.      0.      0.      0.      0.    ]
- [ 0.3662  0.      0.      0.      0.      0.      0.      0.      0.    ]
- [ 0.6801  0.2733 -0.7216  2.0352 -0.5959 -2.4127 -0.3334  0.      0.    ]
- [-0.3108  0.8555  1.5276 -0.0851  0.6442  1.0266  0.      0.      0.    ]
- [ 0.6347 -1.1116  1.2367 -0.1323 -0.6369 -0.6391 -0.2095 -0.4051  0.    ]]
-
-[41 49 61 60 53 39 47 56 64 59]
-
-[[-0.2507  0.5061 -0.0656  0.      0.      0.      0.      0.      0.    ]
- [-0.3872 -2.1569 -1.2009  0.3125  0.4586 -0.8134  0.917   0.      0.    ]
- [-0.739   0.      0.      0.      0.      0.      0.      0.      0.    ]
- [ 2.2413 -1.2419  1.1472 -0.5559 -1.3017  0.1258 -0.6429 -0.8188 -0.855 ]
- [-0.668   0.2589  0.1828 -1.1262  0.      0.      0.      0.      0.    ]
- [-1.3429 -0.2381 -0.3216 -0.0065  0.3185  0.4854  1.1024  0.8986  0.2146]
- [-0.6694 -0.2557 -0.5612  0.6481  1.6191  0.      0.      0.      0.    ]
- [-0.6342 -0.5369  0.3039  0.      0.      0.      0.      0.      0.    ]
- [ 0.5573  1.4568  0.1024  0.      0.      0.      0.      0.      0.    ]
- [-1.1993  0.5201  0.9817  0.3941 -0.0044  1.0852 -2.8032  0.      0.    ]]
-
-[29 63 48 34 62 74 28 55 30  9]
-
-[[-0.3082 -1.8078  0.8133  0.0629 -0.3784 -0.705   0.0647 -1.4694  0.    ]
- [-0.1683 -0.2025 -1.8148 -0.7878 -0.1232 -0.8466  1.0328 -1.7756  0.8067]
+[[ 0.7779 -0.5619 -0.7398 -1.1736  0.6952 -0.3717 -0.3263 -1.1718  0.    ]
+ [ 1.4758  1.1968 -1.4219  0.9415 -1.702   0.333   0.0823 -1.1777  0.1105]
+ [-0.559   1.1305  1.7165  0.0126  0.1918 -1.2473  0.      0.      0.    ]
+ [ 0.4518  0.0746  1.5688 -1.5285 -1.0859 -0.416   0.      0.      0.    ]
+ [ 1.8294 -0.02    1.1943 -0.3962  1.0591 -0.1279  1.764   0.      0.    ]
+ [ 1.4618  0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.2164  0.687  -0.278  -0.9159  0.4208 -0.8449 -1.2894  0.      0.    ]
  [ 0.      0.      0.      0.      0.      0.      0.      0.      0.    ]
- [ 0.7462  0.      0.      0.      0.      0.      0.      0.      0.    ]
- [-0.9191 -0.4089  1.6721  1.1591  0.9932  0.      0.      0.      0.    ]
- [ 2.3421  2.1265 -1.0483  0.      0.      0.      0.      0.      0.    ]
- [-0.54    1.389  -0.3336  0.5378  1.5971  2.1956  0.1331 -2.1944  0.    ]
- [ 0.8477  0.6732 -1.7708  0.9332 -0.582  -0.5859  0.      0.      0.    ]
- [-0.6938  1.3202 -0.3363  0.5395  0.      0.      0.      0.      0.    ]
- [ 1.5532 -0.0759 -0.6585  1.0058 -1.0502  0.6257  0.      0.      0.    ]]
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[66 54 68 77 76 71 58 75 73 79]
+ [ 0.2576  2.11   -1.1377 -0.7321 -0.2702 -0.6974 -0.4879  0.      0.    ]
+ [ 1.4998  0.      0.      0.      0.      0.      0.      0.      0.    ]]
 
-[[-0.5555  0.3104 -1.4036  0.6883  0.9587  0.1636  0.      0.      0.    ]
- [ 1.0386  0.1887 -0.009   1.137  -0.1922 -0.7153 -2.3871  0.      0.    ]
- [ 0.6819 -0.4797 -1.4491  1.055   0.0221 -0.0292  0.5119  0.      0.    ]
+[39 40 38 27 32 26 31 34 30 10]
+
+[[-1.2637 -1.9873  1.6985 -0.3516 -1.145  -0.9982 -0.1784  0.      0.    ]
+ [ 1.2424 -0.5627  0.0113 -0.5657  0.1359  0.5142  0.1821 -1.4179  0.    ]
+ [ 0.4335  0.7234  2.351  -1.6207  0.6736  0.141   1.1527 -0.7077  0.    ]
+ [ 0.5655 -1.0464  0.1166 -1.2172  0.3425 -1.6243 -0.5699  1.3822  2.0543]
+ [ 2.0127  0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.7209 -0.3474  0.      0.      0.      0.      0.      0.      0.    ]
+ [-0.3415 -1.0646 -1.1336  0.2178  0.9105  0.7461  0.      0.      0.    ]
+ [-0.8373 -0.0281  0.9112  0.1886  0.2169  0.5957  0.      0.      0.    ]
+ [-0.7576  1.2059  1.4041  1.4187  0.      0.      0.      0.      0.    ]
+ [-0.8816  0.5488  0.2225 -0.6134  0.      0.      0.      0.      0.    ]]
+
+[ 3  1 50 43 53 35 48 37 42 28]
+
+[[-0.9433  0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.4185 -0.6603  0.      0.      0.      0.      0.      0.      0.    ]
+ [-0.09    0.8823 -1.0617  0.5456  0.1963 -1.8211  0.9074  0.3245  0.    ]
+ [ 2.0241 -0.5888  1.5188  0.5567 -0.7702 -0.3921 -0.4368 -0.2284  1.6795]
+ [ 0.8257  0.8747 -0.1215  0.052  -0.226   0.      0.      0.      0.    ]
+ [ 0.6669 -1.2691  1.0641  1.1959  0.7765  1.9247 -1.6206  0.5868  0.    ]
+ [-2.4864 -0.8715  0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.5617  0.2267  1.2854 -0.6636 -0.5278 -0.3631 -0.8853  0.      0.    ]
+ [-1.3876  1.1465  1.1538  0.      0.      0.      0.      0.      0.    ]
+ [ 0.1078 -0.8007 -1.1369 -0.1871 -1.2312 -1.273   0.713  -0.8987  0.    ]]
+
+[ 5 45 51 49 54 52  2 65 63 67]
+
+[[-0.3338  0.6561  0.6636  0.      0.      0.    ]
+ [-0.7729  0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.    ]
+ [-0.7598  0.      0.      0.      0.      0.    ]
+ [ 0.491   0.      0.      0.      0.      0.    ]
+ [-0.5251  0.9278  1.0668  0.0343 -0.5953  0.086 ]
+ [-0.6829 -0.9064  0.      0.      0.      0.    ]
+ [ 0.2781  0.4821 -1.1562 -0.8763  0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.    ]
+ [ 0.7986  0.3751 -1.4649  0.      0.      0.    ]]
+
+[55 62 70 56 68 58 47 59 44 61]
+
+[[ 0.3201  0.2424  0.2985  0.      0.      0.      0.      0.      0.    ]
+ [-0.5054 -1.5819  1.0174 -0.0751 -0.9015  1.3983  0.3361 -0.4506  0.    ]
+ [ 0.1696  0.3681  0.9925  0.      0.      0.      0.      0.      0.    ]
+ [ 0.2721  0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.2369  1.3346  1.0867  0.      0.      0.      0.      0.      0.    ]
+ [ 0.875  -0.2651  0.2367  0.      0.      0.      0.      0.      0.    ]
+ [-0.1777  0.2815 -0.3716  0.      0.      0.      0.      0.      0.    ]
+ [-0.054  -1.0626  0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.484  -0.7456 -1.1446 -0.9186  0.4836  0.9823 -0.8369 -2.1235  0.    ]
+ [-0.5509 -1.2561  0.2425  0.9623 -0.1942  0.092   0.1159 -0.0466  0.8269]]
+
+[23 66 57 75 77 82 46 72 80 73]
+
+[[ 2.4242 -0.1473  0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.5555  0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [-0.6552 -0.3789 -1.1366  0.0269  2.0363 -0.5914 -0.6791 -0.4796  0.    ]
+ [-0.086   1.2966 -1.1556  0.      0.      0.      0.      0.      0.    ]
+ [-0.0389  0.1937 -0.3285  1.2807 -0.3074  0.      0.      0.      0.    ]
+ [-0.3398  0.5866 -1.1981  0.2161  1.2746 -1.0234 -1.5723  0.      0.    ]
+ [-0.4833 -2.0482  0.2831  0.      0.      0.      0.      0.      0.    ]
+ [-0.6725  0.0973  1.1746  1.0678 -1.3691  0.2025  0.6114 -1.0636 -1.1297]
+ [-0.1193 -0.1646 -0.5108  0.3294  0.8332 -0.6965  0.      0.      0.    ]
+ [-0.5612 -0.0557 -0.2805  0.5603 -0.4874 -0.4704  0.      0.      0.    ]]
+
+[83 89 36 71 41 90 88 87 94 86]
+
+[[-0.2821  2.3333 -0.3979  1.2566  0.2183  1.2335  0.      0.      0.    ]
+ [-0.2158 -0.6579 -0.5626  0.0415  0.      0.      0.      0.      0.    ]
+ [-0.218  -1.2937  0.0259  0.4593  1.9332 -0.4469  0.1095 -0.4288  0.6813]
+ [-0.8289 -1.7338  0.6255  0.4052  0.      0.      0.      0.      0.    ]
+ [ 0.857   0.8212  2.3717  0.      0.      0.      0.      0.      0.    ]
+ [-0.2863  0.6052  1.5926  0.0188 -0.4618  0.9809  0.4958  0.2673 -0.3393]
  [ 0.      0.      0.      0.      0.      0.      0.      0.      0.    ]
- [ 1.6947 -0.4835  1.1639  0.4682 -1.3498  0.4825 -1.8522 -1.7686  1.2442]
- [ 0.1299 -0.1078  1.1917  0.      0.      0.      0.      0.      0.    ]
- [-0.4832 -1.3256  0.      0.      0.      0.      0.      0.      0.    ]
- [-0.1992  1.4003  2.0285  0.253   1.6824  0.0446  1.6733  0.9088 -0.635 ]
- [ 0.4885  0.9303 -1.445   0.4926 -1.2181  0.249   0.7195  0.      0.    ]
- [ 1.1272 -0.9874 -0.4805 -0.2613 -1.7832  0.2192 -0.877   1.4101 -0.2703]]
+ [-1.9863  0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 1.3814 -0.3393  0.      0.      0.      0.      0.      0.      0.    ]
+ [-0.6237 -1.7545  0.      0.      0.      0.      0.      0.      0.    ]]
 
-[87 84 78 81 89 86 83 52 92 72]
+[ 91  98  79 101  60  97 104  78  95 108]
 
-[[-2.3492e+00 -3.1650e-01 -2.3418e-01  1.3290e+00 -9.0188e-01  2.0718e+00
-   0.0000e+00  0.0000e+00  0.0000e+00]
- [ 2.3314e-01 -1.9548e-02 -1.5481e+00  4.6230e-02  5.3127e-01 -3.9762e-01
-   4.3142e-02  1.4236e+00  3.4472e-01]
- [-7.5225e-02  2.9839e-04  0.0000e+00  0.0000e+00  0.0000e+00  0.0000e+00
-   0.0000e+00  0.0000e+00  0.0000e+00]
- [-1.0476e+00  1.4823e+00  2.1890e-01 -1.2426e+00  0.0000e+00  0.0000e+00
-   0.0000e+00  0.0000e+00  0.0000e+00]
- [ 1.0418e+00 -2.3224e-03 -9.1361e-02  7.5167e-02 -2.6432e-02  6.9139e-01
-  -1.2084e+00 -5.3289e-03 -8.5821e-02]
- [ 5.2731e-01  8.4457e-02  5.6784e-01  0.0000e+00  0.0000e+00  0.0000e+00
-   0.0000e+00  0.0000e+00  0.0000e+00]
- [ 1.4906e+00 -5.2186e-01  7.0874e-02  6.3850e-01  1.1516e+00  7.4291e-01
-   0.0000e+00  0.0000e+00  0.0000e+00]
- [ 8.3312e-01 -1.6187e-01 -3.9632e-01 -1.0579e+00  1.0101e+00  1.3585e+00
-   5.4603e-01  0.0000e+00  0.0000e+00]
- [-6.1038e-01  8.5471e-01 -1.7253e+00  5.9182e-01  1.9031e-01  5.5393e-01
-   0.0000e+00  0.0000e+00  0.0000e+00]
- [ 9.5937e-01 -7.7341e-01 -4.4425e-01  6.1402e-01 -7.9483e-02 -6.4017e-01
-  -1.8433e+00  1.3609e+00  5.7103e-01]]
+[[-0.4231 -0.3473  0.8108  0.7082 -2.2643  0.      0.      0.      0.    ]
+ [ 0.6913  0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [-1.2681  0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [-0.7489  0.3147  1.1274 -0.1198  0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.6156  0.4273  0.2576 -0.5924 -0.9012 -0.1422  0.7123  0.      0.    ]
+ [ 0.1169 -0.7588 -0.5275  1.239  -1.4059  0.8467  0.7144 -0.5067  0.7192]
+ [ 0.3455  1.1279 -1.4506  0.4314  0.2739 -0.6355  1.4329  0.184   0.    ]
+ [-0.5381 -0.1075 -0.8    -0.2092 -1.0974  1.0085 -0.9953  0.      0.    ]]
 
-[ 35  65  80  94  97 104 100  69  67  96]
+[106 109 110  96  33 107  13  76 116 105]
 
-[[ 0.2722 -1.2392 -0.529   0.6102 -1.1905  0.8899  2.07    0.0245  0.6802]
- [ 1.8949 -0.2658 -0.0281  0.3157 -0.9525 -1.1126 -0.8716  0.      0.    ]
- [ 0.7119 -0.2773 -0.3765 -0.1632 -0.1813 -0.2805  0.6685 -0.3741  0.    ]
- [-0.6938  0.1456  0.6883  0.      0.      0.      0.      0.      0.    ]
- [ 2.1427  0.      0.      0.      0.      0.      0.      0.      0.    ]
- [-1.3341  1.979  -0.3863 -1.6557  1.3268 -1.2387 -0.3218 -1.9121  0.    ]
- [-1.5901 -0.8359  1.1693 -0.9236  0.      0.      0.      0.      0.    ]
- [ 1.7297 -0.8597  0.2747 -0.9607  1.2153 -1.7613  0.3638  0.      0.    ]
- [-0.0862 -0.6791  0.6836  0.3701 -1.226  -0.41   -0.1828 -0.3364  0.    ]
- [-0.7721 -1.064  -0.7777  1.7322  1.4462  0.      0.      0.      0.    ]]
-
-[ 98 102  91  82  93 106 103 110 108  10]
-
-[[-7.3805e-02 -1.9195e+00 -2.3083e-02  0.0000e+00  0.0000e+00  0.0000e+00
-   0.0000e+00  0.0000e+00  0.0000e+00]
- [ 4.2615e-01  5.0790e-01  1.6409e+00 -1.9028e+00  5.6251e-02  2.7275e-01
-   0.0000e+00  0.0000e+00  0.0000e+00]
- [ 0.0000e+00  0.0000e+00  0.0000e+00  0.0000e+00  0.0000e+00  0.0000e+00
-   0.0000e+00  0.0000e+00  0.0000e+00]
- [-9.1675e-02  1.1815e+00  0.0000e+00  0.0000e+00  0.0000e+00  0.0000e+00
-   0.0000e+00  0.0000e+00  0.0000e+00]
- [-8.7528e-01 -1.8433e-03  8.0683e-02  9.4306e-01  0.0000e+00  0.0000e+00
-   0.0000e+00  0.0000e+00  0.0000e+00]
- [-9.9423e-01 -4.7994e-01 -8.3575e-01 -1.9381e+00 -1.6857e+00  1.5239e+00
-  -7.2302e-01 -1.6787e+00  0.0000e+00]
- [-2.9106e-01  1.2809e+00 -1.0771e+00 -1.2126e+00  6.6446e-01  0.0000e+00
-   0.0000e+00  0.0000e+00  0.0000e+00]
- [ 0.0000e+00  0.0000e+00  0.0000e+00  0.0000e+00  0.0000e+00  0.0000e+00
-   0.0000e+00  0.0000e+00  0.0000e+00]
- [ 1.7773e-01  1.9104e+00 -1.5099e+00 -9.8186e-01 -2.3686e-01  2.6391e-01
-  -7.5819e-01 -2.3541e-01 -3.8411e-02]
- [ 5.6466e-01  7.6632e-01  1.2263e+00 -7.4843e-01  0.0000e+00  0.0000e+00
-   0.0000e+00  0.0000e+00  0.0000e+00]]
+[[-0.0772 -0.472   0.      0.      0.      0.      0.      0.      0.    ]
+ [-0.9055  0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 1.0472  0.1496  1.1084  1.0672  1.0616  1.3566 -1.9394 -0.6827 -0.6056]
+ [-0.3036  1.367   0.9508 -1.7904  0.4736 -0.2706 -1.3433  0.1478  0.2828]
+ [ 2.5197  0.7793  0.8094  0.9009 -1.2983 -0.3112 -1.6316  0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [ 0.      0.      0.      0.      0.      0.      0.      0.      0.    ]
+ [-0.204   1.0163  0.7972  0.6542 -0.7389 -0.9241 -2.4198  0.      0.    ]
+ [-1.2798 -2.0241 -0.8047 -0.6543  0.3031  0.2124  0.5408  0.      0.    ]
+ [-0.106   0.      0.      0.      0.      0.      0.      0.      0.    ]]
 </pre></div>
 </div>
 </div>
@@ -2017,9 +2016,9 @@ b&#39;1,female,38.0,1,5,31.3875,Third,unknown,Southampton,n&#39;
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;survived&#39;: [0 0 0 0]
-  &#39;fare&#39;              : [ 7.2292 15.0458  7.8958 21.    ]
-  &#39;class&#39;             : [b&#39;Third&#39; b&#39;Second&#39; b&#39;Third&#39; b&#39;Second&#39;]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;survived&#39;: [1 0 0 0]
+  &#39;fare&#39;              : [91.0792 12.525   7.2292 31.    ]
+  &#39;class&#39;             : [b&#39;First&#39; b&#39;Second&#39; b&#39;Third&#39; b&#39;First&#39;]
 </pre></div>
 </div>
 </div>
@@ -2069,11 +2068,11 @@ dandelion
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>b&#39;/home/runner/.keras/datasets/flower_photos/daisy/5435522104_1d6a61b431_n.jpg&#39;
-b&#39;/home/runner/.keras/datasets/flower_photos/tulips/2399982682_16929d1f6d_n.jpg&#39;
-b&#39;/home/runner/.keras/datasets/flower_photos/daisy/3764116502_f394428ee0_n.jpg&#39;
-b&#39;/home/runner/.keras/datasets/flower_photos/tulips/5043225469_0aa23f3c8f_n.jpg&#39;
-b&#39;/home/runner/.keras/datasets/flower_photos/roses/16961613890_695b36aab2_m.jpg&#39;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>b&#39;/home/runner/.keras/datasets/flower_photos/dandelion/4336536446_e635f48f2e.jpg&#39;
+b&#39;/home/runner/.keras/datasets/flower_photos/sunflowers/6074427492_1b5bab7848_n.jpg&#39;
+b&#39;/home/runner/.keras/datasets/flower_photos/dandelion/479495978_ee22cf05be.jpg&#39;
+b&#39;/home/runner/.keras/datasets/flower_photos/roses/7302931078_30054c1970_n.jpg&#39;
+b&#39;/home/runner/.keras/datasets/flower_photos/sunflowers/184682506_8a9b8c662d.jpg&#39;
 </pre></div>
 </div>
 </div>
@@ -2100,9 +2099,9 @@ b&#39;/home/runner/.keras/datasets/flower_photos/roses/16961613890_695b36aab2_m.
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>b&#39;\xff\xd8\xff\xe0\x00\x10JFIF\x00\x01\x01\x01\x00d\x00d\x00\x00\xff\xec\x00\x11Ducky\x00\x01\x00\x04\x00\x00\x00d\x00\x00\xff\xdb\x00C\x00\x01\x01\x01\x01\x01\x01\x01\x01\x01\x01\x01\x01\x01\x02\x02\x03\x02\x02\x02\x02\x02\x04\x03\x03\x02\x03\x05\x04\x05\x05\x05\x04\x04\x04\x05\x06\x07\x06\x05\x05\x07\x06\x04\x04\x06\t\x06\x07\x08\x08\x08\x08\x08\x05\x06\t&#39;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>b&#39;\xff\xd8\xff\xe0\x00\x10JFIF\x00\x01\x01\x01\x00H\x00H\x00\x00\xff\xe2\x05(ICC_PROFILE\x00\x01\x01\x00\x00\x05\x18appl\x02 \x00\x00scnrRGB XYZ \x07\xd3\x00\x07\x00\x01\x00\x00\x00\x00\x00\x00acspAPPL\x00\x00\x00\x00appl\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00&#39;
 
-b&#39;tulips&#39;
+b&#39;daisy&#39;
 </pre></div>
 </div>
 </div>
@@ -2279,8 +2278,8 @@ End of epoch:  2
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[ 85  18  69  91  24  70  34  16   1  64 106  39  51  43 109  54 105  52
-  95  19]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[ 96  80  72  85  23  43  52  37  11  56   9  77 105   2  19  24  41  84
+ 113  61]
 </pre></div>
 </div>
 </div>
@@ -2300,11 +2299,11 @@ End of epoch:  2
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>esta es la lista de indices cercanos al fin del epoch:
 
-[620 624 498 562 358 398 558 580 570 512]
-[374 537 615 574 599 352 497 578 600 504]
-[407 568 614 596 552 511 592 610]
-[29 56 80 61 27 35 59 37  6 94]
-[ 96  84 111  64  72   3  55  93 110  18]
+[572 372 626 507 450 529 493 532 578 520]
+[611 607 569 474 556 601 412 494 565 497]
+[581 589 504 609 613 223 533 410]
+[90  9 89 42 74 78 72  5 32 96]
+[100  68  37  30  95  83 111  39  28  66]
 </pre></div>
 </div>
 </div>
@@ -2320,7 +2319,7 @@ End of epoch:  2
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f781df0d310&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f0d5c0a75d0&gt;
 </pre></div>
 </div>
 <img alt="../../_images/La API tf.data_119_11.png" src="../../_images/La API tf.data_119_11.png" />
@@ -2341,21 +2340,21 @@ End of epoch:  2
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>esta es la lista de indices cercanos al fin del epoch:
 
-[519 210 381 462   6 524 623 534 455  12]
-[531 583   3 589  16  26  36 521   5 445]
-[627 579 624 523   0  22 536 397 602  25]
-[ 47 608   1 612  41  44  11  53 564  52]
-[537 539   9  33  23  30 605 491  39  67]
-[588  66  46 616 506  24 584 553 621  63]
-[444 355  70 587  29  68  43 438 604  87]
-[ 61  85  10 513  19  75 448 118 593  50]
-[477  49 573  54 596   7  98  60  18 104]
-[569  74  88 620 375 377 581 614 617  38]
-[  8 113  45 115 603 121 108 559  89  35]
-[ 69  84  59 127  92  94 132 135  32 131]
-[ 27 140  42 625  97  76 139 102 112 316]
-[ 80  96 546 153  79 118  48  86 574 101]
-[ 71  78 111 136 384 296 134 155 167 170]
+[ 70 493   8 541 440  10 605 439   6 510]
+[ 29 449 127  27  33 597 604 311 547 620]
+[ 37 550 584 613 527 574 519 560 606 591]
+[546 611  34 576 467  50  18   5 569  20]
+[361  17 534  48 600 444 614 327  35  32]
+[ 64  49 571  16  30 551 562 545 624  43]
+[400  77 533  24 498 621 575 522 603 566]
+[ 12  73  59 564 617 492  61  44  13 497]
+[  0   7  72  70 579  39 583  47 596  40]
+[ 41  98 106  78  89 618 115  83 104  21]
+[ 46  25 515 108  71  60  55  14  96 587]
+[ 26  95  63 114 120  42 130 595 131  86]
+[ 81  82  54  65 623 146 135 610 137   4]
+[112 592  23 152 144  91 109  92 117 500]
+[ 51 103  85 619 116  57 125 168 625 105]
 </pre></div>
 </div>
 </div>
@@ -2372,7 +2371,7 @@ End of epoch:  2
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f781cbed510&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f0d5c0bb9d0&gt;
 </pre></div>
 </div>
 <img alt="../../_images/La API tf.data_122_11.png" src="../../_images/La API tf.data_122_11.png" />
@@ -2717,7 +2716,9 @@ End of epoch:  2
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[ 0  3  6  9 12 15 18 21 24] =&gt; [ 3  6  9 12 15 18 21 24 27]
-[ 5  8 11 14 17 20 23 26 29] =&gt; [ 8 11 14 17 20 23 26 29 32]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[ 5  8 11 14 17 20 23 26 29] =&gt; [ 8 11 14 17 20 23 26 29 32]
 [10 13 16 19 22 25 28 31 34] =&gt; [13 16 19 22 25 28 31 34 37]
 </pre></div>
 </div>
@@ -2786,7 +2787,7 @@ End of epoch:  2
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0.996 0.004]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0.9952 0.0048]
 </pre></div>
 </div>
 </div>
@@ -2833,12 +2834,12 @@ End of epoch:  2
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:tensorflow:From /tmp/ipykernel_3373/929671245.py:2: sample_from_datasets_v2 (from tensorflow.python.data.experimental.ops.interleave_ops) is deprecated and will be removed in a future version.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:tensorflow:From /tmp/ipykernel_3189/929671245.py:2: sample_from_datasets_v2 (from tensorflow.python.data.experimental.ops.interleave_ops) is deprecated and will be removed in a future version.
 Instructions for updating:
 Use `tf.data.Dataset.sample_from_datasets(...)`.
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:tensorflow:From /tmp/ipykernel_3373/929671245.py:2: sample_from_datasets_v2 (from tensorflow.python.data.experimental.ops.interleave_ops) is deprecated and will be removed in a future version.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:tensorflow:From /tmp/ipykernel_3189/929671245.py:2: sample_from_datasets_v2 (from tensorflow.python.data.experimental.ops.interleave_ops) is deprecated and will be removed in a future version.
 Instructions for updating:
 Use `tf.data.Dataset.sample_from_datasets(...)`.
 </pre></div>
@@ -2854,20 +2855,18 @@ Use `tf.data.Dataset.sample_from_datasets(...)`.
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1 1 0 1 1 1 1 0 0 0]
-[0 0 0 1 1 0 1 0 1 0]
-[0 0 1 1 0 0 1 1 0 1]
-[0 0 0 1 0 1 0 1 1 1]
-[1 0 1 1 1 1 0 1 0 0]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0 0 1 1 0 0 1 1 1 0]
+[0 1 1 1 1 1 1 1 1 0]
+[0 0 0 1 1 0 1 1 0 0]
+[0 0 1 0 0 1 0 1 0 0]
+[0 1 1 1 0 0 1 0 1 0]
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1 1 1 0 0 0 1 0 1 1]
-[1 1 1 0 1 1 0 0 1 1]
-[0 1 0 1 1 0 1 1 0 0]
-[1 1 1 1 1 0 1 0 0 0]
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1 1 0 0 1 1 0 1 0 0]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0 0 0 1 1 1 0 1 0 1]
+[1 1 0 0 0 1 0 1 0 0]
+[1 0 1 0 0 0 0 0 1 1]
+[0 0 1 0 0 1 1 1 1 0]
+[1 0 1 1 1 1 0 0 0 1]
 </pre></div>
 </div>
 </div>
@@ -2897,12 +2896,12 @@ Use `tf.data.Dataset.sample_from_datasets(...)`.
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:tensorflow:From /tmp/ipykernel_3373/2462412449.py:2: rejection_resample (from tensorflow.python.data.experimental.ops.resampling) is deprecated and will be removed in a future version.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:tensorflow:From /tmp/ipykernel_3189/2462412449.py:2: rejection_resample (from tensorflow.python.data.experimental.ops.resampling) is deprecated and will be removed in a future version.
 Instructions for updating:
 Use `tf.data.Dataset.rejection_resample(...)`.
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:tensorflow:From /tmp/ipykernel_3373/2462412449.py:2: rejection_resample (from tensorflow.python.data.experimental.ops.resampling) is deprecated and will be removed in a future version.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:tensorflow:From /tmp/ipykernel_3189/2462412449.py:2: rejection_resample (from tensorflow.python.data.experimental.ops.resampling) is deprecated and will be removed in a future version.
 Instructions for updating:
 Use `tf.data.Dataset.rejection_resample(...)`.
 </pre></div>
@@ -2945,38 +2944,36 @@ Use tf.print instead of tf.Print. Note that tf.print returns a no-output operato
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Proportion of examples rejected by sampler is high: [0.995996118][0.995996118 0.00400390616][0 1]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Proportion of examples rejected by sampler is high: [0.99521482][0.99521482 0.00478515634][0 1]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Proportion of examples rejected by sampler is high: [0.995996118][0.995996118 0.00400390616][0 1]
-Proportion of examples rejected by sampler is high: [0.995996118][0.995996118 0.00400390616][0 1]
-Proportion of examples rejected by sampler is high: [0.995996118][0.995996118 0.00400390616][0 1]
-Proportion of examples rejected by sampler is high: [0.995996118][0.995996118 0.00400390616][0 1]
-Proportion of examples rejected by sampler is high: [0.995996118][0.995996118 0.00400390616][0 1]
-Proportion of examples rejected by sampler is high: [0.995996118][0.995996118 0.00400390616][0 1]
-Proportion of examples rejected by sampler is high: [0.995996118][0.995996118 0.00400390616][0 1]
-Proportion of examples rejected by sampler is high: [0.995996118][0.995996118 0.00400390616][0 1]
-Proportion of examples rejected by sampler is high: [0.995996118][0.995996118 0.00400390616][0 1]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Proportion of examples rejected by sampler is high: [0.99521482][0.99521482 0.00478515634][0 1]
+Proportion of examples rejected by sampler is high: [0.99521482][0.99521482 0.00478515634][0 1]
+Proportion of examples rejected by sampler is high: [0.99521482][0.99521482 0.00478515634][0 1]
+Proportion of examples rejected by sampler is high: [0.99521482][0.99521482 0.00478515634][0 1]
+Proportion of examples rejected by sampler is high: [0.99521482][0.99521482 0.00478515634][0 1]
+Proportion of examples rejected by sampler is high: [0.99521482][0.99521482 0.00478515634][0 1]
+Proportion of examples rejected by sampler is high: [0.99521482][0.99521482 0.00478515634][0 1]
+Proportion of examples rejected by sampler is high: [0.99521482][0.99521482 0.00478515634][0 1]
+Proportion of examples rejected by sampler is high: [0.99521482][0.99521482 0.00478515634][0 1]
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0 1 0 0 1 0 1 1 0 0]
-[0 1 0 0 0 1 1 1 1 1]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0 0 0 0 1 0 0 0 1 0]
+[0 0 0 1 1 1 0 1 1 0]
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0 1 0 0 0 1 1 1 0 0]
-[1 0 0 0 1 1 0 1 0 1]
-[0 1 0 0 0 1 0 0 1 0]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0 0 0 1 1 1 1 0 1 1]
+[1 1 0 1 0 0 1 1 0 1]
+[1 0 1 1 0 0 0 1 1 1]
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0 0 0 0 0 1 0 1 1 0]
-[1 1 0 1 0 1 0 1 0 1]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0 1 1 0 1 0 0 1 0 0]
+[0 1 1 1 0 0 0 0 1 1]
+[1 0 0 0 1 0 1 0 1 1]
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1 1 1 0 1 0 1 1 0 0]
-[1 0 1 1 1 0 0 1 0 1]
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0 0 1 1 1 1 1 1 1 0]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1 0 1 1 1 1 1 0 1 1]
+[0 1 1 0 0 0 0 0 1 0]
 </pre></div>
 </div>
 </div>
