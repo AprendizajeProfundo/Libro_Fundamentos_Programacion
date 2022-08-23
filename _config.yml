@@ -34,7 +34,6 @@ sphinx:
   extra_extensions:
   - sphinx_inline_tabs
   - sphinx_click.ext
-  - sphinx_proof
   comments:
     hypothesis              : true
     utterances:
