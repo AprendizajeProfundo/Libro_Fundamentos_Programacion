@@ -1,0 +1,1875 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Patrones para Programación orientada a Objetos en Python &#8212; Fundamentos de Programación</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script src="../../_static/tabs.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../_static/logo-final-ap.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Fundamentos de Programación</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../tutorial.html">
+                    <span style="color:#F72585">Bienvenido(a)</span>
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Primeros Pasos
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Inicio/Cuadernos/Consideraciones.html">
+   <span style="color:#F72585">
+    Conociendo el Libro
+   </span>
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Introducción
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="py_01.html">
+   <span style="color:#F72585">
+    Introducción al lenguaje de programación Python
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="py_02.html">
+   <span style="color:#F72585">
+    Tipos de Datos Básicos
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="py_03.html">
+   <span style="color:#F72585">
+    Operadores aritméticos y lógicos
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="py_04.html">
+   <span style="color:#F72585">
+    Estructuras de control
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="py_05.html">
+   <span style="color:#F72585">
+    Funciones en Python
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="py_06.html">
+   <span style="color:#F72585">
+    Iterables e iteradores
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="py_07.html">
+   <span style="color:#F72585">
+    Tuplas
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="py_08.html">
+   <span style="color:#F72585">
+    Listas
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="py_09.html">
+   <span style="color:#F72585">
+    Diccionarios
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="py_10.html">
+   <span style="color:#F72585">
+    Conjuntos
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Taller_Numpy.html">
+   <span style="color:#F72585">
+    Taller de numpy
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Taller_Pandas.html">
+   <span style="color:#F72585">
+    Taller de manejo de Datos en Pandas
+   </span>
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Pytorch
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Pytorch/Cuadernos/Pytorch_01.html">
+   <span style="color:#F72585">
+    Primeros pasos con PyTorch
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Pytorch/Cuadernos/Pytorch_02.html">
+   <span style="color:#F72585">
+    Tensores en PyTorch
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Pytorch/Cuadernos/Pytorch_03.html">
+   <span style="color:#F72585">
+    DataSets y DataLoaders
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Pytorch/Cuadernos/Pytorch_04.html">
+   <span style="color:#F72585">
+    Transforms
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Pytorch/Cuadernos/Pytorch_05.html">
+   <span style="color:#F72585">
+    Diferenciación automática con torch.autograd
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Pytorch/Cuadernos/Pytorch_06.html">
+   <span style="color:#F72585">
+    Optimización con torch
+   </span>
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  TensorFlow
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../TensorFlow/Cuadernos/Tensorflow-01.html">
+   <span style="color:#F72585">
+    Inicio Rápido
+   </span>
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/AprendizajeProfundo/Libro_Fundamentos_Programacion/main?urlpath=tree/Python/Cuadernos/py_13.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://colab.research.google.com/github/AprendizajeProfundo/Libro_Fundamentos_Programacion/blob/main/Python/Cuadernos/py_13.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Colab"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../../_static/images/logo_colab.png">
+  </span>
+<span class="headerbtn__text-container">Colab</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="initThebeSBT()"
+  class="headerbtn headerbtn-launch-thebe"
+  data-toggle="tooltip"
+data-placement="left"
+title="Launch Thebe"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="headerbtn__text-container">Live Code</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/AprendizajeProfundo/Libro_Fundamentos_Programacion"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/AprendizajeProfundo/Libro_Fundamentos_Programacion/issues/new?title=Issue%20on%20page%20%2FPython/Cuadernos/py_13.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/AprendizajeProfundo/Libro_Fundamentos_Programacion/edit/main/Python/Cuadernos/py_13.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Edit this page"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="headerbtn__text-container">suggest edit</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../../_sources/Python/Cuadernos/py_13.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-blue-introduccion-span">
+   <span style="color:blue">
+    Introducción
+   </span>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-blue-ocho-consejos-para-crear-mejores-clases-span">
+   <span style="color:blue">
+    Ocho consejos para crear mejores clases
+   </span>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-establecer-atributos-en-el-constructor-span">
+     <span style="color:#4CC9F0">
+      Establecer atributos en el constructor.
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-distinguir-datos-y-metodos-a-nivel-de-clase-y-a-nivel-de-instancia-span">
+     <span style="color:#4CC9F0">
+      Distinguir datos y métodos a nivel de clase y a nivel de instancia
+     </span>
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#definiendo-un-metodo-de-clase-para-crear-un-objeto-con-informacion-en-un-archivo">
+       Definiendo un método de clase para crear un objeto con información en un archivo
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-implementar-igualdad-de-objetos-span">
+     <span style="color:#4CC9F0">
+      Implementar igualdad de objetos
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-implementar-representacion-en-forma-de-cadenas-span">
+     <span style="color:#4CC9F0">
+      Implementar representación en forma de cadenas
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-marcar-metodos-estaticos-span">
+     <span style="color:#4CC9F0">
+      Marcar métodos estáticos
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-decidir-que-es-interno-y-que-es-privado-span">
+     <span style="color:#4CC9F0">
+      Decidir que es interno y que es privado
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-establecer-el-acceso-a-los-atributos-property-span">
+     <span style="color:#4CC9F0">
+      Establecer el acceso a los atributos:
+      <code class="docutils literal notranslate">
+       <span class="pre">
+        @property
+       </span>
+      </code>
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-documentar-con-cadenas-de-texto-clases-metodos-atributos-publicos-span">
+     <span style="color:#4CC9F0">
+      Documentar con cadenas de texto clases, métodos, atributos públicos
+     </span>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-blue-ejercicios-span">
+   <span style="color:blue">
+    Ejercicios
+   </span>
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1><span style="color:#F72585">Patrones para Programación orientada a Objetos en Python </span></h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-blue-introduccion-span">
+   <span style="color:blue">
+    Introducción
+   </span>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-blue-ocho-consejos-para-crear-mejores-clases-span">
+   <span style="color:blue">
+    Ocho consejos para crear mejores clases
+   </span>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-establecer-atributos-en-el-constructor-span">
+     <span style="color:#4CC9F0">
+      Establecer atributos en el constructor.
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-distinguir-datos-y-metodos-a-nivel-de-clase-y-a-nivel-de-instancia-span">
+     <span style="color:#4CC9F0">
+      Distinguir datos y métodos a nivel de clase y a nivel de instancia
+     </span>
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#definiendo-un-metodo-de-clase-para-crear-un-objeto-con-informacion-en-un-archivo">
+       Definiendo un método de clase para crear un objeto con información en un archivo
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-implementar-igualdad-de-objetos-span">
+     <span style="color:#4CC9F0">
+      Implementar igualdad de objetos
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-implementar-representacion-en-forma-de-cadenas-span">
+     <span style="color:#4CC9F0">
+      Implementar representación en forma de cadenas
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-marcar-metodos-estaticos-span">
+     <span style="color:#4CC9F0">
+      Marcar métodos estáticos
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-decidir-que-es-interno-y-que-es-privado-span">
+     <span style="color:#4CC9F0">
+      Decidir que es interno y que es privado
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-establecer-el-acceso-a-los-atributos-property-span">
+     <span style="color:#4CC9F0">
+      Establecer el acceso a los atributos:
+      <code class="docutils literal notranslate">
+       <span class="pre">
+        @property
+       </span>
+      </code>
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-documentar-con-cadenas-de-texto-clases-metodos-atributos-publicos-span">
+     <span style="color:#4CC9F0">
+      Documentar con cadenas de texto clases, métodos, atributos públicos
+     </span>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-blue-ejercicios-span">
+   <span style="color:blue">
+    Ejercicios
+   </span>
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="span-style-color-f72585-patrones-para-programacion-orientada-a-objetos-en-python-span">
+<h1><span style="color:#F72585">Patrones para Programación orientada a Objetos en Python </span><a class="headerlink" href="#span-style-color-f72585-patrones-para-programacion-orientada-a-objetos-en-python-span" title="Permalink to this headline">#</a></h1>
+<section id="span-style-color-blue-introduccion-span">
+<h2><span style="color:blue">Introducción</span><a class="headerlink" href="#span-style-color-blue-introduccion-span" title="Permalink to this headline">#</a></h2>
+<p>En esta lección hacemos una revisión técnica de las cosas que debemos tener en cuenta para diseñar clase más robustas. Esta revisión está basada en el la lectura de Medium por <a class="reference external" href="https://towardsdatascience.com/8-tips-for-object-oriented-programming-in-python-3e98b767ae79">Michal Oleszak</a>.</p>
+</section>
+<section id="span-style-color-blue-ocho-consejos-para-crear-mejores-clases-span">
+<h2><span style="color:blue">Ocho consejos para crear mejores clases</span><a class="headerlink" href="#span-style-color-blue-ocho-consejos-para-crear-mejores-clases-span" title="Permalink to this headline">#</a></h2>
+<p>Existe una gran diferencia entre diseñar un objeto que simplemente funcione y escribir un código de calidad que aproveche al máximo los beneficios del enfoque de programación orientada a objetos (POO). En esta sección revisamos ocho pasos que conducen a las clases de Python de buena calidad. Estos pasos son:</p>
+<ol class="simple">
+<li><p>Establecer atributos en el constructor.</p></li>
+<li><p>Distinguir datos y métodos a nivel de clase y a nivel de instancia.</p></li>
+<li><p>Determina lo que es igual.</p></li>
+<li><p>Proporcione representaciones de cadenas.</p></li>
+<li><p>Conoce lo que es estático.</p></li>
+<li><p>Decidir lo que es interno y privado.</p></li>
+<li><p>Establecer el acceso a los atributos.</p></li>
+<li><p>Utilice cadenas de documentación.</p></li>
+</ol>
+<p>En Python, los objetos se definen por sus planos llamados clases . Los atributos de clase se representan como variables de Python y sus métodos son funciones de Python. Consideraremos la siguiente clase de ejemplo de juguete que representa una cuenta bancaria.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">CuentaBancaria</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">set_cliente</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cliente</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cliente</span> <span class="o">=</span> <span class="n">cliente</span>
+        
+    <span class="k">def</span> <span class="nf">set_saldo</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">saldo</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">saldo</span> <span class="o">=</span> <span class="n">saldo</span>
+        
+    <span class="k">def</span> <span class="nf">deposito</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">monto</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">saldo</span> <span class="o">+=</span> <span class="n">monto</span>
+        
+    <span class="k">def</span> <span class="nf">retiro</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">monto</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">saldo</span> <span class="o">-=</span> <span class="n">monto</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>La clsse dispone de cuatro métodos, permitiéndonos configurar el titular (cliente) de la cuenta o depositar dinero, entre otros. Una vez que establecemos el <em>cliente</em>  crea el atributo. Esta clase podría considerarse completamente funcional, en el sentido de que podemos trabajar con ella. Puedo crear una cuenta para mí sin dinero en efectivo y hacer algunas transacciones:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># primeras transacciones</span>
+<span class="c1"># crea instancia de CuentaBancaria</span>
+<span class="n">mi_cuenta</span> <span class="o">=</span> <span class="n">CuentaBancaria</span><span class="p">()</span>
+<span class="c1"># Configura el cliente y el saldo inicial</span>
+<span class="n">mi_cuenta</span><span class="o">.</span><span class="n">set_cliente</span><span class="p">(</span><span class="s2">&quot;María&quot;</span><span class="p">)</span>
+<span class="n">mi_cuenta</span><span class="o">.</span><span class="n">set_saldo</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="c1"># dos transacciones</span>
+<span class="n">mi_cuenta</span><span class="o">.</span><span class="n">deposito</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
+<span class="n">mi_cuenta</span><span class="o">.</span><span class="n">retiro</span><span class="p">(</span><span class="mi">300</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">mi_cuenta</span><span class="o">.</span><span class="n">cliente</span><span class="p">,</span> <span class="n">mi_cuenta</span><span class="o">.</span><span class="n">saldo</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>María 700
+</pre></div>
+</div>
+</div>
+</div>
+<p>Este código aunque funcional está bastante mal escrito. Veamos como escribir el código correctamente. Por ejemplo, se podría intentar hacer las transacciones sin crear el saldo inicial, lo cual llevaría a un error.</p>
+<section id="span-style-color-4cc9f0-establecer-atributos-en-el-constructor-span">
+<h3><span style="color:#4CC9F0">Establecer atributos en el constructor.</span><a class="headerlink" href="#span-style-color-4cc9f0-establecer-atributos-en-el-constructor-span" title="Permalink to this headline">#</a></h3>
+<p>El primer consejo es <code class="docutils literal notranslate"><span class="pre">establezca</span> <span class="pre">atributos</span> <span class="pre">en</span> <span class="pre">el</span> <span class="pre">constructor</span> <span class="pre">para</span> <span class="pre">asegurarse</span> <span class="pre">de</span> <span class="pre">que</span> <span class="pre">existan</span> <span class="pre">y</span> <span class="pre">se</span> <span class="pre">puedan</span> <span class="pre">encontrar</span> <span class="pre">fácilmente</span> <span class="pre">en</span> <span class="pre">un</span> <span class="pre">solo</span> <span class="pre">lugar</span></code>. Recuerde que el constructor se define con la función <code class="docutils literal notranslate"><span class="pre">__init__()</span></code>. Realmente existe una forma de definir constructores alternativos que sobrecargan a la función <code class="docutils literal notranslate"><span class="pre">__init__()</span></code>, como veremos en la siguiente sección. Para definir constructores alatrnativo usaremos métodos de clase, no estudiados hasta ahora en esta lección.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+
+<span class="k">class</span> <span class="nc">CuentaBancaria</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cliente</span><span class="p">,</span> <span class="n">numero_cuenta</span><span class="p">,</span> <span class="n">saldo</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cliente</span> <span class="o">=</span> <span class="n">cliente</span>    
+        <span class="bp">self</span><span class="o">.</span><span class="n">numero_cuenta</span> <span class="o">=</span> <span class="n">numero_cuenta</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">creada_en</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">date</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">saldo</span> <span class="o">&lt;</span> <span class="o">-</span><span class="mi">10_000</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;¡Saldo muy pequeño!&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">saldo</span> <span class="o">=</span> <span class="n">saldo</span>
+    
+    <span class="k">def</span> <span class="nf">deposito</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">monto</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">saldo</span> <span class="o">+=</span> <span class="n">monto</span>
+        
+    <span class="k">def</span> <span class="nf">retiro</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">monto</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">saldo</span> <span class="o">-=</span> <span class="n">monto</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>El valor de <em>saldo</em> es definido por defecto. Además se ha agregado un control que genera un error si se intenta crea una cuenta con un saldo muy negativo. A continuación instanciamos un objeto e imprimimos sus atributos.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Crea un objeto con saldo inicial = 0</span>
+<span class="n">mi_cuenta</span> <span class="o">=</span> <span class="n">CuentaBancaria</span><span class="p">(</span><span class="s1">&#39;María&#39;</span><span class="p">,</span> <span class="mi">151348</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">mi_cuenta</span><span class="o">.</span><span class="n">cliente</span><span class="p">,</span> <span class="n">mi_cuenta</span><span class="o">.</span><span class="n">numero_cuenta</span><span class="p">,</span> <span class="n">mi_cuenta</span><span class="o">.</span><span class="n">saldo</span><span class="p">,</span> <span class="n">mi_cuenta</span><span class="o">.</span><span class="n">creada_en</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>María 151348 0 2022-08-23
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="span-style-color-4cc9f0-distinguir-datos-y-metodos-a-nivel-de-clase-y-a-nivel-de-instancia-span">
+<h3><span style="color:#4CC9F0">Distinguir datos y métodos a nivel de clase y a nivel de instancia</span><a class="headerlink" href="#span-style-color-4cc9f0-distinguir-datos-y-metodos-a-nivel-de-clase-y-a-nivel-de-instancia-span" title="Permalink to this headline">#</a></h3>
+<p>En la POO algunos atributos y métodos son por naturaleza inherentes a la clase en general, mientras que otros son específicos de las instancias de esta clase. Hacer una distinción entre los dos es vital para asegurarse de que la cuenta bancaria de un individuo no cambie la forma en que funcionan las cuentas bancarias en general.</p>
+<p>En esta lección solamente hemos definidos atributos y métodos inherentes a las instancias de clase. Los métodos de nivel de clase son útiles, entre otros, para crear objetos de clase a partir de fuentes externas, como archivos csv. Métodos de clase permiten por ejemplo crear constructores alternativos para los objetos (instancias de clase).</p>
+<section id="definiendo-un-metodo-de-clase-para-crear-un-objeto-con-informacion-en-un-archivo">
+<h4>Definiendo un método de clase para crear un objeto con información en un archivo<a class="headerlink" href="#definiendo-un-metodo-de-clase-para-crear-un-objeto-con-informacion-en-un-archivo" title="Permalink to this headline">#</a></h4>
+<p>Es posible crear métodos de clase en Python, que usan un apuntador usualmente llamado <code class="docutils literal notranslate"><span class="pre">cls</span></code> en lugar de <code class="docutils literal notranslate"><span class="pre">self</span></code>, que apunta a donde esta definida la clase, es decir, no necesitan una instancia para existir.</p>
+<p>Su caso de uso popular es crear una instancia a partir de fuentes externas. Es posible que deseemos tener un método que cree una instancia de <code class="docutils literal notranslate"><span class="pre">CuentaBancaria</span></code> a partir de un archivo CSV que contenga por ejemplo el cliente y el número de cuenta en el formato separado por comas, como por ejemplo</p>
+<ul class="simple">
+<li><p>María, 123</p></li>
+</ul>
+<p>Para hacerlo, podemos agregar un método que llamaremos por ejemplo <em>from_csv()</em>. Lo decoramos con el decorador <code class="docutils literal notranslate"><span class="pre">&#64;classmethod</span></code> y usamos la referencia de clase, <em>cls</em>, como primer argumento. Podemos usarlo en la declaración de devolución para hacer que el método devuelva la instancia de la clase en función del contenido del archivo CSV.</p>
+<p>En cuanto a los atributos, el umbral de saldo -10000, con el que se compara el saldo al crear la cuenta puede pensarse como</p>
+<p>La clase CuentaBancaria modificada quedaría como que hay una regla que establece que no se puede configurar ninguna cuenta con un saldo más bajo. En lugar de codificarlo, deberíamos asignarlo a un atributo en la definición de la clase y acceder más tarde  a través del puntero de instancia <code class="docutils literal notranslate"><span class="pre">self</span></code>. Estos atributos de clase se definen al comienzo de la clase. Tenga en cuenta que el valor contenido en los atributos de clase son comunes a todas la instancias de clase.</p>
+<p>Los demás métodos y atributos ya incluidos arriba pertenece  a cada instancia particular y son en consecuencia atributos de instancia de clase, que ya aprendimos a crear antes en esta lección.</p>
+<p>La clase <em>CuentaBancaria</em> actualizada con los métodos y atributos de clase propuestos en esta sección es como sigue.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+<span class="kn">import</span> <span class="nn">csv</span>
+
+<span class="k">class</span> <span class="nc">CuentaBancaria</span><span class="p">:</span>
+
+    <span class="n">MIN_SALDO</span> <span class="o">=</span> <span class="o">-</span><span class="mi">10_000</span>
+    
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cliente</span><span class="p">,</span> <span class="n">numero_cuenta</span><span class="p">,</span> <span class="n">saldo</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cliente</span> <span class="o">=</span> <span class="n">cliente</span>    
+        <span class="bp">self</span><span class="o">.</span><span class="n">numero_cuenta</span> <span class="o">=</span> <span class="n">numero_cuenta</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">creada_en</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">date</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">saldo</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">MIN_SALDO</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;¡Saldo muy pequeño!&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">saldo</span> <span class="o">=</span> <span class="n">saldo</span>
+    
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">from_csv</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">filepath</span><span class="p">):</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">fila</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">reader</span><span class="p">(</span><span class="n">f</span><span class="p">)</span><span class="o">.</span><span class="fm">__next__</span><span class="p">()</span>
+            <span class="n">cliente</span><span class="p">,</span> <span class="n">numero_cuenta</span> <span class="o">=</span> <span class="n">fila</span>
+            <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">cliente</span><span class="p">,</span> <span class="n">numero_cuenta</span><span class="p">)</span>
+     
+    <span class="k">def</span> <span class="nf">deposito</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">monto</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">saldo</span> <span class="o">+=</span> <span class="n">monto</span>
+        
+    <span class="k">def</span> <span class="nf">retiro</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">monto</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">saldo</span> <span class="o">-=</span> <span class="n">monto</span>
+    
+    
+</pre></div>
+</div>
+</div>
+</div>
+<p>Probamos la clase.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># usando el método de clase</span>
+<span class="n">path</span> <span class="o">=</span> <span class="s1">&#39;https://raw.githubusercontent.com/AprendizajeProfundo/Libro_Fundamentos_Programacion/main/Python/Datos/cuenta.csv&#39;</span>
+<span class="n">mi_cuenta</span> <span class="o">=</span> <span class="n">CuentaBancaria</span><span class="o">.</span><span class="n">from_csv</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mi_cuenta</span><span class="o">.</span><span class="n">cliente</span><span class="p">,</span> <span class="n">mi_cuenta</span><span class="o">.</span><span class="n">numero_cuenta</span><span class="p">,</span> <span class="n">mi_cuenta</span><span class="o">.</span><span class="n">saldo</span><span class="p">,</span> <span class="n">mi_cuenta</span><span class="o">.</span><span class="n">creada_en</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">FileNotFoundError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
+<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_2591</span><span class="o">/</span><span class="mf">1779118915.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># usando el método de clase</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">path</span> <span class="o">=</span> <span class="s1">&#39;https://raw.githubusercontent.com/AprendizajeProfundo/Libro_Fundamentos_Programacion/main/Python/Datos/cuenta.csv&#39;</span>
+<span class="ne">----&gt; </span><span class="mi">3</span> <span class="n">mi_cuenta</span> <span class="o">=</span> <span class="n">CuentaBancaria</span><span class="o">.</span><span class="n">from_csv</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="nb">print</span><span class="p">(</span><span class="n">mi_cuenta</span><span class="o">.</span><span class="n">cliente</span><span class="p">,</span> <span class="n">mi_cuenta</span><span class="o">.</span><span class="n">numero_cuenta</span><span class="p">,</span> <span class="n">mi_cuenta</span><span class="o">.</span><span class="n">saldo</span><span class="p">,</span> <span class="n">mi_cuenta</span><span class="o">.</span><span class="n">creada_en</span><span class="p">)</span>
+
+<span class="nn">/tmp/ipykernel_2591/1014366421.py</span> in <span class="ni">from_csv</span><span class="nt">(cls, filepath)</span>
+<span class="g g-Whitespace">     </span><span class="mi">17</span>     <span class="nd">@classmethod</span>
+<span class="g g-Whitespace">     </span><span class="mi">18</span>     <span class="k">def</span> <span class="nf">from_csv</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">filepath</span><span class="p">):</span>
+<span class="ne">---&gt; </span><span class="mi">19</span>         <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<span class="g g-Whitespace">     </span><span class="mi">20</span>             <span class="n">fila</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">reader</span><span class="p">(</span><span class="n">f</span><span class="p">)</span><span class="o">.</span><span class="fm">__next__</span><span class="p">()</span>
+<span class="g g-Whitespace">     </span><span class="mi">21</span>             <span class="n">cliente</span><span class="p">,</span> <span class="n">numero_cuenta</span> <span class="o">=</span> <span class="n">fila</span>
+
+<span class="ne">FileNotFoundError</span>: [Errno 2] No such file or directory: &#39;https://raw.githubusercontent.com/AprendizajeProfundo/Libro_Fundamentos_Programacion/main/Python/Datos/cuenta.csv&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># usando el constructor __init__</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mi_cuenta</span><span class="o">.</span><span class="n">cliente</span><span class="p">,</span> <span class="n">mi_cuenta</span><span class="o">.</span><span class="n">numero_cuenta</span><span class="p">,</span> <span class="n">mi_cuenta</span><span class="o">.</span><span class="n">saldo</span><span class="p">,</span> <span class="n">mi_cuenta</span><span class="o">.</span><span class="n">creada_en</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>María 151148 0 2022-08-16
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="span-style-color-4cc9f0-implementar-igualdad-de-objetos-span">
+<h3><span style="color:#4CC9F0">Implementar igualdad de objetos</span><a class="headerlink" href="#span-style-color-4cc9f0-implementar-igualdad-de-objetos-span" title="Permalink to this headline">#</a></h3>
+<p>La comparación de instancias de clase es una tarea habitual, cuya implementación no es inmediata. Observe el siguiente ejemplo.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cuenta_A</span> <span class="o">=</span> <span class="n">CuentaBancaria</span><span class="p">(</span><span class="s2">&quot;María&quot;</span><span class="p">,</span> <span class="mi">151148</span><span class="p">)</span>
+<span class="n">cuenta_B</span> <span class="o">=</span> <span class="n">CuentaBancaria</span><span class="p">(</span><span class="s2">&quot;María&quot;</span><span class="p">,</span> <span class="mi">151148</span><span class="p">)</span>
+
+<span class="n">cuenta_A</span> <span class="o">==</span> <span class="n">cuenta_B</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>False
+</pre></div>
+</div>
+</div>
+</div>
+<p>Las dos cuentas tiene el mismo contenido, pero la comparación es False. Esto sucede porque cuando Python compara en realidad los fragmentos de memoria que ocupan las instancias.</p>
+<p>Para implementar la comparación de instancias de clase usamos la función especial <code class="docutils literal notranslate"><span class="pre">__eq__</span></code>. Veamos un ejemplo de implementación en nuestra clase <em>CuentaBancaria</em>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+<span class="kn">import</span> <span class="nn">csv</span>
+
+<span class="k">class</span> <span class="nc">CuentaBancaria</span><span class="p">:</span>
+
+    <span class="n">MIN_SALDO</span> <span class="o">=</span> <span class="o">-</span><span class="mi">10_000</span>
+    
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cliente</span><span class="p">,</span> <span class="n">numero_cuenta</span><span class="p">,</span> <span class="n">saldo</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cliente</span> <span class="o">=</span> <span class="n">cliente</span>    
+        <span class="bp">self</span><span class="o">.</span><span class="n">numero_cuenta</span> <span class="o">=</span> <span class="n">numero_cuenta</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">creada_en</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">date</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">saldo</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">MIN_SALDO</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;¡Saldo muy pequeño!&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">saldo</span> <span class="o">=</span> <span class="n">saldo</span>
+    
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">from_csv</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">filepath</span><span class="p">):</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">fila</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">reader</span><span class="p">(</span><span class="n">f</span><span class="p">)</span><span class="o">.</span><span class="fm">__next__</span><span class="p">()</span>
+            <span class="n">cliente</span><span class="p">,</span> <span class="n">numero_cuenta</span> <span class="o">=</span> <span class="n">fila</span>
+            <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">cliente</span><span class="p">,</span> <span class="n">numero_cuenta</span><span class="p">)</span>
+     
+    <span class="k">def</span> <span class="nf">deposito</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">monto</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">saldo</span> <span class="o">+=</span> <span class="n">monto</span>
+        
+    <span class="k">def</span> <span class="nf">retiro</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">monto</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">saldo</span> <span class="o">-=</span> <span class="n">monto</span>
+    
+    <span class="k">def</span> <span class="fm">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="k">return</span> <span class="kc">True</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">numero_cuenta</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">numero_cuenta</span> <span class="k">else</span> <span class="kc">False</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Probamos de nuevo</span>
+<span class="n">cuenta_A</span> <span class="o">=</span> <span class="n">CuentaBancaria</span><span class="p">(</span><span class="s2">&quot;María&quot;</span><span class="p">,</span> <span class="mi">151148</span><span class="p">)</span>
+<span class="n">cuenta_B</span> <span class="o">=</span> <span class="n">CuentaBancaria</span><span class="p">(</span><span class="s2">&quot;María&quot;</span><span class="p">,</span> <span class="mi">151148</span><span class="p">)</span>
+
+<span class="n">cuenta_A</span> <span class="o">==</span> <span class="n">cuenta_B</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+<p>De igual manera es posible implementar las comparaciones mayor que <code class="docutils literal notranslate"><span class="pre">__gt__</span></code>, menor o igual a <code class="docutils literal notranslate"><span class="pre">__le__</span></code>, etc. Veamos un ejemplo. Vamos a comparar las cuentas por el saldo.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+<span class="kn">import</span> <span class="nn">csv</span>
+
+<span class="k">class</span> <span class="nc">CuentaBancaria</span><span class="p">:</span>
+
+    <span class="n">MIN_SALDO</span> <span class="o">=</span> <span class="o">-</span><span class="mi">10_000</span>
+    
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cliente</span><span class="p">,</span> <span class="n">numero_cuenta</span><span class="p">,</span> <span class="n">saldo</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cliente</span> <span class="o">=</span> <span class="n">cliente</span>    
+        <span class="bp">self</span><span class="o">.</span><span class="n">numero_cuenta</span> <span class="o">=</span> <span class="n">numero_cuenta</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">creada_en</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">date</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">saldo</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">MIN_SALDO</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;¡Saldo muy pequeño!&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">saldo</span> <span class="o">=</span> <span class="n">saldo</span>
+    
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">from_csv</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">filepath</span><span class="p">):</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">fila</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">reader</span><span class="p">(</span><span class="n">f</span><span class="p">)</span><span class="o">.</span><span class="fm">__next__</span><span class="p">()</span>
+            <span class="n">cliente</span><span class="p">,</span> <span class="n">numero_cuenta</span> <span class="o">=</span> <span class="n">fila</span>
+            <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">cliente</span><span class="p">,</span> <span class="n">numero_cuenta</span><span class="p">)</span>
+     
+    <span class="k">def</span> <span class="nf">deposito</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">monto</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">saldo</span> <span class="o">+=</span> <span class="n">monto</span>
+        
+    <span class="k">def</span> <span class="nf">retiro</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">monto</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">saldo</span> <span class="o">-=</span> <span class="n">monto</span>
+    
+    <span class="k">def</span> <span class="fm">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="k">return</span> <span class="kc">True</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">numero_cuenta</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">numero_cuenta</span> <span class="k">else</span> <span class="kc">False</span>
+    
+    <span class="k">def</span> <span class="fm">__gt__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="k">return</span> <span class="kc">True</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">saldo</span> <span class="o">&gt;</span> <span class="n">other</span><span class="o">.</span><span class="n">saldo</span> <span class="k">else</span> <span class="kc">False</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># probamos</span>
+<span class="n">cuenta_A</span> <span class="o">=</span> <span class="n">CuentaBancaria</span><span class="p">(</span><span class="s2">&quot;María&quot;</span><span class="p">,</span> <span class="mi">151148</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
+<span class="n">cuenta_B</span> <span class="o">=</span> <span class="n">CuentaBancaria</span><span class="p">(</span><span class="s2">&quot;Luis&quot;</span><span class="p">,</span> <span class="mi">151050</span><span class="p">,</span> <span class="mi">500</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">cuenta_A</span> <span class="o">==</span> <span class="n">cuenta_B</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cuenta_A</span> <span class="o">&gt;</span> <span class="n">cuenta_B</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>False
+True
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="span-style-color-4cc9f0-implementar-representacion-en-forma-de-cadenas-span">
+<h3><span style="color:#4CC9F0">Implementar representación en forma de cadenas</span><a class="headerlink" href="#span-style-color-4cc9f0-implementar-representacion-en-forma-de-cadenas-span" title="Permalink to this headline">#</a></h3>
+<p>Para tener una representación de las instancia en forma de texto, fácil de revisar por parte del usuario, implemente el método especial <code class="docutils literal notranslate"><span class="pre">__repr__</span></code>. Esto permite depurar más fácilmente nuestros objetos, porque es una representación más legible para los humanos. Veamos el ejemplo. Vamos a implementar además el método especial <code class="docutils literal notranslate"><span class="pre">__str__</span></code> que ya estudiamos antes para tener una versión de <em>print</em> comprensible para los humanos. Agregamos además una función auxiliar a nuestra clase para manejar las fechas de análisis. Hablaremos más sobre esto más adelante.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+<span class="kn">import</span> <span class="nn">csv</span>
+
+<span class="k">class</span> <span class="nc">CuentaBancaria</span><span class="p">:</span>
+
+    <span class="n">MIN_SALDO</span> <span class="o">=</span> <span class="o">-</span><span class="mi">10_000</span>
+    
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cliente</span><span class="p">,</span> <span class="n">numero_cuenta</span><span class="p">,</span> <span class="n">saldo</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cliente</span> <span class="o">=</span> <span class="n">cliente</span>    
+        <span class="bp">self</span><span class="o">.</span><span class="n">numero_cuenta</span> <span class="o">=</span> <span class="n">numero_cuenta</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">creada_en</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">date</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">saldo</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">MIN_SALDO</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;¡Saldo muy pequeño!&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">saldo</span> <span class="o">=</span> <span class="n">saldo</span>
+    
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">from_csv</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">filepath</span><span class="p">):</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">fila</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">reader</span><span class="p">(</span><span class="n">f</span><span class="p">)</span><span class="o">.</span><span class="fm">__next__</span><span class="p">()</span>
+            <span class="n">cliente</span><span class="p">,</span> <span class="n">numero_cuenta</span> <span class="o">=</span> <span class="n">fila</span>
+            <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">cliente</span><span class="p">,</span> <span class="n">numero_cuenta</span><span class="p">)</span>
+     
+    <span class="k">def</span> <span class="nf">deposito</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">monto</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">saldo</span> <span class="o">+=</span> <span class="n">monto</span>
+        
+    <span class="k">def</span> <span class="nf">retiro</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">monto</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">saldo</span> <span class="o">-=</span> <span class="n">monto</span>
+    
+    <span class="k">def</span> <span class="fm">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="k">return</span> <span class="kc">True</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">numero_cuenta</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">numero_cuenta</span> <span class="k">else</span> <span class="kc">False</span>
+    
+    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">          Cuenta Bancaria:</span>
+<span class="s2">          Propietario de la cuenta: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">cliente</span><span class="si">}</span><span class="s2"></span>
+<span class="s2">          Número de cuenta: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">numero_cuenta</span><span class="si">}</span><span class="s2"></span>
+<span class="s2">          Fecha de creación: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">to_dash_date</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">creada_en</span><span class="p">))</span><span class="si">}</span><span class="s2"></span>
+<span class="s2">          Saldo actual: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">saldo</span><span class="si">}</span><span class="s2"></span>
+<span class="s2">          &quot;&quot;&quot;</span>
+    
+    <span class="k">def</span> <span class="nf">to_dash_date</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">date</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">date</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">,</span> <span class="s2">&quot;-&quot;</span><span class="p">)</span>
+    
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;CuentaBancaria(cliente=&#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">cliente</span><span class="si">}</span><span class="s2">&#39;, &quot;</span> \
+               <span class="sa">f</span><span class="s2">&quot;numero_cuenta=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">numero_cuenta</span><span class="si">}</span><span class="s2">, &quot;</span> \
+               <span class="sa">f</span><span class="s2">&quot;saldo=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">saldo</span><span class="si">}</span><span class="s2">)&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Este</span> <span class="n">es</span> <span class="n">el</span> <span class="n">resultado</span><span class="o">.</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mi_cuenta</span> <span class="o">=</span> <span class="n">CuentaBancaria</span><span class="p">(</span><span class="s2">&quot;María&quot;</span><span class="p">,</span> <span class="mi">151148</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mi_cuenta</span><span class="p">)</span>
+<span class="nb">repr</span><span class="p">(</span><span class="n">mi_cuenta</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>          Cuenta Bancaria:
+          Propietario de la cuenta: María
+          Número de cuenta: 151148
+          Fecha de creación: 2022-08-16
+          Saldo actual: 0
+          
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&quot;CuentaBancaria(cliente=&#39;María&#39;, numero_cuenta=151148, saldo=0)&quot;
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="span-style-color-4cc9f0-marcar-metodos-estaticos-span">
+<h3><span style="color:#4CC9F0">Marcar métodos estáticos</span><a class="headerlink" href="#span-style-color-4cc9f0-marcar-metodos-estaticos-span" title="Permalink to this headline">#</a></h3>
+<p>Un método se considera estático cuando no requiere transformar atributos dentro de la instancia o no utiliza métodos de la instancia. En ejemplo anteiror la función utilitaria <em>to_dash_date</em> recibe la fecha de creación solamente para mostrala en un formato mas adecuado para los humanos. Esta método es estático y vamos a marcarlo como tal. Esto ahorra memoria y lo hace más eficiente. Observe que ahora no pasamos el apuntador <em>cls</em> a la método.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+<span class="kn">import</span> <span class="nn">csv</span>
+
+<span class="k">class</span> <span class="nc">CuentaBancaria</span><span class="p">:</span>
+
+    <span class="n">MIN_SALDO</span> <span class="o">=</span> <span class="o">-</span><span class="mi">10_000</span>
+    
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cliente</span><span class="p">,</span> <span class="n">numero_cuenta</span><span class="p">,</span> <span class="n">saldo</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cliente</span> <span class="o">=</span> <span class="n">cliente</span>    
+        <span class="bp">self</span><span class="o">.</span><span class="n">numero_cuenta</span> <span class="o">=</span> <span class="n">numero_cuenta</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">creada_en</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">date</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">saldo</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">MIN_SALDO</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;¡Saldo muy pequeño!&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">saldo</span> <span class="o">=</span> <span class="n">saldo</span>
+    
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">from_csv</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">filepath</span><span class="p">):</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">fila</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">reader</span><span class="p">(</span><span class="n">f</span><span class="p">)</span><span class="o">.</span><span class="fm">__next__</span><span class="p">()</span>
+            <span class="n">cliente</span><span class="p">,</span> <span class="n">numero_cuenta</span> <span class="o">=</span> <span class="n">fila</span>
+            <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">cliente</span><span class="p">,</span> <span class="n">numero_cuenta</span><span class="p">)</span>
+     
+    <span class="k">def</span> <span class="nf">deposito</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">monto</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">saldo</span> <span class="o">+=</span> <span class="n">monto</span>
+        
+    <span class="k">def</span> <span class="nf">retiro</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">monto</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">saldo</span> <span class="o">-=</span> <span class="n">monto</span>
+    
+    <span class="k">def</span> <span class="fm">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="k">return</span> <span class="kc">True</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">numero_cuenta</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">numero_cuenta</span> <span class="k">else</span> <span class="kc">False</span>
+    
+    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">          Cuenta Bancaria:</span>
+<span class="s2">          Propietario de la cuenta: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">cliente</span><span class="si">}</span><span class="s2"></span>
+<span class="s2">          Número de cuenta: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">numero_cuenta</span><span class="si">}</span><span class="s2"></span>
+<span class="s2">          Fecha de creación: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">to_dash_date</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">creada_en</span><span class="p">))</span><span class="si">}</span><span class="s2"></span>
+<span class="s2">          Saldo actual: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">saldo</span><span class="si">}</span><span class="s2"></span>
+<span class="s2">          &quot;&quot;&quot;</span>
+    
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">to_dash_date</span><span class="p">(</span><span class="n">date</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">date</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">,</span> <span class="s2">&quot;-&quot;</span><span class="p">)</span>
+    
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;CuentaBancaria(cliente=&#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">cliente</span><span class="si">}</span><span class="s2">&#39;, &quot;</span> \
+               <span class="sa">f</span><span class="s2">&quot;numero_cuenta=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">numero_cuenta</span><span class="si">}</span><span class="s2">, &quot;</span> \
+               <span class="sa">f</span><span class="s2">&quot;saldo=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">saldo</span><span class="si">}</span><span class="s2">)&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Este es el resultado. El mismo de antes.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mi_cuenta</span> <span class="o">=</span> <span class="n">CuentaBancaria</span><span class="p">(</span><span class="s2">&quot;María&quot;</span><span class="p">,</span> <span class="mi">151148</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mi_cuenta</span><span class="p">)</span>
+<span class="nb">repr</span><span class="p">(</span><span class="n">mi_cuenta</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>          Cuenta Bancaria:
+          Propietario de la cuenta: María
+          Número de cuenta: 151148
+          Fecha de creación: 2022-08-16
+          Saldo actual: 0
+          
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&quot;CuentaBancaria(cliente=&#39;María&#39;, numero_cuenta=151148, saldo=0)&quot;
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="span-style-color-4cc9f0-decidir-que-es-interno-y-que-es-privado-span">
+<h3><span style="color:#4CC9F0">Decidir que es interno y que es privado</span><a class="headerlink" href="#span-style-color-4cc9f0-decidir-que-es-interno-y-que-es-privado-span" title="Permalink to this headline">#</a></h3>
+<p>Algunos métodos y atributos en cualquier clase están destinados a ser utilizados explícitamente por el usuario del código, como los métodos <em>retiro()</em> y *deposito()*en nuestra clase <em>CuentaBancaria</em>. Algunos, sin embargo, no lo son. El método <em>_dash_date()</em> es una utilidad de ayuda llamada por la clase bajo el capó, pero no está pensada para ser llamada manualmente.</p>
+<p>Dichos métodos y atributos se conocen como  <code class="docutils literal notranslate"><span class="pre">métodos</span> <span class="pre">y</span> <span class="pre">atributos</span> <span class="pre">internos</span></code> y es la mejor práctica comenzar sus nombres con un guión bajo para que tengamos <em>_to_dash_date()</em>, y por ejemplo <em>self._cliente</em> Y <em>self._saldo</em>, si así se decide.</p>
+<p>Esta convención de nomenclatura por sí misma no hace nada, pero permite que las personas que miran su código reconozcan de inmediato qué métodos no forman parte de la API pública y, por lo tanto, pueden cambiar inesperadamente en futuras versiones del código.</p>
+<p>Un tema relacionado son los<code class="docutils literal notranslate"><span class="pre">métodos</span> <span class="pre">y</span> <span class="pre">atributos</span> <span class="pre">privados</span></code> . Es posible que desee ocultar algunos métodos o atributos del mundo exterior, por ejemplo, para asegurarse de que no se sobrescriban. En Python, no existe un mecanismo para ocultarlos por completo, pero podemos marcarlos como privados nombrándolos con un doble guión bajo inicial. Por ejemplo, podríamos querer que el umbral de saldo mínimo sea privado, por lo que lo llamamos <code class="docutils literal notranslate"><span class="pre">__MIN_SALDO</span></code>.</p>
+<p>Ahora, aunque es accesible dentro de la clase como de costumbre, la llamada <code class="docutils literal notranslate"><span class="pre">mi_cuencta.__MIN_SALDO</span></code> generará una excepción. Esto significa para el usuario que este atributo es privado y no debe ser manipulado.</p>
+<p>Con estas consideraciones, nuestra clase toma la forma</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+<span class="kn">import</span> <span class="nn">csv</span>
+
+<span class="k">class</span> <span class="nc">CuentaBancaria</span><span class="p">:</span>
+
+    <span class="n">__MIN_SALDO</span> <span class="o">=</span> <span class="o">-</span><span class="mi">10_000</span>
+    
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cliente</span><span class="p">,</span> <span class="n">numero_cuenta</span><span class="p">,</span> <span class="n">saldo</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_cliente</span> <span class="o">=</span> <span class="n">cliente</span>    
+        <span class="bp">self</span><span class="o">.</span><span class="n">numero_cuenta</span> <span class="o">=</span> <span class="n">numero_cuenta</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">creada_en</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">date</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">saldo</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">__MIN_SALDO</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;¡Saldo muy pequeño!&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_saldo</span> <span class="o">=</span> <span class="n">saldo</span>
+    
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">from_csv</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">filepath</span><span class="p">):</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">fila</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">reader</span><span class="p">(</span><span class="n">f</span><span class="p">)</span><span class="o">.</span><span class="fm">__next__</span><span class="p">()</span>
+            <span class="n">cliente</span><span class="p">,</span> <span class="n">numero_cuenta</span> <span class="o">=</span> <span class="n">fila</span>
+            <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">cliente</span><span class="p">,</span> <span class="n">numero_cuenta</span><span class="p">)</span>
+     
+    <span class="k">def</span> <span class="nf">deposito</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">monto</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">saldo</span> <span class="o">+=</span> <span class="n">monto</span>
+        
+    <span class="k">def</span> <span class="nf">retiro</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">monto</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">saldo</span> <span class="o">-=</span> <span class="n">monto</span>
+    
+    <span class="k">def</span> <span class="fm">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="k">return</span> <span class="kc">True</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">numero_cuenta</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">numero_cuenta</span> <span class="k">else</span> <span class="kc">False</span>
+    
+    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">          Cuenta Bancaria:</span>
+<span class="s2">          Propietario de la cuenta: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_cliente</span><span class="si">}</span><span class="s2"></span>
+<span class="s2">          Número de cuenta: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">numero_cuenta</span><span class="si">}</span><span class="s2"></span>
+<span class="s2">          Fecha de creación: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_to_dash_date</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">creada_en</span><span class="p">))</span><span class="si">}</span><span class="s2"></span>
+<span class="s2">          Saldo actual: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_saldo</span><span class="si">}</span><span class="s2"></span>
+<span class="s2">          &quot;&quot;&quot;</span>
+    
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">_to_dash_date</span><span class="p">(</span><span class="n">date</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">date</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">,</span> <span class="s2">&quot;-&quot;</span><span class="p">)</span>
+    
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;CuentaBancaria(cliente=&#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_cliente</span><span class="si">}</span><span class="s2">&#39;, &quot;</span> \
+               <span class="sa">f</span><span class="s2">&quot;numero_cuenta=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">numero_cuenta</span><span class="si">}</span><span class="s2">, &quot;</span> \
+               <span class="sa">f</span><span class="s2">&quot;saldo=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_saldo</span><span class="si">}</span><span class="s2">)&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>El resultado es el siguiente</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mi_cuenta</span> <span class="o">=</span> <span class="n">CuentaBancaria</span><span class="p">(</span><span class="s2">&quot;María&quot;</span><span class="p">,</span> <span class="mi">151148</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mi_cuenta</span><span class="p">)</span>
+<span class="nb">repr</span><span class="p">(</span><span class="n">mi_cuenta</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mi_cuenta</span><span class="o">.</span><span class="n">__MIN_SALDO</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>          Cuenta Bancaria:
+          Propietario de la cuenta: María
+          Número de cuenta: 151148
+          Fecha de creación: 2022-08-16
+          Saldo actual: 0
+          
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">AttributeError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">64</span><span class="o">-</span><span class="n">a7763f2390a2</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="nb">print</span><span class="p">(</span><span class="n">mi_cuenta</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="nb">repr</span><span class="p">(</span><span class="n">mi_cuenta</span><span class="p">)</span>
+<span class="ne">----&gt; </span><span class="mi">4</span> <span class="nb">print</span><span class="p">(</span><span class="n">mi_cuenta</span><span class="o">.</span><span class="n">__MIN_SALDO</span><span class="p">)</span>
+
+<span class="ne">AttributeError</span>: &#39;CuentaBancaria&#39; object has no attribute &#39;__MIN_SALDO&#39;
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="span-style-color-4cc9f0-establecer-el-acceso-a-los-atributos-property-span">
+<h3><span style="color:#4CC9F0">Establecer el acceso a los atributos: <code class="docutils literal notranslate"><span class="pre">&#64;property</span></code></span><a class="headerlink" href="#span-style-color-4cc9f0-establecer-el-acceso-a-los-atributos-property-span" title="Permalink to this headline">#</a></h3>
+<p>Consideremos el siguiente fragmento de código:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mi_cuenta</span> <span class="o">=</span> <span class="n">CuentaBancaria</span><span class="p">(</span><span class="s2">&quot;María&quot;</span><span class="p">,</span> <span class="mi">151148</span><span class="p">)</span>
+<span class="n">mi_cuenta</span><span class="o">.</span><span class="n">_saldo</span> <span class="o">=</span> <span class="o">-</span><span class="mi">999_999</span>
+<span class="n">mi_cuenta</span><span class="o">.</span><span class="n">creada_en</span> <span class="o">=</span> <span class="n">datetime</span><span class="p">(</span><span class="mi">1900</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mi_cuenta</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>          Cuenta Bancaria:
+          Propietario de la cuenta: María
+          Número de cuenta: 151148
+          Fecha de creación: 1900-01-01 00:00:00
+          Saldo actual: -999999
+          
+</pre></div>
+</div>
+</div>
+</div>
+<p>Como puede ver, es bastante fácil cambiar la fecha de creación en una cuenta existente, así como establecer el saldo en un número negativo grande.</p>
+<p>Recuerde que la fecha de creación se establece automáticamente en la creación del objeto, y no podríamos configurar una cuenta con un saldo demasiado negativo gracias a la validación de entrada en el método <code class="docutils literal notranslate"><span class="pre">__init__()</span></code></p>
+<p>¿Qué podemos hacer al respecto? Idealmente, la fecha de creación debe ser un atributo de solo lectura y el saldo debe tener alguna validación cada vez que se actualiza. Esto se puede lograr en Python usando propiedades y setters.</p>
+<p>Usaremos propiedades y configuradores para hacer que los atributos sean de solo lectura y validar sus actualizaciones.</p>
+<p>Para hacer, digamos, que el atributo saldo sea de solo lectura, todo lo que se necesitamos hacer es agregar una función a la clase llamada exactamente como este atributo decorado con un decorador <code class="docutils literal notranslate"><span class="pre">&#64;property</span></code> y devolviendo el valor del atributo.</p>
+<p>Vamos al nuevo código de nuestra clase. Hemos declarado todos los atributos de instancia como internos y creado la propiedad saldo</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+<span class="kn">import</span> <span class="nn">csv</span>
+
+<span class="k">class</span> <span class="nc">CuentaBancaria</span><span class="p">:</span>
+
+    <span class="n">__MIN_SALDO</span> <span class="o">=</span> <span class="o">-</span><span class="mi">10_000</span>
+    
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cliente</span><span class="p">,</span> <span class="n">numero_cuenta</span><span class="p">,</span> <span class="n">saldo</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_cliente</span> <span class="o">=</span> <span class="n">cliente</span>    
+        <span class="bp">self</span><span class="o">.</span><span class="n">_numero_cuenta</span> <span class="o">=</span> <span class="n">numero_cuenta</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_creada_en</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">date</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">saldo</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">__MIN_SALDO</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;¡Saldo muy pequeño!&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_saldo</span> <span class="o">=</span> <span class="n">saldo</span>
+    
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">from_csv</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">filepath</span><span class="p">):</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">fila</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">reader</span><span class="p">(</span><span class="n">f</span><span class="p">)</span><span class="o">.</span><span class="fm">__next__</span><span class="p">()</span>
+            <span class="n">cliente</span><span class="p">,</span> <span class="n">numero_cuenta</span> <span class="o">=</span> <span class="n">fila</span>
+            <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">cliente</span><span class="p">,</span> <span class="n">numero_cuenta</span><span class="p">)</span>
+     
+    <span class="k">def</span> <span class="nf">deposito</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">monto</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_saldo</span> <span class="o">+=</span> <span class="n">monto</span>
+        
+    <span class="k">def</span> <span class="nf">retiro</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">monto</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_saldo</span> <span class="o">-=</span> <span class="n">monto</span>
+    
+    <span class="k">def</span> <span class="fm">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="k">return</span> <span class="kc">True</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">numero_cuenta</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">numero_cuenta</span> <span class="k">else</span> <span class="kc">False</span>
+    
+    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">          Cuenta Bancaria:</span>
+<span class="s2">          Propietario de la cuenta: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_cliente</span><span class="si">}</span><span class="s2"></span>
+<span class="s2">          Número de cuenta: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_numero_cuenta</span><span class="si">}</span><span class="s2"></span>
+<span class="s2">          Fecha de creación: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_to_dash_date</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_creada_en</span><span class="p">))</span><span class="si">}</span><span class="s2"></span>
+<span class="s2">          Saldo actual: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_saldo</span><span class="si">}</span><span class="s2"></span>
+<span class="s2">          &quot;&quot;&quot;</span>
+    
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">_to_dash_date</span><span class="p">(</span><span class="n">date</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">date</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">,</span> <span class="s2">&quot;-&quot;</span><span class="p">)</span>
+    
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;CuentaBancaria(cliente=&#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_cliente</span><span class="si">}</span><span class="s2">&#39;, &quot;</span> \
+               <span class="sa">f</span><span class="s2">&quot;numero_cuenta=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_numero_cuenta</span><span class="si">}</span><span class="s2">, &quot;</span> \
+               <span class="sa">f</span><span class="s2">&quot;saldo=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_saldo</span><span class="si">}</span><span class="s2">)&quot;</span>
+    
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">numero_cuenta</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_numero_cuenta</span>
+    
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">creada_en</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_creada_en</span>
+    
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">saldo</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_saldo</span>
+    
+    
+    
+    
+</pre></div>
+</div>
+</div>
+</div>
+<p>Primero revisemos que nada del comportamiento externo anterior no cambió.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mi_cuenta</span> <span class="o">=</span> <span class="n">CuentaBancaria</span><span class="p">(</span><span class="s2">&quot;María&quot;</span><span class="p">,</span> <span class="mi">151148</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mi_cuenta</span><span class="p">)</span>
+<span class="nb">repr</span><span class="p">(</span><span class="n">mi_cuenta</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>          Cuenta Bancaria:
+          Propietario de la cuenta: María
+          Número de cuenta: 151148
+          Fecha de creación: 2022-08-16
+          Saldo actual: 0
+          
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&quot;CuentaBancaria(cliente=&#39;María&#39;, numero_cuenta=151148, saldo=0)&quot;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Pero ahora no funciona</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mi_cuenta</span><span class="o">.</span><span class="n">saldo</span> <span class="o">=</span> <span class="mi">100</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">AttributeError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">84</span><span class="o">-</span><span class="mi">006</span><span class="n">ff73a9363</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">mi_cuenta</span><span class="o">.</span><span class="n">saldo</span> <span class="o">=</span> <span class="mi">100</span>
+
+<span class="ne">AttributeError</span>: can&#39;t set attribute
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Este</span> <span class="n">funcionamiento</span> <span class="n">estaría</span> <span class="n">bien</span> <span class="n">por</span> <span class="n">ejemplo</span> <span class="n">para</span> <span class="n">número</span> <span class="n">de</span> <span class="n">cuenta</span> <span class="n">y</span> <span class="n">fecha</span> <span class="n">de</span> <span class="n">creación</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mi_cuenta</span><span class="o">.</span><span class="n">numero_cuenta</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>151148
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+<span class="kn">import</span> <span class="nn">csv</span>
+
+<span class="k">class</span> <span class="nc">CuentaBancaria</span><span class="p">:</span>
+
+    <span class="n">__MIN_SALDO</span> <span class="o">=</span> <span class="o">-</span><span class="mi">10_000</span>
+    
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cliente</span><span class="p">,</span> <span class="n">numero_cuenta</span><span class="p">,</span> <span class="n">saldo</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_cliente</span> <span class="o">=</span> <span class="n">cliente</span>    
+        <span class="bp">self</span><span class="o">.</span><span class="n">_numero_cuenta</span> <span class="o">=</span> <span class="n">numero_cuenta</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_creada_en</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">date</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">saldo</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">__MIN_SALDO</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;¡Saldo muy pequeño!&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_saldo</span> <span class="o">=</span> <span class="n">saldo</span>
+    
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">from_csv</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">filepath</span><span class="p">):</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">fila</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">reader</span><span class="p">(</span><span class="n">f</span><span class="p">)</span><span class="o">.</span><span class="fm">__next__</span><span class="p">()</span>
+            <span class="n">cliente</span><span class="p">,</span> <span class="n">numero_cuenta</span> <span class="o">=</span> <span class="n">fila</span>
+            <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">cliente</span><span class="p">,</span> <span class="n">numero_cuenta</span><span class="p">)</span>
+     
+    <span class="k">def</span> <span class="nf">deposito</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">monto</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_saldo</span> <span class="o">+=</span> <span class="n">monto</span>
+        
+    <span class="k">def</span> <span class="nf">retiro</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">monto</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_saldo</span> <span class="o">-=</span> <span class="n">monto</span>
+    
+    <span class="k">def</span> <span class="fm">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="k">return</span> <span class="kc">True</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">numero_cuenta</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">numero_cuenta</span> <span class="k">else</span> <span class="kc">False</span>
+    
+    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">          Cuenta Bancaria:</span>
+<span class="s2">          Propietario de la cuenta: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_cliente</span><span class="si">}</span><span class="s2"></span>
+<span class="s2">          Número de cuenta: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_numero_cuenta</span><span class="si">}</span><span class="s2"></span>
+<span class="s2">          Fecha de creación: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_to_dash_date</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_creada_en</span><span class="p">))</span><span class="si">}</span><span class="s2"></span>
+<span class="s2">          Saldo actual: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_saldo</span><span class="si">}</span><span class="s2"></span>
+<span class="s2">          &quot;&quot;&quot;</span>
+    
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">_to_dash_date</span><span class="p">(</span><span class="n">date</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">date</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">,</span> <span class="s2">&quot;-&quot;</span><span class="p">)</span>
+    
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;CuentaBancaria(cliente=&#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_cliente</span><span class="si">}</span><span class="s2">&#39;, &quot;</span> \
+               <span class="sa">f</span><span class="s2">&quot;numero_cuenta=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_numero_cuenta</span><span class="si">}</span><span class="s2">, &quot;</span> \
+               <span class="sa">f</span><span class="s2">&quot;saldo=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_saldo</span><span class="si">}</span><span class="s2">)&quot;</span>
+    
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">numero_cuenta</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_numero_cuenta</span>
+    
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">creada_en</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_creada_en</span>
+    
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">saldo</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_saldo</span>
+    
+    <span class="nd">@saldo</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">saldo</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nuevo_saldo</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">nuevo_saldo</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">__MIN_SALDO</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;¡Saldo muy pequeño!&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_saldo</span> <span class="o">=</span> <span class="n">nuevo_saldo</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mi_cuenta</span> <span class="o">=</span> <span class="n">CuentaBancaria</span><span class="p">(</span><span class="s2">&quot;María&quot;</span><span class="p">,</span> <span class="mi">151148</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mi_cuenta</span><span class="p">)</span>
+<span class="nb">repr</span><span class="p">(</span><span class="n">mi_cuenta</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>          Cuenta Bancaria:
+          Propietario de la cuenta: María
+          Número de cuenta: 151148
+          Fecha de creación: 2022-08-16
+          Saldo actual: 0
+          
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&quot;CuentaBancaria(cliente=&#39;María&#39;, numero_cuenta=151148, saldo=0)&quot;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mi_cuenta</span><span class="o">.</span><span class="n">saldo</span> <span class="o">=</span> <span class="mi">500</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mi_cuenta</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>          Cuenta Bancaria:
+          Propietario de la cuenta: María
+          Número de cuenta: 151148
+          Fecha de creación: 2022-08-16
+          Saldo actual: 500
+          
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mi_cuenta</span><span class="o">.</span><span class="n">saldo</span> <span class="o">=</span> <span class="o">-</span><span class="mi">15_000</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mi_cuenta</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ValueError</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">91</span><span class="o">-</span><span class="n">f82c62de04c0</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">mi_cuenta</span><span class="o">.</span><span class="n">saldo</span> <span class="o">=</span> <span class="o">-</span><span class="mi">15_000</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="nb">print</span><span class="p">(</span><span class="n">mi_cuenta</span><span class="p">)</span>
+
+<span class="nn">&lt;ipython-input-88-cce4e77522d3&gt;</span> in <span class="ni">saldo</span><span class="nt">(self, nuevo_saldo)</span>
+<span class="g g-Whitespace">     </span><span class="mi">64</span>     <span class="k">def</span> <span class="nf">saldo</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nuevo_saldo</span><span class="p">):</span>
+<span class="g g-Whitespace">     </span><span class="mi">65</span>         <span class="k">if</span> <span class="n">nuevo_saldo</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">__MIN_SALDO</span><span class="p">:</span>
+<span class="ne">---&gt; </span><span class="mi">66</span>             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;¡Saldo muy pequeño!&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">67</span>         <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">     </span><span class="mi">68</span>             <span class="bp">self</span><span class="o">.</span><span class="n">_saldo</span> <span class="o">=</span> <span class="n">nuevo_saldo</span>
+
+<span class="ne">ValueError</span>: ¡Saldo muy pequeño!
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="span-style-color-4cc9f0-documentar-con-cadenas-de-texto-clases-metodos-atributos-publicos-span">
+<h3><span style="color:#4CC9F0">Documentar con cadenas de texto clases, métodos, atributos públicos</span><a class="headerlink" href="#span-style-color-4cc9f0-documentar-con-cadenas-de-texto-clases-metodos-atributos-publicos-span" title="Permalink to this headline">#</a></h3>
+<p>Escriba cadenas de documentación para todos los módulos, funciones, clases y métodos públicos. Las cadenas de documentos no son necesarias para los métodos no públicos, pero debe tener un comentario que describa lo que hace el método. Este comentario debe aparecer después de la línea “def”. Esta documentación aparece al pedir ayuda (help) de los objetos.</p>
+<p>Nuestra versión final de la clase <em>CuentaBancaria</em> es</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+<span class="kn">import</span> <span class="nn">csv</span>
+
+<span class="k">class</span> <span class="nc">CuentaBancaria</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Clase CuentaBancaria:</span>
+<span class="sd">    Esta clase implementa la creación y moviemientos de una cuencta bancaria.</span>
+<span class="sd">    Atributos públicos:</span>
+<span class="sd">    </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">__MIN_SALDO</span> <span class="o">=</span> <span class="o">-</span><span class="mi">10_000</span>
+    
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cliente</span><span class="p">,</span> <span class="n">numero_cuenta</span><span class="p">,</span> <span class="n">saldo</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Este es el constructor por defecto de la clase CuentaBancaria</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_cliente</span> <span class="o">=</span> <span class="n">cliente</span>    
+        <span class="bp">self</span><span class="o">.</span><span class="n">_numero_cuenta</span> <span class="o">=</span> <span class="n">numero_cuenta</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_creada_en</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">date</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">saldo</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">__MIN_SALDO</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;¡Saldo muy pequeño!&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_saldo</span> <span class="o">=</span> <span class="n">saldo</span>
+    
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">from_csv</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">filepath</span><span class="p">):</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">fila</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">reader</span><span class="p">(</span><span class="n">f</span><span class="p">)</span><span class="o">.</span><span class="fm">__next__</span><span class="p">()</span>
+            <span class="n">cliente</span><span class="p">,</span> <span class="n">numero_cuenta</span> <span class="o">=</span> <span class="n">fila</span>
+            <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">cliente</span><span class="p">,</span> <span class="n">numero_cuenta</span><span class="p">)</span>
+     
+    <span class="k">def</span> <span class="nf">deposito</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">monto</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_saldo</span> <span class="o">+=</span> <span class="n">monto</span>
+        
+    <span class="k">def</span> <span class="nf">retiro</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">monto</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_saldo</span> <span class="o">-=</span> <span class="n">monto</span>
+    
+    <span class="k">def</span> <span class="fm">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="k">return</span> <span class="kc">True</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">numero_cuenta</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">numero_cuenta</span> <span class="k">else</span> <span class="kc">False</span>
+    
+    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">          Cuenta Bancaria:</span>
+<span class="s2">          Propietario de la cuenta: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_cliente</span><span class="si">}</span><span class="s2"></span>
+<span class="s2">          Número de cuenta: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_numero_cuenta</span><span class="si">}</span><span class="s2"></span>
+<span class="s2">          Fecha de creación: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_to_dash_date</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_creada_en</span><span class="p">))</span><span class="si">}</span><span class="s2"></span>
+<span class="s2">          Saldo actual: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_saldo</span><span class="si">}</span><span class="s2"></span>
+<span class="s2">          &quot;&quot;&quot;</span>
+    
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">_to_dash_date</span><span class="p">(</span><span class="n">date</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">date</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">,</span> <span class="s2">&quot;-&quot;</span><span class="p">)</span>
+    
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;CuentaBancaria(cliente=&#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_cliente</span><span class="si">}</span><span class="s2">&#39;, &quot;</span> \
+               <span class="sa">f</span><span class="s2">&quot;numero_cuenta=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_numero_cuenta</span><span class="si">}</span><span class="s2">, &quot;</span> \
+               <span class="sa">f</span><span class="s2">&quot;saldo=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_saldo</span><span class="si">}</span><span class="s2">)&quot;</span>
+    
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">numero_cuenta</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_numero_cuenta</span>
+    
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">creada_en</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_creada_en</span>
+    
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">saldo</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_saldo</span>
+    
+    <span class="nd">@saldo</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">saldo</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nuevo_saldo</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">nuevo_saldo</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">__MIN_SALDO</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;¡Saldo muy pequeño!&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_saldo</span> <span class="o">=</span> <span class="n">nuevo_saldo</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">help</span><span class="p">(</span><span class="n">CuentaBancaria</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Help on class CuentaBancaria in module __main__:
+
+class CuentaBancaria(builtins.object)
+ |  CuentaBancaria(cliente, numero_cuenta, saldo=0)
+ |  
+ |  Clase CuentaBancaria:
+ |  Esta clase implementa la creación y moviemientos de una cuencta bancaria.
+ |  Atributos públicos:
+ |  
+ |  Methods defined here:
+ |  
+ |  __eq__(self, other)
+ |      Return self==value.
+ |  
+ |  __init__(self, cliente, numero_cuenta, saldo=0)
+ |      Este es el constructor por defecto de la clase CuentaBancaria
+ |  
+ |  __repr__(self)
+ |      Return repr(self).
+ |  
+ |  __str__(self)
+ |      Return str(self).
+ |  
+ |  deposito(self, monto)
+ |  
+ |  retiro(self, monto)
+ |  
+ |  ----------------------------------------------------------------------
+ |  Class methods defined here:
+ |  
+ |  from_csv(filepath) from builtins.type
+ |  
+ |  ----------------------------------------------------------------------
+ |  Readonly properties defined here:
+ |  
+ |  creada_en
+ |  
+ |  numero_cuenta
+ |  
+ |  ----------------------------------------------------------------------
+ |  Data descriptors defined here:
+ |  
+ |  __dict__
+ |      dictionary for instance variables (if defined)
+ |  
+ |  __weakref__
+ |      list of weak references to the object (if defined)
+ |  
+ |  saldo
+ |  
+ |  ----------------------------------------------------------------------
+ |  Data and other attributes defined here:
+ |  
+ |  __hash__ = None
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="span-style-color-blue-ejercicios-span">
+<h2><span style="color:blue"> Ejercicios</span><a class="headerlink" href="#span-style-color-blue-ejercicios-span" title="Permalink to this headline">#</a></h2>
+<ol class="simple">
+<li><p>Implemente una clase Persona que contenga la información general de una persona</p></li>
+<li><p>Diseñe una clase Estudiante que implemente el manejo de las notas de clase de un estudiante. Derive la clase de Persona. Suponga que el estudiante debe atender a tres cursos: Matemáticas, Español y Biología.</p></li>
+<li><p>Implemente el ingreso de notas: hasta 3 por curso.</p></li>
+<li><p>Implemente el cálculo de la nota definitiva, como un promedio de las notas.</p></li>
+<li><p>Use todos los patrones definidos en esta lección.</p></li>
+</ol>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "AprendizajeProfundo/Libro_Fundamentos_Programacion",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./Python/Cuadernos"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Álvaro Mauricio Montenegro Díaz, Daniel Mauricio Montenegro Reyes<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

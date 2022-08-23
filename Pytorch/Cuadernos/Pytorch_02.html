@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Tensores &#8212; Fundamentos de Programación</title>
+    <title>Tensores en PyTorch &#8212; Fundamentos de Programación</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -59,7 +59,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="DataSets y DataLoaders" href="Pytorch_03.html" />
-    <link rel="prev" title="Inicio Rápido" href="Pytorch_01.html" />
+    <link rel="prev" title="Primeros pasos con PyTorch" href="Pytorch_01.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -233,14 +233,14 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1">
   <a class="reference internal" href="Pytorch_01.html">
    <span style="color:#F72585">
-    Inicio Rápido
+    Primeros pasos con PyTorch
    </span>
   </a>
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
    <span style="color:#F72585">
-    Tensores
+    Tensores en PyTorch
    </span>
   </a>
  </li>
@@ -283,13 +283,6 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal" href="../../TensorFlow/Cuadernos/Tensorflow-01.html">
    <span style="color:#F72585">
     Inicio Rápido
-   </span>
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../TensorFlow/Cuadernos/La_API_tf_data.html">
-   <span style="color:#F72585">
-    Canalización de datos. La API tf.data
    </span>
   </a>
  </li>
@@ -560,9 +553,9 @@ title="Print to PDF"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#span-style-color-4361ee-importa-torch-span">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-importar-torch-span">
    <span style="color:#4361EE">
-    Importa Torch
+    Importar Torch
    </span>
   </a>
  </li>
@@ -700,7 +693,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1><span style="color:#F72585">Tensores</span></h1>
+                <h1><span style="color:#F72585">Tensores en PyTorch</span></h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -718,9 +711,9 @@ title="Print to PDF"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#span-style-color-4361ee-importa-torch-span">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-importar-torch-span">
    <span style="color:#4361EE">
-    Importa Torch
+    Importar Torch
    </span>
   </a>
  </li>
@@ -859,18 +852,15 @@ title="Print to PDF"
                 
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="span-style-color-f72585-tensores-span">
-<h1><span style="color:#F72585">Tensores</span><a class="headerlink" href="#span-style-color-f72585-tensores-span" title="Permalink to this headline">#</a></h1>
-<figure>
-<img src="https://raw.githubusercontent.com/AprendizajeProfundo/Libro_Fundamentos_Programacion/main/Pytorch/Imagenes/Pytorch_logo.png" width="400" height="100"/>
-</figure>
-<p>Fuente <a class="reference external" href="https://gym.openai.com/">OpenAI Gym</a></p>
+  <section class="tex2jax_ignore mathjax_ignore" id="span-style-color-f72585-tensores-en-pytorch-span">
+<h1><span style="color:#F72585">Tensores en PyTorch</span><a class="headerlink" href="#span-style-color-f72585-tensores-en-pytorch-span" title="Permalink to this headline">#</a></h1>
 <section id="span-style-color-4361ee-introduccion-span">
 <h2><span style="color:#4361EE">Introducción</span><a class="headerlink" href="#span-style-color-4361ee-introduccion-span" title="Permalink to this headline">#</a></h2>
 <p>Los tensores son similares a los ndarrays de <code class="docutils literal notranslate"><span class="pre">NumPy</span></code>, excepto que los tensores pueden ejecutarse en GPU u otros aceleradores de hardware. De hecho, los tensores y las matrices NumPy a menudo pueden compartir la misma memoria subyacente, lo que elimina la necesidad de copiar datos (consulte <a class="reference external" href="https://pytorch.org/tutorials/beginner/blitz/tensor_tutorial.html#bridge-to-np-label">Puente con NumPy</a>). Los tensores también están optimizados para la diferenciación automática.</p>
+<p>En esta lección aprenderemos la manera de manipular tensores en PyTorch.</p>
 </section>
-<section id="span-style-color-4361ee-importa-torch-span">
-<h2><span style="color:#4361EE">Importa Torch</span><a class="headerlink" href="#span-style-color-4361ee-importa-torch-span" title="Permalink to this headline">#</a></h2>
+<section id="span-style-color-4361ee-importar-torch-span">
+<h2><span style="color:#4361EE">Importar Torch</span><a class="headerlink" href="#span-style-color-4361ee-importar-torch-span" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span>
@@ -886,7 +876,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Using torch 1.10.0+cpu
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Using torch 1.11.0+cu102
 </pre></div>
 </div>
 </div>
@@ -900,6 +890,13 @@ title="Print to PDF"
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]]</span>
 <span class="n">x_data</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="n">x_data</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tensor([[1, 2],
+        [3, 4]])
 </pre></div>
 </div>
 </div>
@@ -918,7 +915,7 @@ title="Print to PDF"
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tensor([[1, 2],
-        [3, 4]], dtype=torch.int32)
+        [3, 4]])
 </pre></div>
 </div>
 </div>
@@ -930,19 +927,19 @@ title="Print to PDF"
 <span class="n">torch</span><span class="o">.</span><span class="n">manual_seed</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
 
 <span class="n">x_ones</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">ones_like</span><span class="p">(</span><span class="n">x_data</span><span class="p">)</span> <span class="c1"># retiene las propiedades de x_data</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Ones Tensor: </span><span class="se">\n</span><span class="s2"> </span><span class="si">{</span><span class="n">x_ones</span><span class="si">}</span><span class="s2"> </span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Tensor Unos: </span><span class="se">\n</span><span class="s2"> </span><span class="si">{</span><span class="n">x_ones</span><span class="si">}</span><span class="s2"> </span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
 
 <span class="n">x_rand</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">rand_like</span><span class="p">(</span><span class="n">x_data</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float</span><span class="p">)</span><span class="c1"># sobre escribe le tipo de dato</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Random Tensor: </span><span class="se">\n</span><span class="s2"> </span><span class="si">{</span><span class="n">x_rand</span><span class="si">}</span><span class="s2"> </span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Tensor Aleatorio: </span><span class="se">\n</span><span class="s2"> </span><span class="si">{</span><span class="n">x_rand</span><span class="si">}</span><span class="s2"> </span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Ones Tensor: 
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Tensor Unos: 
  tensor([[1, 1],
         [1, 1]]) 
 
-Random Tensor: 
+Tensor Aleatorio: 
  tensor([[0.1117, 0.8158],
         [0.2626, 0.4839]]) 
 </pre></div>
@@ -959,22 +956,22 @@ Random Tensor:
 <span class="n">ones_tensor</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">shape</span><span class="p">)</span>
 <span class="n">zeros_tensor</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">shape</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Random Tensor: </span><span class="se">\n</span><span class="s2"> </span><span class="si">{</span><span class="n">rand_tensor</span><span class="si">}</span><span class="s2"> </span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Ones Tensor: </span><span class="se">\n</span><span class="s2"> </span><span class="si">{</span><span class="n">ones_tensor</span><span class="si">}</span><span class="s2"> </span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Zeros Tensor: </span><span class="se">\n</span><span class="s2"> </span><span class="si">{</span><span class="n">zeros_tensor</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Tensor Aleatorio: </span><span class="se">\n</span><span class="s2"> </span><span class="si">{</span><span class="n">rand_tensor</span><span class="si">}</span><span class="s2"> </span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Tensor Unos: </span><span class="se">\n</span><span class="s2"> </span><span class="si">{</span><span class="n">ones_tensor</span><span class="si">}</span><span class="s2"> </span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Tensor Ceros: </span><span class="se">\n</span><span class="s2"> </span><span class="si">{</span><span class="n">zeros_tensor</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Random Tensor: 
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Tensor Aleatorio: 
  tensor([[0.6765, 0.7539, 0.2627],
         [0.0428, 0.2080, 0.1180]]) 
 
-Ones Tensor: 
+Tensor Unos: 
  tensor([[1., 1., 1.],
         [1., 1., 1.]]) 
 
-Zeros Tensor: 
+Tensor Ceros: 
  tensor([[0., 0., 0.],
         [0., 0., 0.]])
 </pre></div>
@@ -985,16 +982,16 @@ Zeros Tensor:
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tensor</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Shape of tensor: </span><span class="si">{</span><span class="n">tensor</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Datatype of tensor: </span><span class="si">{</span><span class="n">tensor</span><span class="o">.</span><span class="n">dtype</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Device tensor is stored on: </span><span class="si">{</span><span class="n">tensor</span><span class="o">.</span><span class="n">device</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Forma del tensor: </span><span class="si">{</span><span class="n">tensor</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Tipo de datos del tensor: </span><span class="si">{</span><span class="n">tensor</span><span class="o">.</span><span class="n">dtype</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Dispositivo en donde está el tensor: </span><span class="si">{</span><span class="n">tensor</span><span class="o">.</span><span class="n">device</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Shape of tensor: torch.Size([3, 4])
-Datatype of tensor: torch.float32
-Device tensor is stored on: cpu
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Forma del tensor: torch.Size([3, 4])
+Tipo de datos del tensor: torch.float32
+Dispositivo en donde está el tensor: cpu
 </pre></div>
 </div>
 </div>
@@ -1011,6 +1008,7 @@ Device tensor is stored on: cpu
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Primera fila: &#39;</span><span class="p">,</span> <span class="n">tensor</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Primera  columna: &#39;</span><span class="p">,</span> <span class="n">tensor</span><span class="p">[:,</span><span class="mi">0</span><span class="p">])</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Ultima columna: &#39;</span><span class="p">,</span> <span class="n">tensor</span><span class="p">[</span><span class="o">...</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+<span class="c1"># modifica columna 1 del tensor</span>
 <span class="n">tensor</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">tensor</span><span class="p">)</span>
 </pre></div>
@@ -1242,8 +1240,8 @@ n: [2. 2. 2. 2. 2.]
 </section>
 <section id="span-style-color-4361ee-grafo-de-calculo-dinamico-y-retropropagacion-backpropagation-span">
 <h2><span style="color:#4361EE">Grafo de cálculo dinámico y retropropagación(backpropagation)</span><a class="headerlink" href="#span-style-color-4361ee-grafo-de-calculo-dinamico-y-retropropagacion-backpropagation-span" title="Permalink to this headline">#</a></h2>
-<p>Una de las principales razones para usar PyTorch en proyectos de aprendizaje profundo es que <code class="docutils literal notranslate"><span class="pre">podemos</span> <span class="pre">obtener</span> <span class="pre">automáticamente</span> <span class="pre">gradientes/derivados</span> <span class="pre">de</span> <span class="pre">las</span> <span class="pre">funciones</span></code> que definamos. Principalmente usaremos PyTorch para implementar redes neuronales, y ellas son solamente funciones sofisticadas. Si usamos matrices de peso en nuestra función que queremos aprender, entonces se llaman parámetros o simplemente pesos.</p>
-<p>Si nuestra red neuronal generara un solo valor escalar, hablaríamos de tomar la derivada, pero verá que con bastante frecuencia tendremos múltiples variables de salida (“valores”); en ese caso hablamos de gradientes. Es un término más general.</p>
+<p>Una de las principales razones para usar PyTorch en proyectos de aprendizaje profundo es que <code class="docutils literal notranslate"><span class="pre">podemos</span> <span class="pre">obtener</span> <span class="pre">automáticamente</span> <span class="pre">gradientes/derivadas</span> <span class="pre">de</span> <span class="pre">las</span> <span class="pre">funciones</span></code> que definamos. Principalmente usaremos PyTorch para implementar redes neuronales, y ellas son solamente funciones sofisticadas. Si usamos matrices de peso en nuestra función que queremos aprender, entonces se llaman parámetros o simplemente pesos.</p>
+<p>Si nuestra red neuronal tuviera un solo parámetro, hablaríamos de tomar la derivada, pero verá que siempre tendremos múltiples variables; en ese caso hablamos de gradientes. Es un término más general.</p>
 <p>Dada una entrada <span class="math notranslate nohighlight">\(\mathbf{x}\)</span>, definimos nuestra función manipulando esa entrada, generalmente mediante multiplicaciones de matrices con matrices de peso(weight) y sumas con los llamados vectores de sesgo(bias). A medida que manipulamos nuestra entrada, estamos creando automáticamente un grafo computacional. Este grafo muestra cómo llegar a nuestra salida a partir de nuestra entrada.</p>
 <p>PyTorch es un marco definido por ejecución; esto significa que podemos simplemente hacer nuestras manipulaciones, y PyTorch hará un seguimiento de ese grafo por nosotros. Por lo tanto, creamos un grafo de cálculo dinámico en el camino.</p>
 <section id="span-style-color-4cc9f0-ejemplo-span">
@@ -1305,10 +1303,7 @@ y = \frac{1}{|x|} \sum_i [(x_i+2)^2 + 3],
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>y =  
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tensor(12.6667, grad_fn=&lt;MeanBackward0&gt;)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>y =  tensor(12.6667, grad_fn=&lt;MeanBackward0&gt;)
 </pre></div>
 </div>
 </div>
@@ -1426,7 +1421,7 @@ y = \frac{1}{|x|} \sum_i [(x_i+2)^2 + 3],
         },
         kernelOptions: {
             kernelName: "python3",
-            path: "./Pytorch\Cuadernos"
+            path: "./Pytorch/Cuadernos"
         },
         predefinedOutput: true
     }
@@ -1444,7 +1439,7 @@ y = \frac{1}{|x|} \sum_i [(x_i+2)^2 + 3],
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title"><span style="color:#F72585">Inicio Rápido</span></p>
+            <p class="prev-next-title"><span style="color:#F72585">Primeros pasos con PyTorch</span></p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="Pytorch_03.html" title="next page">

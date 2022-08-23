@@ -231,14 +231,14 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1">
   <a class="reference internal" href="Pytorch_01.html">
    <span style="color:#F72585">
-    Inicio Rápido
+    Primeros pasos con PyTorch
    </span>
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="Pytorch_02.html">
    <span style="color:#F72585">
-    Tensores
+    Tensores en PyTorch
    </span>
   </a>
  </li>
@@ -281,13 +281,6 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal" href="../../TensorFlow/Cuadernos/Tensorflow-01.html">
    <span style="color:#F72585">
     Inicio Rápido
-   </span>
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../TensorFlow/Cuadernos/La_API_tf_data.html">
-   <span style="color:#F72585">
-    Canalización de datos. La API tf.data
    </span>
   </a>
  </li>
@@ -691,8 +684,8 @@ title="Print to PDF"
     <span class="n">root</span><span class="o">=</span><span class="s2">&quot;data&quot;</span><span class="p">,</span>
     <span class="n">train</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
     <span class="n">download</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-    <span class="n">transform</span><span class="o">=</span><span class="n">ToTensor</span><span class="p">(),</span> <span class="c1"># convierte la imagen oun Numpy ndarray a un FloatTensor</span>
-    <span class="n">target_transform</span><span class="o">=</span><span class="n">Lambda</span><span class="p">(</span><span class="k">lambda</span> <span class="n">y</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float</span><span class="p">)</span><span class="o">.</span><span class="n">scatter_</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">y</span><span class="p">),</span> <span class="n">value</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+    <span class="n">transform</span><span class="o">=</span><span class="n">ToTensor</span><span class="p">(),</span> <span class="c1"># convierte la imagen a un FloatTensor</span>
+    <span class="n">target_transform</span><span class="o">=</span><span class="n">Lambda</span><span class="p">(</span><span class="k">lambda</span> <span class="n">y</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float</span><span class="p">)</span><span class="o">.</span><span class="n">scatter_</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">y</span><span class="p">),</span> <span class="n">value</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span><span class="c1"># 1-hot</span>
 <span class="p">)</span>
 </pre></div>
 </div>
@@ -732,7 +725,7 @@ title="Print to PDF"
         },
         kernelOptions: {
             kernelName: "python3",
-            path: "./Pytorch\Cuadernos"
+            path: "./Pytorch/Cuadernos"
         },
         predefinedOutput: true
     }
