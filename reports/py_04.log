@@ -25,7 +25,7 @@ if x>y:
 print("Five is greater than Three")
 ------------------
 
-[0;36m  File [0;32m"/tmp/ipykernel_2482/3402113970.py"[0;36m, line [0;32m6[0m
+[0;36m  File [0;32m"/tmp/ipykernel_2299/3402113970.py"[0;36m, line [0;32m6[0m
 [0;31m    print("Five is greater than Three")[0m
 [0m        ^[0m
 [0;31mIndentationError[0m[0;31m:[0m expected an indented block
