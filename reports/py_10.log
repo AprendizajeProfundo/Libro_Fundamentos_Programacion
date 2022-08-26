@@ -22,7 +22,7 @@ fruta_congelada.add('pera')
 
 [0;31m---------------------------------------------------------------------------[0m
 [0;31mAttributeError[0m                            Traceback (most recent call last)
-[0;32m/tmp/ipykernel_2595/2088432385.py[0m in [0;36m<module>[0;34m[0m
+[0;32m/tmp/ipykernel_2488/2088432385.py[0m in [0;36m<module>[0;34m[0m
 [0;32m----> 1[0;31m [0mfruta_congelada[0m[0;34m.[0m[0madd[0m[0;34m([0m[0;34m'pera'[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
 [0m
 [0;31mAttributeError[0m: 'frozenset' object has no attribute 'add'
