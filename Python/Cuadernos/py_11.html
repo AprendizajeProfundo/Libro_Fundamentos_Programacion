@@ -995,7 +995,7 @@ title="Print to PDF"
 <p>Algunas características clave de la programación orientada a objetos son herencia, cohesión, abstracción, polimorfismo, acoplamiento y encapsulamiento.</p>
 <p>Su uso se popularizó a principios de la década de 1990. En la actualidad, existe una gran variedad de lenguajes de programación que soportan la orientación a objetos, estando la mayoría de éstos basados en el concepto de clases e instancias.</p>
 <p>Tomado de <a class="reference external" href="https://es.wikipedia.org/wiki/Programaci%C3%B3n_orientada_a_objetos#:~:text=La%20Programaci%C3%B3n%20Orientada%20a%20Objetos,c%C3%B3digo%20en%20forma%20de%20m%C3%A9todos.">Wikipedia</a></p>
-<p>Desde el comienzo, Python fue diseñado como un leguaje oerintado a objetos.
+<p>Desde el comienzo, Python fue diseñado como un leguaje orientado a objetos.
 Python es un lenguaje de programación orientado a objetos. <strong>Todo</strong> en Python es un objeto, con sus propiedades y métodos.</p>
 </section>
 <section id="span-style-color-blue-breve-historia-span">
@@ -1003,7 +1003,7 @@ Python es un lenguaje de programación orientado a objetos. <strong>Todo</strong
 <p>Los conceptos de la POO tienen origen en Simula 67, un lenguaje diseñado para hacer simulaciones, creado por Ole-Johan Dahl y Kristen Nygaard, del Centro de Cómputo Noruego en Oslo. En este centro se trabajaba en simulaciones de naves, que fueron confundidas por la explosión combinatoria de cómo las diversas cualidades de diferentes naves podían afectar unas a las otras.</p>
 <p>La idea surgió al agrupar los diversos tipos de naves en diversas clases de objetos, siendo responsable cada clase de objetos de definir sus “propios” datos y comportamientos.</p>
 <p>La POO se fue convirtiendo en el estilo de programación dominante a mediados de los años 1980, en gran parte debido a la influencia de C++, una extensión del lenguaje de programación C. Su dominación fue consolidada gracias al auge de las interfaces gráficas de usuario, para las cuales la POO está particularmente bien adaptada. En este caso, se habla también de programación dirigida por eventos.</p>
-<p>La terminología “objetos” y “orientada” en el sentido moderno de la programación orientada a objetos hizo su primer aparición en el MIT a finales del 1950s y principio de 1960s. Ya en 1960 en el entorno del grupo de inteligencia artificial, el término “objeto” era usado para referirse a elementos (LISP atomos) con propiedades (atributos).</p>
+<p>La terminología “objetos” y “orientada” en el sentido moderno de la programación orientada a objetos hizo su primer aparición en el MIT a finales del 1950s y principio de 1960s. Ya en 1960 en el entorno del grupo de inteligencia artificial, el término “objeto” era usado para referirse a elementos (LISP átomos) con propiedades (atributos).</p>
 <p>Otro ejemplo temprano de programación orientada en el MIT fue Sketchpad creado por Ivan Sutherland en 1960–1961; en el glosario del informe técnico de 1963, Sutherland define la noción de “objeto” y de “instancia”.</p>
 <p>Simula introdujo conceptos importantes que hoy en día son una parte esencial de la programación orientada a objetos, como clases, objetos, herencia y dynamic binding.</p>
 <p>Mas recientemente ha surgido una serie de lenguajes que están principalmente orientados a objeto pero que también son compatibles con la programación procedural. Dos ejemplos de estos lenguajes son Python y Ruby.</p>
@@ -1089,12 +1089,12 @@ Python es un lenguaje de programación orientado a objetos. <strong>Todo</strong
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;__main__.Usuario at 0x7f31a4b09fd0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;__main__.Usuario at 0x7fa77058ac90&gt;
 </pre></div>
 </div>
 </div>
 </div>
-<p>Como podemos ver, parece que estuvieramos llamando un método (o función), y en efecto es algo parecido</p>
+<p>Como podemos ver, parece que estuviéramos llamando un método (o función), y en efecto es algo parecido</p>
 <p><code class="docutils literal notranslate"><span class="pre">u1</span></code> es una <strong>instancia</strong> de la clase Usuario.</p>
 <p>También podemos llamar a <code class="docutils literal notranslate"><span class="pre">u1</span></code> un objeto.</p>
 </section>
@@ -1146,7 +1146,7 @@ Profundo
 </div>
 </div>
 </div>
-<p>Una bonita consecuencia, es que podemos crear muchos objetos con campos del mismo nombre sin tener que defiinir una variable diferente para cada dato adjuntado del objeto. Veamos otro objeto:</p>
+<p>Una bonita consecuencia, es que podemos crear muchos objetos con campos del mismo nombre sin tener que definir una variable diferente para cada dato adjuntado del objeto. Veamos otro objeto:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">u2</span> <span class="o">=</span> <span class="n">Usuario</span><span class="p">()</span>
@@ -1180,7 +1180,7 @@ Profundo
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">AttributeError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_2538</span><span class="o">/</span><span class="mf">456201229.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_2548</span><span class="o">/</span><span class="mf">456201229.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
 <span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># u1 no tiene edad asginada</span>
 <span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">u1</span><span class="o">.</span><span class="n">edad</span>
 
@@ -1203,7 +1203,7 @@ Profundo
 <p>Una función dentro de una clase de llama <strong>método</strong>.</p>
 <p>__init__ es el abreviado de <strong>initialization</strong> (inicialización).</p>
 <p>También se le conoce como el <strong>constructor</strong>.</p>
-<p><strong>Note los dos guiones bajos antes y despues de init</strong>.</p>
+<p><strong>Note los dos guiones bajos antes y después de init</strong>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Usuario</span><span class="p">:</span>
@@ -1620,7 +1620,7 @@ Thomas Anderson  tiene 62 años
 </section>
 <section id="span-style-color-blue-atributos-intrinsicos-de-clases-y-objetos-span">
 <h2><span style="color:blue">Atributos Intrínsicos de clases y objetos</span><a class="headerlink" href="#span-style-color-blue-atributos-intrinsicos-de-clases-y-objetos-span" title="Permalink to this headline">#</a></h2>
-<p>Cada clase y objeto de Python tiene una conjunto de atributos intrínsicos que pueden ser llamados.</p>
+<p>Cada clase y objeto de Python tiene una conjunto de atributos intrínsecos que pueden ser llamados.</p>
 <p>Los atributos intrínsicos de clase son:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">__name__</span></code>: nombre de la clase</p></li>
@@ -1787,7 +1787,7 @@ Daniel Montenegro  tiene 31 años
 </section>
 <section id="span-style-color-blue-referencia-a-la-clase-base-super-span">
 <h2><span style="color:blue"> Referencia a la clase base: super() </span><a class="headerlink" href="#span-style-color-blue-referencia-a-la-clase-base-super-span" title="Permalink to this headline">#</a></h2>
-<p>Dado que al heredear una clase de otra, estamos pensando en conservar la funcionalidad de la clase base, es importante poder usar el constructor de la clase base junto con el constructor extendido en la clase heredada. Para hacer esta característica posible se utiliza  <code class="docutils literal notranslate"><span class="pre">super()</span></code> como se muestra a continuación. <em>super()</em> es un enlace o referecia a la clase base. Entonces, si deseamos usar el constructor de la clase base se puede escribir</p>
+<p>Dado que al heredar una clase de otra, estamos pensando en conservar la funcionalidad de la clase base, es importante poder usar el constructor de la clase base junto con el constructor extendido en la clase heredada. Para hacer esta característica posible se utiliza  <code class="docutils literal notranslate"><span class="pre">super()</span></code> como se muestra a continuación. <em>super()</em> es un enlace o referencia a la clase base. Entonces, si deseamos usar el constructor de la clase base se puede escribir</p>
 <p>super().__init__(…)</p>
 <p>Veamos el uso de <em>super()</em> en nuestra clase Lector, la cual heredamos de la clase Usuario.</p>
 <div class="cell docutils container">
