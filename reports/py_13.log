@@ -25,13 +25,13 @@ print(mi_cuenta.cliente, mi_cuenta.numero_cuenta, mi_cuenta.saldo, mi_cuenta.cre
 
 [0;31m---------------------------------------------------------------------------[0m
 [0;31mFileNotFoundError[0m                         Traceback (most recent call last)
-[0;32m/tmp/ipykernel_2658/1779118915.py[0m in [0;36m<module>[0;34m[0m
+[0;32m/tmp/ipykernel_2547/1779118915.py[0m in [0;36m<module>[0;34m[0m
 [1;32m      1[0m [0;31m# usando el método de clase[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
 [1;32m      2[0m [0mpath[0m [0;34m=[0m [0;34m'https://raw.githubusercontent.com/AprendizajeProfundo/Libro_Fundamentos_Programacion/main/Python/Datos/cuenta.csv'[0m[0;34m[0m[0;34m[0m[0m
 [0;32m----> 3[0;31m [0mmi_cuenta[0m [0;34m=[0m [0mCuentaBancaria[0m[0;34m.[0m[0mfrom_csv[0m[0;34m([0m[0mpath[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
 [0m[1;32m      4[0m [0mprint[0m[0;34m([0m[0mmi_cuenta[0m[0;34m.[0m[0mcliente[0m[0;34m,[0m [0mmi_cuenta[0m[0;34m.[0m[0mnumero_cuenta[0m[0;34m,[0m [0mmi_cuenta[0m[0;34m.[0m[0msaldo[0m[0;34m,[0m [0mmi_cuenta[0m[0;34m.[0m[0mcreada_en[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
 
-[0;32m/tmp/ipykernel_2658/1014366421.py[0m in [0;36mfrom_csv[0;34m(cls, filepath)[0m
+[0;32m/tmp/ipykernel_2547/1014366421.py[0m in [0;36mfrom_csv[0;34m(cls, filepath)[0m
 [1;32m     17[0m     [0;34m@[0m[0mclassmethod[0m[0;34m[0m[0;34m[0m[0m
 [1;32m     18[0m     [0;32mdef[0m [0mfrom_csv[0m[0;34m([0m[0mcls[0m[0;34m,[0m [0mfilepath[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
 [0;32m---> 19[0;31m         [0;32mwith[0m [0mopen[0m[0;34m([0m[0mfilepath[0m[0;34m,[0m [0;34m"r"[0m[0;34m)[0m [0;32mas[0m [0mf[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
