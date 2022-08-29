@@ -20,7 +20,7 @@ nbclient.exceptions.CellExecutionError: An error occurred while executing the fo
 Esta clase define el modelo de red neuronal
 ------------------
 
-[0;36m  File [0;32m"/tmp/ipykernel_3085/3064308253.py"[0;36m, line [0;32m1[0m
+[0;36m  File [0;32m"/tmp/ipykernel_3149/3064308253.py"[0;36m, line [0;32m1[0m
 [0;31m    Esta clase define el modelo de red neuronal[0m
 [0m             ^[0m
 [0;31mSyntaxError[0m[0;31m:[0m invalid syntax
