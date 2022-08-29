@@ -22,7 +22,7 @@ print(Rios[0])
 
 [0;31m---------------------------------------------------------------------------[0m
 [0;31mKeyError[0m                                  Traceback (most recent call last)
-[0;32m/tmp/ipykernel_1960/3953923098.py[0m in [0;36m<module>[0;34m[0m
+[0;32m/tmp/ipykernel_1944/3953923098.py[0m in [0;36m<module>[0;34m[0m
 [0;32m----> 1[0;31m [0mprint[0m[0;34m([0m[0mRios[0m[0;34m[[0m[0;36m0[0m[0;34m][0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
 [0m
 [0;31mKeyError[0m: 0
