@@ -26,5 +26,5 @@ jobs:
           aws-region: us-east-1
           
       #Sincroniza todos los archivos
-      #- run: aws s3 sync . s3://${{secrets.AWS_S3_BUCKET}} --delete
+      - run: aws s3 sync . s3://${{secrets.AWS_S3_BUCKET}} --delete
       
