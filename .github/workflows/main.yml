@@ -1,15 +1,1 @@
-name: 'Trigger-Binder-build'
-on:
-  schedule:
-    - cron: '0 12 * * *'
-  push:
-    branches:
-      - main
 
-jobs:
-  trigger-binder-build:
-    runs-on: [ubuntu-latest]
-    steps:
-      - uses: s-weigand/trigger-mybinder-build@v1
-        with:
-          target-repo: https://github.com/AprendizajeProfundo/Libro_Fundamentos_Programacion
