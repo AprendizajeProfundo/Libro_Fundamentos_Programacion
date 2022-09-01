@@ -6,7 +6,7 @@ name: CI
 on:
   # Triggers the workflow on push or pull request events but only for the main branch
   push:
-    branches: [ gh-pages ]
+    branches: [ main ]
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -26,5 +26,10 @@ jobs:
           aws-region: us-east-1
           
       #Sincroniza todos los archivos
-      - run: aws s3 sync . s3://${{secrets.AWS_S3_BUCKET}} --delete
+      #- run: aws s3 sync . s3://${{secrets.AWS_S3_BUCKET}} --delete
+      
+      #sincroniza  un archivo
+      # run: aws s3 sync . s3://${{secrets.AWS_S3_BUCKET}} --exclude='*' --include='tutorial.html'
+      #sincroniza solo un archivo
+      - run: aws s3 sync ./out s3://${{secrets.AWS_S3_BUCKET}} --exclude='*' --include='intro.html'
       
