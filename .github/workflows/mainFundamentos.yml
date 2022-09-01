@@ -29,5 +29,5 @@ jobs:
       #- run: aws s3 sync . s3://${{secrets.AWS_S3_BUCKET}} --delete
       
       #sincroniza  un archivo
-      - run: aws s3 sync . s3://${{secrets.AWS_S3_BUCKET}} --exclude='*' --include='tutorial.html'
+      - run: aws s3 sync . s3://${{secrets.AWS_S3_BUCKET}} --exclude='*' --include='tutorial.ipynb'
       
