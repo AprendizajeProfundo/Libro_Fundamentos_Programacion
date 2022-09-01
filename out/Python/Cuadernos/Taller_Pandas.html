@@ -1,0 +1,4375 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Taller de manejo de Datos en Pandas &#8212; Fundamentos de Programación</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script src="../../_static/tabs.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Primeros pasos con PyTorch" href="../../Pytorch/Cuadernos/Pytorch_01.html" />
+    <link rel="prev" title="Taller de numpy" href="Taller_Numpy.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../_static/logo-final-ap.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Fundamentos de Programación</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../tutorial.html">
+                    <span style="color:#F72585">Bienvenido(a)</span>
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Primeros Pasos
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Inicio/Cuadernos/Consideraciones.html">
+   <span style="color:#F72585">
+    Conociendo el Libro
+   </span>
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Introducción
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="py_00.html">
+   <span style="color:#F72585">
+    Conceptos básicos de programación
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="py_01.html">
+   <span style="color:#F72585">
+    Introducción al lenguaje de programación Python
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="py_02.html">
+   <span style="color:#F72585">
+    Tipos de Datos Básicos
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="py_03.html">
+   <span style="color:#F72585">
+    Operadores aritméticos y lógicos
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="py_04.html">
+   <span style="color:#F72585">
+    Estructuras de control
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="py_05.html">
+   <span style="color:#F72585">
+    Funciones en Python
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="py_06.html">
+   <span style="color:#F72585">
+    Iterables e iteradores
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="py_07.html">
+   <span style="color:#F72585">
+    Tuplas
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="py_08.html">
+   <span style="color:#F72585">
+    Listas
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="py_09.html">
+   <span style="color:#F72585">
+    Diccionarios
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="py_10.html">
+   <span style="color:#F72585">
+    Conjuntos
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="py_11.html">
+   <span style="color:#F72585">
+    Programación orientada a Objetos en Python
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="py_12.html">
+   <span style="color:#F72585">
+    Decoradores
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="py_13.html">
+   <span style="color:#F72585">
+    Patrones para Programación orientada a Objetos en Python
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Taller_Numpy.html">
+   <span style="color:#F72585">
+    Taller de numpy
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   <span style="color:#F72585">
+    Taller de manejo de Datos en Pandas
+   </span>
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Pytorch
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Pytorch/Cuadernos/Pytorch_01.html">
+   <span style="color:#F72585">
+    Primeros pasos con PyTorch
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Pytorch/Cuadernos/Pytorch_02.html">
+   <span style="color:#F72585">
+    Tensores en PyTorch
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Pytorch/Cuadernos/Pytorch_03.html">
+   <span style="color:#F72585">
+    DataSets y DataLoaders
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Pytorch/Cuadernos/Pytorch_04.html">
+   <span style="color:#F72585">
+    Transforms
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Pytorch/Cuadernos/Pytorch_05.html">
+   <span style="color:#F72585">
+    Diferenciación automática con torch.autograd
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Pytorch/Cuadernos/Pytorch_06.html">
+   <span style="color:#F72585">
+    Optimización con torch
+   </span>
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  TensorFlow
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../TensorFlow/Cuadernos/Tensorflow-01.html">
+   <span style="color:#F72585">
+    Inicio Rápido
+   </span>
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/AprendizajeProfundo/Libro_Fundamentos_Programacion/main?urlpath=tree/Python/Cuadernos/Taller_Pandas.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://colab.research.google.com/github/AprendizajeProfundo/Libro_Fundamentos_Programacion/blob/main/Python/Cuadernos/Taller_Pandas.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Colab"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../../_static/images/logo_colab.png">
+  </span>
+<span class="headerbtn__text-container">Colab</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="initThebeSBT()"
+  class="headerbtn headerbtn-launch-thebe"
+  data-toggle="tooltip"
+data-placement="left"
+title="Launch Thebe"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="headerbtn__text-container">Live Code</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/AprendizajeProfundo/Libro_Fundamentos_Programacion"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/AprendizajeProfundo/Libro_Fundamentos_Programacion/issues/new?title=Issue%20on%20page%20%2FPython/Cuadernos/Taller_Pandas.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/AprendizajeProfundo/Libro_Fundamentos_Programacion/edit/main/Python/Cuadernos/Taller_Pandas.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Edit this page"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="headerbtn__text-container">suggest edit</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../../_sources/Python/Cuadernos/Taller_Pandas.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-que-es-span">
+   <span style="color:#4361EE">
+    ¿Qué es?
+   </span>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-como-importar-datos-span">
+     <span style="color:#4CC9F0">
+      ¿Cómo importar datos?
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-seleccionar-subconjuntos-de-una-base-de-datos-span">
+     <span style="color:#4CC9F0">
+      Seleccionar subconjuntos de una base de datos
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-escoger-columnas-span">
+     <span style="color:#4CC9F0">
+      Escoger columnas
+     </span>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-escoger-filas-span">
+   <span style="color:#4361EE">
+    Escoger Filas
+   </span>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-filas-con-valores-especificos-span">
+     <span style="color:#4CC9F0">
+      Filas con valores específicos
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-eliminar-valores-omitidos-span">
+     <span style="color:#4CC9F0">
+      Eliminar valores omitidos
+     </span>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-manipulacion-de-datos-textuales-limpieza-span">
+   <span style="color:#4361EE">
+    Manipulación de datos textuales (Limpieza)
+   </span>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-creacion-de-columnas-a-partir-de-otras-span">
+   <span style="color:#4361EE">
+    Creación de columnas a partir de otras
+   </span>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-renombrar-columnas-span">
+     <span style="color:#4CC9F0">
+      Renombrar columnas
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-modificar-tipo-de-dato-de-una-columna-span">
+     <span style="color:#4CC9F0">
+      Modificar tipo de dato de una columna
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-eliminar-filas-y-columnas-span">
+     <span style="color:#4CC9F0">
+      Eliminar filas y columnas
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-conteos-span">
+     <span style="color:#4CC9F0">
+      Conteos
+     </span>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-modificar-tablas-span">
+   <span style="color:#4361EE">
+    Modificar Tablas
+   </span>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-multiples-indices-span">
+   <span style="color:#4361EE">
+    Múltiples índices
+   </span>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#concatenar-y-unir">
+   Concatenar y unir
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-series-de-tiempo-y-time-stamps-span">
+   <span style="color:#4361EE">
+    Series de tiempo y time stamps
+   </span>
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1><span style="color:#F72585">Taller de manejo de Datos en Pandas</span></h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-que-es-span">
+   <span style="color:#4361EE">
+    ¿Qué es?
+   </span>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-como-importar-datos-span">
+     <span style="color:#4CC9F0">
+      ¿Cómo importar datos?
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-seleccionar-subconjuntos-de-una-base-de-datos-span">
+     <span style="color:#4CC9F0">
+      Seleccionar subconjuntos de una base de datos
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-escoger-columnas-span">
+     <span style="color:#4CC9F0">
+      Escoger columnas
+     </span>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-escoger-filas-span">
+   <span style="color:#4361EE">
+    Escoger Filas
+   </span>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-filas-con-valores-especificos-span">
+     <span style="color:#4CC9F0">
+      Filas con valores específicos
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-eliminar-valores-omitidos-span">
+     <span style="color:#4CC9F0">
+      Eliminar valores omitidos
+     </span>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-manipulacion-de-datos-textuales-limpieza-span">
+   <span style="color:#4361EE">
+    Manipulación de datos textuales (Limpieza)
+   </span>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-creacion-de-columnas-a-partir-de-otras-span">
+   <span style="color:#4361EE">
+    Creación de columnas a partir de otras
+   </span>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-renombrar-columnas-span">
+     <span style="color:#4CC9F0">
+      Renombrar columnas
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-modificar-tipo-de-dato-de-una-columna-span">
+     <span style="color:#4CC9F0">
+      Modificar tipo de dato de una columna
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-eliminar-filas-y-columnas-span">
+     <span style="color:#4CC9F0">
+      Eliminar filas y columnas
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-conteos-span">
+     <span style="color:#4CC9F0">
+      Conteos
+     </span>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-modificar-tablas-span">
+   <span style="color:#4361EE">
+    Modificar Tablas
+   </span>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-multiples-indices-span">
+   <span style="color:#4361EE">
+    Múltiples índices
+   </span>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#concatenar-y-unir">
+   Concatenar y unir
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-series-de-tiempo-y-time-stamps-span">
+   <span style="color:#4361EE">
+    Series de tiempo y time stamps
+   </span>
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="span-style-color-f72585-taller-de-manejo-de-datos-en-pandas-span">
+<h1><span style="color:#F72585">Taller de manejo de Datos en Pandas</span><a class="headerlink" href="#span-style-color-f72585-taller-de-manejo-de-datos-en-pandas-span" title="Permalink to this headline">#</a></h1>
+<section id="span-style-color-4361ee-que-es-span">
+<h2><span style="color:#4361EE">¿Qué es?</span><a class="headerlink" href="#span-style-color-4361ee-que-es-span" title="Permalink to this headline">#</a></h2>
+<p>Pandas es una librería de código abierto muy popular dentro del ámbito de Data Science y Machine Learning puesto que facilita el tratamiento y manipulación de datos.</p>
+<p>Pandas nació de la necesidad de tener todas las funcionalidades necesarias para un analista de datos en una sola librería:</p>
+<figure>
+<img src="https://raw.githubusercontent.com/AprendizajeProfundo/Libro_Fundamentos_Programacion/main/Python/Imagenes/pd_funcionalidades.png"  width="400"/> 
+</figure><div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="span-style-color-4cc9f0-como-importar-datos-span">
+<h3><span style="color:#4CC9F0">¿Cómo importar datos?</span><a class="headerlink" href="#span-style-color-4cc9f0-como-importar-datos-span" title="Permalink to this headline">#</a></h3>
+<p>Para leer los datos la estructura básica es <em>pd.read_tipo-archivo</em>. Si estamos en colab y queremos utilizar algunos datos que están en nuestro google drive podemos utilizar:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>      <span class="kn">from</span> <span class="nn">google.colab</span> <span class="kn">import</span> <span class="n">drive</span>
+      <span class="n">drive</span><span class="o">.</span><span class="n">mount</span><span class="p">(</span><span class="s1">&#39;/content/gdrive&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><a class="reference external" href="https://pandas.pydata.org/docs/getting_started/index.html#getting-started">Primeros pasos Pandas</a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#from google.colab import ##drive correr solo en colab</span>
+<span class="c1">#drive.mount(&#39;/content/gdrive&#39;)</span>
+<span class="n">counties</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s2">&quot;https://github.com/AprendizajeProfundo/Libro_Fundamentos_Programacion/blob/main/Python/Datos/counties.xlsx?raw=true&quot;</span><span class="p">)</span><span class="c1">#cambiar dirección</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Para tener una idea de qué variables y datos tengo en lo base de datos, sólo debemos llamarla.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">counties</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>codestate</th>
+      <th>codecounty</th>
+      <th>county</th>
+      <th>population</th>
+      <th>area</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>1001</td>
+      <td>Auta#%&amp;()uga</td>
+      <td>54571.0</td>
+      <td>594.436000</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>1003</td>
+      <td>Baldwin#%&amp;()  ?</td>
+      <td>182265.0</td>
+      <td>1589.784000</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1</td>
+      <td>1005</td>
+      <td>Barbour</td>
+      <td>27457.0</td>
+      <td>884.876000</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1</td>
+      <td>1007</td>
+      <td>Bi#%&amp;()bb</td>
+      <td>22915.0</td>
+      <td>622.582000</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1</td>
+      <td>1009</td>
+      <td>Blount  ?</td>
+      <td>57322.0</td>
+      <td>644.776000</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>3229</th>
+      <td>72</td>
+      <td>72151</td>
+      <td>Yabucoa</td>
+      <td>37941.0</td>
+      <td>55.215000</td>
+    </tr>
+    <tr>
+      <th>3230</th>
+      <td>72</td>
+      <td>72153</td>
+      <td>Ya_uco</td>
+      <td>42043.0</td>
+      <td>68.192000</td>
+    </tr>
+    <tr>
+      <th>3231</th>
+      <td>78</td>
+      <td>78010</td>
+      <td>; St. Croix ?</td>
+      <td>50601.0</td>
+      <td>83.345868</td>
+    </tr>
+    <tr>
+      <th>3232</th>
+      <td>78</td>
+      <td>78020</td>
+      <td>St. John</td>
+      <td>4170.0</td>
+      <td>19.689867</td>
+    </tr>
+    <tr>
+      <th>3233</th>
+      <td>78</td>
+      <td>78030</td>
+      <td>St. Thomas</td>
+      <td>51634.0</td>
+      <td>31.313503</td>
+    </tr>
+  </tbody>
+</table>
+<p>3234 rows × 5 columns</p>
+</div></div></div>
+</div>
+<p>En lo anterior veiamos todas las variables con las 5 primeras y 5 últimas filas. Pero, podemos ver una cantidad  determinada de registros tanto del inicio de la tabla como del final. Utlizando <em>.head()</em> y <em>.tail()</em> respectivamente.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">counties</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="c1">#por defecto salen 5 primeros</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>codestate</th>
+      <th>codecounty</th>
+      <th>county</th>
+      <th>population</th>
+      <th>area</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>1001</td>
+      <td>Auta#%&amp;()uga</td>
+      <td>54571.0</td>
+      <td>594.436</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>1003</td>
+      <td>Baldwin#%&amp;()  ?</td>
+      <td>182265.0</td>
+      <td>1589.784</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1</td>
+      <td>1005</td>
+      <td>Barbour</td>
+      <td>27457.0</td>
+      <td>884.876</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">counties</span><span class="o">.</span><span class="n">tail</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>codestate</th>
+      <th>codecounty</th>
+      <th>county</th>
+      <th>population</th>
+      <th>area</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>3232</th>
+      <td>78</td>
+      <td>78020</td>
+      <td>St. John</td>
+      <td>4170.0</td>
+      <td>19.689867</td>
+    </tr>
+    <tr>
+      <th>3233</th>
+      <td>78</td>
+      <td>78030</td>
+      <td>St. Thomas</td>
+      <td>51634.0</td>
+      <td>31.313503</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Si aparte de ver solamente la tabla, queremos más información de la base de datos, por ejemplo sus dimensiones y tipo de variables podemos  utilizar lo siguiente:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">counties</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;La forma de la base de datos es:&quot;</span><span class="p">,</span><span class="n">counties</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>  <span class="c1">#shape:forma de un array</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 3234 entries, 0 to 3233
+Data columns (total 5 columns):
+ #   Column      Non-Null Count  Dtype  
+---  ------      --------------  -----  
+ 0   codestate   3234 non-null   int64  
+ 1   codecounty  3234 non-null   int64  
+ 2   county      3234 non-null   object 
+ 3   population  3232 non-null   float64
+ 4   area        3234 non-null   float64
+dtypes: float64(2), int64(2), object(1)
+memory usage: 126.5+ KB
+
+
+La forma de la base de datos es: (3234, 5)
+</pre></div>
+</div>
+</div>
+</div>
+<p><a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.dtypes.html?highlight=dtypes#pandas.DataFrame.dtypes">dtypes</a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">counties</span><span class="o">.</span><span class="n">dtypes</span><span class="p">)</span> <span class="c1">#tipo de objeto en cada columna</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">counties</span><span class="o">.</span><span class="n">describe</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">counties</span><span class="o">.</span><span class="n">describe</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="s2">&quot;all&quot;</span><span class="p">))</span> <span class="c1">#summary, si no se pone el include solo aparece de las variables numéricas</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>codestate       int64
+codecounty      int64
+county         object
+population    float64
+area          float64
+dtype: object
+
+
+         codestate    codecounty    population           area
+count  3234.000000   3234.000000  3.232000e+03    3234.000000
+mean     31.441868  31544.737786  9.679656e+04    1093.361817
+std      16.411236  16425.545223  3.088044e+05    3564.706999
+min       1.000000   1001.000000  1.700000e+01       0.031696
+25%      19.000000  19039.500000  1.129700e+04     416.360000
+50%      30.000000  30038.000000  2.607550e+04     602.977500
+75%      46.000000  46128.500000  6.566050e+04     913.884500
+max      78.000000  78030.000000  9.818605e+06  145504.789000
+
+
+          codestate    codecounty    county    population           area
+count   3234.000000   3234.000000      3234  3.232000e+03    3234.000000
+unique          NaN           NaN      2625           NaN            NaN
+top             NaN           NaN  Lincoln            NaN            NaN
+freq            NaN           NaN        14           NaN            NaN
+mean      31.441868  31544.737786       NaN  9.679656e+04    1093.361817
+std       16.411236  16425.545223       NaN  3.088044e+05    3564.706999
+min        1.000000   1001.000000       NaN  1.700000e+01       0.031696
+25%       19.000000  19039.500000       NaN  1.129700e+04     416.360000
+50%       30.000000  30038.000000       NaN  2.607550e+04     602.977500
+75%       46.000000  46128.500000       NaN  6.566050e+04     913.884500
+max       78.000000  78030.000000       NaN  9.818605e+06  145504.789000
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="span-style-color-4cc9f0-seleccionar-subconjuntos-de-una-base-de-datos-span">
+<h3><span style="color:#4CC9F0">Seleccionar subconjuntos de una base de datos</span><a class="headerlink" href="#span-style-color-4cc9f0-seleccionar-subconjuntos-de-una-base-de-datos-span" title="Permalink to this headline">#</a></h3>
+<p><a class="reference external" href="https://pandas.pydata.org/docs/getting_started/intro_tutorials/03_subset_data.html#min-tut-03-subset">Documentación</a></p>
+</section>
+<section id="span-style-color-4cc9f0-escoger-columnas-span">
+<h3><span style="color:#4CC9F0">Escoger columnas</span><a class="headerlink" href="#span-style-color-4cc9f0-escoger-columnas-span" title="Permalink to this headline">#</a></h3>
+<p>Para ver el nombre de las columnas que existen, podemos utilizar <em>.columns</em>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">counties</span><span class="o">.</span><span class="n">columns</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Index([&#39;codestate&#39;, &#39;codecounty&#39;, &#39;county&#39;, &#39;population&#39;, &#39;area&#39;], dtype=&#39;object&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Escoger una columna específica o un conjunto de ellas</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">condado</span> <span class="o">=</span> <span class="n">counties</span><span class="p">[</span><span class="s2">&quot;county&quot;</span><span class="p">]</span>
+<span class="n">condado</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0               Auta#%&amp;()uga 
+1        Baldwin#%&amp;()  ?     
+2                    Barbour 
+3                  Bi#%&amp;()bb 
+4              Blount  ?     
+                ...          
+3229                 Yabucoa 
+3230                  Ya_uco 
+3231       ; St. Croix ?     
+3232                 St. John
+3233               St. Thomas
+Name: county, Length: 3234, dtype: object
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">condado</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="c1">#array unidimensional con 3234 elementos</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">counties</span><span class="p">[</span><span class="s2">&quot;county&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">condado</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(3234,)
+(3234,)
+&lt;class &#39;pandas.core.series.Series&#39;&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">codi_condado</span><span class="o">=</span><span class="n">counties</span><span class="p">[[</span><span class="s2">&quot;codecounty&quot;</span><span class="p">,</span><span class="s2">&quot;county&quot;</span><span class="p">]]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">codi_condado</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">codi_condado</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>      codecounty                 county
+0           1001          Auta#%&amp;()uga 
+1           1003   Baldwin#%&amp;()  ?     
+2           1005               Barbour 
+3           1007             Bi#%&amp;()bb 
+4           1009         Blount  ?     
+...          ...                    ...
+3229       72151               Yabucoa 
+3230       72153                Ya_uco 
+3231       78010     ; St. Croix ?     
+3232       78020               St. John
+3233       78030             St. Thomas
+
+[3234 rows x 2 columns]
+&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="span-style-color-4361ee-escoger-filas-span">
+<h2><span style="color:#4361EE">Escoger Filas</span><a class="headerlink" href="#span-style-color-4361ee-escoger-filas-span" title="Permalink to this headline">#</a></h2>
+<p>Podemos escoger ciertas filas a través de su posición. utilizando <em>.iloc</em></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">seaborn</span> <span class="kn">import</span> <span class="n">load_dataset</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">counties</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">1</span><span class="p">,])</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">counties</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">1</span><span class="p">,]))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   codestate  codecounty         county  population     area
+0          1        1001  Auta#%&amp;()uga      54571.0  594.436
+&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">counties</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">8</span><span class="p">:</span><span class="mi">12</span><span class="p">,</span><span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    codecounty                 county
+8         1017     ; Chambers  ?     
+9         1019              Cherokee 
+10        1021             ; Chilton 
+11        1023               Choctaw 
+</pre></div>
+</div>
+</div>
+</div>
+<p>O también escoger filas con base a alguna condicion o característica específica.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">counties</span><span class="o">.</span><span class="n">tail</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>codestate</th>
+      <th>codecounty</th>
+      <th>county</th>
+      <th>population</th>
+      <th>area</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>3229</th>
+      <td>72</td>
+      <td>72151</td>
+      <td>Yabucoa</td>
+      <td>37941.0</td>
+      <td>55.215000</td>
+    </tr>
+    <tr>
+      <th>3230</th>
+      <td>72</td>
+      <td>72153</td>
+      <td>Ya_uco</td>
+      <td>42043.0</td>
+      <td>68.192000</td>
+    </tr>
+    <tr>
+      <th>3231</th>
+      <td>78</td>
+      <td>78010</td>
+      <td>; St. Croix ?</td>
+      <td>50601.0</td>
+      <td>83.345868</td>
+    </tr>
+    <tr>
+      <th>3232</th>
+      <td>78</td>
+      <td>78020</td>
+      <td>St. John</td>
+      <td>4170.0</td>
+      <td>19.689867</td>
+    </tr>
+    <tr>
+      <th>3233</th>
+      <td>78</td>
+      <td>78030</td>
+      <td>St. Thomas</td>
+      <td>51634.0</td>
+      <td>31.313503</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">counties</span><span class="p">[</span><span class="s2">&quot;codestate&quot;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">72</span> <span class="c1">#Verdadero o falso si cumple la condición</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0       False
+1       False
+2       False
+3       False
+4       False
+        ...  
+3229    False
+3230    False
+3231     True
+3232     True
+3233     True
+Name: codestate, Length: 3234, dtype: bool
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">codsat72</span> <span class="o">=</span> <span class="n">counties</span><span class="p">[</span><span class="n">counties</span><span class="p">[</span><span class="s2">&quot;codestate&quot;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">72</span><span class="p">]</span> <span class="c1"># Llama aquellos cuyo valor es verdadero</span>
+<span class="n">codsat72</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+Int64Index: 3 entries, 3231 to 3233
+Data columns (total 5 columns):
+ #   Column      Non-Null Count  Dtype  
+---  ------      --------------  -----  
+ 0   codestate   3 non-null      int64  
+ 1   codecounty  3 non-null      int64  
+ 2   county      3 non-null      object 
+ 3   population  3 non-null      float64
+ 4   area        3 non-null      float64
+dtypes: float64(2), int64(2), object(1)
+memory usage: 144.0+ bytes
+</pre></div>
+</div>
+</div>
+</div>
+<p>Filas que no tengan valores faltantes en determinada columna</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">no_na</span> <span class="o">=</span> <span class="n">counties</span><span class="p">[</span><span class="n">counties</span><span class="p">[</span><span class="s2">&quot;population&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">notna</span><span class="p">()]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">no_na</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">counties</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(3232, 5)
+(3234, 5)
+</pre></div>
+</div>
+</div>
+</div>
+<section id="span-style-color-4cc9f0-filas-con-valores-especificos-span">
+<h3><span style="color:#4CC9F0">Filas con valores específicos</span><a class="headerlink" href="#span-style-color-4cc9f0-filas-con-valores-especificos-span" title="Permalink to this headline">#</a></h3>
+<p>Existen varias maneras de realizar estas búsquedas, algunas de ellas son utilizando <em>isin</em>, <em>loc</em> de la librería seaborn y <em>or</em>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">codcou1</span> <span class="o">=</span> <span class="n">counties</span><span class="p">[</span><span class="n">counties</span><span class="p">[</span><span class="s2">&quot;codecounty&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="mi">78010</span><span class="p">,</span> <span class="mi">72151</span><span class="p">])]</span>
+<span class="n">codcou1</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>codestate</th>
+      <th>codecounty</th>
+      <th>county</th>
+      <th>population</th>
+      <th>area</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>3229</th>
+      <td>72</td>
+      <td>72151</td>
+      <td>Yabucoa</td>
+      <td>37941.0</td>
+      <td>55.215000</td>
+    </tr>
+    <tr>
+      <th>3231</th>
+      <td>78</td>
+      <td>78010</td>
+      <td>; St. Croix ?</td>
+      <td>50601.0</td>
+      <td>83.345868</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">codcou2</span> <span class="o">=</span> <span class="n">counties</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="s1">&#39;codecounty&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">78010</span>
+<span class="n">codcou2_</span> <span class="o">=</span> <span class="n">counties</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">codcou2</span><span class="p">]</span>
+<span class="n">codcou2_</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>codestate</th>
+      <th>codecounty</th>
+      <th>county</th>
+      <th>population</th>
+      <th>area</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>3231</th>
+      <td>78</td>
+      <td>78010</td>
+      <td>; St. Croix ?</td>
+      <td>50601.0</td>
+      <td>83.345868</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">counties</span><span class="p">[(</span><span class="n">counties</span><span class="p">[</span><span class="s2">&quot;codecounty&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">78010</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">counties</span><span class="p">[</span><span class="s2">&quot;codecounty&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">72151</span><span class="p">)]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>codestate</th>
+      <th>codecounty</th>
+      <th>county</th>
+      <th>population</th>
+      <th>area</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>3229</th>
+      <td>72</td>
+      <td>72151</td>
+      <td>Yabucoa</td>
+      <td>37941.0</td>
+      <td>55.215000</td>
+    </tr>
+    <tr>
+      <th>3231</th>
+      <td>78</td>
+      <td>78010</td>
+      <td>; St. Croix ?</td>
+      <td>50601.0</td>
+      <td>83.345868</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Filas con más de una característica específica.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">counties</span><span class="p">[(</span><span class="n">counties</span><span class="p">[</span><span class="s2">&quot;codestate&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">72</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">counties</span><span class="p">[</span><span class="s2">&quot;area&quot;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">60</span><span class="p">)]</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+Int64Index: 16 entries, 3153 to 3230
+Data columns (total 5 columns):
+ #   Column      Non-Null Count  Dtype  
+---  ------      --------------  -----  
+ 0   codestate   16 non-null     int64  
+ 1   codecounty  16 non-null     int64  
+ 2   county      16 non-null     object 
+ 3   population  16 non-null     float64
+ 4   area        16 non-null     float64
+dtypes: float64(2), int64(2), object(1)
+memory usage: 768.0+ bytes
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="span-style-color-4cc9f0-eliminar-valores-omitidos-span">
+<h3><span style="color:#4CC9F0">Eliminar valores omitidos</span><a class="headerlink" href="#span-style-color-4cc9f0-eliminar-valores-omitidos-span" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Eliminar valores omitidos: dropna</span>
+<span class="c1"># axis= 0 -&gt; Eliminar fila completa</span>
+<span class="c1"># axis=1 -&gt; Eliminar columna completa</span>
+<span class="n">counties</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;population&quot;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> <span class="c1">#inplace:modifique directamente la BD</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>codestate</th>
+      <th>codecounty</th>
+      <th>county</th>
+      <th>population</th>
+      <th>area</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>1001</td>
+      <td>Auta#%&amp;()uga</td>
+      <td>54571.0</td>
+      <td>594.436000</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>1003</td>
+      <td>Baldwin#%&amp;()  ?</td>
+      <td>182265.0</td>
+      <td>1589.784000</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1</td>
+      <td>1005</td>
+      <td>Barbour</td>
+      <td>27457.0</td>
+      <td>884.876000</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1</td>
+      <td>1007</td>
+      <td>Bi#%&amp;()bb</td>
+      <td>22915.0</td>
+      <td>622.582000</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1</td>
+      <td>1009</td>
+      <td>Blount  ?</td>
+      <td>57322.0</td>
+      <td>644.776000</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>3229</th>
+      <td>72</td>
+      <td>72151</td>
+      <td>Yabucoa</td>
+      <td>37941.0</td>
+      <td>55.215000</td>
+    </tr>
+    <tr>
+      <th>3230</th>
+      <td>72</td>
+      <td>72153</td>
+      <td>Ya_uco</td>
+      <td>42043.0</td>
+      <td>68.192000</td>
+    </tr>
+    <tr>
+      <th>3231</th>
+      <td>78</td>
+      <td>78010</td>
+      <td>; St. Croix ?</td>
+      <td>50601.0</td>
+      <td>83.345868</td>
+    </tr>
+    <tr>
+      <th>3232</th>
+      <td>78</td>
+      <td>78020</td>
+      <td>St. John</td>
+      <td>4170.0</td>
+      <td>19.689867</td>
+    </tr>
+    <tr>
+      <th>3233</th>
+      <td>78</td>
+      <td>78030</td>
+      <td>St. Thomas</td>
+      <td>51634.0</td>
+      <td>31.313503</td>
+    </tr>
+  </tbody>
+</table>
+<p>3232 rows × 5 columns</p>
+</div></div></div>
+</div>
+</section>
+</section>
+<section id="span-style-color-4361ee-manipulacion-de-datos-textuales-limpieza-span">
+<h2><span style="color:#4361EE">Manipulación de datos textuales (Limpieza)</span><a class="headerlink" href="#span-style-color-4361ee-manipulacion-de-datos-textuales-limpieza-span" title="Permalink to this headline">#</a></h2>
+<p>Para realizarle limpieza a columna <em>county</em> de la base de datos counties, podemos utilizar lo siguiente:</p>
+<ul class="simple">
+<li><p>**lower:**Poner en minúscula todo el texto.</p></li>
+<li><p>**replace:**Remplazar ciertos valores por otros.</p></li>
+<li><p>**strip:**Eliminar los espacios al principio y al final de la cadena.</p></li>
+<li><p>**title:**Poner primera letra de cada palabra en mayúscula.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">counties</span><span class="p">[</span><span class="s2">&quot;county&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">counties</span><span class="p">[</span><span class="s2">&quot;county&quot;</span><span class="p">]</span>
+                            <span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+                            <span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;[^a-záéíóúüñ ]&quot;</span><span class="p">,</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+                            <span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot; +&quot;</span><span class="p">,</span><span class="s2">&quot; &quot;</span><span class="p">)</span>
+                            <span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+                            <span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">title</span><span class="p">()</span>
+                           <span class="p">)</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/hostedtoolcache/Python/3.7.13/x64/lib/python3.7/site-packages/ipykernel_launcher.py:3: FutureWarning: The default value of regex will change from True to False in a future version.
+  This is separate from the ipykernel package so we can avoid doing imports until
+/opt/hostedtoolcache/Python/3.7.13/x64/lib/python3.7/site-packages/ipykernel_launcher.py:4: FutureWarning: The default value of regex will change from True to False in a future version.
+  after removing the cwd from sys.path.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">counties</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>      codestate  codecounty     county  population         area
+0             1        1001    Autauga     54571.0   594.436000
+1             1        1003    Baldwin    182265.0  1589.784000
+2             1        1005    Barbour     27457.0   884.876000
+3             1        1007       Bibb     22915.0   622.582000
+4             1        1009     Blount     57322.0   644.776000
+...         ...         ...        ...         ...          ...
+3229         72       72151    Yabucoa     37941.0    55.215000
+3230         72       72153      Yauco     42043.0    68.192000
+3231         78       78010   St Croix     50601.0    83.345868
+3232         78       78020    St John      4170.0    19.689867
+3233         78       78030  St Thomas     51634.0    31.313503
+
+[3234 rows x 5 columns]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="span-style-color-4361ee-creacion-de-columnas-a-partir-de-otras-span">
+<h2><span style="color:#4361EE">Creación de columnas a partir de otras</span><a class="headerlink" href="#span-style-color-4361ee-creacion-de-columnas-a-partir-de-otras-span" title="Permalink to this headline">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">counties</span><span class="p">[</span><span class="s2">&quot;densidad&quot;</span><span class="p">]</span><span class="o">=</span> <span class="n">counties</span><span class="p">[</span><span class="s2">&quot;population&quot;</span><span class="p">]</span><span class="o">/</span><span class="n">counties</span><span class="p">[</span><span class="s2">&quot;area&quot;</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">counties</span><span class="p">[[</span><span class="s2">&quot;densidad&quot;</span><span class="p">,</span><span class="s2">&quot;population&quot;</span><span class="p">,</span><span class="s2">&quot;area&quot;</span><span class="p">]])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>         densidad  population         area
+0       91.802986     54571.0   594.436000
+1      114.647650    182265.0  1589.784000
+2       31.029206     27457.0   884.876000
+3       36.806397     22915.0   622.582000
+4       88.902192     57322.0   644.776000
+...           ...         ...          ...
+3229   687.150231     37941.0    55.215000
+3230   616.538597     42043.0    68.192000
+3231   607.120676     50601.0    83.345868
+3232   211.784062      4170.0    19.689867
+3233  1648.937201     51634.0    31.313503
+
+[3234 rows x 3 columns]
+</pre></div>
+</div>
+</div>
+</div>
+<section id="span-style-color-4cc9f0-renombrar-columnas-span">
+<h3><span style="color:#4CC9F0">Renombrar columnas</span><a class="headerlink" href="#span-style-color-4cc9f0-renombrar-columnas-span" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">counties</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+<span class="n">counties</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;densidad&quot;</span><span class="p">:</span><span class="s2">&quot;densidad_pob&quot;</span><span class="p">},</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="c1">#renombrar columna</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">counties</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span> <span class="c1">#Verificación</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Index([&#39;codestate&#39;, &#39;codecounty&#39;, &#39;county&#39;, &#39;population&#39;, &#39;area&#39;, &#39;densidad&#39;], dtype=&#39;object&#39;)
+Index([&#39;codestate&#39;, &#39;codecounty&#39;, &#39;county&#39;, &#39;population&#39;, &#39;area&#39;,
+       &#39;densidad_pob&#39;],
+      dtype=&#39;object&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="span-style-color-4cc9f0-modificar-tipo-de-dato-de-una-columna-span">
+<h3><span style="color:#4CC9F0">Modificar tipo de dato de una columna</span><a class="headerlink" href="#span-style-color-4cc9f0-modificar-tipo-de-dato-de-una-columna-span" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">counties</span><span class="o">.</span><span class="n">info</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">counties</span><span class="p">[</span><span class="s2">&quot;codestate&quot;</span><span class="p">]</span><span class="o">=</span><span class="n">counties</span><span class="p">[</span><span class="s2">&quot;codestate&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;float&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">counties</span><span class="o">.</span><span class="n">info</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 3234 entries, 0 to 3233
+Data columns (total 6 columns):
+ #   Column        Non-Null Count  Dtype  
+---  ------        --------------  -----  
+ 0   codestate     3234 non-null   int64  
+ 1   codecounty    3234 non-null   int64  
+ 2   county        3234 non-null   object 
+ 3   population    3232 non-null   float64
+ 4   area          3234 non-null   float64
+ 5   densidad_pob  3232 non-null   float64
+dtypes: float64(3), int64(2), object(1)
+memory usage: 151.7+ KB
+None
+
+
+&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 3234 entries, 0 to 3233
+Data columns (total 6 columns):
+ #   Column        Non-Null Count  Dtype  
+---  ------        --------------  -----  
+ 0   codestate     3234 non-null   float64
+ 1   codecounty    3234 non-null   int64  
+ 2   county        3234 non-null   object 
+ 3   population    3232 non-null   float64
+ 4   area          3234 non-null   float64
+ 5   densidad_pob  3232 non-null   float64
+dtypes: float64(4), int64(1), object(1)
+memory usage: 151.7+ KB
+None
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="span-style-color-4cc9f0-eliminar-filas-y-columnas-span">
+<h3><span style="color:#4CC9F0">Eliminar filas y columnas</span><a class="headerlink" href="#span-style-color-4cc9f0-eliminar-filas-y-columnas-span" title="Permalink to this headline">#</a></h3>
+<p>Eliminación filas, puede ser por posición o que cumpla una característica.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">counties</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="n">counties</span> <span class="o">=</span> <span class="n">counties</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">counties</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">3</span><span class="p">,]</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+<span class="n">counties</span> <span class="o">=</span> <span class="n">counties</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">counties</span><span class="p">[</span><span class="n">counties</span><span class="p">[</span><span class="s1">&#39;codecounty&#39;</span><span class="p">]</span><span class="o">==</span><span class="mi">70</span><span class="p">]</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">counties</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(3234, 6)
+(3231, 6)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">counties</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;densidad_pob&#39;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="c1">#inplace=True, para que me modifique la BD</span>
+<span class="n">counties</span><span class="o">.</span><span class="n">columns</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Index([&#39;codestate&#39;, &#39;codecounty&#39;, &#39;county&#39;, &#39;population&#39;, &#39;area&#39;], dtype=&#39;object&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="span-style-color-4cc9f0-conteos-span">
+<h3><span style="color:#4CC9F0">Conteos</span><a class="headerlink" href="#span-style-color-4cc9f0-conteos-span" title="Permalink to this headline">#</a></h3>
+<p>La función <code class="docutils literal notranslate"><span class="pre">groupby</span></code> devuelve un objeto <code class="docutils literal notranslate"><span class="pre">DataFrameGroupBy</span></code> que contiene la información agrupada según las especificaciones que indiquemos.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">group</span><span class="o">=</span><span class="n">counties</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;codestate&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">group</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.groupby.generic.DataFrameGroupBy&#39;&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Podemos obtener detalles del anterior dataframe</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">group</span><span class="o">.</span><span class="n">first</span><span class="p">()</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span> <span class="c1"># Nos muestra el primer elemento de cada grupo según &quot;codestate&quot;</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">group</span><span class="o">.</span><span class="n">get_group</span><span class="p">(</span><span class="mi">78</span><span class="p">))</span> <span class="c1">#Nos muestra los elementos cuyo codestate es 78</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>           codecounty                county  population       area
+codestate                                                         
+1.0              1007                  Bibb     22915.0    622.582
+2.0              2013        Aleutians East      3141.0   6981.943
+4.0              4001                Apache     71518.0  11197.521
+5.0              5001              Arkansas     19019.0    988.770
+6.0              6001               Alameda   1510271.0    739.017
+8.0              8001                 Adams    441603.0   1167.653
+9.0              9001             Fairfield    916829.0    624.890
+10.0            10001                  Kent    162310.0    586.179
+11.0            11001  District Of Columbia    601723.0     61.048
+12.0            12001               Alachua    247336.0    875.020
+
+
+      codestate  codecounty     county  population       area
+3231       78.0       78010   St Croix     50601.0  83.345868
+3232       78.0       78020    St John      4170.0  19.689867
+3233       78.0       78030  St Thomas     51634.0  31.313503
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">counties</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;codestate&quot;</span><span class="p">)[</span><span class="s2">&quot;codecounty&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">count</span><span class="p">()</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>codestate
+1.0     64
+2.0     29
+4.0     15
+5.0     75
+6.0     58
+8.0     64
+9.0      8
+10.0     3
+11.0     1
+12.0    67
+Name: codecounty, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="span-style-color-4361ee-modificar-tablas-span">
+<h2><span style="color:#4361EE">Modificar Tablas</span><a class="headerlink" href="#span-style-color-4361ee-modificar-tablas-span" title="Permalink to this headline">#</a></h2>
+<p>es posible hacer cambios de orden y estructura en las tablas de pandas.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">folder_path</span><span class="o">=</span><span class="s2">&quot;https://github.com/AprendizajeProfundo/Libro_Fundamentos_Programacion/blob/main/Python/Datos/&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">elections</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="n">folder_path</span><span class="o">+</span><span class="s1">&#39;elections.xlsx?raw=true&#39;</span><span class="p">)</span>
+<span class="n">elections</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>year</th>
+      <th>democrat</th>
+      <th>republic</th>
+      <th>other</th>
+      <th>codecounty</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2000</td>
+      <td>4942</td>
+      <td>11993</td>
+      <td>273</td>
+      <td>1001</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2000</td>
+      <td>13997</td>
+      <td>40872</td>
+      <td>1611</td>
+      <td>1003</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2000</td>
+      <td>5188</td>
+      <td>5096</td>
+      <td>111</td>
+      <td>1005</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2000</td>
+      <td>2710</td>
+      <td>4273</td>
+      <td>118</td>
+      <td>1007</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2000</td>
+      <td>4977</td>
+      <td>12667</td>
+      <td>329</td>
+      <td>1009</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>organicemos los datos descendentemente depende de la cantidad de votos democratas</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">elections</span><span class="o">.</span><span class="n">sort_values</span><span class="p">([</span><span class="s2">&quot;democrat&quot;</span><span class="p">],</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>year</th>
+      <th>democrat</th>
+      <th>republic</th>
+      <th>other</th>
+      <th>codecounty</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>12626</th>
+      <td>2016</td>
+      <td>2464364</td>
+      <td>769743</td>
+      <td>200201</td>
+      <td>6037</td>
+    </tr>
+    <tr>
+      <th>6400</th>
+      <td>2008</td>
+      <td>2295853</td>
+      <td>956425</td>
+      <td>65970</td>
+      <td>6037</td>
+    </tr>
+    <tr>
+      <th>9513</th>
+      <td>2012</td>
+      <td>2216903</td>
+      <td>885333</td>
+      <td>78831</td>
+      <td>6037</td>
+    </tr>
+    <tr>
+      <th>3287</th>
+      <td>2004</td>
+      <td>1907736</td>
+      <td>1076225</td>
+      <td>37686</td>
+      <td>6037</td>
+    </tr>
+    <tr>
+      <th>175</th>
+      <td>2000</td>
+      <td>1710505</td>
+      <td>871930</td>
+      <td>112719</td>
+      <td>6037</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>11981</th>
+      <td>2012</td>
+      <td>9</td>
+      <td>54</td>
+      <td>1</td>
+      <td>48301</td>
+    </tr>
+    <tr>
+      <th>8852</th>
+      <td>2008</td>
+      <td>8</td>
+      <td>151</td>
+      <td>4</td>
+      <td>48269</td>
+    </tr>
+    <tr>
+      <th>11965</th>
+      <td>2012</td>
+      <td>5</td>
+      <td>139</td>
+      <td>1</td>
+      <td>48269</td>
+    </tr>
+    <tr>
+      <th>15078</th>
+      <td>2016</td>
+      <td>5</td>
+      <td>149</td>
+      <td>5</td>
+      <td>48269</td>
+    </tr>
+    <tr>
+      <th>15094</th>
+      <td>2016</td>
+      <td>4</td>
+      <td>58</td>
+      <td>3</td>
+      <td>48301</td>
+    </tr>
+  </tbody>
+</table>
+<p>15563 rows × 5 columns</p>
+</div></div></div>
+</div>
+<p>usando <code class="docutils literal notranslate"><span class="pre">groupby()</span></code> podemos juntar los datos por año y sumarlos para tener el total de votos por año</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">elections</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;year&#39;</span><span class="p">)[[</span><span class="s1">&#39;democrat&#39;</span><span class="p">,</span> <span class="s1">&#39;republic&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>democrat</th>
+      <th>republic</th>
+    </tr>
+    <tr>
+      <th>year</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2000</th>
+      <td>50922964</td>
+      <td>50290498</td>
+    </tr>
+    <tr>
+      <th>2004</th>
+      <td>58614073</td>
+      <td>61603653</td>
+    </tr>
+    <tr>
+      <th>2008</th>
+      <td>69204582</td>
+      <td>59703000</td>
+    </tr>
+    <tr>
+      <th>2012</th>
+      <td>65508961</td>
+      <td>60460609</td>
+    </tr>
+    <tr>
+      <th>2016</th>
+      <td>65626398</td>
+      <td>62790289</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Podemos aplicar ambos métodos en un mismo código</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">elections_sort</span><span class="o">=</span><span class="p">(</span><span class="n">elections</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;year&#39;</span><span class="p">)[[</span><span class="s1">&#39;democrat&#39;</span><span class="p">,</span> <span class="s1">&#39;republic&#39;</span><span class="p">]]</span>
+                <span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+                <span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">&#39;democrat&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+<span class="n">display</span><span class="p">(</span><span class="n">elections_sort</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>democrat</th>
+      <th>republic</th>
+    </tr>
+    <tr>
+      <th>year</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2008</th>
+      <td>69204582</td>
+      <td>59703000</td>
+    </tr>
+    <tr>
+      <th>2016</th>
+      <td>65626398</td>
+      <td>62790289</td>
+    </tr>
+    <tr>
+      <th>2012</th>
+      <td>65508961</td>
+      <td>60460609</td>
+    </tr>
+    <tr>
+      <th>2004</th>
+      <td>58614073</td>
+      <td>61603653</td>
+    </tr>
+    <tr>
+      <th>2000</th>
+      <td>50922964</td>
+      <td>50290498</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Para reestructurar los datos usamos la función <code class="docutils literal notranslate"><span class="pre">pivot()</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pivot_elections</span><span class="o">=</span><span class="n">elections</span><span class="o">.</span><span class="n">pivot</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="s1">&#39;codecounty&#39;</span><span class="p">,</span>
+                <span class="n">columns</span><span class="o">=</span><span class="s1">&#39;year&#39;</span><span class="p">,</span>
+                <span class="n">values</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;democrat&#39;</span><span class="p">,</span><span class="s1">&#39;republic&#39;</span><span class="p">])</span>
+<span class="n">pivot_elections</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead tr th {
+        text-align: left;
+    }
+
+    .dataframe thead tr:last-of-type th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr>
+      <th></th>
+      <th colspan="5" halign="left">democrat</th>
+      <th colspan="5" halign="left">republic</th>
+    </tr>
+    <tr>
+      <th>year</th>
+      <th>2000</th>
+      <th>2004</th>
+      <th>2008</th>
+      <th>2012</th>
+      <th>2016</th>
+      <th>2000</th>
+      <th>2004</th>
+      <th>2008</th>
+      <th>2012</th>
+      <th>2016</th>
+    </tr>
+    <tr>
+      <th>codecounty</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1001</th>
+      <td>4942.0</td>
+      <td>4758.0</td>
+      <td>6093.0</td>
+      <td>6363.0</td>
+      <td>5936.0</td>
+      <td>11993.0</td>
+      <td>15196.0</td>
+      <td>17403.0</td>
+      <td>17379.0</td>
+      <td>18172.0</td>
+    </tr>
+    <tr>
+      <th>1003</th>
+      <td>13997.0</td>
+      <td>15599.0</td>
+      <td>19386.0</td>
+      <td>18424.0</td>
+      <td>18458.0</td>
+      <td>40872.0</td>
+      <td>52971.0</td>
+      <td>61271.0</td>
+      <td>66016.0</td>
+      <td>72883.0</td>
+    </tr>
+    <tr>
+      <th>1005</th>
+      <td>5188.0</td>
+      <td>4832.0</td>
+      <td>5697.0</td>
+      <td>5912.0</td>
+      <td>4871.0</td>
+      <td>5096.0</td>
+      <td>5899.0</td>
+      <td>5866.0</td>
+      <td>5550.0</td>
+      <td>5454.0</td>
+    </tr>
+    <tr>
+      <th>1007</th>
+      <td>2710.0</td>
+      <td>2089.0</td>
+      <td>2299.0</td>
+      <td>2202.0</td>
+      <td>1874.0</td>
+      <td>4273.0</td>
+      <td>5472.0</td>
+      <td>6262.0</td>
+      <td>6132.0</td>
+      <td>6738.0</td>
+    </tr>
+    <tr>
+      <th>1009</th>
+      <td>4977.0</td>
+      <td>3938.0</td>
+      <td>3522.0</td>
+      <td>2970.0</td>
+      <td>2156.0</td>
+      <td>12667.0</td>
+      <td>17386.0</td>
+      <td>20389.0</td>
+      <td>20757.0</td>
+      <td>22859.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="span-style-color-4361ee-multiples-indices-span">
+<h2><span style="color:#4361EE">Múltiples índices</span><a class="headerlink" href="#span-style-color-4361ee-multiples-indices-span" title="Permalink to this headline">#</a></h2>
+<p>Se pueden elegir múltiples variables como índice del dataframe. Esto es util para facilitar la extracción de información en ciertos casos</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">counties_multi</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="n">folder_path</span><span class="o">+</span><span class="s2">&quot;counties.xlsx?raw=true&quot;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="n">display</span><span class="p">(</span><span class="n">counties_multi</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+      <th>county</th>
+      <th>population</th>
+      <th>area</th>
+    </tr>
+    <tr>
+      <th>codestate</th>
+      <th>codecounty</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th rowspan="5" valign="top">1</th>
+      <th>1001</th>
+      <td>Auta#%&amp;()uga</td>
+      <td>54571.0</td>
+      <td>594.436000</td>
+    </tr>
+    <tr>
+      <th>1003</th>
+      <td>Baldwin#%&amp;()  ?</td>
+      <td>182265.0</td>
+      <td>1589.784000</td>
+    </tr>
+    <tr>
+      <th>1005</th>
+      <td>Barbour</td>
+      <td>27457.0</td>
+      <td>884.876000</td>
+    </tr>
+    <tr>
+      <th>1007</th>
+      <td>Bi#%&amp;()bb</td>
+      <td>22915.0</td>
+      <td>622.582000</td>
+    </tr>
+    <tr>
+      <th>1009</th>
+      <td>Blount  ?</td>
+      <td>57322.0</td>
+      <td>644.776000</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="top">72</th>
+      <th>72151</th>
+      <td>Yabucoa</td>
+      <td>37941.0</td>
+      <td>55.215000</td>
+    </tr>
+    <tr>
+      <th>72153</th>
+      <td>Ya_uco</td>
+      <td>42043.0</td>
+      <td>68.192000</td>
+    </tr>
+    <tr>
+      <th rowspan="3" valign="top">78</th>
+      <th>78010</th>
+      <td>; St. Croix ?</td>
+      <td>50601.0</td>
+      <td>83.345868</td>
+    </tr>
+    <tr>
+      <th>78020</th>
+      <td>St. John</td>
+      <td>4170.0</td>
+      <td>19.689867</td>
+    </tr>
+    <tr>
+      <th>78030</th>
+      <td>St. Thomas</td>
+      <td>51634.0</td>
+      <td>31.313503</td>
+    </tr>
+  </tbody>
+</table>
+<p>3234 rows × 3 columns</p>
+</div></div></div>
+</div>
+<p>Podemos obtener la suma de población de cada estado</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">counties_multi</span><span class="p">[</span><span class="s1">&#39;population&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="s1">&#39;codestate&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/hostedtoolcache/Python/3.7.13/x64/lib/python3.7/site-packages/ipykernel_launcher.py:1: FutureWarning: Using the level keyword in DataFrame and Series aggregations is deprecated and will be removed in a future version. Use groupby instead. df.sum(level=1) should use df.groupby(level=1).sum().
+  &quot;&quot;&quot;Entry point for launching an IPython kernel.
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>codestate
+1     4779736.0
+2      710231.0
+4     6392017.0
+5     2915918.0
+6    37253956.0
+Name: population, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="concatenar-y-unir">
+<h2>Concatenar y unir<a class="headerlink" href="#concatenar-y-unir" title="Permalink to this headline">#</a></h2>
+<p>Es posible unir varias tablas tanto vertical como horizontalmente.</p>
+<p>En ambos casos, podemos usar <code class="docutils literal notranslate"><span class="pre">concat()</span></code>, y se juntarán las bases con bases a los nombres de columnas o los indices de las filas</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">elections_2000</span><span class="o">=</span><span class="n">elections</span><span class="p">[</span><span class="n">elections</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">]</span><span class="o">==</span><span class="mi">2000</span><span class="p">]</span>
+<span class="n">display</span><span class="p">(</span><span class="n">elections_2000</span><span class="p">)</span> <span class="c1">#display:ejecuta el método dunder apropiado para obtener los datos apropiados para mostrar</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>year</th>
+      <th>democrat</th>
+      <th>republic</th>
+      <th>other</th>
+      <th>codecounty</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2000</td>
+      <td>4942</td>
+      <td>11993</td>
+      <td>273</td>
+      <td>1001</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2000</td>
+      <td>13997</td>
+      <td>40872</td>
+      <td>1611</td>
+      <td>1003</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2000</td>
+      <td>5188</td>
+      <td>5096</td>
+      <td>111</td>
+      <td>1005</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2000</td>
+      <td>2710</td>
+      <td>4273</td>
+      <td>118</td>
+      <td>1007</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2000</td>
+      <td>4977</td>
+      <td>12667</td>
+      <td>329</td>
+      <td>1009</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>3107</th>
+      <td>2000</td>
+      <td>5521</td>
+      <td>9425</td>
+      <td>745</td>
+      <td>56037</td>
+    </tr>
+    <tr>
+      <th>3108</th>
+      <td>2000</td>
+      <td>4019</td>
+      <td>5454</td>
+      <td>958</td>
+      <td>56039</td>
+    </tr>
+    <tr>
+      <th>3109</th>
+      <td>2000</td>
+      <td>1650</td>
+      <td>5469</td>
+      <td>299</td>
+      <td>56041</td>
+    </tr>
+    <tr>
+      <th>3110</th>
+      <td>2000</td>
+      <td>806</td>
+      <td>3138</td>
+      <td>107</td>
+      <td>56043</td>
+    </tr>
+    <tr>
+      <th>3111</th>
+      <td>2000</td>
+      <td>449</td>
+      <td>2521</td>
+      <td>90</td>
+      <td>56045</td>
+    </tr>
+  </tbody>
+</table>
+<p>3112 rows × 5 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">elections_2004</span><span class="o">=</span><span class="n">elections</span><span class="p">[</span><span class="n">elections</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">]</span><span class="o">==</span><span class="mi">2004</span><span class="p">]</span>
+<span class="n">elections_2004</span><span class="p">[</span><span class="s1">&#39;dummy&#39;</span><span class="p">]</span><span class="o">=</span><span class="mi">0</span>
+<span class="n">display</span><span class="p">(</span><span class="n">elections_2004</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/hostedtoolcache/Python/3.7.13/x64/lib/python3.7/site-packages/ipykernel_launcher.py:2: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>year</th>
+      <th>democrat</th>
+      <th>republic</th>
+      <th>other</th>
+      <th>codecounty</th>
+      <th>dummy</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>3112</th>
+      <td>2004</td>
+      <td>4758</td>
+      <td>15196</td>
+      <td>127</td>
+      <td>1001</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>3113</th>
+      <td>2004</td>
+      <td>15599</td>
+      <td>52971</td>
+      <td>750</td>
+      <td>1003</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>3114</th>
+      <td>2004</td>
+      <td>4832</td>
+      <td>5899</td>
+      <td>46</td>
+      <td>1005</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>3115</th>
+      <td>2004</td>
+      <td>2089</td>
+      <td>5472</td>
+      <td>39</td>
+      <td>1007</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>3116</th>
+      <td>2004</td>
+      <td>3938</td>
+      <td>17386</td>
+      <td>180</td>
+      <td>1009</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>6220</th>
+      <td>2004</td>
+      <td>5208</td>
+      <td>10653</td>
+      <td>411</td>
+      <td>56037</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>6221</th>
+      <td>2004</td>
+      <td>5972</td>
+      <td>5124</td>
+      <td>263</td>
+      <td>56039</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>6222</th>
+      <td>2004</td>
+      <td>1815</td>
+      <td>6081</td>
+      <td>185</td>
+      <td>56041</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>6223</th>
+      <td>2004</td>
+      <td>855</td>
+      <td>3200</td>
+      <td>59</td>
+      <td>56043</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>6224</th>
+      <td>2004</td>
+      <td>580</td>
+      <td>2739</td>
+      <td>73</td>
+      <td>56045</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+<p>3113 rows × 6 columns</p>
+</div></div></div>
+</div>
+<p>Si se hace la concatenación sin más, se tomarán todas las columnas y se agregarán NaN</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">elections_00_04</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">elections_2000</span><span class="p">,</span> <span class="n">elections_2004</span><span class="p">])</span>
+<span class="n">display</span><span class="p">(</span><span class="n">elections_00_04</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>year</th>
+      <th>democrat</th>
+      <th>republic</th>
+      <th>other</th>
+      <th>codecounty</th>
+      <th>dummy</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2000</td>
+      <td>4942</td>
+      <td>11993</td>
+      <td>273</td>
+      <td>1001</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2000</td>
+      <td>13997</td>
+      <td>40872</td>
+      <td>1611</td>
+      <td>1003</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2000</td>
+      <td>5188</td>
+      <td>5096</td>
+      <td>111</td>
+      <td>1005</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2000</td>
+      <td>2710</td>
+      <td>4273</td>
+      <td>118</td>
+      <td>1007</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2000</td>
+      <td>4977</td>
+      <td>12667</td>
+      <td>329</td>
+      <td>1009</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>6220</th>
+      <td>2004</td>
+      <td>5208</td>
+      <td>10653</td>
+      <td>411</td>
+      <td>56037</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>6221</th>
+      <td>2004</td>
+      <td>5972</td>
+      <td>5124</td>
+      <td>263</td>
+      <td>56039</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>6222</th>
+      <td>2004</td>
+      <td>1815</td>
+      <td>6081</td>
+      <td>185</td>
+      <td>56041</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>6223</th>
+      <td>2004</td>
+      <td>855</td>
+      <td>3200</td>
+      <td>59</td>
+      <td>56043</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>6224</th>
+      <td>2004</td>
+      <td>580</td>
+      <td>2739</td>
+      <td>73</td>
+      <td>56045</td>
+      <td>0.0</td>
+    </tr>
+  </tbody>
+</table>
+<p>6225 rows × 6 columns</p>
+</div></div></div>
+</div>
+<p>Ahora, usando <code class="docutils literal notranslate"><span class="pre">merge()</span></code>, podemos hacer uniones  de las tablas de forma horizontal que compartan una columna/indice en común</p>
+<figure>
+<center>
+<img src="https://raw.githubusercontent.com/AprendizajeProfundo/Libro_Fundamentos_Programacion/main/Python/Imagenes/Joins.png" width="600" height="400" align="center"/>
+</center>
+<figcaption>
+<p style="text-align:center">Tipos de Joins
+</figcaption>
+</figure><div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">display</span><span class="p">(</span><span class="n">counties</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>codestate</th>
+      <th>codecounty</th>
+      <th>county</th>
+      <th>population</th>
+      <th>area</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>3</th>
+      <td>1.0</td>
+      <td>1007</td>
+      <td>Bibb</td>
+      <td>22915.0</td>
+      <td>622.582000</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1.0</td>
+      <td>1009</td>
+      <td>Blount</td>
+      <td>57322.0</td>
+      <td>644.776000</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>1.0</td>
+      <td>1011</td>
+      <td>Bullock</td>
+      <td>10914.0</td>
+      <td>622.805000</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>1.0</td>
+      <td>1013</td>
+      <td>Butler</td>
+      <td>20947.0</td>
+      <td>776.829000</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>1.0</td>
+      <td>1015</td>
+      <td>Calhoun</td>
+      <td>118572.0</td>
+      <td>605.868000</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>3229</th>
+      <td>72.0</td>
+      <td>72151</td>
+      <td>Yabucoa</td>
+      <td>37941.0</td>
+      <td>55.215000</td>
+    </tr>
+    <tr>
+      <th>3230</th>
+      <td>72.0</td>
+      <td>72153</td>
+      <td>Yauco</td>
+      <td>42043.0</td>
+      <td>68.192000</td>
+    </tr>
+    <tr>
+      <th>3231</th>
+      <td>78.0</td>
+      <td>78010</td>
+      <td>St Croix</td>
+      <td>50601.0</td>
+      <td>83.345868</td>
+    </tr>
+    <tr>
+      <th>3232</th>
+      <td>78.0</td>
+      <td>78020</td>
+      <td>St John</td>
+      <td>4170.0</td>
+      <td>19.689867</td>
+    </tr>
+    <tr>
+      <th>3233</th>
+      <td>78.0</td>
+      <td>78030</td>
+      <td>St Thomas</td>
+      <td>51634.0</td>
+      <td>31.313503</td>
+    </tr>
+  </tbody>
+</table>
+<p>3231 rows × 5 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">inner_joined</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">elections</span><span class="p">,</span> <span class="n">counties</span><span class="p">)</span>
+<span class="n">inner_joined</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>year</th>
+      <th>democrat</th>
+      <th>republic</th>
+      <th>other</th>
+      <th>codecounty</th>
+      <th>codestate</th>
+      <th>county</th>
+      <th>population</th>
+      <th>area</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2000</td>
+      <td>2710</td>
+      <td>4273</td>
+      <td>118</td>
+      <td>1007</td>
+      <td>1.0</td>
+      <td>Bibb</td>
+      <td>22915.0</td>
+      <td>622.582</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2004</td>
+      <td>2089</td>
+      <td>5472</td>
+      <td>39</td>
+      <td>1007</td>
+      <td>1.0</td>
+      <td>Bibb</td>
+      <td>22915.0</td>
+      <td>622.582</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2008</td>
+      <td>2299</td>
+      <td>6262</td>
+      <td>83</td>
+      <td>1007</td>
+      <td>1.0</td>
+      <td>Bibb</td>
+      <td>22915.0</td>
+      <td>622.582</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2012</td>
+      <td>2202</td>
+      <td>6132</td>
+      <td>86</td>
+      <td>1007</td>
+      <td>1.0</td>
+      <td>Bibb</td>
+      <td>22915.0</td>
+      <td>622.582</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2016</td>
+      <td>1874</td>
+      <td>6738</td>
+      <td>207</td>
+      <td>1007</td>
+      <td>1.0</td>
+      <td>Bibb</td>
+      <td>22915.0</td>
+      <td>622.582</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>2000</td>
+      <td>4977</td>
+      <td>12667</td>
+      <td>329</td>
+      <td>1009</td>
+      <td>1.0</td>
+      <td>Blount</td>
+      <td>57322.0</td>
+      <td>644.776</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>2004</td>
+      <td>3938</td>
+      <td>17386</td>
+      <td>180</td>
+      <td>1009</td>
+      <td>1.0</td>
+      <td>Blount</td>
+      <td>57322.0</td>
+      <td>644.776</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>2008</td>
+      <td>3522</td>
+      <td>20389</td>
+      <td>356</td>
+      <td>1009</td>
+      <td>1.0</td>
+      <td>Blount</td>
+      <td>57322.0</td>
+      <td>644.776</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>2012</td>
+      <td>2970</td>
+      <td>20757</td>
+      <td>279</td>
+      <td>1009</td>
+      <td>1.0</td>
+      <td>Blount</td>
+      <td>57322.0</td>
+      <td>644.776</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>2016</td>
+      <td>2156</td>
+      <td>22859</td>
+      <td>573</td>
+      <td>1009</td>
+      <td>1.0</td>
+      <td>Blount</td>
+      <td>57322.0</td>
+      <td>644.776</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">outer_joined</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">elections</span><span class="p">,</span> <span class="n">counties</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;outer&#39;</span><span class="p">)</span>
+<span class="n">outer_joined</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>year</th>
+      <th>democrat</th>
+      <th>republic</th>
+      <th>other</th>
+      <th>codecounty</th>
+      <th>codestate</th>
+      <th>county</th>
+      <th>population</th>
+      <th>area</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2000.0</td>
+      <td>4942.0</td>
+      <td>11993.0</td>
+      <td>273.0</td>
+      <td>1001</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2004.0</td>
+      <td>4758.0</td>
+      <td>15196.0</td>
+      <td>127.0</td>
+      <td>1001</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2008.0</td>
+      <td>6093.0</td>
+      <td>17403.0</td>
+      <td>145.0</td>
+      <td>1001</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2012.0</td>
+      <td>6363.0</td>
+      <td>17379.0</td>
+      <td>190.0</td>
+      <td>1001</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2016.0</td>
+      <td>5936.0</td>
+      <td>18172.0</td>
+      <td>865.0</td>
+      <td>1001</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>2000.0</td>
+      <td>13997.0</td>
+      <td>40872.0</td>
+      <td>1611.0</td>
+      <td>1003</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>2004.0</td>
+      <td>15599.0</td>
+      <td>52971.0</td>
+      <td>750.0</td>
+      <td>1003</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>2008.0</td>
+      <td>19386.0</td>
+      <td>61271.0</td>
+      <td>756.0</td>
+      <td>1003</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>2012.0</td>
+      <td>18424.0</td>
+      <td>66016.0</td>
+      <td>898.0</td>
+      <td>1003</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>2016.0</td>
+      <td>18458.0</td>
+      <td>72883.0</td>
+      <td>3874.0</td>
+      <td>1003</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">left_joined</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">elections</span><span class="p">,</span> <span class="n">counties</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">)</span>
+<span class="n">left_joined</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>year</th>
+      <th>democrat</th>
+      <th>republic</th>
+      <th>other</th>
+      <th>codecounty</th>
+      <th>codestate</th>
+      <th>county</th>
+      <th>population</th>
+      <th>area</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2000</td>
+      <td>4942</td>
+      <td>11993</td>
+      <td>273</td>
+      <td>1001</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2000</td>
+      <td>13997</td>
+      <td>40872</td>
+      <td>1611</td>
+      <td>1003</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2000</td>
+      <td>5188</td>
+      <td>5096</td>
+      <td>111</td>
+      <td>1005</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2000</td>
+      <td>2710</td>
+      <td>4273</td>
+      <td>118</td>
+      <td>1007</td>
+      <td>1.0</td>
+      <td>Bibb</td>
+      <td>22915.0</td>
+      <td>622.582</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2000</td>
+      <td>4977</td>
+      <td>12667</td>
+      <td>329</td>
+      <td>1009</td>
+      <td>1.0</td>
+      <td>Blount</td>
+      <td>57322.0</td>
+      <td>644.776</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>2000</td>
+      <td>3395</td>
+      <td>1433</td>
+      <td>76</td>
+      <td>1011</td>
+      <td>1.0</td>
+      <td>Bullock</td>
+      <td>10914.0</td>
+      <td>622.805</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>2000</td>
+      <td>3606</td>
+      <td>4127</td>
+      <td>70</td>
+      <td>1013</td>
+      <td>1.0</td>
+      <td>Butler</td>
+      <td>20947.0</td>
+      <td>776.829</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>2000</td>
+      <td>15781</td>
+      <td>22306</td>
+      <td>822</td>
+      <td>1015</td>
+      <td>1.0</td>
+      <td>Calhoun</td>
+      <td>118572.0</td>
+      <td>605.868</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>2000</td>
+      <td>5616</td>
+      <td>6037</td>
+      <td>181</td>
+      <td>1017</td>
+      <td>1.0</td>
+      <td>Chambers</td>
+      <td>34215.0</td>
+      <td>596.531</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>2000</td>
+      <td>3497</td>
+      <td>4154</td>
+      <td>172</td>
+      <td>1019</td>
+      <td>1.0</td>
+      <td>Cherokee</td>
+      <td>25989.0</td>
+      <td>553.700</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">right_joined</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">elections</span><span class="p">,</span> <span class="n">counties</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">)</span>
+<span class="n">right_joined</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>year</th>
+      <th>democrat</th>
+      <th>republic</th>
+      <th>other</th>
+      <th>codecounty</th>
+      <th>codestate</th>
+      <th>county</th>
+      <th>population</th>
+      <th>area</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2000.0</td>
+      <td>2710.0</td>
+      <td>4273.0</td>
+      <td>118.0</td>
+      <td>1007</td>
+      <td>1.0</td>
+      <td>Bibb</td>
+      <td>22915.0</td>
+      <td>622.582</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2004.0</td>
+      <td>2089.0</td>
+      <td>5472.0</td>
+      <td>39.0</td>
+      <td>1007</td>
+      <td>1.0</td>
+      <td>Bibb</td>
+      <td>22915.0</td>
+      <td>622.582</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2008.0</td>
+      <td>2299.0</td>
+      <td>6262.0</td>
+      <td>83.0</td>
+      <td>1007</td>
+      <td>1.0</td>
+      <td>Bibb</td>
+      <td>22915.0</td>
+      <td>622.582</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2012.0</td>
+      <td>2202.0</td>
+      <td>6132.0</td>
+      <td>86.0</td>
+      <td>1007</td>
+      <td>1.0</td>
+      <td>Bibb</td>
+      <td>22915.0</td>
+      <td>622.582</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2016.0</td>
+      <td>1874.0</td>
+      <td>6738.0</td>
+      <td>207.0</td>
+      <td>1007</td>
+      <td>1.0</td>
+      <td>Bibb</td>
+      <td>22915.0</td>
+      <td>622.582</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>2000.0</td>
+      <td>4977.0</td>
+      <td>12667.0</td>
+      <td>329.0</td>
+      <td>1009</td>
+      <td>1.0</td>
+      <td>Blount</td>
+      <td>57322.0</td>
+      <td>644.776</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>2004.0</td>
+      <td>3938.0</td>
+      <td>17386.0</td>
+      <td>180.0</td>
+      <td>1009</td>
+      <td>1.0</td>
+      <td>Blount</td>
+      <td>57322.0</td>
+      <td>644.776</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>2008.0</td>
+      <td>3522.0</td>
+      <td>20389.0</td>
+      <td>356.0</td>
+      <td>1009</td>
+      <td>1.0</td>
+      <td>Blount</td>
+      <td>57322.0</td>
+      <td>644.776</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>2012.0</td>
+      <td>2970.0</td>
+      <td>20757.0</td>
+      <td>279.0</td>
+      <td>1009</td>
+      <td>1.0</td>
+      <td>Blount</td>
+      <td>57322.0</td>
+      <td>644.776</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>2016.0</td>
+      <td>2156.0</td>
+      <td>22859.0</td>
+      <td>573.0</td>
+      <td>1009</td>
+      <td>1.0</td>
+      <td>Blount</td>
+      <td>57322.0</td>
+      <td>644.776</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="span-style-color-4361ee-series-de-tiempo-y-time-stamps-span">
+<h2><span style="color:#4361EE">Series de tiempo y time stamps</span><a class="headerlink" href="#span-style-color-4361ee-series-de-tiempo-y-time-stamps-span" title="Permalink to this headline">#</a></h2>
+<p>Existe un tipo de datos llamado “timestamp” que se usa para medir registros de tiempo. Es posible pasar strings a este tipo de dato en diferentes formatos y trabajar con este usándolo como indice</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">airrpm</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">folder_path</span><span class="o">+</span><span class="s1">&#39;airrpm.txt?raw=true&#39;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span> <span class="s1">&#39;\s+&#39;</span><span class="p">,</span> <span class="n">decimal</span><span class="o">=</span><span class="s2">&quot;,&quot;</span><span class="p">)</span>
+<span class="n">airrpm</span><span class="o">.</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Time&quot;</span><span class="p">,</span> <span class="s2">&quot;R1&quot;</span><span class="p">,</span> <span class="s2">&quot;R2&quot;</span><span class="p">,</span> <span class="s2">&quot;R3&quot;</span><span class="p">]</span>
+<span class="n">airrpm</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Time</th>
+      <th>R1</th>
+      <th>R2</th>
+      <th>R3</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Jan-79</td>
+      <td>26.64</td>
+      <td>15.50</td>
+      <td>11.15</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Feb-79</td>
+      <td>27.20</td>
+      <td>16.58</td>
+      <td>10.62</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Mar-79</td>
+      <td>27.87</td>
+      <td>18.85</td>
+      <td>9.02</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Apr-79</td>
+      <td>23.22</td>
+      <td>17.23</td>
+      <td>5.99</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>May-79</td>
+      <td>23.27</td>
+      <td>16.04</td>
+      <td>7.23</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>La variable “Time” en este momento es un string. Pero podemos transformarlo usando <code class="docutils literal notranslate"><span class="pre">to_datetime()</span></code>. Para obtener más información de qué se podría poner en <code class="docutils literal notranslate"><span class="pre">format</span></code>, pueden revisar este <a class="reference external" href="https://docs.python.org/3/library/datetime.html#strftime-and-strptime-behavior">link</a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">airrpm</span><span class="p">[</span><span class="s1">&#39;Time&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">airrpm</span><span class="p">[</span><span class="s1">&#39;Time&#39;</span><span class="p">],</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;%b-%y&#39;</span><span class="p">)</span>
+<span class="n">airrpm</span><span class="o">.</span><span class="n">index</span><span class="o">=</span><span class="n">airrpm</span><span class="p">[</span><span class="s1">&#39;Time&#39;</span><span class="p">]</span>
+<span class="n">airrpm</span><span class="o">=</span><span class="n">airrpm</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;Time&#39;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">airrpm</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>R1</th>
+      <th>R2</th>
+      <th>R3</th>
+    </tr>
+    <tr>
+      <th>Time</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1979-01-01</th>
+      <td>26.64</td>
+      <td>15.50</td>
+      <td>11.15</td>
+    </tr>
+    <tr>
+      <th>1979-02-01</th>
+      <td>27.20</td>
+      <td>16.58</td>
+      <td>10.62</td>
+    </tr>
+    <tr>
+      <th>1979-03-01</th>
+      <td>27.87</td>
+      <td>18.85</td>
+      <td>9.02</td>
+    </tr>
+    <tr>
+      <th>1979-04-01</th>
+      <td>23.22</td>
+      <td>17.23</td>
+      <td>5.99</td>
+    </tr>
+    <tr>
+      <th>1979-05-01</th>
+      <td>23.27</td>
+      <td>16.04</td>
+      <td>7.23</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Definiendo la fecha como índice, podemos extraer información con respecto al año y respecto al mes</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">airrpm</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="n">airrpm</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">month</span><span class="p">])[</span><span class="s1">&#39;R1&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>count</th>
+      <th>mean</th>
+      <th>std</th>
+      <th>min</th>
+      <th>25%</th>
+      <th>50%</th>
+      <th>75%</th>
+      <th>max</th>
+    </tr>
+    <tr>
+      <th>Time</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>26.0</td>
+      <td>43.736538</td>
+      <td>9.778402</td>
+      <td>26.64</td>
+      <td>36.6575</td>
+      <td>44.82</td>
+      <td>51.86</td>
+      <td>59.36</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>25.0</td>
+      <td>43.680800</td>
+      <td>9.983696</td>
+      <td>27.20</td>
+      <td>35.5400</td>
+      <td>44.74</td>
+      <td>52.73</td>
+      <td>59.74</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>25.0</td>
+      <td>44.514400</td>
+      <td>10.363336</td>
+      <td>27.87</td>
+      <td>35.7000</td>
+      <td>45.01</td>
+      <td>53.26</td>
+      <td>60.10</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>25.0</td>
+      <td>44.287200</td>
+      <td>10.480331</td>
+      <td>23.22</td>
+      <td>36.6100</td>
+      <td>45.63</td>
+      <td>52.79</td>
+      <td>60.49</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>25.0</td>
+      <td>43.891600</td>
+      <td>10.524814</td>
+      <td>23.27</td>
+      <td>34.6000</td>
+      <td>45.11</td>
+      <td>52.57</td>
+      <td>60.36</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>25.0</td>
+      <td>45.655600</td>
+      <td>10.586951</td>
+      <td>27.30</td>
+      <td>35.4200</td>
+      <td>47.29</td>
+      <td>54.55</td>
+      <td>61.88</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>25.0</td>
+      <td>46.478400</td>
+      <td>10.333910</td>
+      <td>29.28</td>
+      <td>38.2700</td>
+      <td>47.79</td>
+      <td>54.94</td>
+      <td>63.02</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>25.0</td>
+      <td>46.773600</td>
+      <td>10.613169</td>
+      <td>27.27</td>
+      <td>38.8600</td>
+      <td>48.06</td>
+      <td>55.39</td>
+      <td>63.71</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>25.0</td>
+      <td>44.202400</td>
+      <td>9.731246</td>
+      <td>27.13</td>
+      <td>37.2600</td>
+      <td>46.39</td>
+      <td>51.83</td>
+      <td>59.54</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>25.0</td>
+      <td>44.433200</td>
+      <td>10.093832</td>
+      <td>26.97</td>
+      <td>37.8500</td>
+      <td>45.89</td>
+      <td>51.56</td>
+      <td>60.26</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>25.0</td>
+      <td>43.841200</td>
+      <td>9.923719</td>
+      <td>26.19</td>
+      <td>37.3300</td>
+      <td>45.50</td>
+      <td>51.02</td>
+      <td>59.21</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>25.0</td>
+      <td>44.600400</td>
+      <td>9.573277</td>
+      <td>27.32</td>
+      <td>38.7500</td>
+      <td>45.33</td>
+      <td>51.98</td>
+      <td>57.65</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">airrpm</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="n">airrpm</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">year</span><span class="p">])</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>R1</th>
+      <th>R2</th>
+      <th>R3</th>
+    </tr>
+    <tr>
+      <th>Time</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1979</th>
+      <td>328.83</td>
+      <td>210.49</td>
+      <td>118.34</td>
+    </tr>
+    <tr>
+      <th>1980</th>
+      <td>340.95</td>
+      <td>200.92</td>
+      <td>140.05</td>
+    </tr>
+    <tr>
+      <th>1981</th>
+      <td>341.96</td>
+      <td>198.53</td>
+      <td>143.45</td>
+    </tr>
+    <tr>
+      <th>1982</th>
+      <td>355.17</td>
+      <td>210.23</td>
+      <td>144.91</td>
+    </tr>
+    <tr>
+      <th>1983</th>
+      <td>374.03</td>
+      <td>226.76</td>
+      <td>147.26</td>
+    </tr>
+    <tr>
+      <th>1984</th>
+      <td>415.88</td>
+      <td>243.71</td>
+      <td>172.18</td>
+    </tr>
+    <tr>
+      <th>1985</th>
+      <td>440.43</td>
+      <td>271.80</td>
+      <td>168.61</td>
+    </tr>
+    <tr>
+      <th>1986</th>
+      <td>492.37</td>
+      <td>302.20</td>
+      <td>190.18</td>
+    </tr>
+    <tr>
+      <th>1987</th>
+      <td>522.07</td>
+      <td>324.58</td>
+      <td>197.52</td>
+    </tr>
+    <tr>
+      <th>1988</th>
+      <td>530.25</td>
+      <td>328.69</td>
+      <td>201.57</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "AprendizajeProfundo/Libro_Fundamentos_Programacion",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./Python/Cuadernos"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="Taller_Numpy.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title"><span style="color:#F72585">Taller de numpy</span></p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="../../Pytorch/Cuadernos/Pytorch_01.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span style="color:#F72585">Primeros pasos con PyTorch</span></p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Álvaro Mauricio Montenegro Díaz, Daniel Mauricio Montenegro Reyes<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

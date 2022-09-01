@@ -1,0 +1,2140 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Aprendizaje Profundo &#8212; Fundamentos de Programación</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script src="../../_static/tabs.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../_static/logo-final-ap.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Fundamentos de Programación</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../tutorial.html">
+                    <span style="color:#F72585">Bienvenido(a)</span>
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Primeros Pasos
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Inicio/Cuadernos/Consideraciones.html">
+   <span style="color:#F72585">
+    Conociendo el Libro
+   </span>
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Introducción
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Python/Cuadernos/py_00.html">
+   <span style="color:#F72585">
+    Conceptos básicos de programación
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Python/Cuadernos/py_01.html">
+   <span style="color:#F72585">
+    Introducción al lenguaje de programación Python
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Python/Cuadernos/py_02.html">
+   <span style="color:#F72585">
+    Tipos de Datos Básicos
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Python/Cuadernos/py_03.html">
+   <span style="color:#F72585">
+    Operadores aritméticos y lógicos
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Python/Cuadernos/py_04.html">
+   <span style="color:#F72585">
+    Estructuras de control
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Python/Cuadernos/py_05.html">
+   <span style="color:#F72585">
+    Funciones en Python
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Python/Cuadernos/py_06.html">
+   <span style="color:#F72585">
+    Iterables e iteradores
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Python/Cuadernos/py_07.html">
+   <span style="color:#F72585">
+    Tuplas
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Python/Cuadernos/py_08.html">
+   <span style="color:#F72585">
+    Listas
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Python/Cuadernos/py_09.html">
+   <span style="color:#F72585">
+    Diccionarios
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Python/Cuadernos/py_10.html">
+   <span style="color:#F72585">
+    Conjuntos
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Python/Cuadernos/py_11.html">
+   <span style="color:#F72585">
+    Programación orientada a Objetos en Python
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Python/Cuadernos/py_12.html">
+   <span style="color:#F72585">
+    Decoradores
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Python/Cuadernos/py_13.html">
+   <span style="color:#F72585">
+    Patrones para Programación orientada a Objetos en Python
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Python/Cuadernos/Taller_Numpy.html">
+   <span style="color:#F72585">
+    Taller de numpy
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Python/Cuadernos/Taller_Pandas.html">
+   <span style="color:#F72585">
+    Taller de manejo de Datos en Pandas
+   </span>
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Pytorch
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Pytorch_01.html">
+   <span style="color:#F72585">
+    Primeros pasos con PyTorch
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Pytorch_02.html">
+   <span style="color:#F72585">
+    Tensores en PyTorch
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Pytorch_03.html">
+   <span style="color:#F72585">
+    DataSets y DataLoaders
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Pytorch_04.html">
+   <span style="color:#F72585">
+    Transforms
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Pytorch_05.html">
+   <span style="color:#F72585">
+    Diferenciación automática con torch.autograd
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Pytorch_06.html">
+   <span style="color:#F72585">
+    Optimización con torch
+   </span>
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  TensorFlow
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../TensorFlow/Cuadernos/Tensorflow-01.html">
+   <span style="color:#F72585">
+    Inicio Rápido
+   </span>
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/AprendizajeProfundo/Libro_Fundamentos_Programacion/main?urlpath=tree/Pytorch/Cuadernos/Pytorch_10_clasificacion.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://colab.research.google.com/github/AprendizajeProfundo/Libro_Fundamentos_Programacion/blob/main/Pytorch/Cuadernos/Pytorch_10_clasificacion.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Colab"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../../_static/images/logo_colab.png">
+  </span>
+<span class="headerbtn__text-container">Colab</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="initThebeSBT()"
+  class="headerbtn headerbtn-launch-thebe"
+  data-toggle="tooltip"
+data-placement="left"
+title="Launch Thebe"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="headerbtn__text-container">Live Code</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/AprendizajeProfundo/Libro_Fundamentos_Programacion"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/AprendizajeProfundo/Libro_Fundamentos_Programacion/issues/new?title=Issue%20on%20page%20%2FPytorch/Cuadernos/Pytorch_10_clasificacion.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/AprendizajeProfundo/Libro_Fundamentos_Programacion/edit/main/Pytorch/Cuadernos/Pytorch_10_clasificacion.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Edit this page"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="headerbtn__text-container">suggest edit</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../../_sources/Pytorch/Cuadernos/Pytorch_10_clasificacion.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   <span style="color:blue">
+    <left>
+     Aprendizaje Profundo
+    </left>
+   </span>
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-red-center-pytorch-center-span">
+   <span style="color:red">
+    <center>
+     Pytorch
+    </center>
+   </span>
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-blue-profesores-span">
+     <span style="color:blue">
+      Profesores
+     </span>
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#coordinador">
+       Coordinador
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#conferencistas">
+       Conferencistas
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-blue-asesora-medios-y-marketing-digital-span">
+     <span style="color:blue">
+      Asesora Medios y Marketing digital
+     </span>
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-blue-asistentes-span">
+     <span style="color:blue">
+      Asistentes
+     </span>
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-blue-referencias-span">
+     <span style="color:blue">
+      Referencias
+     </span>
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-blue-contenido-span">
+     <span style="color:blue">
+      Contenido
+     </span>
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-blue-introduccion-span">
+     <span style="color:blue">
+      Introducción
+     </span>
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-blue-instalar-pytorch-span">
+     <span style="color:blue">
+      Instalar Pytorch
+     </span>
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-blue-trabajando-con-datos-span">
+     <span style="color:blue">
+      Trabajando con datos
+     </span>
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#crea-un-dataset-con-los-datos-de-fashionmnist">
+       Crea un dataset con los datos de FashionMNIST
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#una-primera-imagen-de-los-datos">
+       Una primera imagen de los datos
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#envuelve-el-dataset-en-un-dataloader">
+       Envuelve el dataset en un DataLoader
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#creacion-de-datasets-personalizados">
+       Creación de datasets personalizados
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-blue-programacion-orientada-a-objetos-span">
+     <span style="color:blue">
+      Programación Orientada a Objetos
+     </span>
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-blue-clases-e-instancias-de-clase-objetos-span">
+     <span style="color:blue">
+      Clases e instancias de clase (objetos)
+     </span>
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#ejemplo-de-clases-e-instancias-de-clase">
+       Ejemplo de clases e instancias de clase
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#herencia">
+       Herencia
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#metodos-y-propiedades">
+       Métodos y propiedades
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#constructor-init">
+       Constructor __init__()
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-blue-creando-una-red-neuronal-span">
+     <span style="color:blue">
+      Creando una red neuronal
+     </span>
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#nota">
+       Nota
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-blue-entrenamiento-de-una-red-neuronal-span">
+     <span style="color:blue">
+      Entrenamiento de una red neuronal
+     </span>
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#clase-neuralnetwork">
+       Clase NeuralNetwork
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#clase-trainer">
+       Clase Trainer
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#clase-data">
+       Clase Data
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#clase-drawer">
+       Clase Drawer
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#crea-los-objetos-para-el-entrenamiento">
+       Crea los objetos para el entrenamiento
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#una-mirada-a-las-imagenes">
+       Una mirada a las imágenes
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#entrenamiento">
+       Entrenamiento
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-blue-puesta-en-produccion-span">
+     <span style="color:blue">
+      Puesta en producción
+     </span>
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1><span style="color:blue"><left>Aprendizaje Profundo</left></span></h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   <span style="color:blue">
+    <left>
+     Aprendizaje Profundo
+    </left>
+   </span>
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-red-center-pytorch-center-span">
+   <span style="color:red">
+    <center>
+     Pytorch
+    </center>
+   </span>
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-blue-profesores-span">
+     <span style="color:blue">
+      Profesores
+     </span>
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#coordinador">
+       Coordinador
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#conferencistas">
+       Conferencistas
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-blue-asesora-medios-y-marketing-digital-span">
+     <span style="color:blue">
+      Asesora Medios y Marketing digital
+     </span>
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-blue-asistentes-span">
+     <span style="color:blue">
+      Asistentes
+     </span>
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-blue-referencias-span">
+     <span style="color:blue">
+      Referencias
+     </span>
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-blue-contenido-span">
+     <span style="color:blue">
+      Contenido
+     </span>
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-blue-introduccion-span">
+     <span style="color:blue">
+      Introducción
+     </span>
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-blue-instalar-pytorch-span">
+     <span style="color:blue">
+      Instalar Pytorch
+     </span>
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-blue-trabajando-con-datos-span">
+     <span style="color:blue">
+      Trabajando con datos
+     </span>
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#crea-un-dataset-con-los-datos-de-fashionmnist">
+       Crea un dataset con los datos de FashionMNIST
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#una-primera-imagen-de-los-datos">
+       Una primera imagen de los datos
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#envuelve-el-dataset-en-un-dataloader">
+       Envuelve el dataset en un DataLoader
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#creacion-de-datasets-personalizados">
+       Creación de datasets personalizados
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-blue-programacion-orientada-a-objetos-span">
+     <span style="color:blue">
+      Programación Orientada a Objetos
+     </span>
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-blue-clases-e-instancias-de-clase-objetos-span">
+     <span style="color:blue">
+      Clases e instancias de clase (objetos)
+     </span>
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#ejemplo-de-clases-e-instancias-de-clase">
+       Ejemplo de clases e instancias de clase
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#herencia">
+       Herencia
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#metodos-y-propiedades">
+       Métodos y propiedades
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#constructor-init">
+       Constructor __init__()
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-blue-creando-una-red-neuronal-span">
+     <span style="color:blue">
+      Creando una red neuronal
+     </span>
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#nota">
+       Nota
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-blue-entrenamiento-de-una-red-neuronal-span">
+     <span style="color:blue">
+      Entrenamiento de una red neuronal
+     </span>
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#clase-neuralnetwork">
+       Clase NeuralNetwork
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#clase-trainer">
+       Clase Trainer
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#clase-data">
+       Clase Data
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#clase-drawer">
+       Clase Drawer
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#crea-los-objetos-para-el-entrenamiento">
+       Crea los objetos para el entrenamiento
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#una-mirada-a-las-imagenes">
+       Una mirada a las imágenes
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#entrenamiento">
+       Entrenamiento
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-blue-puesta-en-produccion-span">
+     <span style="color:blue">
+      Puesta en producción
+     </span>
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <figure>
+<img src="../Imagenes/logo-final-ap.png"  width="80" height="80" align="left"/> 
+</figure>
+<section class="tex2jax_ignore mathjax_ignore" id="span-style-color-blue-left-aprendizaje-profundo-left-span">
+<h1><span style="color:blue"><left>Aprendizaje Profundo</left></span><a class="headerlink" href="#span-style-color-blue-left-aprendizaje-profundo-left-span" title="Permalink to this headline">#</a></h1>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="span-style-color-red-center-pytorch-center-span">
+<h1><span style="color:red"><center>Pytorch</center></span><a class="headerlink" href="#span-style-color-red-center-pytorch-center-span" title="Permalink to this headline">#</a></h1>
+<center>Introducción a la Programación Orientada a Objetos (POO)</center><figure>
+<center>
+<img src="../Imagenes/trainer.png" width="800" height="800" align="center"/>
+</center>
+</figure>
+<p>Fuente: Alvaro Montenegro</p>
+<section id="span-style-color-blue-profesores-span">
+<h2><span style="color:blue">Profesores</span><a class="headerlink" href="#span-style-color-blue-profesores-span" title="Permalink to this headline">#</a></h2>
+<section id="coordinador">
+<h3>Coordinador<a class="headerlink" href="#coordinador" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>Campo Elías Pardo, PhD, <a class="reference external" href="mailto:cepardot&#37;&#52;&#48;unal&#46;edu&#46;co">cepardot<span>&#64;</span>unal<span>&#46;</span>edu<span>&#46;</span>co</a></p></li>
+</ul>
+</section>
+<section id="conferencistas">
+<h3>Conferencistas<a class="headerlink" href="#conferencistas" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>Alvaro  Montenegro, PhD, <a class="reference external" href="mailto:ammontenegrod&#37;&#52;&#48;unal&#46;edu&#46;co">ammontenegrod<span>&#64;</span>unal<span>&#46;</span>edu<span>&#46;</span>co</a></p></li>
+<li><p>Daniel  Montenegro, Msc, <a class="reference external" href="mailto:dextronomo&#37;&#52;&#48;gmail&#46;com">dextronomo<span>&#64;</span>gmail<span>&#46;</span>com</a></p></li>
+<li><p>Oleg Jarma, Estadístico, <a class="reference external" href="mailto:ojarmam&#37;&#52;&#48;unal&#46;edu&#46;co">ojarmam<span>&#64;</span>unal<span>&#46;</span>edu<span>&#46;</span>co</a></p></li>
+</ul>
+</section>
+</section>
+<section id="span-style-color-blue-asesora-medios-y-marketing-digital-span">
+<h2><span style="color:blue">Asesora Medios y Marketing digital</span><a class="headerlink" href="#span-style-color-blue-asesora-medios-y-marketing-digital-span" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>Maria del Pilar Montenegro, <a class="reference external" href="mailto:pmontenegro88&#37;&#52;&#48;gmail&#46;com">pmontenegro88<span>&#64;</span>gmail<span>&#46;</span>com</a></p></li>
+</ul>
+</section>
+<section id="span-style-color-blue-asistentes-span">
+<h2><span style="color:blue">Asistentes</span><a class="headerlink" href="#span-style-color-blue-asistentes-span" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>Nayibe Yesenia Arias, <a class="reference external" href="mailto:naariasc&#37;&#52;&#48;unal&#46;edu&#46;co">naariasc<span>&#64;</span>unal<span>&#46;</span>edu<span>&#46;</span>co</a></p></li>
+<li><p>Venus Celeste Puertas, <a class="reference external" href="mailto:vpuertasg&#37;&#52;&#48;unal&#46;edu&#46;co">vpuertasg<span>&#64;</span>unal<span>&#46;</span>edu<span>&#46;</span>co</a></p></li>
+</ul>
+</section>
+<section id="span-style-color-blue-referencias-span">
+<h2><span style="color:blue">Referencias</span><a class="headerlink" href="#span-style-color-blue-referencias-span" title="Permalink to this headline">#</a></h2>
+<ol class="simple">
+<li><p><a class="reference external" href="https://github.com/AprendizajeProfundo/Diplomado">Alvaro Montenegro y Daniel Montenegro, Inteligencia Artificial y Aprendizaje Profundo, 2021</a></p></li>
+<li><p><a class="reference external" href="https://github.com/AprendizajeProfundo/Diplomado-Avanzado">Alvaro Montenegro, Daniel Montenegro y Oleg Jarma, Inteligencia Artificial y Aprendizaje Profundo Avanzado, 2022</a></p></li>
+<li><p><a class="reference external" href="https://pytorch.org/tutorials/">Tutoriales de Pytorch</a></p></li>
+<li><p><a class="reference external" href="http://library.lol/main/F13E85845AE48D9FD7488FE7630A9FD3">Deep learning for coders with FastAI and Pytorch</a></p></li>
+</ol>
+</section>
+<section id="span-style-color-blue-contenido-span">
+<h2><span style="color:blue">Contenido</span><a class="headerlink" href="#span-style-color-blue-contenido-span" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="#Introducci%C3%B3n">Introducción</a></p></li>
+<li><p><a class="reference external" href="#Clases">Clases</a></p></li>
+<li><p><a class="reference external" href="#Instalar-Pytorch">Instalar Pytorch</a></p></li>
+<li><p><a class="reference external" href="#Trabajando-con-datos">Trabajando con datos</a></p></li>
+<li><p><a class="reference external" href="#Programaci%C3%B3n-Orientada-a-Objetos">Programación Orientada a Objetos</a></p></li>
+<li><p><a class="reference external" href="#Clases-e-instancias-de-clase-(objetos)">Clases e instancias de clase (objetos)</a></p></li>
+<li><p><a class="reference external" href="#Creando-una-red-neuronal">Creando una red neuronal</a></p></li>
+<li><p><a class="reference external" href="#Entrenamiento-de-una-red-neuronal">Entrenamiento de una red neuronal</a></p></li>
+<li><p><a class="reference external" href="#Puesta-en-producci%C3%B3n">Puesta en producción</a></p></li>
+</ul>
+</section>
+<section id="span-style-color-blue-introduccion-span">
+<h2><span style="color:blue">Introducción</span><a class="headerlink" href="#span-style-color-blue-introduccion-span" title="Permalink to this headline">#</a></h2>
+<p>Python es un lenguaje de programación orientado a objetos. <strong>Todo</strong> en Python es un objeto, con sus propiedades y métodos.</p>
+<p>En esta sesión crearemos una red neuronal, usando <code class="docutils literal notranslate"><span class="pre">el</span> <span class="pre">paradigma</span> <span class="pre">programación</span> <span class="pre">orientado</span> <span class="pre">a</span> <span class="pre">objetos</span></code>, y crearemos un entrenador para entrenar la red de tal manera  que prediga el tipo de prenda del conjunto de datos mnist-fashion.</p>
+<p>El conjunto de datos mnist-fashion, puede cargarse directamente del conjunto  de ejemplos de <a class="reference external" href="https://pytorch.org/">Pytorch</a>. En realidad este conjunto de datos muy famoso en el área de la inteligenica artificial moderna puede descargarse de varios sitios. Por facilidad en esta lección lo descargamos directamente de Pytorch.</p>
+</section>
+<section id="span-style-color-blue-instalar-pytorch-span">
+<h2><span style="color:blue">Instalar Pytorch </span><a class="headerlink" href="#span-style-color-blue-instalar-pytorch-span" title="Permalink to this headline">#</a></h2>
+<p>En consola ejecute el siguiente comando.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#conda install -c pytorch pytorch</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="span-style-color-blue-trabajando-con-datos-span">
+<h2><span style="color:blue">Trabajando con datos</span><a class="headerlink" href="#span-style-color-blue-trabajando-con-datos-span" title="Permalink to this headline">#</a></h2>
+<p>PyTorch tiene dos primitivas para trabajar con datos: <code class="docutils literal notranslate"><span class="pre">torch.utils.data.DataLoader</span></code> y <code class="docutils literal notranslate"><span class="pre">torch.utils.data.Dataset</span></code>. <em>Dataset</em> almacena las muestras y sus etiquetas correspondientes, y <em>DataLoader</em> envuelve un iterable alrededor de <em>Dataset</em>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">from</span> <span class="nn">torch</span> <span class="kn">import</span> <span class="n">nn</span>
+<span class="kn">from</span> <span class="nn">torch.utils.data</span> <span class="kn">import</span> <span class="n">DataLoader</span>
+<span class="kn">from</span> <span class="nn">torchvision</span> <span class="kn">import</span> <span class="n">datasets</span>
+<span class="kn">from</span> <span class="nn">torchvision.transforms</span> <span class="kn">import</span> <span class="n">ToTensor</span>
+
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="c1">#from torch.nn import Flatten, Sequential, Linear, ReLU</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>PyTorch ofrece bibliotecas específicas de dominio como <code class="docutils literal notranslate"><span class="pre">TorchText</span></code>, <code class="docutils literal notranslate"><span class="pre">TorchVision</span></code> y <code class="docutils literal notranslate"><span class="pre">TorchAudio</span></code>, todas las cuales incluyen conjuntos de datos. Para este tutorial, usaremos un conjunto de datos de <code class="docutils literal notranslate"><span class="pre">TorchVision</span></code>.</p>
+<p>El módulo <code class="docutils literal notranslate"><span class="pre">torchvision.datasets</span></code> contiene objetos de conjunto de datos para muchos datos de visión del mundo real como CIFAR, COCO (<a class="reference external" href="https://pytorch.org/vision/stable/datasets.html">lista completa aquí</a>). En este tutorial, usamos el conjunto de datos FashionMNIST. Cada conjunto de datos de TorchVision incluye dos argumentos: <em>transform</em> y <em>target_transform</em> para modificar las muestras y las etiquetas respectivamente.</p>
+<p>En el siguiente fragmento de código se leen los datos para entrenamiento y test. Si aún no se han bajado los datos, Pytorch lo hace por esta única ocasión. La próxima vez los leerá de la carpeta interna ‘data’. El parámetro <em>transform</em> permite convertir los datos a un formato específico. En este caso a tensores de Torch.</p>
+<section id="crea-un-dataset-con-los-datos-de-fashionmnist">
+<h3>Crea un dataset con los datos de FashionMNIST<a class="headerlink" href="#crea-un-dataset-con-los-datos-de-fashionmnist" title="Permalink to this headline">#</a></h3>
+<p>Si es necesario baja los datos desde el origen de Pythorch y los dja en una carpeta interna (root). Si los datos ya existen en esa carpeta, no los baja de nuevo. Primero baja los datos de entrenamiento y luego los de validación.</p>
+<p>Se usa la transformación <code class="docutils literal notranslate"><span class="pre">ToTensor</span></code> para transformar los datos leídos en tensores de Torch.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Baja los datos de entrenamiento de open datasets.</span>
+<span class="n">training_data</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">FashionMNIST</span><span class="p">(</span>
+    <span class="n">root</span><span class="o">=</span><span class="s2">&quot;data&quot;</span><span class="p">,</span>
+    <span class="n">train</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">download</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">transform</span><span class="o">=</span><span class="n">ToTensor</span><span class="p">(),</span>
+<span class="p">)</span>
+
+<span class="c1"># Baja los datos test data de open datasets.</span>
+<span class="n">test_data</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">FashionMNIST</span><span class="p">(</span>
+    <span class="n">root</span><span class="o">=</span><span class="s2">&quot;data&quot;</span><span class="p">,</span>
+    <span class="n">train</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">download</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">transform</span><span class="o">=</span><span class="n">ToTensor</span><span class="p">(),</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="una-primera-imagen-de-los-datos">
+<h3>Una primera imagen de los datos<a class="headerlink" href="#una-primera-imagen-de-los-datos" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">labels_map</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span> <span class="p">:</span> <span class="s1">&#39;T-Shirt&#39;</span><span class="p">,</span> <span class="mi">1</span> <span class="p">:</span> <span class="s1">&#39;Trouser&#39;</span><span class="p">,</span> <span class="mi">2</span> <span class="p">:</span> <span class="s1">&#39;Pullover&#39;</span><span class="p">,</span> <span class="mi">3</span> <span class="p">:</span> <span class="s1">&#39;Dress&#39;</span><span class="p">,</span> <span class="mi">4</span> <span class="p">:</span> <span class="s1">&#39;Coat&#39;</span><span class="p">,</span> <span class="mi">5</span> <span class="p">:</span> <span class="s1">&#39;Sandal&#39;</span><span class="p">,</span> <span class="mi">6</span> <span class="p">:</span> <span class="s1">&#39;Shirt&#39;</span><span class="p">,</span>
+              <span class="mi">7</span> <span class="p">:</span> <span class="s1">&#39;Sneaker&#39;</span><span class="p">,</span> <span class="mi">8</span> <span class="p">:</span> <span class="s1">&#39;Bag&#39;</span><span class="p">,</span> <span class="mi">9</span> <span class="p">:</span> <span class="s1">&#39;Ankle Boot&#39;</span><span class="p">};</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">8</span><span class="p">));</span>
+<span class="n">columns</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>
+<span class="n">rows</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">columns</span><span class="o">*</span><span class="n">rows</span> <span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+    <span class="n">img_xy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">training_data</span><span class="p">));</span>
+    <span class="n">img</span> <span class="o">=</span> <span class="n">training_data</span><span class="p">[</span><span class="n">img_xy</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">,:,:]</span>
+    <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="n">rows</span><span class="p">,</span> <span class="n">columns</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">labels_map</span><span class="p">[</span><span class="n">training_data</span><span class="p">[</span><span class="n">img_xy</span><span class="p">][</span><span class="mi">1</span><span class="p">]])</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/Pytorch_10_clasificacion_30_0.png" src="../../_images/Pytorch_10_clasificacion_30_0.png" />
+</div>
+</div>
+</section>
+<section id="envuelve-el-dataset-en-un-dataloader">
+<h3>Envuelve el dataset en un DataLoader<a class="headerlink" href="#envuelve-el-dataset-en-un-dataloader" title="Permalink to this headline">#</a></h3>
+<p>Pasamos el <em>Dataset</em> como un parámetro para <code class="docutils literal notranslate"><span class="pre">DataLoader</span></code>
+Esto crea un iterable sobre nuestro conjunto de datos y admite procesamiento por lotes, muestreo, barajado y carga de datos multiproceso automáticos. Aquí definimos un tamaño de lote de 32, es decir, cada elemento en el cargador de datos iterable devolverá un lote de 64 imágenes con sus etiquetas.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">batch_size</span> <span class="o">=</span> <span class="mi">32</span>
+
+<span class="c1">#crea data loaders</span>
+<span class="n">train_dataloader</span> <span class="o">=</span> <span class="n">DataLoader</span><span class="p">(</span><span class="n">training_data</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span><span class="p">)</span>
+<span class="n">test_dataloader</span> <span class="o">=</span> <span class="n">DataLoader</span><span class="p">(</span><span class="n">test_data</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">test_dataloader</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;X[N, C, H, W]: &#39;</span><span class="p">,</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Shape of y: &#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">y</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
+    <span class="k">break</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>X[N, C, H, W]:  torch.Size([32, 1, 28, 28])
+Shape of y:  torch.Size([32]) torch.int64
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="creacion-de-datasets-personalizados">
+<h3>Creación de datasets personalizados<a class="headerlink" href="#creacion-de-datasets-personalizados" title="Permalink to this headline">#</a></h3>
+<p>Si requiere crear un dataset personalizado para su conjunto de datos, puede consultar <a class="reference external" href="https://pytorch.org/tutorials/beginner/basics/data_tutorial.html">aquí</a>.</p>
+</section>
+</section>
+<section id="span-style-color-blue-programacion-orientada-a-objetos-span">
+<h2><span style="color:blue">Programación Orientada a Objetos</span><a class="headerlink" href="#span-style-color-blue-programacion-orientada-a-objetos-span" title="Permalink to this headline">#</a></h2>
+<p>La programación orientada a objetos (POO) es el paradigma de programación mas utilizado modernamente para el desarrollo de aplicaciones. Python, R, C++, Java  y la mayor parte de los lenguajes modernos son orientados a objetos.</p>
+<p>Los modelos de la inteligencia artificial más potentes por lo general se desarrollan con POO. Pytorch es orientado a objetos y siempre sugiere trabajar de esa forma. A continuación hacemos una breve introducción de los concepto básicos mediante un ejemplo en el cual crearemos y entrenaremos un a red neuronal que se capaz de clasificar imágenes de FashionMNIST.</p>
+</section>
+<section id="span-style-color-blue-clases-e-instancias-de-clase-objetos-span">
+<h2><span style="color:blue">Clases e instancias de clase (objetos)</span><a class="headerlink" href="#span-style-color-blue-clases-e-instancias-de-clase-objetos-span" title="Permalink to this headline">#</a></h2>
+<p>En la programación orientada a objetos se diseñan piezas de código que llamamos objetos que interactúan entre si.
+Para empezar, debemos diferenciar entre clase e instancia de clase.</p>
+<p>Por clase se entiende el plano o plantilla de los objetos. Las instancia de clase son son objetos propiamente dichos. Esto significa que se diseña e implementa una clase y se instancian objetos de esa clase.</p>
+<p>Las dos imágenes siguientes tomadas de Wikipedia ilustra la diferencia entre clase (plano) e instancias de clase (los objetos).</p>
+<p><strong>Idealización de un clase</strong></p>
+<figure> 
+<img src="../Imagenes/plano_circuito_Musical_Organ.jpeg"  width="400" height="400" align="center"/> 
+</figure>
+<p>El diagrama de circuito del chip de sonido Texas Instruments SN76477. Fuente <a class="reference external" href="https://en.wikipedia.org/wiki/Texas_Instruments_SN76477">Wikipedia</a></p>
+<p><strong>Instancias de clase: objetos</strong></p>
+<figure> 
+<img src="../Imagenes/chipTesasIntruments.jpg"  width="400" height="400" align="left"/> 
+</figure>
+<figure> 
+<img src="../Imagenes/chipTesasIntruments.jpg"  width="400" height="400" align="right"/> 
+</figure>
+<p>Chip de sonido Texas Instruments SN76477. Fuente <a class="reference external" href="https://es.wikipedia.org/wiki/Dise%C3%B1o_de_circuitos#/media/Archivo:76477_Musical_Organ.JPG">Wikipedia</a></p>
+<section id="ejemplo-de-clases-e-instancias-de-clase">
+<h3>Ejemplo de clases e instancias de clase<a class="headerlink" href="#ejemplo-de-clases-e-instancias-de-clase" title="Permalink to this headline">#</a></h3>
+<p>En el siguiente ejemplo creamos dos instancias de la clase <code class="docutils literal notranslate"><span class="pre">NeuralNetwork</span></code>.</p>
+<p>Para crear una clase, usa el la palabra clave<code class="docutils literal notranslate"><span class="pre">class:</span></code></p>
+<p>Creemos una clase que no haga nada.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">NeuralNetwork</span><span class="p">:</span>
+    <span class="k">pass</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>A continuación creamos dos instancias de esta clase.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">modelo_1</span> <span class="o">=</span> <span class="n">NeuralNetwork</span><span class="p">()</span>
+<span class="n">modelo_2</span> <span class="o">=</span> <span class="n">NeuralNetwork</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">modelo_1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;__main__.NeuralNetwork object at 0x7f7f95111910&gt;
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="herencia">
+<h3>Herencia<a class="headerlink" href="#herencia" title="Permalink to this headline">#</a></h3>
+<p>Es posible derivar una clase de otra, para disponer de todo el contenido de lace base. Este proceso se conice como subclassing y la técnica como herencia.</p>
+<p>En el siguiente fragmento derivamos la clase <code class="docutils literal notranslate"><span class="pre">NeuralNetwork</span></code> de la clase base <code class="docutils literal notranslate"><span class="pre">nn.Module</span></code>, la cual contiene toda la infraestructura básica pra implementar una red neuronal. Esto permite concentrarse en el modleos y no en los detalles de implementación básica.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">NeuralNetwork</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+    <span class="k">pass</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="metodos-y-propiedades">
+<h3>Métodos y propiedades<a class="headerlink" href="#metodos-y-propiedades" title="Permalink to this headline">#</a></h3>
+<p>Una clase útil debe tener datos sobre los cuales trabaja. Estos se denominan <code class="docutils literal notranslate"><span class="pre">propiedades</span></code>. Los <code class="docutils literal notranslate"><span class="pre">métodos</span></code> son la funciones internas de la clase que hacen tareas específicas.</p>
+</section>
+<section id="constructor-init">
+<h3>Constructor __init__()<a class="headerlink" href="#constructor-init" title="Permalink to this headline">#</a></h3>
+<p>Una función dentro de una clase de llama <strong>método</strong>. __init__ es el abreviado de <strong>initialization</strong> (inicialización). También se le conoce como el <strong>constructor</strong>.</p>
+<p><strong>Note los dos guiones bajos antes y después de init</strong>.</p>
+</section>
+</section>
+<section id="span-style-color-blue-creando-una-red-neuronal-span">
+<h2><span style="color:blue">Creando una red neuronal</span><a class="headerlink" href="#span-style-color-blue-creando-una-red-neuronal-span" title="Permalink to this headline">#</a></h2>
+<p>Para definir una red neuronal en PyTorch, creamos una clase que hereda de nn.Module. Definimos las capas de la red en la función <strong>init</strong> y especificamos cómo pasarán los datos a través de la red en la función de reenvío. Para acelerar las operaciones en la red neuronal, lo trasladamos a la GPU si está disponible.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">from</span> <span class="nn">torch</span> <span class="kn">import</span> <span class="n">nn</span>
+<span class="kn">from</span> <span class="nn">torch.nn</span> <span class="kn">import</span> <span class="n">Flatten</span><span class="p">,</span> <span class="n">Sequential</span><span class="p">,</span> <span class="n">Linear</span><span class="p">,</span> <span class="n">ReLU</span>
+
+<span class="c1"># define model</span>
+<span class="k">class</span> <span class="nc">NeuralNetwork</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1">#llama al cosntructor de la clase base</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">NeuralNetwork</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="c1"># define las capas que usará en la construcción del modelo</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">flatten</span> <span class="o">=</span> <span class="n">Flatten</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">linear_relu_stack</span> <span class="o">=</span> <span class="n">Sequential</span><span class="p">(</span>
+            <span class="n">Linear</span><span class="p">(</span><span class="mi">28</span><span class="o">*</span><span class="mi">28</span><span class="p">,</span> <span class="mi">512</span><span class="p">),</span>
+            <span class="n">ReLU</span><span class="p">(),</span>
+            <span class="n">Linear</span><span class="p">(</span><span class="mi">512</span><span class="p">,</span> <span class="mi">512</span><span class="p">),</span>
+            <span class="n">ReLU</span><span class="p">(),</span>
+            <span class="n">Linear</span><span class="p">(</span><span class="mi">512</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span>
+            <span class="n">ReLU</span><span class="p">()</span>
+        <span class="p">)</span>
+        
+    <span class="c1"># El método forward es la que define la estructura de la red</span>
+    <span class="c1"># en este ejemplo aceptamos solo una entrada, pero si lo desea,</span>
+    <span class="c1"># siéntase libre de usar más</span>
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">flatten</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">logits</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">linear_relu_stack</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">logits</span>
+
+<span class="c1"># instancia un objeto</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">NeuralNetwork</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>NeuralNetwork(
+  (flatten): Flatten(start_dim=1, end_dim=-1)
+  (linear_relu_stack): Sequential(
+    (0): Linear(in_features=784, out_features=512, bias=True)
+    (1): ReLU()
+    (2): Linear(in_features=512, out_features=512, bias=True)
+    (3): ReLU()
+    (4): Linear(in_features=512, out_features=10, bias=True)
+    (5): ReLU()
+  )
+)
+</pre></div>
+</div>
+</div>
+</div>
+<section id="nota">
+<h3>Nota<a class="headerlink" href="#nota" title="Permalink to this headline">#</a></h3>
+<p>Cuando se invoca model, automáticamente se ejecuta la función <em>__call__</em> de la clase. En Pytorch la clase <code class="docutils literal notranslate"><span class="pre">nn.Module</span></code> de la cual derivamos  nuestra clase llama internamente a la función <em>forward</em>, que nosotros debemos sobrecargar (escribir para definir nuestro modelo), como puede verificar <a class="reference external" href="https://github.com/pytorch/pytorch/blob/472be69a736c0b2aece4883be9f8b18e2f3dfbbd/torch/nn/modules/module.py#L487">aquí</a>.</p>
+</section>
+</section>
+<section id="span-style-color-blue-entrenamiento-de-una-red-neuronal-span">
+<h2><span style="color:blue">Entrenamiento de una red neuronal</span><a class="headerlink" href="#span-style-color-blue-entrenamiento-de-una-red-neuronal-span" title="Permalink to this headline">#</a></h2>
+<figure> 
+<img src="../Imagenes/trainer.png"  width="800" height="800" align="center"/> 
+</figure>
+<center>Entrenamiento de una red neuronal. Modelo de objetos.</center>
+<p>Fuente Alvaro Montenegro</p>
+<section id="clase-neuralnetwork">
+<h3>Clase NeuralNetwork<a class="headerlink" href="#clase-neuralnetwork" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Esta</span> <span class="n">clase</span> <span class="n">define</span> <span class="n">el</span> <span class="n">modelo</span> <span class="n">de</span> <span class="n">red</span> <span class="n">neuronal</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">  File</span><span class="nn"> &quot;/tmp/ipykernel_3266/3064308253.py&quot;</span><span class="gt">, line </span><span class="mi">1</span>
+    <span class="n">Esta</span> <span class="n">clase</span> <span class="n">define</span> <span class="n">el</span> <span class="n">modelo</span> <span class="n">de</span> <span class="n">red</span> <span class="n">neuronal</span>
+             <span class="o">^</span>
+<span class="ne">SyntaxError</span>: invalid syntax
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">torch</span> <span class="kn">import</span> <span class="n">nn</span>
+<span class="kn">from</span> <span class="nn">torch.nn</span> <span class="kn">import</span> <span class="n">Flatten</span><span class="p">,</span> <span class="n">Sequential</span><span class="p">,</span> <span class="n">Linear</span><span class="p">,</span> <span class="n">ReLU</span>
+
+<span class="k">class</span> <span class="nc">NeuralNetwork</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        
+        <span class="c1"># llama constructor de la clase base</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">NeuralNetwork</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        
+        <span class="c1"># define capas de la red</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">flatten</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Flatten</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">linear_relu_stack</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">28</span><span class="o">*</span><span class="mi">28</span><span class="p">,</span> <span class="mi">512</span><span class="p">),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">512</span><span class="p">,</span> <span class="mi">512</span><span class="p">),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">512</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">()</span>
+        <span class="p">)</span>
+    
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">flatten</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">logits</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">linear_relu_stack</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">logits</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">NeuralNetwork</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>NeuralNetwork(
+  (flatten): Flatten(start_dim=1, end_dim=-1)
+  (linear_relu_stack): Sequential(
+    (0): Linear(in_features=784, out_features=512, bias=True)
+    (1): ReLU()
+    (2): Linear(in_features=512, out_features=512, bias=True)
+    (3): ReLU()
+    (4): Linear(in_features=512, out_features=10, bias=True)
+    (5): ReLU()
+  )
+)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="clase-trainer">
+<h3>Clase Trainer<a class="headerlink" href="#clase-trainer" title="Permalink to this headline">#</a></h3>
+<p>Esta clase es diseñada para controlar el proceso de entrenamiento. Antes de crear un objeto de tipo datset, asegúrese de tener disponible los siguiente objetos</p>
+<ol class="simple">
+<li><p>Un modelo.</p></li>
+<li><p>Un optimizador configurado para el modelo</p></li>
+<li><p>Una función de pérdida adecuada para el modelo</p></li>
+</ol>
+<p>Opcionalmente puede de un objeto SummaryWriter de Tensorboard y el path para almacenar los modelos.</p>
+<p>Para ejecutar el método <code class="docutils literal notranslate"><span class="pre">fit</span></code> se requiere disponer de los objetos de datos para entrenamiento y validación.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+<span class="kn">from</span> <span class="nn">torch.nn.functional</span> <span class="kn">import</span> <span class="n">softmax</span>
+
+<span class="k">class</span> <span class="nc">Trainer</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">loss_fn</span><span class="p">,</span> <span class="n">optimizer</span><span class="p">,</span> <span class="n">metrics</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                 <span class="n">metric_names</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                 <span class="n">writer</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">path_to_save</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span>
+                 <span class="n">learning_rate</span> <span class="o">=</span> <span class="mf">1e-3</span><span class="p">,</span>
+                 <span class="n">batch_size</span> <span class="o">=</span> <span class="mi">64</span><span class="p">,</span>
+                 <span class="n">epochs</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span> <span class="n">n_report</span><span class="o">=</span> <span class="mi">1000</span><span class="p">):</span>
+        <span class="c1">#################################</span>
+        <span class="c1"># propiedades de la clase Trainer</span>
+        <span class="c1">#################################</span>
+        <span class="c1"># red neuronal</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">model</span>
+        <span class="c1"># función de pérdida</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">loss_fn</span> <span class="o">=</span> <span class="n">loss_fn</span>
+        <span class="c1"># optimizador</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">optimizer</span> <span class="o">=</span> <span class="n">optimizer</span>
+        <span class="c1"># métricas</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">metrics_train</span> <span class="o">=</span> <span class="n">metrics</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">metrics_valid</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">metrics_train</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">metric_names</span> <span class="o">=</span> <span class="n">metric_names</span>
+        
+        <span class="c1"># writer de tensorboard </span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">writer</span> <span class="o">=</span> <span class="n">writer</span>
+        
+        <span class="c1"># hiperparámetros</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">learning_rate</span> <span class="o">=</span> <span class="n">learning_rate</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">batch_size</span> <span class="o">=</span> <span class="n">batch_size</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">epochs</span> <span class="o">=</span> <span class="n">epochs</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">n_report</span> <span class="o">=</span> <span class="n">n_report</span>
+        
+        <span class="c1"># path para almacenar los modelos</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">path_to_save</span> <span class="o">=</span> <span class="n">path_to_save</span>
+        <span class="c1"># path al mejor modelo encontrado</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">best_model</span> <span class="o">=</span> <span class="kc">None</span>
+        
+        <span class="c1"># datos: se cargan desde la función fit</span>
+        <span class="c1"># datos de entrenamiento</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">training_loader</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="c1"># datos de validación</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">validation_loader</span> <span class="o">=</span> <span class="kc">None</span>
+     
+    <span class="c1">##############################</span>
+    <span class="c1">#  Métodos de la clase Trainer</span>
+    <span class="c1">##############################</span>
+    <span class="c1"># setters              </span>
+    <span class="k">def</span> <span class="nf">set_model</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">model</span>
+    
+    <span class="k">def</span> <span class="nf">set_loss</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">loss</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">loss</span> <span class="o">=</span> <span class="n">loss</span>
+        
+    <span class="k">def</span> <span class="nf">set_optimizer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">optimizer</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">optimizer</span> <span class="o">=</span> <span class="n">optimizer</span>
+        
+    <span class="k">def</span> <span class="nf">set_writer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">writer</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">writer</span> <span class="o">=</span>  <span class="n">writer</span>
+    <span class="c1"># getters</span>
+    <span class="k">def</span> <span class="nf">get_model</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span>
+    
+    
+    <span class="k">def</span> <span class="nf">set_hiperparameters</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+                 <span class="n">learning_rate</span> <span class="o">=</span> <span class="mf">1e-3</span><span class="p">,</span>
+                 <span class="n">batch_size</span> <span class="o">=</span> <span class="mi">64</span><span class="p">,</span>
+                 <span class="n">epochs</span> <span class="o">=</span> <span class="mi">5</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">learning_rate</span> <span class="o">=</span> <span class="n">learning_rate</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">batch_size</span> <span class="o">=</span> <span class="n">batch_size</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">epochs</span> <span class="o">=</span> <span class="n">epochs</span>        
+    
+    <span class="c1">#####################################</span>
+    <span class="c1"># métodos básicos para entrenamiento</span>
+    <span class="c1">#####################################</span>
+    <span class="c1"># paso de entrenamiento</span>
+    <span class="k">def</span> <span class="nf">_train_one_epoch_</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">epoch_index</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        corre un paso de entrenamiento</span>
+<span class="sd">        :params</span>
+<span class="sd">        :epoch_index: índice de la época</span>
+<span class="sd">        :n_report: cada cuantas iteraciones reportar en pantalla</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">running_loss</span> <span class="o">=</span> <span class="mf">0.</span>
+        <span class="n">last_loss</span> <span class="o">=</span> <span class="mf">0.</span>
+        <span class="c1"># Aquí, usamos enumerate(training_loader) en lugar de</span>
+        <span class="c1"># iter(training_loader) para que podamos rastrear el lote</span>
+        <span class="c1"># indexar y hacer algunos informes dentro de la época</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">data</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">training_loader</span><span class="p">):</span>
+            <span class="c1"># Cada instancia de datos contiene parejas  input + label </span>
+            <span class="n">inputs</span><span class="p">,</span> <span class="n">labels</span> <span class="o">=</span> <span class="n">data</span>
+
+            <span class="c1"># backpropagation</span>
+            <span class="c1"># por defecto el cálculo del gradiente es acumulativo</span>
+            <span class="c1"># comienza colocando el gradiente en cero</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">optimizer</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
+
+            <span class="c1"># Hace la predicción para este lote (batch)</span>
+            <span class="n">outputs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">(</span><span class="n">inputs</span><span class="p">)</span>
+            <span class="n">predicts</span> <span class="o">=</span> <span class="n">softmax</span><span class="p">(</span><span class="n">outputs</span><span class="p">,</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+
+            <span class="c1"># Calcula la pérdida y sus gradientes</span>
+            <span class="n">loss</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">loss_fn</span><span class="p">(</span><span class="n">outputs</span><span class="p">,</span> <span class="n">labels</span><span class="p">)</span>
+            <span class="n">loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
+
+            <span class="c1"># Ajusta los pesos del modelo </span>
+            <span class="c1"># w{i+1} = w{i} + learning_rate * grad(loss)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">optimizer</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
+
+            <span class="c1"># Recolecta  datos y los reporta</span>
+            <span class="c1"># pérdida</span>
+            <span class="n">running_loss</span> <span class="o">+=</span> <span class="n">loss</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+            <span class="c1"># metricas</span>
+            <span class="n">running_metrics</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_metric_step_</span><span class="p">(</span><span class="n">predicts</span><span class="p">,</span> <span class="n">labels</span><span class="p">,</span> <span class="n">metric_compute</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> 
+                                          <span class="n">validation</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+            
+            <span class="k">if</span> <span class="n">i</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_report</span> <span class="o">==</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_report</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+                <span class="c1"># pérdida</span>
+                <span class="n">last_loss</span> <span class="o">=</span> <span class="n">running_loss</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_report</span> <span class="c1"># pérdida promedio por lote(batch)</span>
+                <span class="n">running_loss</span> <span class="o">=</span> <span class="mf">0.</span>
+                <span class="c1"># métricas</span>
+                <span class="n">last_metrics</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_metric_step_</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">metric_compute</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
+                                          <span class="n">validation</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+                
+                <span class="c1"># imprime pérdida del lote</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Pérdida en el lote </span><span class="si">{}</span><span class="s1"> : </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">last_loss</span><span class="p">))</span>
+                
+                <span class="c1"># imprime métricas del lote</span>
+                <span class="n">print_m</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+                <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">metrics</span><span class="p">)):</span>
+                    <span class="n">print_m</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">metric_names</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;: &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">last_metrics</span><span class="p">[</span><span class="n">j</span><span class="p">])</span> <span class="o">+</span> <span class="s1">&#39; &#39;</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Métricas en el lote </span><span class="si">{}</span><span class="s1"> : </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">print_m</span><span class="p">))</span>
+                
+                <span class="c1"># escribe en el writer</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">writer</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="n">tb_x</span> <span class="o">=</span> <span class="n">epoch_index</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">training_loader</span><span class="p">)</span> <span class="o">+</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span>
+                    <span class="c1"># pérdida</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">writer</span><span class="o">.</span><span class="n">add_scalar</span><span class="p">(</span><span class="s1">&#39;Pérdida/Entrenamiento&#39;</span><span class="p">,</span> <span class="n">last_loss</span><span class="p">,</span> <span class="n">tb_x</span><span class="p">)</span>
+                    <span class="c1"># métricas</span>
+                    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">last_metric</span><span class="p">)):</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">writer</span><span class="o">.</span><span class="n">add_scalar</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">metric</span><span class="o">.</span><span class="n">names</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;/Entrenamiento&#39;</span><span class="p">,</span> 
+                                               <span class="n">last_metrics</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">tb_x</span><span class="p">)</span>
+                        
+                
+                
+    <span class="k">def</span> <span class="nf">_validation_step_</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">validation</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        corre un paso de validación</span>
+<span class="sd">        :params: validation=True; toma los datos de validación</span>
+<span class="sd">        :        sino toda los datos de entrenamiento</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        
+        <span class="k">if</span> <span class="n">validation</span><span class="p">:</span>
+            <span class="n">data_loader</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">validation_loader</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">data_loader</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">training_loader</span>
+        
+        <span class="c1"># Pérdida</span>
+        <span class="n">running_vloss</span> <span class="o">=</span> <span class="mf">0.0</span>   
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">vdata</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">data_loader</span><span class="p">):</span>
+            <span class="n">vinputs</span><span class="p">,</span> <span class="n">vlabels</span> <span class="o">=</span> <span class="n">vdata</span>
+            <span class="n">voutputs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">(</span><span class="n">vinputs</span><span class="p">)</span>
+            <span class="n">vpredicts</span> <span class="o">=</span> <span class="n">softmax</span><span class="p">(</span><span class="n">voutputs</span><span class="p">,</span><span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">vloss</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">loss_fn</span><span class="p">(</span><span class="n">voutputs</span><span class="p">,</span> <span class="n">vlabels</span><span class="p">)</span>
+            
+            <span class="n">running_vloss</span> <span class="o">+=</span> <span class="n">vloss</span>
+            <span class="n">_</span>  <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_metric_step_</span><span class="p">(</span><span class="n">vpredicts</span><span class="p">,</span> <span class="n">vlabels</span><span class="p">,</span> 
+                            <span class="n">metric_compute</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">validation</span><span class="o">=</span> <span class="n">validation</span><span class="p">)</span>
+
+        <span class="n">avg_vloss</span> <span class="o">=</span> <span class="n">running_vloss</span> <span class="o">/</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">v_metrics</span> <span class="o">=</span>   <span class="bp">self</span><span class="o">.</span><span class="n">_metric_step_</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">metric_compute</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
+                                          <span class="n">validation</span><span class="o">=</span> <span class="n">validation</span><span class="p">)</span>
+        
+        <span class="k">return</span> <span class="n">avg_vloss</span><span class="p">,</span> <span class="n">v_metrics</span>
+        
+    <span class="k">def</span> <span class="nf">_metric_step_</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">predicts</span><span class="p">,</span> <span class="n">labels</span><span class="p">,</span> <span class="n">metric_compute</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">validation</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        actualiza y calcula las métricas</span>
+<span class="sd">        &quot;&quot;&quot;</span>            
+                
+        <span class="k">if</span> <span class="n">validation</span><span class="p">:</span>
+            <span class="n">metrics</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">metrics_valid</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">metrics</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">metrics_train</span>
+        
+        <span class="k">if</span> <span class="n">predicts</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">labels</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">metric</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">metrics</span><span class="p">):</span>
+                <span class="n">metrics</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">predicts</span><span class="p">,</span> <span class="n">labels</span><span class="p">)</span>
+        
+        <span class="k">if</span> <span class="n">metric_compute</span><span class="p">:</span>
+            <span class="n">values</span> <span class="o">=</span> <span class="p">[</span><span class="n">metric</span><span class="o">.</span><span class="n">compute</span><span class="p">()</span><span class="o">.</span><span class="n">item</span><span class="p">()</span> <span class="k">for</span> <span class="n">metric</span> <span class="ow">in</span> <span class="n">metrics</span><span class="p">]</span>
+            <span class="k">for</span> <span class="n">metric</span> <span class="ow">in</span> <span class="n">metrics</span><span class="p">:</span>
+                <span class="n">metric</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span> 
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">values</span> <span class="o">=</span> <span class="p">[</span><span class="n">metric</span><span class="p">(</span><span class="n">predicts</span><span class="p">,</span> <span class="n">labels</span><span class="p">)</span><span class="o">.</span><span class="n">item</span><span class="p">()</span> <span class="k">for</span> <span class="n">metric</span> <span class="ow">in</span> <span class="n">metrics</span><span class="p">]</span>
+    
+        <span class="k">return</span> <span class="n">values</span>
+      
+    
+    <span class="c1"># ciclo de entrenamiento</span>
+    <span class="k">def</span> <span class="nf">_train_loop_</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># registra marca  de tiempo</span>
+        <span class="n">timestamp</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y%m</span><span class="si">%d</span><span class="s1">_%H%M%S&#39;</span><span class="p">)</span>
+        <span class="c1"># contador de epochs</span>
+        <span class="n">epoch_number</span> <span class="o">=</span> <span class="mi">0</span>
+
+        <span class="c1"># Inicializa la mejor pérdida en un valor muy grande</span>
+        <span class="c1"># el propósito es mejorar esta mejor pérdida</span>
+        <span class="n">best_vloss</span> <span class="o">=</span> <span class="mf">1_000_000.</span>
+        
+         
+        <span class="c1"># ciclo de entrenamiento</span>
+        <span class="k">for</span> <span class="n">epoch</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">epochs</span><span class="p">):</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;época </span><span class="si">{}</span><span class="s1">:&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">epoch_number</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
+            
+            <span class="c1"># paso de entrenamiento</span>
+            <span class="c1"># coloca en modelo en modo entrenamiento </span>
+            <span class="n">model</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+            <span class="c1"># lanza un paso de entrenamiento</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_train_one_epoch_</span><span class="p">(</span><span class="n">epoch_number</span><span class="p">)</span>
+
+            <span class="c1"># paso de validación </span>
+            <span class="c1"># coloca el modelo en modo inferencia</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+            
+            <span class="c1"># lanza un paso de validación</span>
+            <span class="n">e_loss</span><span class="p">,</span> <span class="n">e_metrics</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_validation_step_</span><span class="p">(</span><span class="n">validation</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+            <span class="n">v_loss</span><span class="p">,</span> <span class="n">v_metrics</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_validation_step_</span><span class="p">(</span><span class="n">validation</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            
+            <span class="c1"># imprime pérdida dela época</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Pérdida entrenamiento: </span><span class="si">{}</span><span class="s1">, validación </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">e_loss</span><span class="p">,</span> <span class="n">v_loss</span><span class="p">))</span>
+            
+            <span class="c1"># imprime métricas del lote la época</span>
+            <span class="n">print_m_e</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">e_metrics</span><span class="p">)):</span>
+                <span class="n">print_m_e</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">metric_names</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;: &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">e_metrics</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">+</span> <span class="s1">&#39; &#39;</span>
+            <span class="n">print_m_v</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">v_metrics</span><span class="p">)):</span>
+                <span class="n">print_m_v</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">metric_names</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;: &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">v_metrics</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">+</span> <span class="s1">&#39; &#39;</span>     
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Métricas en entrenamiento : </span><span class="si">{}</span><span class="s1">, validación </span><span class="si">{}</span><span class="s1"> &#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">print_m_e</span><span class="p">,</span> <span class="n">print_m_v</span><span class="p">))</span>
+
+            <span class="c1"># Registra (log) la pérdida actual promedio  por lote (batch)</span>
+            <span class="c1"># para entrenamiento y validación</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">writer</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="c1"># pérdida</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">writer</span><span class="o">.</span><span class="n">add_scalars</span><span class="p">(</span><span class="s1">&#39;Pérdida entrenamiento v.s. Pérdida validación&#39;</span><span class="p">,</span>
+                                <span class="p">{</span> <span class="s1">&#39;Entrenamiento&#39;</span> <span class="p">:</span> <span class="n">e_loss</span><span class="p">,</span> <span class="s1">&#39;Validación&#39;</span> <span class="p">:</span> <span class="n">e_vloss</span> <span class="p">},</span>
+                                <span class="n">epoch_number</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+                
+                <span class="c1"># métricas</span>
+                <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">e_metrics</span><span class="p">)):</span>  
+                    <span class="bp">self</span><span class="o">.</span><span class="n">writer</span><span class="o">.</span><span class="n">add_scalars</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">metric</span><span class="o">.</span><span class="n">names</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;entrenamiento v.s. validación&#39;</span><span class="p">,</span>
+                                <span class="p">{</span> <span class="s1">&#39;Entrenamiento&#39;</span> <span class="p">:</span> <span class="n">e_metrics</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="s1">&#39;Validación&#39;</span> <span class="p">:</span> <span class="n">v_metrics</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="p">},</span>
+                                <span class="n">epoch_number</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+                  
+                <span class="bp">self</span><span class="o">.</span><span class="n">writer</span><span class="o">.</span><span class="n">flush</span><span class="p">()</span>
+
+            <span class="c1"># Realice un seguimiento del mejor rendimiento y guarda el estado del modelo</span>
+            <span class="k">if</span>  <span class="n">v_loss</span> <span class="o">&lt;</span> <span class="n">best_vloss</span><span class="p">:</span>
+                <span class="n">best_vloss</span> <span class="o">=</span> <span class="n">v_loss</span>
+                <span class="n">model_path</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">path_to_save</span> <span class="o">+</span> <span class="s1">&#39;model_</span><span class="si">{}</span><span class="s1">_</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">timestamp</span><span class="p">,</span> <span class="n">epoch_number</span><span class="p">)</span>
+                <span class="n">torch</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">state_dict</span><span class="p">(),</span> <span class="n">model_path</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">path_best_model</span> <span class="o">=</span> <span class="n">model_path</span>
+
+            <span class="n">epoch_number</span> <span class="o">+=</span> <span class="mi">1</span> 
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        calculo final de pérdida y métric no se requiere</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+       
+                    
+            
+    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">train_data</span><span class="p">,</span> <span class="n">val_data</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">writer</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">best_loss</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">writer</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">writer</span> <span class="o">=</span> <span class="n">writer</span>
+        <span class="k">if</span> <span class="n">epochs</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">epochs</span> <span class="o">=</span> <span class="n">epochs</span>
+       <span class="c1"># datos de entrenamiento</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">training_loader</span> <span class="o">=</span> <span class="n">train_data</span>
+        <span class="c1"># datos de validación</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">validation_loader</span> <span class="o">=</span> <span class="n">val_data</span>
+        
+        <span class="c1"># lanza loop de entrenamiento</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_train_loop_</span><span class="p">()</span>
+        <span class="c1"># carga al modelo los pesos con mejor pérdida</span>
+        <span class="k">if</span> <span class="n">best_loss</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">load_state_dict</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">path_best_model</span><span class="p">))</span>
+        
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="clase-data">
+<h3>Clase Data<a class="headerlink" href="#clase-data" title="Permalink to this headline">#</a></h3>
+<p>Clase contenedora de datos</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">torch.utils.data</span> <span class="kn">import</span> <span class="n">DataLoader</span>
+
+<span class="k">class</span> <span class="nc">Data</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Esta clase recibe un dataset, y lo envuelve en un dataloader</span>
+<span class="sd">    </span>
+<span class="sd">    :</span>
+<span class="sd">    se definen getter y setter para la propiedad data</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dataset</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">64</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        :params: dataset: opcional dataset incial inicial</span>
+<span class="sd">        :batch_size: tamaño de los lotes de datos para el Dataloader</span>
+<span class="sd">        :shuffle: True= mezclar los datos aleatoriamente (para entranamiento)</span>
+<span class="sd">        &quot;&quot;&quot;</span>     
+        <span class="bp">self</span><span class="o">.</span><span class="n">dataset</span> <span class="o">=</span> <span class="n">dataset</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">batch_size</span> <span class="o">=</span> <span class="n">batch_size</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">shuffle</span> <span class="o">=</span> <span class="n">shuffle</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_data</span> <span class="o">=</span> <span class="n">DataLoader</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">batch_size</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">shuffle</span><span class="p">)</span>
+    
+    <span class="c1"># getter</span>
+    <span class="k">def</span> <span class="nf">get_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data</span>
+    
+    <span class="c1"># setter</span>
+    <span class="k">def</span> <span class="nf">set_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dataset</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_dataset</span> <span class="o">=</span> <span class="n">dataset</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_data</span> <span class="o">=</span> <span class="n">DataLoader</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_dataset</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">batch_size</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">shuffle</span><span class="p">)</span>
+    
+    <span class="c1"># crea la propiedad data</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span><span class="n">get_data</span><span class="p">,</span> <span class="n">set_data</span><span class="p">)</span>
+    
+    <span class="k">def</span> <span class="fm">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">)</span>
+    
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="clase-drawer">
+<h3>Clase Drawer<a class="headerlink" href="#clase-drawer" title="Permalink to this headline">#</a></h3>
+<p>Esta es una clase auxiliar que usaremos para desplegar ejemplos de los objetos en pantalla</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="k">class</span> <span class="nc">Drawer</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Clase utilitaria para deplegar imágenes en línea</span>
+<span class="sd">    asumimos que los datos no están listos para ser desplegados</span>
+<span class="sd">    Por ejemplo si tiene los datos normalizados revierta el proceso</span>
+<span class="sd">    </span>
+<span class="sd">    &quot;&quot;&quot;</span>    
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dataset</span><span class="p">,</span> <span class="n">label_names</span><span class="p">,</span> <span class="n">rows</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">8</span><span class="p">)):</span>
+        
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        :params</span>
+<span class="sd">        : data_set: dtaset de datos</span>
+<span class="sd">        : label_names: nombres asociados a las  la etiquetas de los datos</span>
+<span class="sd">        : rows: número de filas e¿del gráfico</span>
+<span class="sd">        : columns: núemro de columnas del gráfico</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dataset</span> <span class="o">=</span> <span class="n">dataset</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">label_names</span> <span class="o">=</span> <span class="n">label_names</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rows</span> <span class="o">=</span> <span class="n">rows</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">columns</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">figsize</span> <span class="o">=</span> <span class="n">figsize</span>
+    
+    <span class="k">def</span> <span class="nf">plot</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">figsize</span><span class="p">);</span>
+        
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">columns</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">rows</span> <span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+            <span class="n">img_xy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dataset</span><span class="p">));</span>
+            <span class="n">img</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataset</span><span class="p">[</span><span class="n">img_xy</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">,:,:]</span>
+            <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">rows</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">columns</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">labels_map</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">dataset</span><span class="p">[</span><span class="n">img_xy</span><span class="p">][</span><span class="mi">1</span><span class="p">]])</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+    
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="crea-los-objetos-para-el-entrenamiento">
+<h3>Crea los objetos para el entrenamiento<a class="headerlink" href="#crea-los-objetos-para-el-entrenamiento" title="Permalink to this headline">#</a></h3>
+<p>Esta parte depende de los datos del problema. Para crear dataset personalizado consulte <a class="reference external" href="https://pytorch.org/tutorials/beginner/basics/data_tutorial.html">aquí</a>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">import</span> <span class="nn">torchvision</span>
+<span class="kn">from</span> <span class="nn">torch.utils.data</span> <span class="kn">import</span> <span class="n">Dataset</span>
+<span class="kn">from</span> <span class="nn">torchvision</span> <span class="kn">import</span> <span class="n">datasets</span>
+<span class="kn">import</span> <span class="nn">torchvision.transforms</span> <span class="k">as</span> <span class="nn">transforms</span>
+<span class="kn">from</span> <span class="nn">torchvision.transforms</span> <span class="kn">import</span> <span class="n">ToTensor</span><span class="p">,</span> <span class="n">Lambda</span><span class="p">,</span> <span class="n">Compose</span>
+<span class="kn">from</span> <span class="nn">torch</span> <span class="kn">import</span> <span class="n">nn</span>
+<span class="kn">from</span> <span class="nn">torch.nn</span> <span class="kn">import</span> <span class="n">Flatten</span><span class="p">,</span> <span class="n">Sequential</span><span class="p">,</span> <span class="n">Linear</span><span class="p">,</span> <span class="n">ReLU</span>
+
+
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="kn">from</span> <span class="nn">torch.utils.tensorboard</span> <span class="kn">import</span> <span class="n">SummaryWriter</span>
+
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+
+<span class="kn">from</span> <span class="nn">torchmetrics</span> <span class="kn">import</span> <span class="n">Accuracy</span>
+
+<span class="c1"># Prepara los datos</span>
+<span class="c1">## Transformaciones para los datos</span>
+
+<span class="n">transform</span> <span class="o">=</span> <span class="n">transforms</span><span class="o">.</span><span class="n">Compose</span><span class="p">(</span>
+    <span class="p">[</span><span class="n">transforms</span><span class="o">.</span><span class="n">ToTensor</span><span class="p">(),</span>
+    <span class="n">transforms</span><span class="o">.</span><span class="n">Normalize</span><span class="p">((</span><span class="mf">0.5</span><span class="p">,),</span> <span class="p">(</span><span class="mf">0.5</span><span class="p">,))])</span>
+
+<span class="n">train_data</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">FashionMNIST</span><span class="p">(</span>
+    <span class="n">root</span><span class="o">=</span><span class="s2">&quot;data&quot;</span><span class="p">,</span>
+    <span class="n">train</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">download</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">transform</span><span class="o">=</span><span class="n">transform</span>
+<span class="p">)</span>
+
+<span class="n">test_data</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">FashionMNIST</span><span class="p">(</span>
+    <span class="n">root</span><span class="o">=</span><span class="s2">&quot;data&quot;</span><span class="p">,</span>
+    <span class="n">train</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">download</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">transform</span><span class="o">=</span><span class="n">transform</span>
+<span class="p">)</span>
+
+<span class="c1"># Sube los datos a objetos Data, que son</span>
+<span class="c1"># contenedores del dataset y DataLoader</span>
+
+<span class="n">train</span> <span class="o">=</span> <span class="n">Data</span><span class="p">(</span><span class="n">train_data</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">32</span><span class="p">)</span>
+<span class="n">validation</span> <span class="o">=</span> <span class="n">Data</span><span class="p">(</span><span class="n">test_data</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="c1"># Crea el modelo</span>
+<span class="c1"># Obtiene gpu o cpu device para el entrenamiento</span>
+<span class="n">device</span> <span class="o">=</span> <span class="s1">&#39;cuda&#39;</span> <span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">()</span> <span class="k">else</span> <span class="s1">&#39;cpu&#39;</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;using </span><span class="si">{}</span><span class="s1"> device&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">device</span><span class="p">))</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">NeuralNetwork</span><span class="p">()</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+
+<span class="c1"># Optimizador</span>
+<span class="n">optimizer</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">Adam</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">lr</span><span class="o">=</span><span class="mf">0.001</span><span class="p">)</span>
+<span class="c1"># Función de pérdida</span>
+<span class="n">loss_fn</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">CrossEntropyLoss</span><span class="p">()</span>
+
+<span class="c1"># initializa métrica</span>
+<span class="c1"># se espera una lista de métricas</span>
+<span class="n">metrics</span> <span class="o">=</span> <span class="p">[</span><span class="n">Accuracy</span><span class="p">()]</span> <span class="c1"># accuracy</span>
+<span class="c1"># pasar nombre en español de la métrica</span>
+<span class="c1"># TODO hacer esto con una clase traductora</span>
+<span class="n">metric_names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Exactitud&#39;</span><span class="p">]</span>
+<span class="c1"># path para almacenar los pesos de los mejores modelos</span>
+<span class="n">path_to_save</span> <span class="o">=</span> <span class="s1">&#39;../Modelos/&#39;</span>
+
+<span class="c1"># Trainer</span>
+<span class="n">trainer</span> <span class="o">=</span> <span class="n">Trainer</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span> <span class="n">loss_fn</span><span class="o">=</span><span class="n">loss_fn</span><span class="p">,</span>  
+                  <span class="n">optimizer</span><span class="o">=</span><span class="n">optimizer</span><span class="p">,</span> <span class="n">metrics</span><span class="o">=</span><span class="n">metrics</span><span class="p">,</span> 
+                  <span class="n">metric_names</span> <span class="o">=</span> <span class="n">metric_names</span><span class="p">,</span>
+                  <span class="n">n_report</span><span class="o">=</span><span class="mi">375</span><span class="p">,</span> <span class="n">path_to_save</span><span class="o">=</span> <span class="n">path_to_save</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="una-mirada-a-las-imagenes">
+<h3>Una mirada a las imágenes<a class="headerlink" href="#una-mirada-a-las-imagenes" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">labels_map</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span> <span class="p">:</span> <span class="s1">&#39;T-Shirt&#39;</span><span class="p">,</span> <span class="mi">1</span> <span class="p">:</span> <span class="s1">&#39;Trouser&#39;</span><span class="p">,</span> <span class="mi">2</span> <span class="p">:</span> <span class="s1">&#39;Pullover&#39;</span><span class="p">,</span> <span class="mi">3</span> <span class="p">:</span> <span class="s1">&#39;Dress&#39;</span><span class="p">,</span> <span class="mi">4</span> <span class="p">:</span> <span class="s1">&#39;Coat&#39;</span><span class="p">,</span> <span class="mi">5</span> <span class="p">:</span> <span class="s1">&#39;Sandal&#39;</span><span class="p">,</span> <span class="mi">6</span> <span class="p">:</span> <span class="s1">&#39;Shirt&#39;</span><span class="p">,</span>
+              <span class="mi">7</span> <span class="p">:</span> <span class="s1">&#39;Sneaker&#39;</span><span class="p">,</span> <span class="mi">8</span> <span class="p">:</span> <span class="s1">&#39;Bag&#39;</span><span class="p">,</span> <span class="mi">9</span> <span class="p">:</span> <span class="s1">&#39;Ankle Boot&#39;</span><span class="p">};</span>
+
+<span class="n">test_data</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">FashionMNIST</span><span class="p">(</span>
+    <span class="n">root</span><span class="o">=</span><span class="s2">&quot;data&quot;</span><span class="p">,</span>
+    <span class="n">train</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">download</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">transform</span><span class="o">=</span><span class="n">ToTensor</span><span class="p">(),</span>
+<span class="p">)</span>
+
+<span class="n">drawer</span> <span class="o">=</span> <span class="n">Drawer</span><span class="p">(</span><span class="n">dataset</span><span class="o">=</span><span class="n">test_data</span><span class="p">,</span> <span class="n">label_names</span><span class="o">=</span><span class="n">labels_map</span><span class="p">)</span>
+<span class="n">drawer</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/Pytorch_10_clasificacion_78_0.png" src="../../_images/Pytorch_10_clasificacion_78_0.png" />
+</div>
+</div>
+</section>
+<section id="entrenamiento">
+<h3>Entrenamiento<a class="headerlink" href="#entrenamiento" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">trainer</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">validation</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>época 1:
+Pérdida en el lote 375 : 1.1957776516278584
+Métricas en el lote 375 : Exactitud: 0.5926666855812073 
+Pérdida en el lote 750 : 1.1106667966842652
+Métricas en el lote 750 : Exactitud: 0.6129166483879089 
+Pérdida en el lote 1125 : 1.0935813720226288
+Métricas en el lote 1125 : Exactitud: 0.6165000200271606 
+Pérdida en el lote 1500 : 1.0316215162277222
+Métricas en el lote 1500 : Exactitud: 0.6345833539962769 
+Pérdida en el lote 1875 : 1.0347686247030894
+Métricas en el lote 1875 : Exactitud: 0.6308333277702332 
+Pérdida entrenamiento: 1.0934463739395142, validación 1.1239750385284424
+Métricas en entrenamiento : Exactitud: 0.6087333559989929 , validación Exactitud: 0.6031000018119812  
+época 2:
+Pérdida en el lote 375 : 1.0319198305606843
+Métricas en el lote 375 : Exactitud: 0.6334999799728394 
+Pérdida en el lote 750 : 1.0050431860287985
+Métricas en el lote 750 : Exactitud: 0.6380000114440918 
+Pérdida en el lote 1125 : 1.0014695219198864
+Métricas en el lote 1125 : Exactitud: 0.6393333077430725 
+Pérdida en el lote 1500 : 0.9902728544871012
+Métricas en el lote 1500 : Exactitud: 0.6447499990463257 
+Pérdida en el lote 1875 : 1.0035514420668283
+Métricas en el lote 1875 : Exactitud: 0.6337500214576721 
+Pérdida entrenamiento: 0.9683771729469299, validación 1.0181914567947388
+Métricas en entrenamiento : Exactitud: 0.6464333534240723 , validación Exactitud: 0.6376000046730042  
+época 3:
+Pérdida en el lote 375 : 0.9778816730976104
+Métricas en el lote 375 : Exactitud: 0.6423333287239075 
+Pérdida en el lote 750 : 0.9653048234780629
+Métricas en el lote 750 : Exactitud: 0.6491666436195374 
+Pérdida en el lote 1125 : 0.9912190746466318
+Métricas en el lote 1125 : Exactitud: 0.6384166479110718 
+Pérdida en el lote 1500 : 0.9750553125540415
+Métricas en el lote 1500 : Exactitud: 0.6460833549499512 
+Pérdida en el lote 1875 : 0.9735562408765157
+Métricas en el lote 1875 : Exactitud: 0.6454166769981384 
+Pérdida entrenamiento: 0.9518294930458069, validación 1.0101909637451172
+Métricas en entrenamiento : Exactitud: 0.649649977684021 , validación Exactitud: 0.6384000182151794  
+época 4:
+Pérdida en el lote 375 : 0.9446790931224823
+Métricas en el lote 375 : Exactitud: 0.6535833477973938 
+Pérdida en el lote 750 : 0.9446801967620849
+Métricas en el lote 750 : Exactitud: 0.6521666646003723 
+Pérdida en el lote 1125 : 0.9552525013287863
+Métricas en el lote 1125 : Exactitud: 0.6472499966621399 
+Pérdida en el lote 1500 : 0.946850525856018
+Métricas en el lote 1500 : Exactitud: 0.6548333168029785 
+Pérdida en el lote 1875 : 0.9743609349727631
+Métricas en el lote 1875 : Exactitud: 0.6432499885559082 
+Pérdida entrenamiento: 0.963249921798706, validación 1.0227681398391724
+Métricas en entrenamiento : Exactitud: 0.6421166658401489 , validación Exactitud: 0.6294999718666077  
+época 5:
+Pérdida en el lote 375 : 0.9460075492064158
+Métricas en el lote 375 : Exactitud: 0.6490833163261414 
+Pérdida en el lote 750 : 0.9301514001687368
+Métricas en el lote 750 : Exactitud: 0.6542500257492065 
+Pérdida en el lote 1125 : 0.9280381543636322
+Métricas en el lote 1125 : Exactitud: 0.6539999842643738 
+Pérdida en el lote 1500 : 0.9434076487223307
+Métricas en el lote 1500 : Exactitud: 0.6518333554267883 
+Pérdida en el lote 1875 : 0.9398774676322937
+Métricas en el lote 1875 : Exactitud: 0.653166651725769 
+Pérdida entrenamiento: 0.9333479404449463, validación 1.0030661821365356
+Métricas en entrenamiento : Exactitud: 0.6532166600227356 , validación Exactitud: 0.6424000263214111  
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="span-style-color-blue-puesta-en-produccion-span">
+<h2><span style="color:blue">Puesta en producción</span><a class="headerlink" href="#span-style-color-blue-puesta-en-produccion-span" title="Permalink to this headline">#</a></h2>
+<p>Nuestro modelo está entrenado (con una exactitud del 64%). Por supuesto podemos mejorar mucho esta exactitud, pero de momento lo dejaremos así. Si se pregunta porque tiene una exactitud tan baja, tenga en cuenta que hemos usado un perceptron muy simple. Para este caso, un modelo convolucional irá mucho mejor.</p>
+<p>Vamos a recuperar el mejor modelo obtenido. Los puntos de chequeo los tenemos guardados, por lo que será muy fácil saber cuál es el mejor modelo. Lo cargaremos a una red nueva y haremos algunas predicciones.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">torch.nn.functional</span> <span class="kn">import</span> <span class="n">softmax</span>
+
+<span class="k">class</span> <span class="nc">Predictor</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">checkpoint</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">model</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">load_state_dict</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">checkpoint</span><span class="p">))</span>
+    
+    <span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+        <span class="n">out</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+        <span class="n">pred</span> <span class="o">=</span> <span class="n">softmax</span><span class="p">(</span><span class="n">out</span><span class="p">,</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">pred</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">checkpoint</span> <span class="o">=</span> <span class="s1">&#39;../Modelos/&#39;</span> <span class="o">+</span> <span class="s1">&#39;model_20220218_150208_4&#39;</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">Predictor</span><span class="p">(</span><span class="n">NeuralNetwork</span><span class="p">(),</span> <span class="n">checkpoint</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Baja los datos test data de open datasets.</span>
+<span class="n">test_data</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">FashionMNIST</span><span class="p">(</span>
+    <span class="n">root</span><span class="o">=</span><span class="s2">&quot;data&quot;</span><span class="p">,</span>
+    <span class="n">train</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">download</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">transform</span><span class="o">=</span><span class="n">ToTensor</span><span class="p">(),</span>
+<span class="p">)</span>
+
+<span class="n">batch_size</span> <span class="o">=</span> <span class="mi">10</span>
+
+<span class="c1">#crea un data loader</span>
+<span class="n">test_dataloader</span> <span class="o">=</span> <span class="n">DataLoader</span><span class="p">(</span><span class="n">test_data</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">test_dataloader</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;X[N, C, H, W]: &#39;</span><span class="p">,</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Shape of y: &#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">y</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
+    <span class="k">break</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>X[N, C, H, W]:  torch.Size([10, 1, 28, 28])
+Shape of y:  torch.Size([10]) torch.int64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">test_dataloader</span><span class="p">:</span>
+    <span class="n">pred</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">pred</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+        <span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;label: </span><span class="si">{}</span><span class="s1">, prediction: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">item</span><span class="p">(),</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">pred</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="mi">3</span><span class="p">)))</span>
+    <span class="k">break</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>label: 9, prediction: [0.059 0.059 0.059 0.059 0.059 0.059 0.059 0.059 0.059 0.472]
+label: 2, prediction: [0.02  0.02  0.813 0.02  0.024 0.02  0.02  0.02  0.02  0.02 ]
+label: 1, prediction: [0. 1. 0. 0. 0. 0. 0. 0. 0. 0.]
+label: 1, prediction: [0. 1. 0. 0. 0. 0. 0. 0. 0. 0.]
+label: 6, prediction: [0.092 0.092 0.174 0.092 0.092 0.092 0.092 0.092 0.092 0.092]
+label: 1, prediction: [0. 1. 0. 0. 0. 0. 0. 0. 0. 0.]
+label: 4, prediction: [0.003 0.003 0.026 0.003 0.946 0.003 0.003 0.003 0.003 0.003]
+label: 6, prediction: [0.065 0.065 0.147 0.065 0.332 0.065 0.065 0.065 0.065 0.065]
+label: 5, prediction: [0.1 0.1 0.1 0.1 0.1 0.1 0.1 0.1 0.1 0.1]
+label: 7, prediction: [0.1 0.1 0.1 0.1 0.1 0.1 0.1 0.1 0.1 0.1]
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>¡Eso es todo!</strong></p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "AprendizajeProfundo/Libro_Fundamentos_Programacion",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./Pytorch/Cuadernos"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Álvaro Mauricio Montenegro Díaz, Daniel Mauricio Montenegro Reyes<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

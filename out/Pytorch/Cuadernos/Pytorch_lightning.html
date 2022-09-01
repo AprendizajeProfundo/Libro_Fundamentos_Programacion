@@ -1,0 +1,1320 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Pytorch-lightning &#8212; Fundamentos de Programación</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script src="../../_static/tabs.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../_static/logo-final-ap.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Fundamentos de Programación</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../tutorial.html">
+                    <span style="color:#F72585">Bienvenido(a)</span>
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Primeros Pasos
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Inicio/Cuadernos/Consideraciones.html">
+   <span style="color:#F72585">
+    Conociendo el Libro
+   </span>
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Introducción
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Python/Cuadernos/py_00.html">
+   <span style="color:#F72585">
+    Conceptos básicos de programación
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Python/Cuadernos/py_01.html">
+   <span style="color:#F72585">
+    Introducción al lenguaje de programación Python
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Python/Cuadernos/py_02.html">
+   <span style="color:#F72585">
+    Tipos de Datos Básicos
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Python/Cuadernos/py_03.html">
+   <span style="color:#F72585">
+    Operadores aritméticos y lógicos
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Python/Cuadernos/py_04.html">
+   <span style="color:#F72585">
+    Estructuras de control
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Python/Cuadernos/py_05.html">
+   <span style="color:#F72585">
+    Funciones en Python
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Python/Cuadernos/py_06.html">
+   <span style="color:#F72585">
+    Iterables e iteradores
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Python/Cuadernos/py_07.html">
+   <span style="color:#F72585">
+    Tuplas
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Python/Cuadernos/py_08.html">
+   <span style="color:#F72585">
+    Listas
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Python/Cuadernos/py_09.html">
+   <span style="color:#F72585">
+    Diccionarios
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Python/Cuadernos/py_10.html">
+   <span style="color:#F72585">
+    Conjuntos
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Python/Cuadernos/py_11.html">
+   <span style="color:#F72585">
+    Programación orientada a Objetos en Python
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Python/Cuadernos/py_12.html">
+   <span style="color:#F72585">
+    Decoradores
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Python/Cuadernos/py_13.html">
+   <span style="color:#F72585">
+    Patrones para Programación orientada a Objetos en Python
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Python/Cuadernos/Taller_Numpy.html">
+   <span style="color:#F72585">
+    Taller de numpy
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Python/Cuadernos/Taller_Pandas.html">
+   <span style="color:#F72585">
+    Taller de manejo de Datos en Pandas
+   </span>
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Pytorch
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Pytorch_01.html">
+   <span style="color:#F72585">
+    Primeros pasos con PyTorch
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Pytorch_02.html">
+   <span style="color:#F72585">
+    Tensores en PyTorch
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Pytorch_03.html">
+   <span style="color:#F72585">
+    DataSets y DataLoaders
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Pytorch_04.html">
+   <span style="color:#F72585">
+    Transforms
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Pytorch_05.html">
+   <span style="color:#F72585">
+    Diferenciación automática con torch.autograd
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Pytorch_06.html">
+   <span style="color:#F72585">
+    Optimización con torch
+   </span>
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  TensorFlow
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../TensorFlow/Cuadernos/Tensorflow-01.html">
+   <span style="color:#F72585">
+    Inicio Rápido
+   </span>
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/AprendizajeProfundo/Libro_Fundamentos_Programacion/main?urlpath=tree/Pytorch/Cuadernos/Pytorch_lightning.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://colab.research.google.com/github/AprendizajeProfundo/Libro_Fundamentos_Programacion/blob/main/Pytorch/Cuadernos/Pytorch_lightning.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Colab"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../../_static/images/logo_colab.png">
+  </span>
+<span class="headerbtn__text-container">Colab</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="initThebeSBT()"
+  class="headerbtn headerbtn-launch-thebe"
+  data-toggle="tooltip"
+data-placement="left"
+title="Launch Thebe"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="headerbtn__text-container">Live Code</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/AprendizajeProfundo/Libro_Fundamentos_Programacion"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/AprendizajeProfundo/Libro_Fundamentos_Programacion/issues/new?title=Issue%20on%20page%20%2FPytorch/Cuadernos/Pytorch_lightning.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/AprendizajeProfundo/Libro_Fundamentos_Programacion/edit/main/Pytorch/Cuadernos/Pytorch_lightning.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Edit this page"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="headerbtn__text-container">suggest edit</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../../_sources/Pytorch/Cuadernos/Pytorch_lightning.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-blue-introduccion-span">
+   <span style="color:blue">
+    Introducción
+   </span>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-blue-entrenamiento-de-un-modelo-con-pythorch-lightning-span">
+   <span style="color:blue">
+    Entrenamiento de un modelo con Pythorch-lightning
+   </span>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-datos-entrenamiento-validacion-prueba-span">
+     <span style="color:#4CC9F0">
+      Datos: entrenamiento, validación, prueba
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-modelo-la-red-neuronal-span">
+     <span style="color:#4CC9F0">
+      Modelo: la red neuronal
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-entrenador-perdida-optimizador-metricas-span">
+     <span style="color:#4CC9F0">
+      Entrenador: pérdida optimizador, métricas
+     </span>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-blue-instalar-pytorch-lightning-span">
+   <span style="color:blue">
+    Instalar Pytorch-lightning
+   </span>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-blue-ejemplo-de-una-plantilla-para-usar-pytorch-lightning-span">
+   <span style="color:blue">
+    Ejemplo de una plantilla para usar PyTorch Lightning
+   </span>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-importa-modulos-span">
+     <span style="color:#4CC9F0">
+      Importa módulos
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-clase-backbone-nuestro-modelo-neuronal-span">
+     <span style="color:#4CC9F0">
+      Clase Backbone: Nuestro modelo neuronal
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-clase-litclassifier-nuestra-clase-lightning-span">
+     <span style="color:#4CC9F0">
+      Clase  LitClassifier Nuestra clase Lightning
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-datos-datasets-y-dataloaders-span">
+     <span style="color:#4CC9F0">
+      Datos: Datasets y Dataloaders
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-entrenador-span">
+     <span style="color:#4CC9F0">
+      Entrenador
+     </span>
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#reproducibilidad">
+       Reproducibilidad
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#aceleradores-de-hardware">
+       Aceleradores de hardware
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#instanciando-el-entrenador">
+       Instanciando el entrenador
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-entrenamiento-span">
+     <span style="color:#4CC9F0">
+      Entrenamiento
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-prueba-span">
+     <span style="color:#4CC9F0">
+      Prueba
+     </span>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-blue-lanzar-tensorboard-para-examinar-los-resultados-span">
+   <span style="color:blue">
+    Lanzar Tensorboard para examinar los resultados
+   </span>
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1><span style="color:#F72585">Pytorch-lightning</span></h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-blue-introduccion-span">
+   <span style="color:blue">
+    Introducción
+   </span>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-blue-entrenamiento-de-un-modelo-con-pythorch-lightning-span">
+   <span style="color:blue">
+    Entrenamiento de un modelo con Pythorch-lightning
+   </span>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-datos-entrenamiento-validacion-prueba-span">
+     <span style="color:#4CC9F0">
+      Datos: entrenamiento, validación, prueba
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-modelo-la-red-neuronal-span">
+     <span style="color:#4CC9F0">
+      Modelo: la red neuronal
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-entrenador-perdida-optimizador-metricas-span">
+     <span style="color:#4CC9F0">
+      Entrenador: pérdida optimizador, métricas
+     </span>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-blue-instalar-pytorch-lightning-span">
+   <span style="color:blue">
+    Instalar Pytorch-lightning
+   </span>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-blue-ejemplo-de-una-plantilla-para-usar-pytorch-lightning-span">
+   <span style="color:blue">
+    Ejemplo de una plantilla para usar PyTorch Lightning
+   </span>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-importa-modulos-span">
+     <span style="color:#4CC9F0">
+      Importa módulos
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-clase-backbone-nuestro-modelo-neuronal-span">
+     <span style="color:#4CC9F0">
+      Clase Backbone: Nuestro modelo neuronal
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-clase-litclassifier-nuestra-clase-lightning-span">
+     <span style="color:#4CC9F0">
+      Clase  LitClassifier Nuestra clase Lightning
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-datos-datasets-y-dataloaders-span">
+     <span style="color:#4CC9F0">
+      Datos: Datasets y Dataloaders
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-entrenador-span">
+     <span style="color:#4CC9F0">
+      Entrenador
+     </span>
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#reproducibilidad">
+       Reproducibilidad
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#aceleradores-de-hardware">
+       Aceleradores de hardware
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#instanciando-el-entrenador">
+       Instanciando el entrenador
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-entrenamiento-span">
+     <span style="color:#4CC9F0">
+      Entrenamiento
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-prueba-span">
+     <span style="color:#4CC9F0">
+      Prueba
+     </span>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-blue-lanzar-tensorboard-para-examinar-los-resultados-span">
+   <span style="color:blue">
+    Lanzar Tensorboard para examinar los resultados
+   </span>
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="span-style-color-f72585-pytorch-lightning-span">
+<h1><span style="color:#F72585">Pytorch-lightning</span><a class="headerlink" href="#span-style-color-f72585-pytorch-lightning-span" title="Permalink to this headline">#</a></h1>
+<figure>
+<img src="https://raw.githubusercontent.com/AprendizajeProfundo/Libro_Fundamentos_Programacion/main/Pytorch/Imagenes/Pytorch_ligthning_logo.png" width="200" align="left" />   
+</figure><section id="span-style-color-blue-introduccion-span">
+<h2><span style="color:blue">Introducción</span><a class="headerlink" href="#span-style-color-blue-introduccion-span" title="Permalink to this headline">#</a></h2>
+<p>Tomado de <a class="reference external" href="https://en.wikipedia.org/wiki/PyTorch_Lightning">Wikipedia</a></p>
+<p>PyTorch Lightning es una biblioteca Python de código abierto que proporciona una interfaz de alto nivel para PyTorch , un marco de aprendizaje profundo popular. Es un marco liviano y de alto rendimiento que organiza el código PyTorch para desvincular la investigación de la ingeniería, lo que hace que los experimentos de aprendizaje profundo sean más fáciles de leer y reproducir. Está diseñada para crear modelos de aprendizaje profundo escalables que pueden ejecutarse fácilmente en hardware distribuido y mantener los modelos independientes del hardware.</p>
+<p>En 2019, Lightning fue adoptado por NeurIPS Reproducibility Challenge como estándar para enviar el código PyTorch a la conferencia.</p>
+</section>
+<section id="span-style-color-blue-entrenamiento-de-un-modelo-con-pythorch-lightning-span">
+<h2><span style="color:blue">Entrenamiento de un modelo con Pythorch-lightning</span><a class="headerlink" href="#span-style-color-blue-entrenamiento-de-un-modelo-con-pythorch-lightning-span" title="Permalink to this headline">#</a></h2>
+<p>La siguiente imagen representa los diferentes objetos requeridos para entrenar un modelo supervisado de redes neuronales. En general cada uno de estos objetos está presente en cualquier marco de trabajo (framework) para el entrenamiento de una red neuronal. Estos componentes son:</p>
+<figure>
+<img src="https://raw.githubusercontent.com/AprendizajeProfundo/Libro_Fundamentos_Programacion/main/Pytorch/Imagenes/trainer.png" width="800" heigh="600" valign="left" />   
+</figure>
+<p>Fuente: Alvaro Montenegro</p>
+<section id="span-style-color-4cc9f0-datos-entrenamiento-validacion-prueba-span">
+<h3><span style="color:#4CC9F0">Datos: entrenamiento, validación, prueba</span><a class="headerlink" href="#span-style-color-4cc9f0-datos-entrenamiento-validacion-prueba-span" title="Permalink to this headline">#</a></h3>
+<p>Para entrenar un modelo supérvisado necesitamos datos. Por lo gneral los datos se separan en dos o tres grupos que llamamos:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">datos</span> <span class="pre">de</span> <span class="pre">entrenamiento</span></code>. Usualmente 70% u 80% del toptal de datos, elegido al azar y que son los datos que verá el optimizador en el proceso de entrenamiento;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">datos</span> <span class="pre">de</span> <span class="pre">validación</span></code>. Usualmente 10% 0 20%. Son datos usadps durante el prceso de entranamiento para validacion en linea del modelo mientras es entrenado. Usualmente se usan con la función de pérdida y con la métricas definidas en cada caso;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">datos</span> <span class="pre">de</span> <span class="pre">prueba</span></code>. Son datos externos al entrenamiento. Usualmente 10% del total de dato y se usan un vez ha terminado del entrenamiento para evaluar si el modelo generaliza adecuadamente, es decir si tiene el poder prodictivo que se espera.</p></li>
+</ul>
+</section>
+<section id="span-style-color-4cc9f0-modelo-la-red-neuronal-span">
+<h3><span style="color:#4CC9F0">Modelo: la red neuronal</span><a class="headerlink" href="#span-style-color-4cc9f0-modelo-la-red-neuronal-span" title="Permalink to this headline">#</a></h3>
+<p>Es la red neuronal que se ha diseñado para resolver el problema que se tiene entre manos. Usualmente cosnstruimos una clase en la cual de defines los componentes que tendrá la red y que serás conjuntos de capas separadas de manera lógica. En Pytorch el modelo se implementa con el método <code class="docutils literal notranslate"><span class="pre">foreward</span></code>. En este método se determina exáctamente como funciona la red neuronal. Es el método de cálculo de la red neuronal.</p>
+</section>
+<section id="span-style-color-4cc9f0-entrenador-perdida-optimizador-metricas-span">
+<h3><span style="color:#4CC9F0">Entrenador: pérdida optimizador, métricas</span><a class="headerlink" href="#span-style-color-4cc9f0-entrenador-perdida-optimizador-metricas-span" title="Permalink to this headline">#</a></h3>
+<p>Es el objeto que se encarga de hacer el entrenamiento de la red. El entrenador (trainer) usualmente tiene dos componentes escenciales:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">paso</span> <span class="pre">de</span> <span class="pre">optimización</span></code> en el cual se define lo que se debe hace en cada paso del proceso de optimización;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ciclo</span> <span class="pre">de</span> <span class="pre">entrenamiento</span></code> que define como ocurrirá tos el entrenamiento: <code class="docutils literal notranslate"><span class="pre">número</span> <span class="pre">de</span> <span class="pre">épocas</span></code>,  <code class="docutils literal notranslate"><span class="pre">número</span> <span class="pre">de</span> <span class="pre">pasos</span> <span class="pre">de</span> <span class="pre">optimización</span> <span class="pre">por</span> <span class="pre">época</span></code>, <code class="docutils literal notranslate"><span class="pre">criterios</span> <span class="pre">de</span> <span class="pre">parada</span></code>,  lo que escribirá en el flufo de datos para seguimiento y evaluación (<code class="docutils literal notranslate"><span class="pre">writer</span></code>), y otras cosas.</p></li>
+</ul>
+</section>
+</section>
+<section id="span-style-color-blue-instalar-pytorch-lightning-span">
+<h2><span style="color:blue">Instalar Pytorch-lightning</span><a class="headerlink" href="#span-style-color-blue-instalar-pytorch-lightning-span" title="Permalink to this headline">#</a></h2>
+<p>En consola ejecute el siguiente comando.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#conda install -c conda-forge pytorch-lightning</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="span-style-color-blue-ejemplo-de-una-plantilla-para-usar-pytorch-lightning-span">
+<h2><span style="color:blue">Ejemplo de una plantilla para usar PyTorch Lightning</span><a class="headerlink" href="#span-style-color-blue-ejemplo-de-una-plantilla-para-usar-pytorch-lightning-span" title="Permalink to this headline">#</a></h2>
+<p>Como ejemplo vamos a implementar un clasificador para los datos de MNIST, usando Lightning. Esta es una plantilla bastante general y está basada en la plantilla desarrollada por los autores de PyTorch Lightning. Puede revisar el código original en <a class="reference external" href="https://github.com/Lightning-AI/deep-learning-project-template/blob/master/project/lit_image_classifier.py">Github</a>.</p>
+<section id="span-style-color-4cc9f0-importa-modulos-span">
+<h3><span style="color:#4CC9F0">Importa módulos</span><a class="headerlink" href="#span-style-color-4cc9f0-importa-modulos-span" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">import</span> <span class="nn">pytorch_lightning</span> <span class="k">as</span> <span class="nn">pl</span>
+<span class="kn">from</span> <span class="nn">torch.nn</span> <span class="kn">import</span> <span class="n">functional</span> <span class="k">as</span> <span class="n">F</span>
+<span class="kn">from</span> <span class="nn">torch.utils.data</span> <span class="kn">import</span> <span class="n">DataLoader</span><span class="p">,</span> <span class="n">random_split</span>
+
+<span class="kn">from</span> <span class="nn">torchvision.datasets.mnist</span> <span class="kn">import</span> <span class="n">MNIST</span>
+<span class="kn">from</span> <span class="nn">torchvision</span> <span class="kn">import</span> <span class="n">transforms</span>
+
+<span class="kn">import</span> <span class="nn">torchmetrics</span> <span class="c1"># métricas</span>
+
+<span class="kn">from</span> <span class="nn">pytorch_lightning</span> <span class="kn">import</span> <span class="n">seed_everything</span> <span class="c1"># reproducibilidad</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_3289</span><span class="o">/</span><span class="mf">2236471942.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="kn">import</span> <span class="nn">torch</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="kn">import</span> <span class="nn">pytorch_lightning</span> <span class="k">as</span> <span class="nn">pl</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="kn">from</span> <span class="nn">torch.nn</span> <span class="kn">import</span> <span class="n">functional</span> <span class="k">as</span> <span class="n">F</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="kn">from</span> <span class="nn">torch.utils.data</span> <span class="kn">import</span> <span class="n">DataLoader</span><span class="p">,</span> <span class="n">random_split</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> 
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;pytorch_lightning&#39;
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="span-style-color-4cc9f0-clase-backbone-nuestro-modelo-neuronal-span">
+<h3><span style="color:#4CC9F0">Clase Backbone: Nuestro modelo neuronal</span><a class="headerlink" href="#span-style-color-4cc9f0-clase-backbone-nuestro-modelo-neuronal-span" title="Permalink to this headline">#</a></h3>
+<p>Definimos nuestra red neuronal con la clase <em>Backbone</em> que deriva de  la clase <code class="docutils literal notranslate"><span class="pre">torch.nn.Module</span></code>. Al hacer esto, se gana toda la implementacion disponible en la clase Definimos nuestra red neuronal con la clase <em>Backbone</em> que deriva de  la clase <em>torch.nn.Module</em>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># modelo</span>
+
+<span class="k">class</span> <span class="nc">Backbone</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">hidden_dim</span><span class="o">=</span><span class="mi">128</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">l1</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">28</span> <span class="o">*</span> <span class="mi">28</span><span class="p">,</span> <span class="n">hidden_dim</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">l2</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">hidden_dim</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">l1</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">l2</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">x</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="span-style-color-4cc9f0-clase-litclassifier-nuestra-clase-lightning-span">
+<h3><span style="color:#4CC9F0">Clase  LitClassifier Nuestra clase Lightning</span><a class="headerlink" href="#span-style-color-4cc9f0-clase-litclassifier-nuestra-clase-lightning-span" title="Permalink to this headline">#</a></h3>
+<p>Esta clase heredada de <code class="docutils literal notranslate"><span class="pre">pl.LightningModule</span></code>  nos permite implementar los métodos que usará el entrenador para entrenr nuestra red. Es necesario especificar:</p>
+<ul class="simple">
+<li><p>el método de cálculo d ela red (<code class="docutils literal notranslate"><span class="pre">forward</span></code>). En realidad podemos definir la red dentro de esta clase, pero para desacoplar la rede y hacerlo esta clase más genérica, mejor definimos el modleo por fuera. de esta clase pytorch-lightning;</p></li>
+<li><p>el paso de entrenamiento, en el cual adicionalmente escribimos en el log para Tensorboard;</p></li>
+<li><p>el paso de validación, que tambien escribe el en log para Tensorboard;</p></li>
+<li><p>el paso de prueba, que tambien escribe el en log para Tensorboard;</p></li>
+<li><p>se configura el optimizador;</p></li>
+<li><p>las métricas de evaluación se definene en el constructor. Estas se van acumulando en cada paso de datos por el optimizador (trainig_step) y deben ser reinicializadas al final de cada época. De ésto último se encarga PyTorch-Lightning de manera automática.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">LitClassifier</span><span class="p">(</span><span class="n">pl</span><span class="o">.</span><span class="n">LightningModule</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">backbone</span><span class="p">,</span> <span class="n">learning_rate</span><span class="o">=</span><span class="mf">1e-3</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="c1"># modelo</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">backbone</span> <span class="o">=</span> <span class="n">backbone</span>
+        <span class="c1"># métricas</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">train_acc</span> <span class="o">=</span> <span class="n">torchmetrics</span><span class="o">.</span><span class="n">Accuracy</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">valid_acc</span> <span class="o">=</span> <span class="n">torchmetrics</span><span class="o">.</span><span class="n">Accuracy</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">test_acc</span> <span class="o">=</span> <span class="n">torchmetrics</span><span class="o">.</span><span class="n">Accuracy</span><span class="p">()</span>
+        <span class="c1"># rata de aprendizaje</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">lr</span> <span class="o">=</span> <span class="n">learning_rate</span>
+
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="c1"># use forward para inferencia/predicciones</span>
+        <span class="n">embedding</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">backbone</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">embedding</span>
+
+    <span class="k">def</span> <span class="nf">training_step</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">batch</span><span class="p">,</span> <span class="n">batch_idx</span><span class="p">):</span>
+        <span class="c1"># recibe batch de datos de entrenamiento</span>
+        <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">batch</span>
+        <span class="c1"># calcula el modelo(la red) con estos datos</span>
+        <span class="n">y_hat</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">backbone</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="c1"># calcula la pérdida para estos datos</span>
+        <span class="n">loss</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">cross_entropy</span><span class="p">(</span><span class="n">y_hat</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+        <span class="c1"># sube la pérdida de entrenamiento al log </span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s1">&#39;train_loss&#39;</span><span class="p">,</span> <span class="n">loss</span><span class="p">,</span> <span class="n">on_epoch</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="c1"># actualiza las métricas para los datos de entrenamiento</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">train_acc</span><span class="p">(</span><span class="n">y_hat</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+        <span class="c1"># sube las métricas de los datos de entrenamiento al log </span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s1">&#39;train_acc&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">train_acc</span><span class="p">,</span> <span class="n">on_step</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">on_epoch</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="c1"># retorna la pérdida</span>
+        <span class="k">return</span> <span class="n">loss</span>
+
+    <span class="k">def</span> <span class="nf">validation_step</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">batch</span><span class="p">,</span> <span class="n">batch_idx</span><span class="p">):</span>
+        <span class="c1"># recibe batch de datos de valicación</span>
+        <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">batch</span>
+        <span class="c1"># calcula el modelo(la red) con estos datos</span>
+        <span class="n">y_hat</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">backbone</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="c1"># calcula la pérdida para estos datos</span>
+        <span class="n">loss</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">cross_entropy</span><span class="p">(</span><span class="n">y_hat</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+        <span class="c1"># actualiza las métricas para los datos de validación</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">valid_acc</span><span class="p">(</span><span class="n">y_hat</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+        <span class="c1"># sube las métricas de los datos de validación al log </span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s1">&#39;valid_acc&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">valid_acc</span><span class="p">,</span> <span class="n">on_step</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">on_epoch</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">test_step</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">batch</span><span class="p">,</span> <span class="n">batch_idx</span><span class="p">):</span>
+        <span class="c1"># recibe batch de datos de prueba</span>
+        <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">batch</span>
+         <span class="c1"># calcula el modelo(la red) con estos datos</span>
+        <span class="n">y_hat</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">backbone</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="c1"># calcula la pérdida para estos datos</span>
+        <span class="n">loss</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">cross_entropy</span><span class="p">(</span><span class="n">y_hat</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+        <span class="c1"># sube la pérdida de prueba al log</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s1">&#39;test_loss&#39;</span><span class="p">,</span> <span class="n">loss</span><span class="p">)</span>
+         <span class="c1"># actualiza las métricas para los datos de validación</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">test_acc</span><span class="p">(</span><span class="n">y_hat</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+        <span class="c1"># sube las métricas de los datos de test al log </span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s1">&#39;test_acc&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">test_acc</span><span class="p">,</span> <span class="n">on_step</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">on_epoch</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+
+        
+    <span class="k">def</span> <span class="nf">training_epoch_end</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">outs</span><span class="p">):</span>
+        <span class="c1"># define aqui las acciones al terminar una época en entrenamiento</span>
+        <span class="k">pass</span>
+    
+    <span class="k">def</span> <span class="nf">validation_epoch_endd</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">outs</span><span class="p">):</span>
+        <span class="c1"># define aqui las acciones al terminar una época en validación</span>
+        <span class="k">pass</span>
+    
+    <span class="k">def</span> <span class="nf">configure_optimizers</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">Adam</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">lr</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">lr</span><span class="p">)</span>
+
+ 
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="span-style-color-4cc9f0-datos-datasets-y-dataloaders-span">
+<h3><span style="color:#4CC9F0">Datos: Datasets y Dataloaders</span><a class="headerlink" href="#span-style-color-4cc9f0-datos-datasets-y-dataloaders-span" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Tamaño de los lotes de datos para el entrenamiento</span>
+<span class="n">batch_size</span> <span class="o">=</span> <span class="mi">32</span>
+<span class="c1"># número de trabajadores para distribuir el trabajo de los dataloaders</span>
+<span class="n">num_workers</span><span class="o">=</span><span class="mi">4</span>
+<span class="c1"># Cuando mezclar los bloques de datos</span>
+<span class="n">shuffle</span> <span class="o">=</span> <span class="kc">True</span>
+
+<span class="c1"># creación de datasets desde Pytorch</span>
+<span class="n">dataset</span> <span class="o">=</span> <span class="n">MNIST</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">train</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">download</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">transforms</span><span class="o">.</span><span class="n">ToTensor</span><span class="p">())</span>
+<span class="n">mnist_test</span> <span class="o">=</span> <span class="n">MNIST</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">train</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">download</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">transforms</span><span class="o">.</span><span class="n">ToTensor</span><span class="p">())</span>
+<span class="n">mnist_train</span><span class="p">,</span> <span class="n">mnist_val</span> <span class="o">=</span> <span class="n">random_split</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="p">[</span><span class="mi">55000</span><span class="p">,</span> <span class="mi">5000</span><span class="p">])</span>
+
+<span class="c1"># creación de los dataloaders</span>
+<span class="n">train_loader</span> <span class="o">=</span> <span class="n">DataLoader</span><span class="p">(</span><span class="n">mnist_train</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span><span class="p">,</span> <span class="n">num_workers</span><span class="o">=</span><span class="n">num_workers</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="n">shuffle</span><span class="p">)</span>
+<span class="n">val_loader</span> <span class="o">=</span> <span class="n">DataLoader</span><span class="p">(</span><span class="n">mnist_val</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span><span class="p">,</span><span class="n">num_workers</span><span class="o">=</span><span class="n">num_workers</span><span class="p">)</span>
+<span class="n">test_loader</span> <span class="o">=</span> <span class="n">DataLoader</span><span class="p">(</span><span class="n">mnist_test</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span><span class="p">,</span><span class="n">num_workers</span><span class="o">=</span><span class="n">num_workers</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="span-style-color-4cc9f0-entrenador-span">
+<h3><span style="color:#4CC9F0">Entrenador</span><a class="headerlink" href="#span-style-color-4cc9f0-entrenador-span" title="Permalink to this headline">#</a></h3>
+<p>Instancia un entrenador que será una instancia de <code class="docutils literal notranslate"><span class="pre">Trainer</span></code>.</p>
+<section id="reproducibilidad">
+<h4>Reproducibilidad<a class="headerlink" href="#reproducibilidad" title="Permalink to this headline">#</a></h4>
+<p>Para garantizar la reproducibilidad total de una ejecución a otra, debemos configurar semillas para generadores pseudoaleatorios y establecer una bandera determinista en <em>Trainer</em>. Usaremos <em>seed_everything</em>.</p>
+<p>Aquí <em>Workers=True</em> en <em>seed_everything()</em>, Lightning obtiene semillas únicas en todos los procesos y trabajadores del cargador de datos para generadores de números aleatorios <em>torch, numpy y stdlib</em>. Cuando está encendido, asegura que, p. los aumentos de datos no se repiten entre los trabajadores.</p>
+<p>También deberíamos notar: determinista=Verdadero en entrenador.</p>
+<p>Sin embargo, si solo planea establecer una semilla aleatoria para python, numpy, pytorch. y no usas pytorch lightning para entrenar. seed_everything() es de hecho.</p>
+<p>Porque seed_everything() se implementa de la siguiente manera:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">os.environ[&quot;PL_GLOBAL_SEED&quot;] = str(seed)</span>
+<span class="sd">random.seed(seed)</span>
+<span class="sd">np.random.seed(seed)</span>
+<span class="sd">torch.manual_seed(seed)</span>
+<span class="sd">torch.cuda.manual_seed_all(seed)</span>
+<span class="sd">&#39;&#39;&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="aceleradores-de-hardware">
+<h4>Aceleradores de hardware<a class="headerlink" href="#aceleradores-de-hardware" title="Permalink to this headline">#</a></h4>
+<p>Con PyTorch Lightning es posible actualmente utilizar los siguientes tipos de aceleradores de hardware</p>
+<ul class="simple">
+<li><p>GPU</p></li>
+<li><p>TPU</p></li>
+<li><p>IPU</p></li>
+<li><p>HPU</p></li>
+</ul>
+<p>Tenga en cuenta que Pytorch no trabaja bien con múltiples cpu’s y gpu’s en entrenamiento. Nuestro consejo es:</p>
+<ul class="simple">
+<li><p>Use multiples procesos (workers) en los dataloaders.</p></li>
+<li><p>Use múliples gpu’s en el Trainer.</p></li>
+</ul>
+</section>
+<section id="instanciando-el-entrenador">
+<h4>Instanciando el entrenador<a class="headerlink" href="#instanciando-el-entrenador" title="Permalink to this headline">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#trainer = pl.Trainer(gpus=4, precisión=16, limit_train_batches=0.5)</span>
+<span class="n">max_epochs</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">acelerator</span> <span class="o">=</span> <span class="s1">&#39;cpu&#39;</span>
+
+<span class="c1"># reproducibilidad</span>
+<span class="n">seed_everything</span><span class="p">(</span><span class="mi">42</span><span class="p">,</span> <span class="n">workers</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="c1"># Al escribir la línea anterior es necesario escribir. </span>
+<span class="c1"># Caso contrario deterministic=False, que se tiene por defecto</span>
+<span class="n">deterministic</span><span class="o">=</span><span class="kc">True</span>
+<span class="c1"># Cuántas gpus usar</span>
+<span class="n">gpus</span> <span class="o">=</span> <span class="mi">0</span> <span class="c1"># depende de sus recursos</span>
+
+<span class="n">trainer</span> <span class="o">=</span> <span class="n">pl</span><span class="o">.</span><span class="n">Trainer</span><span class="p">(</span><span class="n">accelerator</span><span class="o">=</span><span class="n">acelerator</span><span class="p">,</span> <span class="n">max_epochs</span><span class="o">=</span> <span class="n">max_epochs</span><span class="p">,</span> 
+                     <span class="n">deterministic</span><span class="o">=</span><span class="n">deterministic</span><span class="p">,</span> <span class="n">gpus</span><span class="o">=</span><span class="n">gpus</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Global seed set to 42
+GPU available: False, used: False
+TPU available: False, using: 0 TPU cores
+IPU available: False, using: 0 IPUs
+HPU available: False, using: 0 HPUs
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="span-style-color-4cc9f0-entrenamiento-span">
+<h3><span style="color:#4CC9F0">Entrenamiento</span><a class="headerlink" href="#span-style-color-4cc9f0-entrenamiento-span" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hidden_dim</span> <span class="o">=</span> <span class="mi">128</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">LitClassifier</span><span class="p">(</span><span class="n">Backbone</span><span class="p">(</span><span class="n">hidden_dim</span><span class="o">=</span><span class="n">hidden_dim</span><span class="p">))</span>
+<span class="n">trainer</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">train_loader</span><span class="p">,</span> <span class="n">val_loader</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  | Name      | Type     | Params
+---------------------------------------
+0 | backbone  | Backbone | 101 K 
+1 | train_acc | Accuracy | 0     
+2 | valid_acc | Accuracy | 0     
+3 | test_acc  | Accuracy | 0     
+---------------------------------------
+101 K     Trainable params
+0         Non-trainable params
+101 K     Total params
+0.407     Total estimated model params size (MB)
+</pre></div>
+</div>
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "", "version_major": 2, "version_minor": 0}
+</script><script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "57502da0fddc43c4a2596982934a3831", "version_major": 2, "version_minor": 0}
+</script><script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "", "version_major": 2, "version_minor": 0}
+</script><script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "", "version_major": 2, "version_minor": 0}
+</script><script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "", "version_major": 2, "version_minor": 0}
+</script><script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "", "version_major": 2, "version_minor": 0}
+</script><script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "", "version_major": 2, "version_minor": 0}
+</script><script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "", "version_major": 2, "version_minor": 0}
+</script><script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "", "version_major": 2, "version_minor": 0}
+</script><script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "", "version_major": 2, "version_minor": 0}
+</script><script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "", "version_major": 2, "version_minor": 0}
+</script><script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "", "version_major": 2, "version_minor": 0}
+</script></div>
+</div>
+</section>
+<section id="span-style-color-4cc9f0-prueba-span">
+<h3><span style="color:#4CC9F0">Prueba</span><a class="headerlink" href="#span-style-color-4cc9f0-prueba-span" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="n">trainer</span><span class="o">.</span><span class="n">test</span><span class="p">(</span><span class="n">dataloaders</span><span class="o">=</span><span class="n">test_loader</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Restoring states from the checkpoint path at /home/alvaro/Documents/AprendizajeProfundo/Alejandría/Fundamentos_Programacion_03_08_22/Libro_Fundamentos_Programacion-main/Pytorch/Cuadernos/lightning_logs/version_0/checkpoints/epoch=9-step=17190.ckpt
+Loaded model weights from checkpoint at /home/alvaro/Documents/AprendizajeProfundo/Alejandría/Fundamentos_Programacion_03_08_22/Libro_Fundamentos_Programacion-main/Pytorch/Cuadernos/lightning_logs/version_0/checkpoints/epoch=9-step=17190.ckpt
+</pre></div>
+</div>
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "6d4ef07bcf7848c8a2b455f13b3bf9e1", "version_major": 2, "version_minor": 0}
+</script><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+       Test metric             DataLoader 0
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+     test_acc_epoch         0.8827000260353088
+        test_loss           0.3034259080886841
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+[{&#39;test_loss&#39;: 0.3034259080886841, &#39;test_acc_epoch&#39;: 0.8827000260353088}]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="span-style-color-blue-lanzar-tensorboard-para-examinar-los-resultados-span">
+<h2><span style="color:blue">Lanzar Tensorboard para examinar los resultados</span><a class="headerlink" href="#span-style-color-blue-lanzar-tensorboard-para-examinar-los-resultados-span" title="Permalink to this headline">#</a></h2>
+<p>Terminamos esta lección ejecutando Tensorboard, la poderosa herramienta desarrolada por Google para visualziar los resultados del entrenamiento. Tensorboard tiene muchas características interesantes. Revise las lecciones de Tonsorboard para TensorFlow y PyTorch.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">load_ext</span> tensorboard
+<span class="o">%</span><span class="k">tensorboard</span> --logdir lightning_logs/
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The tensorboard extension is already loaded. To reload it, use:
+  %reload_ext tensorboard
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Reusing TensorBoard on port 6006 (pid 9177), started 1:54:16 ago. (Use &#39;!kill 9177&#39; to kill it.)
+</pre></div>
+</div>
+<div class="output text_html">
+<iframe id="tensorboard-frame-1c80317fa3b1799d" width="100%" height="800" frameborder="0">
+</iframe>
+<script>
+  (function() {
+    const frame = document.getElementById("tensorboard-frame-1c80317fa3b1799d");
+    const url = new URL("/", window.location);
+    const port = 6006;
+    if (port) {
+      url.port = port;
+    }
+    frame.src = url;
+  })();
+</script>
+</div></div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "AprendizajeProfundo/Libro_Fundamentos_Programacion",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./Pytorch/Cuadernos"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Álvaro Mauricio Montenegro Díaz, Daniel Mauricio Montenegro Reyes<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

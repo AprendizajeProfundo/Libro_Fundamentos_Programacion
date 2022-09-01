@@ -1,0 +1,1772 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Funciones en Python &#8212; Fundamentos de Programación</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script src="../../_static/tabs.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Iterables e iteradores" href="py_06.html" />
+    <link rel="prev" title="Estructuras de control" href="py_04.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../_static/logo-final-ap.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Fundamentos de Programación</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../tutorial.html">
+                    <span style="color:#F72585">Bienvenido(a)</span>
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Primeros Pasos
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Inicio/Cuadernos/Consideraciones.html">
+   <span style="color:#F72585">
+    Conociendo el Libro
+   </span>
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Introducción
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="py_00.html">
+   <span style="color:#F72585">
+    Conceptos básicos de programación
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="py_01.html">
+   <span style="color:#F72585">
+    Introducción al lenguaje de programación Python
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="py_02.html">
+   <span style="color:#F72585">
+    Tipos de Datos Básicos
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="py_03.html">
+   <span style="color:#F72585">
+    Operadores aritméticos y lógicos
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="py_04.html">
+   <span style="color:#F72585">
+    Estructuras de control
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   <span style="color:#F72585">
+    Funciones en Python
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="py_06.html">
+   <span style="color:#F72585">
+    Iterables e iteradores
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="py_07.html">
+   <span style="color:#F72585">
+    Tuplas
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="py_08.html">
+   <span style="color:#F72585">
+    Listas
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="py_09.html">
+   <span style="color:#F72585">
+    Diccionarios
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="py_10.html">
+   <span style="color:#F72585">
+    Conjuntos
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="py_11.html">
+   <span style="color:#F72585">
+    Programación orientada a Objetos en Python
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="py_12.html">
+   <span style="color:#F72585">
+    Decoradores
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="py_13.html">
+   <span style="color:#F72585">
+    Patrones para Programación orientada a Objetos en Python
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Taller_Numpy.html">
+   <span style="color:#F72585">
+    Taller de numpy
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Taller_Pandas.html">
+   <span style="color:#F72585">
+    Taller de manejo de Datos en Pandas
+   </span>
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Pytorch
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Pytorch/Cuadernos/Pytorch_01.html">
+   <span style="color:#F72585">
+    Primeros pasos con PyTorch
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Pytorch/Cuadernos/Pytorch_02.html">
+   <span style="color:#F72585">
+    Tensores en PyTorch
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Pytorch/Cuadernos/Pytorch_03.html">
+   <span style="color:#F72585">
+    DataSets y DataLoaders
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Pytorch/Cuadernos/Pytorch_04.html">
+   <span style="color:#F72585">
+    Transforms
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Pytorch/Cuadernos/Pytorch_05.html">
+   <span style="color:#F72585">
+    Diferenciación automática con torch.autograd
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Pytorch/Cuadernos/Pytorch_06.html">
+   <span style="color:#F72585">
+    Optimización con torch
+   </span>
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  TensorFlow
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../TensorFlow/Cuadernos/Tensorflow-01.html">
+   <span style="color:#F72585">
+    Inicio Rápido
+   </span>
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/AprendizajeProfundo/Libro_Fundamentos_Programacion/main?urlpath=tree/Python/Cuadernos/py_05.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://colab.research.google.com/github/AprendizajeProfundo/Libro_Fundamentos_Programacion/blob/main/Python/Cuadernos/py_05.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Colab"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../../_static/images/logo_colab.png">
+  </span>
+<span class="headerbtn__text-container">Colab</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="initThebeSBT()"
+  class="headerbtn headerbtn-launch-thebe"
+  data-toggle="tooltip"
+data-placement="left"
+title="Launch Thebe"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="headerbtn__text-container">Live Code</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/AprendizajeProfundo/Libro_Fundamentos_Programacion"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/AprendizajeProfundo/Libro_Fundamentos_Programacion/issues/new?title=Issue%20on%20page%20%2FPython/Cuadernos/py_05.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/AprendizajeProfundo/Libro_Fundamentos_Programacion/edit/main/Python/Cuadernos/py_05.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Edit this page"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="headerbtn__text-container">suggest edit</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../../_sources/Python/Cuadernos/py_05.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-introduccion-span">
+   <span style="color:#4361EE">
+    Introducción
+   </span>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-analogia-con-la-vida-diaria-span">
+   <span style="color:#4361EE">
+    Analogía con la vida diaria
+   </span>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-una-funcion-como-caja-negra-span">
+     <span style="color:#4CC9F0">
+      Una función como caja negra
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-ejemplo-funcion-cortarmanzana-x-span">
+     <span style="color:#4CC9F0">
+      Ejemplo Función
+      <code class="docutils literal notranslate">
+       <span class="pre">
+        CortarManzana(x)
+       </span>
+      </code>
+      :
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-ejercicio-span">
+     <span style="color:#4CC9F0">
+      Ejercicio
+     </span>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-parametros-y-argumentos-en-las-funciones-span">
+   <span style="color:#4361EE">
+    Parámetros y argumentos en las funciones
+   </span>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-funciones-predefinidas-ejemplo-de-como-producir-una-grafica-de-la-funcion-sin-x-span">
+     <span style="color:#4CC9F0">
+      Funciones predefinidas: ejemplo de como producir  una gráfica de la función
+      <code class="docutils literal notranslate">
+       <span class="pre">
+        sin(x)
+       </span>
+      </code>
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     <span style="color:#4CC9F0">
+      Ejercicio
+     </span>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-creacion-de-funciones-en-python-span">
+   <span style="color:#4361EE">
+    Creación de Funciones en Python
+   </span>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-una-funcion-que-regresa-dos-valores-span">
+     <span style="color:#4CC9F0">
+      Una función que regresa dos valores
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-anotando-typing-los-parametros-de-una-funcion-span">
+     <span style="color:#4CC9F0">
+      Anotando (typing) los parámetros de una función
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-valor-de-los-parametros-por-defecto-span">
+     <span style="color:#4CC9F0">
+      Valor de los parámetros por defecto
+     </span>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-pasando-un-numero-arbitrario-de-argumentos-con-arg-span">
+   <span style="color:#4361EE">
+    Pasando un número arbitrario de argumentos con
+    <code class="docutils literal notranslate">
+     <span class="pre">
+      *arg
+     </span>
+    </code>
+   </span>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-pasando-un-numero-arbitrario-de-argumentos-nombrados-con-arg-span">
+   <span style="color:#4361EE">
+    Pasando un número arbitrario de argumentos nombrados con
+    <code class="docutils literal notranslate">
+     <span class="pre">
+      **arg
+     </span>
+    </code>
+   </span>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-funciones-anonimas-funciones-lambda-span">
+   <span style="color:#4361EE">
+    Funciones anónimas. Funciones lambda
+   </span>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-un-ejemplo-de-programacion-funcional-span">
+   <span style="color:#4361EE">
+    Un ejemplo de programación funcional
+   </span>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     <span style="color:#4CC9F0">
+      Ejercicio
+     </span>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-programacion-funcional-span">
+   <span style="color:#4361EE">
+    Programación Funcional
+   </span>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-funciones-puras-span">
+     <span style="color:#4CC9F0">
+      Funciones Puras
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-recursion-span">
+     <span style="color:#4CC9F0">
+      Recursión
+     </span>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-las-funciones-son-de-primera-clase-y-pueden-ser-de-orden-superior-span">
+   <span style="color:#4361EE">
+    Las funciones son de primera clase y pueden ser de orden superior
+   </span>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-objetos-de-primera-clase-span">
+     <span style="color:#4CC9F0">
+      Objetos de primera clase
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-propiedades-de-las-funciones-de-primera-clase-span">
+     <span style="color:#4CC9F0">
+      Propiedades de las funciones de primera clase
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-ejemplo-span">
+     <span style="color:#4CC9F0">
+      Ejemplo
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-funciones-integradas-de-orden-superior-span">
+     <span style="color:#4CC9F0">
+      Funciones integradas de orden superior
+     </span>
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1><span style="color:#F72585">Funciones en Python</span></h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-introduccion-span">
+   <span style="color:#4361EE">
+    Introducción
+   </span>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-analogia-con-la-vida-diaria-span">
+   <span style="color:#4361EE">
+    Analogía con la vida diaria
+   </span>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-una-funcion-como-caja-negra-span">
+     <span style="color:#4CC9F0">
+      Una función como caja negra
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-ejemplo-funcion-cortarmanzana-x-span">
+     <span style="color:#4CC9F0">
+      Ejemplo Función
+      <code class="docutils literal notranslate">
+       <span class="pre">
+        CortarManzana(x)
+       </span>
+      </code>
+      :
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-ejercicio-span">
+     <span style="color:#4CC9F0">
+      Ejercicio
+     </span>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-parametros-y-argumentos-en-las-funciones-span">
+   <span style="color:#4361EE">
+    Parámetros y argumentos en las funciones
+   </span>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-funciones-predefinidas-ejemplo-de-como-producir-una-grafica-de-la-funcion-sin-x-span">
+     <span style="color:#4CC9F0">
+      Funciones predefinidas: ejemplo de como producir  una gráfica de la función
+      <code class="docutils literal notranslate">
+       <span class="pre">
+        sin(x)
+       </span>
+      </code>
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     <span style="color:#4CC9F0">
+      Ejercicio
+     </span>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-creacion-de-funciones-en-python-span">
+   <span style="color:#4361EE">
+    Creación de Funciones en Python
+   </span>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-una-funcion-que-regresa-dos-valores-span">
+     <span style="color:#4CC9F0">
+      Una función que regresa dos valores
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-anotando-typing-los-parametros-de-una-funcion-span">
+     <span style="color:#4CC9F0">
+      Anotando (typing) los parámetros de una función
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-valor-de-los-parametros-por-defecto-span">
+     <span style="color:#4CC9F0">
+      Valor de los parámetros por defecto
+     </span>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-pasando-un-numero-arbitrario-de-argumentos-con-arg-span">
+   <span style="color:#4361EE">
+    Pasando un número arbitrario de argumentos con
+    <code class="docutils literal notranslate">
+     <span class="pre">
+      *arg
+     </span>
+    </code>
+   </span>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-pasando-un-numero-arbitrario-de-argumentos-nombrados-con-arg-span">
+   <span style="color:#4361EE">
+    Pasando un número arbitrario de argumentos nombrados con
+    <code class="docutils literal notranslate">
+     <span class="pre">
+      **arg
+     </span>
+    </code>
+   </span>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-funciones-anonimas-funciones-lambda-span">
+   <span style="color:#4361EE">
+    Funciones anónimas. Funciones lambda
+   </span>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-un-ejemplo-de-programacion-funcional-span">
+   <span style="color:#4361EE">
+    Un ejemplo de programación funcional
+   </span>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     <span style="color:#4CC9F0">
+      Ejercicio
+     </span>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-programacion-funcional-span">
+   <span style="color:#4361EE">
+    Programación Funcional
+   </span>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-funciones-puras-span">
+     <span style="color:#4CC9F0">
+      Funciones Puras
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-recursion-span">
+     <span style="color:#4CC9F0">
+      Recursión
+     </span>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#span-style-color-4361ee-las-funciones-son-de-primera-clase-y-pueden-ser-de-orden-superior-span">
+   <span style="color:#4361EE">
+    Las funciones son de primera clase y pueden ser de orden superior
+   </span>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-objetos-de-primera-clase-span">
+     <span style="color:#4CC9F0">
+      Objetos de primera clase
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-propiedades-de-las-funciones-de-primera-clase-span">
+     <span style="color:#4CC9F0">
+      Propiedades de las funciones de primera clase
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-ejemplo-span">
+     <span style="color:#4CC9F0">
+      Ejemplo
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#span-style-color-4cc9f0-funciones-integradas-de-orden-superior-span">
+     <span style="color:#4CC9F0">
+      Funciones integradas de orden superior
+     </span>
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="span-style-color-f72585-funciones-en-python-span">
+<h1><span style="color:#F72585">Funciones en Python</span><a class="headerlink" href="#span-style-color-f72585-funciones-en-python-span" title="Permalink to this headline">#</a></h1>
+<section id="span-style-color-4361ee-introduccion-span">
+<h2><span style="color:#4361EE">Introducción</span><a class="headerlink" href="#span-style-color-4361ee-introduccion-span" title="Permalink to this headline">#</a></h2>
+<p>En Python, una función es un grupo de declaraciones relacionadas que realizan una tarea específica.</p>
+<p>Las funciones ayudan a dividir nuestro programa en partes más pequeñas y modulares. A medida que nuestro programa crece más y más, las funciones lo hacen más organizado y manejable. Además, evita la repetición y hace que el código sea reutilizable.</p>
+</section>
+<section id="span-style-color-4361ee-analogia-con-la-vida-diaria-span">
+<h2><span style="color:#4361EE">Analogía con la vida diaria</span><a class="headerlink" href="#span-style-color-4361ee-analogia-con-la-vida-diaria-span" title="Permalink to this headline">#</a></h2>
+<p>Una  analogía con la vida diaria puede ser la siguiente.</p>
+<p>Imagínese cuando se levanta.</p>
+<p>Lo que ocurre primero, es que uno se siente vivo, se abren los ojos (no siempre), se hace pereza un rato, se levanta de la cama y luego se inicia el día (cada persona tiene sus maneras diferentes de hacerlo).</p>
+<p>Esta serie de <em>pasos consecutivos</em> conforman lo que se llama una <code class="docutils literal notranslate"><span class="pre">función</span></code>.</p>
+<p>En el común, una <em>función es en general una secuencia de pasos</em> o una serie de acciones que generan un resultado específico. De manera abstracta, esos pasos consecutivos se encapsulan en una función, lo cual entrega ventajas cuando se describe una situación compleja y por lo general de carácter repetitivo.</p>
+<p>Para poder distinguir funciones, unas de otras, se les asignan nombres diferentes.</p>
+<p>Por ejemplo, la función antes descrita podría nombrarse como <strong>Levantarse</strong>:</p>
+<p>Está función se compone de los siguientes pasos:</p>
+<ol class="simple">
+<li><p>Sentirse vivo.</p></li>
+<li><p>Abrir los ojos.</p></li>
+<li><p>Hacer pereza.</p></li>
+<li><p>Levantarse.</p></li>
+</ol>
+<p>Así, aunque cada persona puede desarrollar la actividad de levantarse, de manera general tal actividad se puede ver como una un función que alguien ejecuta en algún momento.</p>
+<p>En el lenguaje de programación, esto se podría escribir como</p>
+<p><code class="docutils literal notranslate"><span class="pre">Levantarse(x)</span></code></p>
+<p>donde <span class="math notranslate nohighlight">\(x\)</span> representa el individuo que hace la acción y los paréntesis significan que se habla de una función, y por lo tanto, <em>no se confunde</em> con una variable.</p>
+<section id="span-style-color-4cc9f0-una-funcion-como-caja-negra-span">
+<h3><span style="color:#4CC9F0">Una función como caja negra</span><a class="headerlink" href="#span-style-color-4cc9f0-una-funcion-como-caja-negra-span" title="Permalink to this headline">#</a></h3>
+<p>En un lenguaje de programación, una función puede entenderse como una caja negra. Como el control remoto de su televisor.</p>
+<p>Los ingenieros que desarrollan y producen el control remoto cierran el objeto una vez lo construyen y por lo general elaboran un manual para enseñar a los usuario a usar el control.</p>
+</section>
+<section id="span-style-color-4cc9f0-ejemplo-funcion-cortarmanzana-x-span">
+<h3><span style="color:#4CC9F0">Ejemplo Función <code class="docutils literal notranslate"><span class="pre">CortarManzana(x)</span></code>:</span><a class="headerlink" href="#span-style-color-4cc9f0-ejemplo-funcion-cortarmanzana-x-span" title="Permalink to this headline">#</a></h3>
+<p>Un ejemplo muy simple es el siguiente. Imagine una máquina que corta manzanas como se ilustra en la siguiente imagen.</p>
+<p>Función cortar manzana. Créditos: tomada de <a class="reference external" href="https://photos1.blogger.com/blogger/1290/1572/1600/Apple_slicing_function.png">función cortar manzana</a>.</p>
+<figure>
+<img src="https://raw.githubusercontent.com/AprendizajeProfundo/Libro_Fundamentos_Programacion/main/Python/Imagenes/Apple_slicing_function.png" width="400" align="left" />   
+</figure><p>Como podemos ver, una función es realmente es una <code class="docutils literal notranslate"><span class="pre">Caja</span> <span class="pre">Negra</span></code>: la podemos usar, sin importar qué hay dentro de ella.</p>
+<p>Sin embargo, la máquina puede tener algunos controles (parámetros) que determinan la forma como la máquina funciona. Por ejemplo el número de cortes. Luego de parametrizada la maquina, podemos empezar a pasar manzanas por ella.</p>
+<p>Ya hemos visto algunas <strong>funciones básicas</strong> de Python (Built-in):</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">print()</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">len()</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">list()</span></code></p></li>
+</ul>
+<p>En <a class="reference external" href="https://docs.python.org/3/library/functions.html">este link</a>, se encuentra un manual de todas las funciones <strong>básicas</strong> de Python.</p>
+<p>Veamos algunas de ellas:</p>
+</section>
+<section id="span-style-color-4cc9f0-ejercicio-span">
+<h3><span style="color:#4CC9F0">Ejercicio</span><a class="headerlink" href="#span-style-color-4cc9f0-ejercicio-span" title="Permalink to this headline">#</a></h3>
+<p>Viendo la entra y salida del código, infiera qué hace la función correspondiente:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Valor absoluto</span>
+<span class="n">x</span> <span class="o">=</span> <span class="o">-</span><span class="mi">5</span>
+<span class="n">y</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">x =&quot;</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;y = &quot;</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>x = -5
+y =  5 
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Creación de un diccionario</span>
+<span class="n">d</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">({</span><span class="s2">&quot;Saludo&quot;</span><span class="p">:</span> <span class="s2">&quot;Hola&quot;</span><span class="p">,</span> <span class="s2">&quot;Despido&quot;</span><span class="p">:</span> <span class="s2">&quot;Adiós&quot;</span><span class="p">,</span> <span class="s2">&quot;Palabra&quot;</span><span class="p">:</span> <span class="s2">&quot;Extraño&quot;</span><span class="p">})</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Diccionario: &quot;</span><span class="p">,</span><span class="n">d</span><span class="p">,</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Diccionario:  {&#39;Saludo&#39;: &#39;Hola&#39;, &#39;Despido&#39;: &#39;Adiós&#39;, &#39;Palabra&#39;: &#39;Extraño&#39;} 
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Suma de los elementos de una lista</span>
+<span class="n">v</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">]</span>
+<span class="n">s</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;resultado:&quot;</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>resultado: 21 
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Máximo y mínimo</span>
+<span class="n">a1</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+<span class="n">a2</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;a1: </span><span class="si">{}</span><span class="s2">, a2: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">a1</span><span class="p">,</span> <span class="n">a2</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>a1: 6, a2: 1
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="span-style-color-4361ee-parametros-y-argumentos-en-las-funciones-span">
+<h2><span style="color:#4361EE">Parámetros y argumentos en las funciones</span><a class="headerlink" href="#span-style-color-4361ee-parametros-y-argumentos-en-las-funciones-span" title="Permalink to this headline">#</a></h2>
+<p>Las funciones pueden tener uno o más parámetros asociados. Estos son contenedores que recibirán los datos  (argumentos) para que la función pueda hacer su trabajo.</p>
+<p>Consideremos por ejemplo la función matemática seno (<code class="docutils literal notranslate"><span class="pre">sin</span></code> en inglés)</p>
+<div class="math notranslate nohighlight">
+\[
+y = \sin (x)
+\]</div>
+<p>En el ejemplo, el parámetro de la función es ‘x’ que representa a cualquier valor que pueda ser utilizado para calcular la función.</p>
+<p>Un argumento por ejemplo es <span class="math notranslate nohighlight">\(\pi/2\)</span>. Entonces el resultado obtenido es 1, como aprendimos en la escuela secundaria.</p>
+<section id="span-style-color-4cc9f0-funciones-predefinidas-ejemplo-de-como-producir-una-grafica-de-la-funcion-sin-x-span">
+<h3><span style="color:#4CC9F0">Funciones predefinidas: ejemplo de como producir  una gráfica de la función <code class="docutils literal notranslate"><span class="pre">sin(x)</span></code></span><a class="headerlink" href="#span-style-color-4cc9f0-funciones-predefinidas-ejemplo-de-como-producir-una-grafica-de-la-funcion-sin-x-span" title="Permalink to this headline">#</a></h3>
+<p>Para este ejemplo utilizaremos dos librerías de Python: Numpy y Matplotlib. Puede ir a los capítulos correspondientes para los detalles.</p>
+<p>La librería Numpy se llamara con el alias <code class="docutils literal notranslate"><span class="pre">np</span></code> y se usa un punto para llamar algún objeto de la librería. Similar con Matplotlib que llamaremos con el alias de <code class="docutils literal notranslate"><span class="pre">plt</span></code>.</p>
+<ul class="simple">
+<li><p>La función <code class="docutils literal notranslate"><span class="pre">np.linspace</span></code> genera valores entre dos extremos. En el ejemplo genera 30 puntos entre 0 y <span class="math notranslate nohighlight">\(2\pi\)</span>.</p></li>
+<li><p>La función <code class="docutils literal notranslate"><span class="pre">np.sin</span></code> calcula la función seno para algún conjunto de argumentos. Observe que la función calcula la función para cada uno de los argumentos dispuestos en el objeto x.</p></li>
+<li><p>La función <code class="docutils literal notranslate"><span class="pre">np.plt</span></code> dibuja el gráfico de la función entre los valores 0 y <span class="math notranslate nohighlight">\(2\pi\)</span>.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Comente adecuadamente las siguientes líneas de código</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span> <span class="c1"># importa la librería Numpy</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span> <span class="c1"># importa la librería matplotlib.pyplot</span>
+
+<span class="c1"># calcula la función sin en 30 puntos</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span><span class="mi">30</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="c1"># Imprime la tabla de valores. </span>
+<span class="c1"># Usamos zip para pegar las columnas x, y</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Estos son los valores para el gráfico  de la función&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;x     y&quot;</span><span class="p">)</span>
+<span class="n">x_y</span> <span class="o">=</span> <span class="nb">zip</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">values</span> <span class="ow">in</span> <span class="n">x_y</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">values</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+
+<span class="c1"># crea la imagen</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Imagen&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Gráfico de la función $y=\sin(x)$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;$\sin (x)$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Estos son los valores para el gráfico  de la función
+x     y
+(0.0, 0.0)
+(0.22, 0.21)
+(0.43, 0.42)
+(0.65, 0.61)
+(0.87, 0.76)
+(1.08, 0.88)
+(1.3, 0.96)
+(1.52, 1.0)
+(1.73, 0.99)
+(1.95, 0.93)
+(2.17, 0.83)
+(2.38, 0.69)
+(2.6, 0.52)
+(2.82, 0.32)
+(3.03, 0.11)
+(3.25, -0.11)
+(3.47, -0.32)
+(3.68, -0.52)
+(3.9, -0.69)
+(4.12, -0.83)
+(4.33, -0.93)
+(4.55, -0.99)
+(4.77, -1.0)
+(4.98, -0.96)
+(5.2, -0.88)
+(5.42, -0.76)
+(5.63, -0.61)
+(5.85, -0.42)
+(6.07, -0.21)
+(6.28, -0.0)
+
+Imagen
+</pre></div>
+</div>
+<img alt="../../_images/py_05_20_1.png" src="../../_images/py_05_20_1.png" />
+</div>
+</div>
+</section>
+<section id="id1">
+<h3><span style="color:#4CC9F0">Ejercicio</span><a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h3>
+<ol class="simple">
+<li><p>Investigue las funciones y atributos internos de Matplotlib para hacer una matriz 3x1 que contengan:</p></li>
+</ol>
+<ul class="simple">
+<li><p>Una función matemática.</p></li>
+<li><p>Una foto.</p></li>
+<li><p>Una esfera con puntos aleatorios en su frontera.</p></li>
+</ul>
+<ol class="simple">
+<li><p>Investigue sobre 5 funciones de Python que acepten al menos 3 parámetros.</p></li>
+</ol>
+</section>
+</section>
+<section id="span-style-color-4361ee-creacion-de-funciones-en-python-span">
+<h2><span style="color:#4361EE">Creación de Funciones en Python</span><a class="headerlink" href="#span-style-color-4361ee-creacion-de-funciones-en-python-span" title="Permalink to this headline">#</a></h2>
+<p>Hay dos maneras básicas para definir funciones en Python:</p>
+<ol class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">def</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">lambda</span></code></p></li>
+</ol>
+<p>De manera muy general, una función se define iniciando con la cláusula <em>def()</em>. Dentro de los paréntesis se colocan los parámetros que usará la función.</p>
+<p>Nuestro primer ejemplo es una función que suma dos número y regresa el resultado.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># función suma</span>
+<span class="k">def</span> <span class="nf">suma</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span>
+    <span class="k">return</span> <span class="n">s</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>La cláusula <code class="docutils literal notranslate"><span class="pre">return</span></code> se usa para retornar el resultado de la función.</p>
+<p>Calcular la función es bastante simple. Por ejemplo la suma entre 3 y 5 se puede calcular como</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">s</span> <span class="o">=</span> <span class="n">suma</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>8
+</pre></div>
+</div>
+</div>
+</div>
+<section id="span-style-color-4cc9f0-una-funcion-que-regresa-dos-valores-span">
+<h3><span style="color:#4CC9F0">Una función que regresa dos valores</span><a class="headerlink" href="#span-style-color-4cc9f0-una-funcion-que-regresa-dos-valores-span" title="Permalink to this headline">#</a></h3>
+<p>De manera formal, una función retorna un único valor. Desde el punto de vista práctico, un objeto como (3,4) es una <code class="docutils literal notranslate"><span class="pre">tupla</span></code> en Python que estudiamos en otro módulo. Una función puede regresar un tupla y cualquier otro objeto complicado. Observe el siguiente ejemplo.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Explicar las siguientes líneas de código</span>
+<span class="k">def</span> <span class="nf">mysum_prod</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">):</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="n">x</span> <span class="o">*</span> <span class="n">y</span>
+    <span class="k">return</span> <span class="n">s</span><span class="p">,</span><span class="n">p</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="n">mysum_prod</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(7, 12)
+</pre></div>
+</div>
+</div>
+</div>
+<p>También podemos separar la salida, si es lo que se requiere, de la siguiente manera:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">suma</span><span class="p">,</span> <span class="n">prod</span> <span class="o">=</span> <span class="n">mysum_prod</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;El suma es:&quot;</span><span class="p">,</span> <span class="n">suma</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;El producto es:&quot;</span><span class="p">,</span> <span class="n">prod</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>El suma es: 7
+El producto es: 12
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="span-style-color-4cc9f0-anotando-typing-los-parametros-de-una-funcion-span">
+<h3><span style="color:#4CC9F0">Anotando (typing) los parámetros de una función</span><a class="headerlink" href="#span-style-color-4cc9f0-anotando-typing-los-parametros-de-una-funcion-span" title="Permalink to this headline">#</a></h3>
+<p>Recuerde que la asignación de variables en Python es dinámica. Esto facilita la programación, pero introduce algunos problemas.</p>
+<p>En el caso de las funciones, es importante que el usuario (que siempre incluye al programador) sepa que tipos de parámetros espera una función. Para hacerlo, las versiones de Python desde 2.0 introdujeron el concepto anotación o tipificación de los parámetros de una función.</p>
+<p>Se pretende indicar al usuario de la función qué tipo de datos se espera que entren a la función y los que salen. Esto es muy útil para mejorar la lectura del código.</p>
+<p>Por supuesto, aún es posible usar tipos de datos diferentes a los que sugerimos. Esto es debido al principio pythonico de tener asignación dinámica.</p>
+<p>Para ilustrar la anotación revise el siguiente ejemplo.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">mysum_prod</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]:</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="n">y</span> <span class="o">*</span> <span class="n">x</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">s</span><span class="p">,</span><span class="n">p</span><span class="p">]</span>
+
+<span class="n">mysum_prod</span><span class="p">(</span><span class="mf">2.2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[5.2, 6.6000000000000005]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="span-style-color-4cc9f0-valor-de-los-parametros-por-defecto-span">
+<h3><span style="color:#4CC9F0">Valor de los parámetros por defecto</span><a class="headerlink" href="#span-style-color-4cc9f0-valor-de-los-parametros-por-defecto-span" title="Permalink to this headline">#</a></h3>
+<p>En ocasiones se espera definir valores por defecto para los parámetros de una función. Esta se hace simplemente escribiendo <code class="docutils literal notranslate"><span class="pre">parametro=valor</span></code>. Veamos el ejemplo</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># función suma con parámetros por defecto</span>
+<span class="k">def</span> <span class="nf">suma</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span>
+    <span class="k">return</span> <span class="n">s</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">suma</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4
+</pre></div>
+</div>
+</div>
+</div>
+<p>El cuidado que hay que tener es que los parámetros por defecto siempre van después de los parámetros obligatorios. En el ejemplo la variable <em>x</em> es obligatoria y debe ser entregado a la función. Por otro lado la variable <em>y</em> esta definida por defecto.</p>
+</section>
+</section>
+<section id="span-style-color-4361ee-pasando-un-numero-arbitrario-de-argumentos-con-arg-span">
+<h2><span style="color:#4361EE">Pasando un número arbitrario de argumentos con <code class="docutils literal notranslate"><span class="pre">*arg</span></code></span><a class="headerlink" href="#span-style-color-4361ee-pasando-un-numero-arbitrario-de-argumentos-con-arg-span" title="Permalink to this headline">#</a></h2>
+<p>Para situaciones en las cuales se desconoce de antemano el número de argumentos que se esperan para ejecutar una función, puede nombrar los parámetros de manera genérica en la forma <code class="docutils literal notranslate"><span class="pre">*arg</span></code>. Revise el siguiente ejemplo. El objetivo es sumar un número indeterminado de números. Por supuesto este es un ejemplo de juguete, pero sirve para ilustrar el concepto. Veamos.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># sumador</span>
+
+<span class="k">def</span> <span class="nf">adder</span><span class="p">(</span><span class="o">*</span><span class="n">num</span><span class="p">):</span>
+    <span class="nb">sum</span> <span class="o">=</span> <span class="mi">0</span>
+    
+    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">num</span><span class="p">:</span>
+        <span class="nb">sum</span> <span class="o">=</span> <span class="nb">sum</span> <span class="o">+</span> <span class="n">n</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Sum:&quot;</span><span class="p">,</span><span class="nb">sum</span><span class="p">)</span>
+
+<span class="n">adder</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">adder</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">)</span>
+<span class="n">adder</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Sum: 8
+Sum: 22
+Sum: 17
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="span-style-color-4361ee-pasando-un-numero-arbitrario-de-argumentos-nombrados-con-arg-span">
+<h2><span style="color:#4361EE">Pasando un número arbitrario de argumentos nombrados con <code class="docutils literal notranslate"><span class="pre">**arg</span></code></span><a class="headerlink" href="#span-style-color-4361ee-pasando-un-numero-arbitrario-de-argumentos-nombrados-con-arg-span" title="Permalink to this headline">#</a></h2>
+<p>En ejemplo anterior no se diferenciaron los parámetros con un nombre. Se dice que los argumentos son no nombrados <code class="docutils literal notranslate"><span class="pre">non</span> <span class="pre">keyword</span> <span class="pre">arguments</span></code>. Si requiere pasar parámetros arbitrario pero con nombre cada uno, puede usar la notacion <code class="docutils literal notranslate"><span class="pre">**arg</span></code>. Estos argumentos se llaman nombrados  <code class="docutils literal notranslate"><span class="pre">keyword</span> <span class="pre">arguments</span></code>. Veamos el ejemplo.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">intro</span><span class="p">(</span><span class="o">**</span><span class="n">data</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Tipo de dato del argumento:&quot;</span><span class="p">,</span><span class="nb">type</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>
+
+    <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2"> is </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">key</span><span class="p">,</span><span class="n">value</span><span class="p">))</span>
+
+<span class="n">intro</span><span class="p">(</span><span class="n">Firstname</span><span class="o">=</span><span class="s2">&quot;Sita&quot;</span><span class="p">,</span> <span class="n">Lastname</span><span class="o">=</span><span class="s2">&quot;Sharma&quot;</span><span class="p">,</span> <span class="n">Age</span><span class="o">=</span><span class="mi">22</span><span class="p">,</span> <span class="n">Phone</span><span class="o">=</span><span class="mi">1234567890</span><span class="p">)</span>
+<span class="n">intro</span><span class="p">(</span><span class="n">Firstname</span><span class="o">=</span><span class="s2">&quot;John&quot;</span><span class="p">,</span> <span class="n">Lastname</span><span class="o">=</span><span class="s2">&quot;Wood&quot;</span><span class="p">,</span> <span class="n">Email</span><span class="o">=</span><span class="s2">&quot;johnwood@nomail.com&quot;</span><span class="p">,</span> <span class="n">Country</span><span class="o">=</span><span class="s2">&quot;Wakanda&quot;</span><span class="p">,</span> <span class="n">Age</span><span class="o">=</span><span class="mi">25</span><span class="p">,</span> <span class="n">Phone</span><span class="o">=</span><span class="mi">9876543210</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Tipo de dato del argumento: &lt;class &#39;dict&#39;&gt;
+Firstname is Sita
+Lastname is Sharma
+Age is 22
+Phone is 1234567890
+
+Tipo de dato del argumento: &lt;class &#39;dict&#39;&gt;
+Firstname is John
+Lastname is Wood
+Email is johnwood@nomail.com
+Country is Wakanda
+Age is 25
+Phone is 9876543210
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="span-style-color-4361ee-funciones-anonimas-funciones-lambda-span">
+<h2><span style="color:#4361EE">Funciones anónimas. Funciones lambda</span><a class="headerlink" href="#span-style-color-4361ee-funciones-anonimas-funciones-lambda-span" title="Permalink to this headline">#</a></h2>
+<p>Hay situaciones, principalmente relacionadas con la programación funcional, en la cuales no se requiere dar un nombre a una función, sino más bien definir la forma como trabaja la función.</p>
+<p>Observe el siguiente ejemplo.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Explique qué diferencias hay entre éste método y el anterior</span>
+
+<span class="n">sumita</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">arg1</span><span class="p">,</span><span class="n">arg2</span><span class="p">:</span> <span class="n">arg1</span><span class="o">+</span><span class="n">arg2</span>
+
+<span class="n">a</span><span class="o">=</span><span class="mi">6</span>
+<span class="n">b</span><span class="o">=</span><span class="mi">65</span>
+<span class="n">s</span> <span class="o">=</span> <span class="n">sumita</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;la suma es:&quot;</span><span class="p">,</span> <span class="n">s</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>la suma es: 71
+</pre></div>
+</div>
+</div>
+</div>
+<p>En este ejemplo, la función anónima lambda recibe dos argumentos y regresa su suma. Le hemos dado un nombre: sumita. Pero realmente esto no es necesario. Sin embargo muestra como es posible asignar una función a un objeto, para ser utilizada como una función normal.</p>
+<p>La lógica es la siguiente:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">lambda</span> <span class="pre">arg1,arg2:</span> <span class="pre">arg1+arg2</span></code> define la función anónima.</p></li>
+<li><p>la función anónima es asignada al objeto sumita, con lo cual sumita será una función que hace lo mismo que  la función anónima, pero ahora llamada como una función definida con <code class="docutils literal notranslate"><span class="pre">def</span></code>.</p></li>
+</ul>
+</section>
+<section id="span-style-color-4361ee-un-ejemplo-de-programacion-funcional-span">
+<h2><span style="color:#4361EE">Un ejemplo de programación funcional</span><a class="headerlink" href="#span-style-color-4361ee-un-ejemplo-de-programacion-funcional-span" title="Permalink to this headline">#</a></h2>
+<p>Observe detenidamente el siguiente fragmento de código.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Explicar adecuadamente</span>
+
+<span class="k">def</span> <span class="nf">myfunc</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="k">return</span> <span class="k">lambda</span> <span class="n">a</span> <span class="p">:</span> <span class="n">a</span> <span class="o">*</span> <span class="n">n</span> 
+
+
+<span class="n">mydoubler</span> <span class="o">=</span> <span class="n">myfunc</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="c1">#print(mydoubler)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mydoubler</span><span class="p">(</span><span class="mi">11</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>22
+</pre></div>
+</div>
+</div>
+</div>
+<p>La lógica es la siguiente:</p>
+<ul class="simple">
+<li><p>La función <em>myfunc</em> regresa otra función que tendrá un valor predefinido, llamado aquí <em>n</em>. Esa función se usa para definir otra función que recibirá una parámetro <em>a</em> para multiplicarlo por <em>n</em>.</p></li>
+<li><p>Cuando hacemos la asignación <code class="docutils literal notranslate"><span class="pre">mydoubler</span> <span class="pre">=</span> <span class="pre">myfunc(2)</span></code> se ha definido una nueva función que se llamará <em>mydobler</em>. la cual recibirá un argumento y lo multiplicará por 2 (el valor de <em>n</em>)</p></li>
+</ul>
+<section id="id2">
+<h3><span style="color:#4CC9F0">Ejercicio</span><a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h3>
+<p>Estudie detenidamente  el ejemplo anterior y construya un ejemplo suyo.</p>
+</section>
+</section>
+<section id="span-style-color-4361ee-programacion-funcional-span">
+<h2><span style="color:#4361EE">Programación Funcional</span><a class="headerlink" href="#span-style-color-4361ee-programacion-funcional-span" title="Permalink to this headline">#</a></h2>
+<p>Esta sección es una adaptación de <a class="reference external" href="https://www.geeksforgeeks.org/functional-programming-in-python/#:~:text=Functional%20programming%20is%20a%20programming,is%20%E2%80%9Chow%20to%20solve%E2%80%9C.">geeksforgeeks</a>.</p>
+<section id="span-style-color-4cc9f0-funciones-puras-span">
+<h3><span style="color:#4CC9F0">Funciones Puras</span><a class="headerlink" href="#span-style-color-4cc9f0-funciones-puras-span" title="Permalink to this headline">#</a></h3>
+<p>Las funciones puras tienen dos propiedades.</p>
+<ul class="simple">
+<li><p>Siempre produce la misma salida para los mismos argumentos. Por ejemplo, 3 + 7 siempre será 10 pase lo que pase.</p></li>
+<li><p>No cambia ni modifica la variable de entrada.</p></li>
+</ul>
+<p>La segunda propiedad también se conoce como inmutabilidad. El único resultado de la función pura es el valor que devuelve. Son deterministas. Los programas realizados mediante programación funcional son fáciles de depurar porque las funciones puras no tienen efectos secundarios ni E / S ocultas. Las funciones puras también facilitan la escritura de aplicaciones paralelas / concurrentes. Cuando el código está escrito en este estilo, un compilador inteligente puede hacer muchas cosas: puede paralelizar las instrucciones, esperar a evaluar los resultados cuando los necesite y memorizar los resultados, ya que los resultados nunca cambian mientras la entrada no cambie.</p>
+<p>Revise el siguiente ejemplo. Recibe una lista de número y regresa una nueva lista con los valores elevado al cuadrado.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ejemplo de una función pura</span>
+
+<span class="c1"># Una función pura que no</span>
+<span class="c1"># cambia la lista de entrada y</span>
+<span class="c1"># devuelve la nueva lista</span>
+
+<span class="k">def</span> <span class="nf">pure_func</span><span class="p">(</span><span class="n">List</span><span class="p">):</span>
+    <span class="n">New_List</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">List</span><span class="p">:</span>
+        <span class="n">New_List</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">New_List</span>
+
+<span class="c1"># La función en acción</span>
+<span class="n">Original_List</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+<span class="n">Modified_List</span> <span class="o">=</span> <span class="n">pure_func</span><span class="p">(</span><span class="n">Original_List</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Lista original:&quot;</span><span class="p">,</span> <span class="n">Original_List</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Lista modificada:&quot;</span><span class="p">,</span> <span class="n">Modified_List</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Lista original: [1, 2, 3, 4]
+Lista modificada: [1, 4, 9, 16]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="span-style-color-4cc9f0-recursion-span">
+<h3><span style="color:#4CC9F0">Recursión</span><a class="headerlink" href="#span-style-color-4cc9f0-recursion-span" title="Permalink to this headline">#</a></h3>
+<p>En la programación funcional, no existe el concepto de bucle for o bucle while, sino que se utiliza la recursividad. La recursividad es un proceso en el que una función se llama a sí misma directa o indirectamente. En el programa recursivo, se proporciona la solución al caso base y la solución al problema mayor se expresa en términos de problemas menores. Puede surgir una pregunta ¿cuál es el caso base? El caso base puede considerarse como una condición que le dice al compilador o intérprete que salga de la función.</p>
+<p>Ejemplo: consideremos un programa que encontrará la suma de todos los elementos de una lista sin usar ningún bucle for.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ejemplo de recursión</span>
+
+<span class="c1"># Función recursiva para encontrar</span>
+<span class="c1"># suma de una lista</span>
+
+<span class="k">def</span> <span class="nf">Sum</span><span class="p">(</span><span class="n">L</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">count</span><span class="p">):</span>
+
+    <span class="c1"># Caso base</span>
+    <span class="k">if</span> <span class="n">n</span> <span class="o">&lt;=</span> <span class="n">i</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">count</span>
+
+    <span class="n">count</span> <span class="o">+=</span> <span class="n">L</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+
+    <span class="c1"># Proceso recursivo</span>
+    <span class="n">count</span> <span class="o">=</span> <span class="n">Sum</span><span class="p">(</span><span class="n">L</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">count</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">count</span>
+
+<span class="c1"># Ejemplo de uso</span>
+<span class="n">L</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+<span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">L</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">Sum</span><span class="p">(</span><span class="n">L</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">count</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>15
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="span-style-color-4361ee-las-funciones-son-de-primera-clase-y-pueden-ser-de-orden-superior-span">
+<h2><span style="color:#4361EE">Las funciones son de primera clase y pueden ser de orden superior</span><a class="headerlink" href="#span-style-color-4361ee-las-funciones-son-de-primera-clase-y-pueden-ser-de-orden-superior-span" title="Permalink to this headline">#</a></h2>
+<section id="span-style-color-4cc9f0-objetos-de-primera-clase-span">
+<h3><span style="color:#4CC9F0">Objetos de primera clase</span><a class="headerlink" href="#span-style-color-4cc9f0-objetos-de-primera-clase-span" title="Permalink to this headline">#</a></h3>
+<p>Los objetos de primera clase se manejan uniformemente en todo momento. Pueden almacenarse en estructuras de datos, pasarse como argumentos o usarse en estructuras de control. Se dice que un lenguaje de programación admite funciones de primera clase si trata las funciones como objetos de primera clase.</p>
+</section>
+<section id="span-style-color-4cc9f0-propiedades-de-las-funciones-de-primera-clase-span">
+<h3><span style="color:#4CC9F0">Propiedades de las funciones de primera clase</span><a class="headerlink" href="#span-style-color-4cc9f0-propiedades-de-las-funciones-de-primera-clase-span" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>Una función es una instancia del tipo de objeto.</p></li>
+<li><p>Puede almacenar la función en una variable.</p></li>
+<li><p>Puede pasar la función como parámetro a otra función.</p></li>
+<li><p>Puede devolver la función desde una función.</p></li>
+<li><p>Puede almacenarlos en estructuras de datos como tablas hash, listas,…</p></li>
+</ul>
+</section>
+<section id="span-style-color-4cc9f0-ejemplo-span">
+<h3><span style="color:#4CC9F0">Ejemplo</span><a class="headerlink" href="#span-style-color-4cc9f0-ejemplo-span" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Programa Python  para ilustrar</span>
+<span class="c1"># funciones de orden mayor</span>
+
+
+<span class="k">def</span> <span class="nf">shout</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">text</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">whisper</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">text</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">greet</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+    <span class="c1"># almacena la función en una variable</span>
+    <span class="n">greeting</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="s2">&quot;Hola, soy creada por una función pasada como argumento.&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">greeting</span><span class="p">)</span>
+
+<span class="n">greet</span><span class="p">(</span><span class="n">shout</span><span class="p">)</span>
+<span class="n">greet</span><span class="p">(</span><span class="n">whisper</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>HOLA, SOY CREADA POR UNA FUNCIÓN PASADA COMO ARGUMENTO.
+hola, soy creada por una función pasada como argumento.
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="span-style-color-4cc9f0-funciones-integradas-de-orden-superior-span">
+<h3><span style="color:#4CC9F0">Funciones integradas de orden superior</span><a class="headerlink" href="#span-style-color-4cc9f0-funciones-integradas-de-orden-superior-span" title="Permalink to this headline">#</a></h3>
+<p>Para facilitar mucho el procesamiento de objetos iterables como listas e iteradores, Python ha implementado algunas funciones de orden superior de uso común. Estas funciones devuelven un iterador que ahorra espacio. Algunas de las funciones integradas de orden superior son:</p>
+<ul class="simple">
+<li><p><em>map()</em>: la función <em>map()</em> devuelve una lista de los resultados después de aplicar la función dada a cada elemento de un iterable dado (lista, tupla, etc.)</p></li>
+<li><p><em>filter()</em>: El método <em>filter()</em> filtra la secuencia dada con la ayuda de una función que prueba que cada elemento de la secuencia sea verdadero o no.</p></li>
+</ul>
+<p>Veamos los siguientes dos ejemplos que ilustran <em>map()</em> y <em>filter()</em>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ejemplo del uso de map()</span>
+
+<span class="c1"># Retorna el doble de n</span>
+<span class="k">def</span> <span class="nf">addition</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">n</span> <span class="o">+</span> <span class="n">n</span>
+
+<span class="c1"># doblamos todos los valores de una lista usando map</span>
+<span class="n">numbers</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="n">results</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="n">addition</span><span class="p">,</span> <span class="n">numbers</span><span class="p">)</span>
+
+<span class="c1">#  Print no imprime los resultados</span>
+<span class="c1"># porque se recibe un iterable</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
+
+<span class="c1"># Asi recuperamos del iterable los valores e imprimimos</span>
+<span class="k">for</span> <span class="n">result</span> <span class="ow">in</span> <span class="n">results</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">end</span> <span class="o">=</span> <span class="s2">&quot; &quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;map object at 0x7ff35f2baa90&gt;
+2 4 6 8 
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ejemplo de uso de filter()</span>
+
+<span class="c1"># función que filtra las vocales en una lista</span>
+<span class="k">def</span> <span class="nf">vocal</span><span class="p">(</span><span class="n">variable</span><span class="p">):</span>
+
+    <span class="n">letters</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;e&#39;</span><span class="p">,</span> <span class="s1">&#39;i&#39;</span><span class="p">,</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="s1">&#39;u&#39;</span><span class="p">]</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">variable</span> <span class="ow">in</span> <span class="n">letters</span><span class="p">):</span>
+        <span class="k">return</span> <span class="kc">True</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">False</span>
+
+
+<span class="c1"># secuencia</span>
+<span class="n">sequence</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="s1">&#39;e&#39;</span><span class="p">,</span> <span class="s1">&#39;e&#39;</span><span class="p">,</span> <span class="s1">&#39;j&#39;</span><span class="p">,</span> <span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="s1">&#39;s&#39;</span><span class="p">,</span> <span class="s1">&#39;i&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">]</span>
+
+<span class="c1"># uso de la función filter</span>
+<span class="n">filtered</span> <span class="o">=</span> <span class="nb">filter</span><span class="p">(</span><span class="n">vocal</span><span class="p">,</span> <span class="n">sequence</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Las letras filtradas son:&#39;</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">filtered</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Las letras filtradas son:
+e
+e
+i
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "AprendizajeProfundo/Libro_Fundamentos_Programacion",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./Python/Cuadernos"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="py_04.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title"><span style="color:#F72585">Estructuras de control</span></p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="py_06.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span style="color:#F72585">Iterables e iteradores</span></p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Álvaro Mauricio Montenegro Díaz, Daniel Mauricio Montenegro Reyes<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
